@@ -2,30 +2,55 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-
-        <variable
-            name="hdl"
-            type="me.martichou.be.grateful.fragments.MainFragment" />
+        <variable name="hdl" type="me.martichou.be.grateful.fragments.MainFragment" />
     </data>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="#000"
-            android:clickable="true"
-            android:focusable="true"
-            android:onClick="@{(theView) -> hdl.exec(theView)}" />
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
 
-        <android.support.v7.widget.RecyclerView xmlns:app="http://schemas.android.com/apk/res-auto"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:text="G R A T E F U L"
+                android:textColor="#000"
+                android:textSize="@dimen/main_title"
+                android:textStyle="bold"
+                android:maxLines="1"/>
+
+            <Button
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="@dimen/main_btn_new_width"
+                android:layout_height="@dimen/main_btn_new_height"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/rounded_button_new"
+                android:foreground="@drawable/ripple_circle"
+                android:text="N E W"
+                android:textColor="#fff"
+                android:textSize="@dimen/main_btn_new_txt"
+                android:gravity="center"
+                android:onClick="@{hdl::btnNewAction}"/>
+
+        </RelativeLayout>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:letterSpacing="0.15"
+                android:text="W H A T   M A D E   M E   S M I L E"
+                android:textColor="#FF6575"
+                android:textSize="@dimen/what_made_me"
+                android:textStyle="bold" />
+
+        <android.support.v7.widget.RecyclerView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/notes_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
             android:clipToPadding="false"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager"
             tools:context="me.martichou.be.grateful.fragments.MainFragment"

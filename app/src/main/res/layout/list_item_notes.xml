@@ -2,9 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
     <data>
-
         <variable
             name="clickListener"
             type="android.view.View.OnClickListener" />
@@ -14,20 +12,32 @@
             type="me.martichou.be.grateful.data.Notes" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{clickListener}">
+        android:onClick="@{clickListener}"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/note_item_title"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:letterSpacing="0.05"
             android:text="@{n.title}"
-            android:textAppearance="?attr/textAppearanceListItem"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="Tomato" />
+            android:textColor="#767676"
+            android:textSize="@dimen/note_title"
+            android:maxEms="14"/>
 
-    </android.support.constraint.ConstraintLayout>
+        <TextView
+            android:id="@+id/timestamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:letterSpacing="0.10"
+            android:text="@{n.date}"
+            android:textColor="#c5c5c5"
+            android:textSize="@dimen/note_timestamp" />
+
+    </LinearLayout>
 </layout>

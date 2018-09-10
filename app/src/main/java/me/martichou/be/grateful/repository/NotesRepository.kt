@@ -4,8 +4,19 @@ import me.martichou.be.grateful.data.Notes
 import me.martichou.be.grateful.data.NotesDao
 import me.martichou.be.grateful.utilities.runOnIoThread
 
-
 class NotesRepository private constructor(private val notesDao: NotesDao) {
+
+    companion object {
+
+        // For Singleton instantiation
+        @Volatile
+        private var instance: NotesRepository? = null
+
+        fun getInstance(notesDao: NotesDao) =
+            instance ?: synchronized(this) {
+                instance ?: NotesRepository(notesDao).also { instance = it }
+            }
+    }
 
     /**
      * Return all notes from db
@@ -18,25 +29,36 @@ class NotesRepository private constructor(private val notesDao: NotesDao) {
      */
     fun getThisNote(noteId: Long) = notesDao.getThisNote(noteId)
 
-    companion object {
-
-        // For Singleton instantiation
-        @Volatile
-        private var instance: NotesRepository? = null
-
-        fun getInstance(notesDao: NotesDao) =
-                instance ?: synchronized(this) {
-                    instance ?: NotesRepository(notesDao).also { instance = it }
-                }
-    }
-
     /**
      * Insert a new note using a different thread
      * to avoid hang.
      */
     fun insert(notes: Notes) {
         runOnIoThread {
-            notesDao.insertNotes(notes)
+            notesDao.insertNote(notes)
         }
     }
+
+    /**
+     * Update a note using Notes
+     */
+    fun update(notes: Notes) {
+        runOnIoThread {
+            notesDao.updateNote(notes)
+        }
+    }
+
+    /**
+     * Delete a note by his id
+     */
+    fun delete(notes: Notes) {
+        runOnIoThread {
+            notesDao.updateNote(notes)
+        }
+    }
+
+    /**
+     * Delete all notes
+     */
+    fun deleteAll() = runOnIoThread { notesDao.deleteAll() }
 }
