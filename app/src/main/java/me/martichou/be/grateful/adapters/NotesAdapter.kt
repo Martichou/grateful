@@ -34,7 +34,6 @@ class NotesAdapter : ListAdapter<Notes, NotesAdapter.ViewHolder>(NotesDiffCallba
 
         }
     }
-
     class ViewHolder(
             private val binding: ListItemNotesBinding
     ) : RecyclerView.ViewHolder(binding.root) {

@@ -4,6 +4,7 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.FragmentActivity
 import androidx.navigation.Navigation
+import com.bumptech.glide.annotation.GlideModule
 import me.martichou.be.grateful.databinding.MainActivityBinding
 
 class MainActivity : FragmentActivity() {

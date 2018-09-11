@@ -10,7 +10,7 @@ import android.arch.persistence.room.Update
 @Dao
 interface NotesDao {
 
-    @Query("SELECT * FROM notes")
+    @Query("SELECT * FROM notes ORDER BY id DESC")
     fun getAllNotes(): LiveData<List<Notes>>
 
     @Query("SELECT * FROM notes WHERE id = :noteId")

@@ -12,6 +12,7 @@ import me.martichou.be.grateful.adapters.NotesAdapter
 import me.martichou.be.grateful.data.Notes
 import me.martichou.be.grateful.databinding.MainFragmentBinding
 import me.martichou.be.grateful.utilities.InjectorUtils
+import me.martichou.be.grateful.utilities.currentTime
 import me.martichou.be.grateful.viewmodels.MainViewModel
 
 class MainFragment : Fragment() {
@@ -53,9 +54,12 @@ class MainFragment : Fragment() {
      * Hello into the db for testing purpose.
      */
     fun btnNewAction(v: View) {
-        val 
         // TODO
         Log.i("btnNewAction", "Clicked")
+        val n = Notes("Test", "this is the content", "none", currentTime().toUpperCase().replace(".(?=.)".toRegex(), "$0 "))
+        viewModel.insertNote(n)
+        //viewModel.deleteAll()
+        Log.i("btnNewAction", "Added")
     }
 
 }
