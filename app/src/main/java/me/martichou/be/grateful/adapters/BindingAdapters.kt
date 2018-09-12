@@ -1,7 +1,7 @@
 package me.martichou.be.grateful.adapters
 
+import android.content.Context
 import android.databinding.BindingAdapter
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
@@ -9,7 +9,7 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
-import me.martichou.be.grateful.R
+import java.io.File
 
 /**
  * Bind the app:imageFromFile="imgName" from xml
@@ -20,14 +20,16 @@ import me.martichou.be.grateful.R
 @BindingAdapter("imageFromFile")
 fun imageFromFile(view: ImageView, imageUrl: String?) {
     if (!imageUrl.isNullOrEmpty() && !imageUrl.equals("none")) {
+
+        val image = File(view.context.getDir("imgForNotes", Context.MODE_PRIVATE), imageUrl)
+
         Glide.with(view.context)
-            .load(R.drawable.sample)
+            .load(image)
             .transition(DrawableTransitionOptions.withCrossFade())
             .apply(RequestOptions().transforms(CenterCrop(), RoundedCorners(25)))
             .into(view)
-        Log.i("Image", imageUrl)
+
     } else {
         view.visibility = View.GONE
-        Log.i("Image", "Gone")
     }
 }

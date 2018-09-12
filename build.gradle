@@ -23,6 +23,9 @@ buildscript {
         supportLibraryVersion = '28.0.0-rc02'
         uiAutomatorVersion = "2.1.3"
         workVersion = '1.0.0-alpha08'
+        rxjava = '2.1.0'
+        zelory = '2.1.0'
+        tedbottompicker = '1.2.6'
     }
 
     repositories {

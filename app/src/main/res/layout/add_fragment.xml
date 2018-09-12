@@ -6,153 +6,156 @@
         <variable name="hdl" type="me.martichou.be.grateful.fragments.AddFragment"/>
     </data>
 
-    <!-- TODO: Check how to push the bottom part of the screen when scrolling down. -->
+    <android.support.v4.widget.NestedScrollView android:layout_width="match_parent"
+                                                android:layout_height="wrap_content">
 
-    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
-                  android:orientation="vertical"
-                  android:background="#fe5a59"
-                  tools:context="me.martichou.be.grateful.MainActivity">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                      android:orientation="vertical"
+                      android:background="#fe5a59"
+                      tools:context="me.martichou.be.grateful.MainActivity">
 
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/grateful_margin_page"
-                    android:layout_marginStart="@dimen/grateful_margin_page"
-                    android:layout_marginTop="@dimen/grateful_margin_page"
-                    android:orientation="vertical">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                          android:layout_marginEnd="@dimen/grateful_margin_page"
+                          android:layout_marginStart="@dimen/grateful_margin_page"
+                          android:layout_marginTop="@dimen/grateful_margin_page"
+                          android:orientation="vertical">
 
-            <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+                <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="W R I T E"
+                            android:textColor="#302939"
+                            android:textSize="@dimen/add_title"
+                            android:textStyle="bold" />
+
+                    <Button
+                            android:layout_width="@dimen/add_btn_up_width"
+                            android:layout_height="@dimen/add_btn_up_height"
+                            android:layout_toStartOf="@id/add_save_btn"
+                            android:layout_marginEnd="10dp"
+                            android:background="@drawable/rounded_button_dark"
+                            android:foreground="@drawable/ripple_circle"
+                            android:text="C L O S E"
+                            android:textColor="#fff"
+                            android:textSize="@dimen/add_btn_up_txt"
+                            android:onClick="@{hdl::btnCloseAction}"/>
+
+                    <Button
+                            android:id="@+id/add_save_btn"
+                            android:layout_width="@dimen/add_btn_up_width"
+                            android:layout_height="@dimen/add_btn_up_height"
+                            android:layout_alignParentEnd="true"
+                            android:background="@drawable/rounded_button_dark"
+                            android:foreground="@drawable/ripple_circle"
+                            android:text="S A V E"
+                            android:textColor="#fff"
+                            android:textSize="@dimen/add_btn_up_txt"
+                            android:onClick="@{hdl::btnSaveAction}"/>
+
+                </RelativeLayout>
 
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="W R I T E"
-                        android:textColor="#302939"
-                        android:textSize="@dimen/add_title"
+                        android:layout_marginTop="20dp"
+                        android:textColor="#FFF"
+                        android:textSize="@dimen/add_date"
+                        android:textStyle="italic" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:letterSpacing="0.1"
+                        android:text="WHAT MADE YOU SMILE TODAY"
+                        android:textSize="@dimen/add_what_made_you"
                         android:textStyle="bold" />
 
-                <Button
-                        android:layout_width="@dimen/add_btn_up_width"
-                        android:layout_height="@dimen/add_btn_up_height"
-                        android:layout_toStartOf="@id/add_save_btn"
-                        android:layout_marginEnd="10dp"
-                        android:background="@drawable/rounded_button_dark"
-                        android:foreground="@drawable/ripple_circle"
-                        android:text="C L O S E"
-                        android:textColor="#fff"
-                        android:textSize="@dimen/add_btn_up_txt"
-                        android:onClick="@{hdl.btnCloseAction}"/>
+                <EditText
+                        android:id="@+id/add_title_edit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/rounded_edit_red"
+                        android:gravity="top"
+                        android:hint="Write the title of this grateful card here..."
+                        android:inputType="textMultiLine"
+                        android:letterSpacing="0.1"
+                        android:lines="5"
+                        android:maxLines="5"
+                        android:minLines="5"
+                        android:padding="10dp"
+                        android:textSize="@dimen/add_edit" />
 
-                <Button
-                        android:id="@+id/add_save_btn"
-                        android:layout_width="@dimen/add_btn_up_width"
-                        android:layout_height="@dimen/add_btn_up_height"
-                        android:layout_alignParentEnd="true"
-                        android:background="@drawable/rounded_button_dark"
-                        android:foreground="@drawable/ripple_circle"
-                        android:text="S A V E"
-                        android:textColor="#fff"
-                        android:textSize="@dimen/add_btn_up_txt"
-                        android:onClick="@{hdl.btnSaveAction}"/>
+            </LinearLayout>
+            <!-- White part -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                          android:orientation="vertical"
+                          android:background="#fff">
 
-            </RelativeLayout>
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/grateful_margin_page"
+                        android:layout_marginStart="@dimen/grateful_margin_page"
+                        android:layout_marginTop="20dp"
+                        android:padding="5dp">
 
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:textColor="#FFF"
-                    android:textSize="@dimen/add_date"
-                    android:textStyle="italic" />
+                    <Button
+                            android:id="@+id/btn_notes"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginEnd="10dp"
+                            android:background="@drawable/rounded_button_grey"
+                            android:foreground="@drawable/ripple_circle"
+                            android:gravity="center"
+                            android:text="N O T E"
+                            android:textColor="#94908f"
+                            android:textSize="@dimen/add_btn_down_txt" />
 
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:letterSpacing="0.1"
-                    android:text="WHAT MADE YOU SMILE TODAY"
-                    android:textSize="@dimen/add_what_made_you"
-                    android:textStyle="bold" />
+                    <Button
+                            android:id="@+id/add_photo_btn"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_toEndOf="@id/btn_notes"
+                            android:background="@drawable/rounded_button_grey"
+                            android:foreground="@drawable/ripple_circle"
+                            android:gravity="center"
+                            android:text="P H O T O"
+                            android:textColor="#94908f"
+                            android:textSize="@dimen/add_btn_down_txt"
+                            android:onClick="@{hdl::openImageSelector}"/>
 
-            <EditText
-                    android:id="@+id/add_title_edit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/rounded_edit_red"
-                    android:gravity="top"
-                    android:hint="Write the title of this grateful card here..."
-                    android:inputType="textMultiLine"
-                    android:letterSpacing="0.1"
-                    android:lines="5"
-                    android:maxLines="5"
-                    android:minLines="5"
-                    android:padding="10dp"
-                    android:textSize="@dimen/add_edit" />
+                </RelativeLayout>
 
-        </LinearLayout>
-        <!-- White part -->
-        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:background="#fff">
+                <EditText
+                        android:id="@+id/add_content_edit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/grateful_margin_page"
+                        android:layout_marginStart="@dimen/grateful_margin_page"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/rounded_edit_grey"
+                        android:gravity="top"
+                        android:hint="Write down what you want to remember for this grateful card..."
+                        android:inputType="textMultiLine"
+                        android:letterSpacing="0.1"
+                        android:lines="10"
+                        android:maxLines="20"
+                        android:minLines="10"
+                        android:padding="10dp"
+                        android:textSize="@dimen/add_edit" />
 
-            <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/grateful_margin_page"
-                    android:layout_marginStart="@dimen/grateful_margin_page"
-                    android:layout_marginTop="20dp"
-                    android:padding="5dp">
-
-                <Button
-                        android:id="@+id/btn_notes"
-                        style="?android:attr/borderlessButtonStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_alignParentStart="true"
-                        android:layout_marginEnd="10dp"
-                        android:background="@drawable/rounded_button_grey"
-                        android:foreground="@drawable/ripple_circle"
-                        android:gravity="center"
-                        android:text="N O T E"
-                        android:textColor="#94908f"
-                        android:textSize="@dimen/add_btn_down_txt" />
-
-                <Button
-                        style="?android:attr/borderlessButtonStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_toEndOf="@id/btn_notes"
-                        android:background="@drawable/rounded_button_grey"
-                        android:foreground="@drawable/ripple_circle"
-                        android:gravity="center"
-                        android:text="P H O T O"
-                        android:textColor="#94908f"
-                        android:textSize="@dimen/add_btn_down_txt"
-                android:onClick="@{hdl."/>
-
-            </RelativeLayout>
-
-            <EditText
-                    android:id="@+id/add_content_edit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/grateful_margin_page"
-                    android:layout_marginStart="@dimen/grateful_margin_page"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/rounded_edit_grey"
-                    android:gravity="top"
-                    android:hint="Write down what you want to remember for this grateful card..."
-                    android:inputType="textMultiLine"
-                    android:letterSpacing="0.1"
-                    android:lines="10"
-                    android:maxLines="20"
-                    android:minLines="10"
-                    android:padding="10dp"
-                    android:textSize="@dimen/add_edit" />
+            </LinearLayout>
 
         </LinearLayout>
 
-
-    </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 
 </layout>

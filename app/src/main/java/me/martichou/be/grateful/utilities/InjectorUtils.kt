@@ -3,6 +3,7 @@ package me.martichou.be.grateful.utilities
 import android.content.Context
 import me.martichou.be.grateful.data.AppDatabase
 import me.martichou.be.grateful.repository.NotesRepository
+import me.martichou.be.grateful.viewmodels.AddViewModelFactory
 import me.martichou.be.grateful.viewmodels.MainViewModelFactory
 
 /**
@@ -17,5 +18,10 @@ object InjectorUtils {
     fun provideMainViewModelFactory(context: Context): MainViewModelFactory {
         val repository = getNotesRepository(context)
         return MainViewModelFactory(repository)
+    }
+
+    fun provideAddViewModelFactory(context: Context): AddViewModelFactory {
+        val repository = getNotesRepository(context)
+        return AddViewModelFactory(repository)
     }
 }

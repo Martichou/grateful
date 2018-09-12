@@ -45,6 +45,9 @@ dependencies {
     implementation "android.arch.lifecycle:extensions:$rootProject.lifecycleVersion"
     implementation "android.arch.navigation:navigation-fragment-ktx:$rootProject.navigationVersion"
     implementation "android.arch.navigation:navigation-ui-ktx:$rootProject.navigationVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxjava"
+    implementation "id.zelory:compressor:$rootProject.zelory"
+    implementation "gun0912.ted:tedbottompicker:$rootProject.tedbottompicker"
     kapt "android.arch.persistence.room:compiler:$rootProject.roomVersion"
     kapt "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
 

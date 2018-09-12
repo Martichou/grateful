@@ -21,21 +21,6 @@ class MainViewModel internal constructor(
     fun getAllNotes() = notesList
 
     /**
-     * Insert a new note in the db
-     */
-    fun insertNote(notes: Notes) = notesRepository.insert(notes)
-
-    /**
-     * Update the content of a note from the db
-     */
-    fun updateNote(notes: Notes) = notesRepository.update(notes)
-
-    /**
-     * Delete a note from the database
-     */
-    fun deleteNote(notes: Notes) = notesRepository.delete(notes)
-
-    /**
      * Delete all notes
      */
     fun deleteAll() = notesRepository.deleteAll()
