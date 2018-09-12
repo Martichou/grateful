@@ -22,8 +22,11 @@ class NotesAdapter : ListAdapter<Notes, NotesAdapter.ViewHolder>(NotesDiffCallba
      * Inflate the layout
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(ListItemNotesBinding.inflate(
-                LayoutInflater.from(parent.context), parent, false))
+        return ViewHolder(
+            ListItemNotesBinding.inflate(
+                LayoutInflater.from(parent.context), parent, false
+            )
+        )
     }
 
     /**
@@ -34,8 +37,9 @@ class NotesAdapter : ListAdapter<Notes, NotesAdapter.ViewHolder>(NotesDiffCallba
 
         }
     }
+
     class ViewHolder(
-            private val binding: ListItemNotesBinding
+        private val binding: ListItemNotesBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(listener: View.OnClickListener, item: Notes) {

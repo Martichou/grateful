@@ -4,7 +4,6 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.FragmentActivity
 import androidx.navigation.Navigation
-import com.bumptech.glide.annotation.GlideModule
 import me.martichou.be.grateful.databinding.MainActivityBinding
 
 class MainActivity : FragmentActivity() {
@@ -15,10 +14,11 @@ class MainActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding: MainActivityBinding = DataBindingUtil.setContentView(this,
-                R.layout.main_activity)
+        val binding: MainActivityBinding = DataBindingUtil.setContentView(
+            this,
+            R.layout.main_activity
+        )
 
         Navigation.findNavController(this, R.id.notes_nav_fragment)
     }
-
 }

@@ -18,5 +18,4 @@ object InjectorUtils {
         val repository = getNotesRepository(context)
         return MainViewModelFactory(repository)
     }
-
 }

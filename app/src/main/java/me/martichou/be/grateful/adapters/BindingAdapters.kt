@@ -19,8 +19,7 @@ import me.martichou.be.grateful.R
  */
 @BindingAdapter("imageFromFile")
 fun imageFromFile(view: ImageView, imageUrl: String?) {
-    // && !imageUrl.equals("none")
-    if (!imageUrl.isNullOrEmpty() ) {
+    if (!imageUrl.isNullOrEmpty() && !imageUrl.equals("none")) {
         Glide.with(view.context)
             .load(R.drawable.sample)
             .transition(DrawableTransitionOptions.withCrossFade())

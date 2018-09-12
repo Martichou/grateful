@@ -6,7 +6,7 @@ import me.martichou.be.grateful.data.Notes
 import me.martichou.be.grateful.repository.NotesRepository
 
 class MainViewModel internal constructor(
-        private val notesRepository: NotesRepository
+    private val notesRepository: NotesRepository
 ) : ViewModel() {
 
     private val notesList = MediatorLiveData<List<Notes>>()
@@ -39,5 +39,4 @@ class MainViewModel internal constructor(
      * Delete all notes
      */
     fun deleteAll() = notesRepository.deleteAll()
-
 }

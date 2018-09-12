@@ -8,11 +8,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
+import me.martichou.be.grateful.R
 import me.martichou.be.grateful.adapters.NotesAdapter
-import me.martichou.be.grateful.data.Notes
 import me.martichou.be.grateful.databinding.MainFragmentBinding
 import me.martichou.be.grateful.utilities.InjectorUtils
-import me.martichou.be.grateful.utilities.currentTime
 import me.martichou.be.grateful.viewmodels.MainViewModel
 
 class MainFragment : Fragment() {
@@ -20,9 +20,9 @@ class MainFragment : Fragment() {
     private lateinit var viewModel: MainViewModel
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         val binding = MainFragmentBinding.inflate(inflater, container, false)
         val context = context ?: return binding.root
@@ -53,13 +53,5 @@ class MainFragment : Fragment() {
      * Execute the insertion of
      * Hello into the db for testing purpose.
      */
-    fun btnNewAction(v: View) {
-        // TODO
-        Log.i("btnNewAction", "Clicked")
-        val n = Notes("Test", "this is the content", "none", currentTime().toUpperCase().replace(".(?=.)".toRegex(), "$0 "))
-        viewModel.insertNote(n)
-        //viewModel.deleteAll()
-        Log.i("btnNewAction", "Added")
-    }
-
+    fun btnNewAction(v: View) = v.findNavController().navigate(R.id.add_fragment)
 }
