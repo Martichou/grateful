@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="hdl" type="me.martichou.be.grateful.fragments.ShowFragment"/>
+        <variable name="viewModel" type="me.martichou.be.grateful.viewmodels.ShowViewModel"/>
+    </data>
+
+    <android.support.v4.widget.NestedScrollView android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp">
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                      android:layout_marginEnd="@dimen/grateful_margin_page"
+                      android:layout_marginStart="@dimen/grateful_margin_page"
+                      android:layout_marginTop="@dimen/grateful_margin_page"
+                      android:orientation="vertical"
+                      tools:context="me.martichou.be.grateful.MainActivity">
+
+            <ImageView
+                    android:id="@+id/show_image_note"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:maxHeight="400dp"
+                    android:scaleType="centerCrop"
+                    app:imageFromFile="@{viewModel.note.image}"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:letterSpacing="0.10"
+                    android:text="W H A T   M A D E   M E   S M I L E"
+                    android:textColor="#FF6575"
+                    android:textSize="@dimen/what_made_me"
+                    android:textStyle="bold" />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:letterSpacing="0.05"
+                    android:maxEms="14"
+                    android:textColor="#767676"
+                    android:textSize="@dimen/note_title"
+                    android:textStyle="normal"
+                    android:text="@{viewModel.note.title}" />
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:letterSpacing="0.05"
+                    android:textColor="#8c8c8c"
+                    android:textSize="@dimen/note_content"
+                    android:text="@{viewModel.note.content}"
+                    app:isGone="@{viewModel.note.content}"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:letterSpacing="0.10"
+                    android:textColor="#c5c5c5"
+                    android:textSize="@dimen/note_timestamp"
+                    android:text="@{viewModel.note.date}"/>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</layout>

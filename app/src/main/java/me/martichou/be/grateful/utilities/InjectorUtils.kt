@@ -5,6 +5,7 @@ import me.martichou.be.grateful.data.AppDatabase
 import me.martichou.be.grateful.repository.NotesRepository
 import me.martichou.be.grateful.viewmodels.AddViewModelFactory
 import me.martichou.be.grateful.viewmodels.MainViewModelFactory
+import me.martichou.be.grateful.viewmodels.ShowViewModelFactory
 
 /**
  * Static methods used to inject classes needed for various Activities and Fragments.
@@ -23,5 +24,13 @@ object InjectorUtils {
     fun provideAddViewModelFactory(context: Context): AddViewModelFactory {
         val repository = getNotesRepository(context)
         return AddViewModelFactory(repository)
+    }
+
+    fun provideShowViewModelFactory(
+        context: Context,
+        id: Long
+    ): ShowViewModelFactory {
+        val repository = getNotesRepository(context)
+        return ShowViewModelFactory(repository, id)
     }
 }

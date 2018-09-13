@@ -5,8 +5,10 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import me.martichou.be.grateful.data.Notes
 import me.martichou.be.grateful.databinding.ListItemNotesBinding
+import me.martichou.be.grateful.fragments.MainFragmentDirections
 
 class NotesAdapter : ListAdapter<Notes, NotesAdapter.ViewHolder>(NotesDiffCallback()) {
 
@@ -34,7 +36,7 @@ class NotesAdapter : ListAdapter<Notes, NotesAdapter.ViewHolder>(NotesDiffCallba
      */
     private fun createOnClickListener(noteId: Long): View.OnClickListener {
         return View.OnClickListener {
-
+            it.findNavController().navigate(MainFragmentDirections.ActionNoteListFragmentToNoteDetailFragment(noteId))
         }
     }
 

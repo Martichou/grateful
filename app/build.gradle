@@ -10,8 +10,8 @@ android {
         enabled = true
     }
     defaultConfig {
-        versionCode 1
-        versionName "1.0"
+        versionCode 4
+        versionName "D"
         applicationId "me.martichou.be.grateful"
         vectorDrawables.useSupportLibrary true
         minSdkVersion rootProject.minSdkVersion

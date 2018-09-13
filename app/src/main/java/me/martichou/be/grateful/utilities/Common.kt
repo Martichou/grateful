@@ -83,7 +83,6 @@ fun compressImage(context: Context?, viewModel: AddViewModel, file: File, add_bt
                     if (!deleted) {
                         Toast.makeText(context, "Error: AA-AR-148, make a report.", Toast.LENGTH_LONG)
                             .show()
-                        // TODO - AUTO REPORT CRASH
                     }
                 }
 

@@ -4,6 +4,7 @@ import android.content.Context
 import android.databinding.BindingAdapter
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
@@ -19,10 +20,11 @@ import java.io.File
  */
 @BindingAdapter("imageFromFile")
 fun imageFromFile(view: ImageView, imageUrl: String?) {
+    // TODO - Solve the round corner on showFragment as well as the double call
+    view.visibility = View.VISIBLE
     if (!imageUrl.isNullOrEmpty() && !imageUrl.equals("none")) {
 
         val image = File(view.context.getDir("imgForNotes", Context.MODE_PRIVATE), imageUrl)
-
         Glide.with(view.context)
             .load(image)
             .transition(DrawableTransitionOptions.withCrossFade())
@@ -31,5 +33,14 @@ fun imageFromFile(view: ImageView, imageUrl: String?) {
 
     } else {
         view.visibility = View.GONE
+    }
+}
+
+@BindingAdapter("isGone")
+fun isGone(v: TextView, content: String?) {
+    if (content.isNullOrEmpty()) {
+        v.visibility = View.GONE
+    } else {
+        v.visibility = View.VISIBLE
     }
 }

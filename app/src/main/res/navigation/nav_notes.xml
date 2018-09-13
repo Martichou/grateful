@@ -8,12 +8,26 @@
         android:id="@+id/main_fragment"
         android:name="me.martichou.be.grateful.fragments.MainFragment"
         android:label="Home"
-        tools:layout="@layout/main_fragment"/>
+        tools:layout="@layout/main_fragment">
+        <action
+            android:id="@+id/action_note_list_fragment_to_note_detail_fragment"
+            app:destination="@id/show_fragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/add_fragment"
         android:name="me.martichou.be.grateful.fragments.AddFragment"
         android:label="Add"
         tools:layout="@layout/add_fragment"/>
+
+    <fragment
+            android:id="@+id/show_fragment"
+            android:name="me.martichou.be.grateful.fragments.ShowFragment"
+            android:label="Show"
+            tools:layout="@layout/show_fragment">
+        <argument
+                android:name="noteId"
+                app:argType="long" />
+    </fragment>
 
 </navigation>

@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,6 @@ import android.widget.Toast
 import androidx.navigation.findNavController
 import gun0912.tedbottompicker.TedBottomPicker
 import kotlinx.android.synthetic.main.add_fragment.*
-import me.martichou.be.grateful.R
 import me.martichou.be.grateful.data.Notes
 import me.martichou.be.grateful.databinding.AddFragmentBinding
 import me.martichou.be.grateful.utilities.InjectorUtils
@@ -33,7 +31,6 @@ class AddFragment : Fragment() {
         val binding = AddFragmentBinding.inflate(inflater, container, false)
         val context = context ?: return binding.root
 
-        // TODO Switch to AddFragment Viewmodel
         // Use InjectorUtils to inject the viewmodel
         val factory = InjectorUtils.provideAddViewModelFactory(context)
         viewModel = ViewModelProviders.of(this, factory).get(AddViewModel::class.java)
@@ -49,7 +46,7 @@ class AddFragment : Fragment() {
      * Close this fragment and switch back to the previous one
      */
     fun btnCloseAction(v: View) {
-        v.findNavController().popBackStack(R.id.main_fragment, false)
+        v.findNavController().popBackStack()
     }
 
     /**
@@ -65,7 +62,7 @@ class AddFragment : Fragment() {
                 compressImage(context, viewModel, file, add_photo_btn)
             }
             .setEmptySelectionText("Cancel")
-            .showGalleryTile(false) // Prevent user from picking image from google-photos which seems not supported yet
+            .showGalleryTile(false) // Prevent user from picking image from google-photos, ... which seems not supported yet
             .create().show(fragmentManager)
     }
 
@@ -82,17 +79,15 @@ class AddFragment : Fragment() {
     }
 
     @SuppressLint("ShowToast")
-        /**
+    /**
      * Close this fragment and save info
      */
     fun btnSaveAction(v: View) {
         if (!viewModel.isWorking) {
-            // TODO - REFER THE SAVE BUTTON and GET content of edit text
             val title: String = add_title_edit.text.toString()
             if (!title.isEmpty()) run {
-                val n = Notes(title, add_content_edit.text.toString(), photoOrNot(), currentTime())
-                viewModel.insertNote(n)
-                v.findNavController().popBackStack(R.id.main_fragment, true)
+                viewModel.insertNote(Notes(title, add_content_edit.text.toString(), photoOrNot(), currentTime()))
+                v.findNavController().popBackStack()
             }
         } else {
             Toast.makeText(context, "Try again in a few seconds...", Toast.LENGTH_SHORT)

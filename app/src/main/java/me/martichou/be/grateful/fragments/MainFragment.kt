@@ -4,7 +4,6 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,5 +52,7 @@ class MainFragment : Fragment() {
      * Execute the insertion of
      * Hello into the db for testing purpose.
      */
-    fun btnNewAction(v: View) = v.findNavController().navigate(R.id.add_fragment)
+    fun btnNewAction(v: View) {
+        v.findNavController().navigate(R.id.add_fragment)
+    }
 }

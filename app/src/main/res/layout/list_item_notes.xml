@@ -46,6 +46,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="10dp"
                 android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
                 android:contentDescription="@string/image_of_the_note"
                 app:imageFromFile="@{n.image}"/>
 
