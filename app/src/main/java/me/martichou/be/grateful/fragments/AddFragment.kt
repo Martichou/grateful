@@ -52,7 +52,7 @@ class AddFragment : Fragment() {
     /**
      * Open the image selector
      */
-    fun openImageSelector(v: View){
+    fun openImageSelector(v: View) {
         TedBottomPicker.Builder(this.requireContext())
             .setOnImageSelectedListener {
 
@@ -70,8 +70,8 @@ class AddFragment : Fragment() {
      * Return the photo name if there is one
      * else, blank
      */
-    fun photoOrNot(): String{
-        return if(viewModel.hasPhoto){
+    fun photoOrNot(): String {
+        return if (viewModel.hasPhoto) {
             viewModel.randomImageName
         } else {
             ""
@@ -79,9 +79,9 @@ class AddFragment : Fragment() {
     }
 
     @SuppressLint("ShowToast")
-    /**
-     * Close this fragment and save info
-     */
+        /**
+         * Close this fragment and save info
+         */
     fun btnSaveAction(v: View) {
         if (!viewModel.isWorking) {
             val title: String = add_title_edit.text.toString()

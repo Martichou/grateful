@@ -49,19 +49,23 @@ fun randomNumber(min: Int, max: Int): String {
 }
 
 fun setupPermissions(context: Context, activity: FragmentActivity) {
-    val permission = ContextCompat.checkSelfPermission(context,
-        Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    val permission = ContextCompat.checkSelfPermission(
+        context,
+        Manifest.permission.WRITE_EXTERNAL_STORAGE
+    )
 
     if (permission != PackageManager.PERMISSION_GRANTED) {
         Log.i("PermissionRequest", "Permission to write external storage denied !")
-        ActivityCompat.requestPermissions(activity,
+        ActivityCompat.requestPermissions(
+            activity,
             arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-            101)
+            101
+        )
     }
 }
 
 @SuppressLint("CheckResult")
-fun compressImage(context: Context?, viewModel: AddViewModel, file: File, add_btn: Button){
+fun compressImage(context: Context?, viewModel: AddViewModel, file: File, add_btn: Button) {
     Compressor(context)
         .setQuality(75)
         .setCompressFormat(Bitmap.CompressFormat.WEBP)
@@ -100,7 +104,6 @@ fun compressImage(context: Context?, viewModel: AddViewModel, file: File, add_bt
 
                         add_btn.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_check, 0)
                         add_btn.setPadding(20, 0, 10, 0)
-
                     } catch (e: IOException) {
                         e.printStackTrace()
                     }

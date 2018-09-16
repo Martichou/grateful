@@ -28,7 +28,7 @@
                             android:text="W R I T E"
                             android:textColor="#302939"
                             android:textSize="@dimen/add_title"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"/>
 
                     <Button
                             android:layout_width="@dimen/add_btn_up_width"
@@ -62,7 +62,7 @@
                         android:layout_marginTop="20dp"
                         android:textColor="#FFF"
                         android:textSize="@dimen/add_date"
-                        android:textStyle="italic" />
+                        android:textStyle="italic"/>
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -71,7 +71,7 @@
                         android:letterSpacing="0.1"
                         android:text="WHAT MADE YOU SMILE TODAY"
                         android:textSize="@dimen/add_what_made_you"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"/>
 
                 <EditText
                         android:id="@+id/add_title_edit"
@@ -88,7 +88,7 @@
                         android:maxLines="5"
                         android:minLines="5"
                         android:padding="10dp"
-                        android:textSize="@dimen/add_edit" />
+                        android:textSize="@dimen/add_edit"/>
 
             </LinearLayout>
             <!-- White part -->
@@ -116,7 +116,7 @@
                             android:gravity="center"
                             android:text="N O T E"
                             android:textColor="#94908f"
-                            android:textSize="@dimen/add_btn_down_txt" />
+                            android:textSize="@dimen/add_btn_down_txt"/>
 
                     <Button
                             android:id="@+id/add_photo_btn"
@@ -150,7 +150,7 @@
                         android:maxLines="20"
                         android:minLines="10"
                         android:padding="10dp"
-                        android:textSize="@dimen/add_edit" />
+                        android:textSize="@dimen/add_edit"/>
 
             </LinearLayout>
 

@@ -21,14 +21,14 @@ class AddViewModel internal constructor(
     /**
      * Change the boolean value
      */
-    fun changeIsWorking(b: Boolean){
+    fun changeIsWorking(b: Boolean) {
         isWorking = b
     }
 
     /**
      * Change the boolean value
      */
-    fun changeHasPhoto(b: Boolean){
+    fun changeHasPhoto(b: Boolean) {
         hasPhoto = b
     }
 }

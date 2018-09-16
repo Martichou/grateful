@@ -4,6 +4,7 @@ import android.content.Context
 import me.martichou.be.grateful.data.AppDatabase
 import me.martichou.be.grateful.repository.NotesRepository
 import me.martichou.be.grateful.viewmodels.AddViewModelFactory
+import me.martichou.be.grateful.viewmodels.EditViewModelFactory
 import me.martichou.be.grateful.viewmodels.MainViewModelFactory
 import me.martichou.be.grateful.viewmodels.ShowViewModelFactory
 
@@ -32,5 +33,13 @@ object InjectorUtils {
     ): ShowViewModelFactory {
         val repository = getNotesRepository(context)
         return ShowViewModelFactory(repository, id)
+    }
+
+    fun provideEditViewModelFactory(
+        context: Context,
+        id: Long
+    ): EditViewModelFactory {
+        val repository = getNotesRepository(context)
+        return EditViewModelFactory(repository, id)
     }
 }

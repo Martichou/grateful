@@ -24,10 +24,16 @@ class NotesRepository private constructor(private val notesDao: NotesDao) {
     fun getallNotes() = notesDao.getAllNotes()
 
     /**
-     * Return one note
+     * Return one note in Livedata
      * @param noteId = note id of which we want to see
      */
     fun getThisNote(noteId: Long) = notesDao.getThisNote(noteId)
+
+    /**
+     * Return one note static
+     * @param noteId = note id of which we want to see
+     */
+    fun getThisNoteStatic(noteId: Long) = notesDao.getThisNoteStatic(noteId)
 
     /**
      * Insert a new note using a different thread
@@ -49,16 +55,20 @@ class NotesRepository private constructor(private val notesDao: NotesDao) {
     }
 
     /**
-     * Delete a note by his id
+     * Delete a note by his object
      */
     fun delete(notes: Notes) {
         runOnIoThread {
-            notesDao.updateNote(notes)
+            notesDao.deleteNote(notes)
         }
     }
 
     /**
      * Delete all notes
      */
-    fun deleteAll() = runOnIoThread { notesDao.deleteAll() }
+    fun deleteAll() {
+        runOnIoThread {
+            notesDao.deleteAll()
+        }
+    }
 }

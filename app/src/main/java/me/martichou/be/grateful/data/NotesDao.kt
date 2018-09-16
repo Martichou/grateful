@@ -16,6 +16,9 @@ interface NotesDao {
     @Query("SELECT * FROM notes WHERE id = :noteId")
     fun getThisNote(noteId: Long): LiveData<Notes>
 
+    @Query("SELECT * FROM notes WHERE id = :noteId")
+    fun getThisNoteStatic(noteId: Long): Notes
+
     @Insert
     fun insertNote(notes: Notes)
 

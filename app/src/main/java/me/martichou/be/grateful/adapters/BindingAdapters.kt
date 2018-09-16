@@ -30,7 +30,6 @@ fun imageFromFile(view: ImageView, imageUrl: String?) {
             .transition(DrawableTransitionOptions.withCrossFade())
             .apply(RequestOptions().transforms(CenterCrop(), RoundedCorners(25)))
             .into(view)
-
     } else {
         view.visibility = View.GONE
     }
