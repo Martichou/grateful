@@ -10,6 +10,8 @@ class EditViewModel internal constructor(
     id: Long
 ) : ViewModel() {
 
+    var hasPhotoUpdated: Boolean = false
+
     /**
      * Get the note from the db
      */

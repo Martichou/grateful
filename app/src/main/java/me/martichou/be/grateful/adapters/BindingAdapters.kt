@@ -4,6 +4,7 @@ import android.content.Context
 import android.databinding.BindingAdapter
 import android.view.View
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
@@ -37,6 +38,15 @@ fun imageFromFile(view: ImageView, imageUrl: String?) {
 
 @BindingAdapter("isGone")
 fun isGone(v: TextView, content: String?) {
+    if (content.isNullOrEmpty()) {
+        v.visibility = View.GONE
+    } else {
+        v.visibility = View.VISIBLE
+    }
+}
+
+@BindingAdapter("isNeedToBeGone")
+fun isNeedToBeGone(v: RelativeLayout, content: String?) {
     if (content.isNullOrEmpty()) {
         v.visibility = View.GONE
     } else {

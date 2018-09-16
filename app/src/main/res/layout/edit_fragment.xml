@@ -22,7 +22,8 @@
                           android:orientation="vertical"
                           tools:context="me.martichou.be.grateful.MainActivity">
 
-                <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+                <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    app:isNeedToBeGone="@{viewModel.note.image}">
 
                     <ImageView
                             android:id="@+id/show_image_note"
@@ -90,7 +91,7 @@
             </LinearLayout>
 
             <ImageView
-                    style="?android:attr/borderlessButtonStyle"
+                    android:id="@+id/edit_delete_button"
                     android:layout_width="@dimen/show_edit_wh"
                     android:layout_height="@dimen/show_edit_wh"
                     android:layout_alignParentBottom="true"
@@ -104,8 +105,26 @@
                     android:src="@drawable/ic_delete"
                     android:onClick="@{hdl::btnDeleteAction}"/>
 
-            <ImageView
+            <Button
                     style="?android:attr/borderlessButtonStyle"
+                    android:layout_toEndOf="@+id/edit_delete_button"
+                    android:layout_toStartOf="@+id/edit_save_button"
+                    android:layout_width="@dimen/main_btn_new_width"
+                    android:layout_height="@dimen/main_btn_new_height"
+                    android:layout_below="@+id/edit_main"
+                    android:layout_marginTop="25dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="@dimen/grateful_margin_page"
+                    android:layout_marginEnd="@dimen/grateful_margin_page"
+                    android:background="@drawable/rounded_button_darkgrey"
+                    android:foreground="@drawable/ripple_circle"
+                    android:text="C L O S E"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/main_btn_new_txt"
+                    android:onClick="@{hdl::btnCloseAction}"/>
+
+            <ImageView
+                    android:id="@+id/edit_save_button"
                     android:layout_width="@dimen/show_edit_wh"
                     android:layout_height="@dimen/show_edit_wh"
                     android:layout_alignParentBottom="true"
@@ -116,7 +135,8 @@
                     android:foreground="@drawable/ripple_circle"
                     android:gravity="center"
                     android:padding="8dp"
-                    android:src="@drawable/ic_check"/>
+                    android:src="@drawable/ic_check"
+                    android:onClick="@{hdl::btnSaveAction}"/>
 
         </RelativeLayout>
 
