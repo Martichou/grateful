@@ -11,6 +11,9 @@ class MainViewModel internal constructor(
 
     private val notesList = MediatorLiveData<List<Notes>>()
 
+    /**
+     * Fill in the notesList
+     */
     init {
         notesList.addSource(notesRepository.getallNotes(), notesList::setValue)
     }

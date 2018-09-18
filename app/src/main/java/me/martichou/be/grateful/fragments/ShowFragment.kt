@@ -34,7 +34,7 @@ class ShowFragment : Fragment() {
                 setLifecycleOwner(this@ShowFragment)
             }
 
-        // Use this to bind onClick or other data binding from main_fragment.xml
+        // Use this to bind onClick or other data binding from show_fragment.xml
         binding.hdl = this
 
         // Return the view

@@ -13,20 +13,33 @@ import me.martichou.be.grateful.viewmodels.ShowViewModelFactory
  */
 object InjectorUtils {
 
+    /**
+     * Return the repository
+     */
     private fun getNotesRepository(context: Context): NotesRepository {
         return NotesRepository.getInstance(AppDatabase.getInstance(context).notesDao())
     }
 
+    /**
+     * Provide the MainViewModel initialized
+     */
     fun provideMainViewModelFactory(context: Context): MainViewModelFactory {
         val repository = getNotesRepository(context)
         return MainViewModelFactory(repository)
     }
 
+    /**
+     * Provide the AddViewModel initialized
+     */
     fun provideAddViewModelFactory(context: Context): AddViewModelFactory {
         val repository = getNotesRepository(context)
         return AddViewModelFactory(repository)
     }
 
+    /**
+     * Provide the ShowViewModel initialized
+     * with args -> id
+     */
     fun provideShowViewModelFactory(
         context: Context,
         id: Long
@@ -35,6 +48,10 @@ object InjectorUtils {
         return ShowViewModelFactory(repository, id)
     }
 
+    /**
+     * Provide the EditViewModel initialized
+     * with args -> id
+     */
     fun provideEditViewModelFactory(
         context: Context,
         id: Long

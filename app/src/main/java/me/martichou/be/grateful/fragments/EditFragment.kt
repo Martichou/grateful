@@ -53,7 +53,7 @@ class EditFragment : Fragment() {
      * This will open the image choser
      * and update the image.
      */
-    fun btnEditImage(v: View){
+    fun btnEditImage(v: View) {
         TedBottomPicker.Builder(this.requireContext())
             .setOnImageSelectedListener { it: Uri? ->
                 val file = File(it!!.path)
@@ -91,7 +91,7 @@ class EditFragment : Fragment() {
             val title = edit_title_note.text.toString()
             val content = edit_content_note.text.toString()
 
-            if((!title.isEmpty() && title != pn.title) || (!content.isEmpty() && content != pn.content) || (editModel.hasPhotoUpdated)) {
+            if ((!title.isEmpty() && title != pn.title) || (!content.isEmpty() && content != pn.content) || (editModel.hasPhotoUpdated)) {
                 editModel.updateOnDb(pn, title, content, noteId)
                 v.findNavController().popBackStack()
             } else {

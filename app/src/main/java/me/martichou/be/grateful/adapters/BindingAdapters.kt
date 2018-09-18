@@ -66,6 +66,9 @@ fun imageFromFileEdit(view: ImageView, imageUrl: String?) {
     }
 }
 
+/**
+ * Will hide the textview if the string is empty
+ */
 @BindingAdapter("isGone")
 fun isGone(v: TextView, content: String?) {
     if (content.isNullOrEmpty()) {

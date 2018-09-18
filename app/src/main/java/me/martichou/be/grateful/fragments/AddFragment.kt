@@ -79,9 +79,9 @@ class AddFragment : Fragment() {
     }
 
     @SuppressLint("ShowToast")
-    /**
-     * Close this fragment and save info
-     */
+        /**
+         * Close this fragment and save info
+         */
     fun btnSaveAction(v: View) {
         if (!viewModel.isWorking) {
             val title: String = add_title_edit.text.toString()

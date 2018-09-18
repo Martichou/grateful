@@ -56,7 +56,7 @@ fun randomNumber(min: Int, max: Int): String {
 /**
  * Little fun to show off a Toast
  */
-fun makeToast(c: Context, s: String){
+fun makeToast(c: Context, s: String) {
     Toast.makeText(c, s, Toast.LENGTH_SHORT).show()
 }
 
@@ -85,7 +85,15 @@ fun setupPermissions(context: Context, activity: FragmentActivity) {
  * TODO - In both update or save: --> Make the random number dependant on the id
  */
 @SuppressLint("CheckResult")
-fun compressImage(activity: FragmentActivity?, isAdd: Boolean, viewModel: AddViewModel?, editViewModel: EditViewModel?, file: File, add_btn: Button?, imageView: ImageView?) {
+fun compressImage(
+    activity: FragmentActivity?,
+    isAdd: Boolean,
+    viewModel: AddViewModel?,
+    editViewModel: EditViewModel?,
+    file: File,
+    add_btn: Button?,
+    imageView: ImageView?
+) {
     runOnIoThread {
         val storageDir = activity!!.getDir("imgForNotes", Context.MODE_PRIVATE)
         val success = if (!storageDir.exists()) {
@@ -94,7 +102,7 @@ fun compressImage(activity: FragmentActivity?, isAdd: Boolean, viewModel: AddVie
             true
         }
         if (success) {
-            val imageFile: File = if(isAdd) {
+            val imageFile: File = if (isAdd) {
                 File(storageDir, viewModel!!.randomImageName)
             } else {
                 File(storageDir, editViewModel!!.randomImageName)
@@ -127,7 +135,14 @@ fun compressImage(activity: FragmentActivity?, isAdd: Boolean, viewModel: AddVie
     }
 }
 
-fun compressNextIfAdd(activity: FragmentActivity?, viewModel: AddViewModel, add_btn: Button){
+/**
+ * Function called by compressImage
+ * depending if compressImage were called
+ * from Add or Update
+ *
+ * HERE - Will change some boolean and add style
+ */
+fun compressNextIfAdd(activity: FragmentActivity?, viewModel: AddViewModel, add_btn: Button) {
     viewModel.changeHasPhoto(true)
     viewModel.changeIsWorking(false)
 
@@ -137,14 +152,28 @@ fun compressNextIfAdd(activity: FragmentActivity?, viewModel: AddViewModel, add_
     }
 }
 
-fun compressNextIfUpdate(activity: FragmentActivity?, viewModel: EditViewModel, imageView: ImageView, imageFile: File){
+/**
+ * Function called by compressImage
+ * depending if compressImage were called
+ * from Add or Update
+ *
+ * HERE - Will change some boolean and style
+ */
+fun compressNextIfUpdate(activity: FragmentActivity?, viewModel: EditViewModel, imageView: ImageView, imageFile: File) {
     viewModel.changeHasPhotoUpdated(true)
 
     activity!!.runOnUiThread {
         Glide.with(activity).asBitmap().load(imageFile)
-            .apply(RequestOptions().transforms(CenterInside()).override(1024,1024).skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE))
+            .apply(
+                RequestOptions().transforms(CenterInside()).override(
+                    1024,
+                    1024
+                ).skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE)
+            )
             .into(object : SimpleTarget<Bitmap>() {
-                override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) { imageView.setImageBitmap(resource) }
+                override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+                    imageView.setImageBitmap(resource)
+                }
             })
     }
 }

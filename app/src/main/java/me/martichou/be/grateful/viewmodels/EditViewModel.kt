@@ -2,7 +2,6 @@ package me.martichou.be.grateful.viewmodels
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.ViewModel
-import android.util.Log
 import me.martichou.be.grateful.data.Notes
 import me.martichou.be.grateful.repository.NotesRepository
 import me.martichou.be.grateful.utilities.randomNumber
@@ -53,7 +52,7 @@ class EditViewModel internal constructor(
      * Save the note on the db if it's needed
      * updateNote is on runOnIoThread
      */
-    fun updateOnDb(pn: Notes, title: String, content: String, id: Long){
+    fun updateOnDb(pn: Notes, title: String, content: String, id: Long) {
         val n = Notes(title, content, photoOrNot(pn.image), pn.date)
         n.id = id
 
