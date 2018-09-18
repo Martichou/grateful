@@ -26,6 +26,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="W R I T E"
+                            android:layout_centerVertical="true"
                             android:textColor="#302939"
                             android:textSize="@dimen/add_title"
                             android:textStyle="bold"/>
@@ -35,6 +36,7 @@
                             android:layout_height="@dimen/add_btn_up_height"
                             android:layout_toStartOf="@id/add_save_btn"
                             android:layout_marginEnd="10dp"
+                            android:layout_centerVertical="true"
                             android:background="@drawable/rounded_button_dark"
                             android:foreground="@drawable/ripple_circle"
                             android:text="C L O S E"
@@ -46,6 +48,7 @@
                             android:id="@+id/add_save_btn"
                             android:layout_width="@dimen/add_btn_up_width"
                             android:layout_height="@dimen/add_btn_up_height"
+                            android:layout_centerVertical="true"
                             android:layout_alignParentEnd="true"
                             android:background="@drawable/rounded_button_dark"
                             android:foreground="@drawable/ripple_circle"

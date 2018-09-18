@@ -1,6 +1,5 @@
 package me.martichou.be.grateful.fragments
 
-import android.annotation.SuppressLint
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
@@ -8,16 +7,17 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
+import gun0912.tedbottompicker.TedBottomPicker
 import kotlinx.android.synthetic.main.edit_fragment.*
 import me.martichou.be.grateful.R
-import me.martichou.be.grateful.data.Notes
 import me.martichou.be.grateful.databinding.EditFragmentBinding
 import me.martichou.be.grateful.utilities.InjectorUtils
+import me.martichou.be.grateful.utilities.compressImageUpdate
+import me.martichou.be.grateful.utilities.makeToast
 import me.martichou.be.grateful.utilities.runOnIoThread
 import me.martichou.be.grateful.viewmodels.EditViewModel
+import java.io.File
 
 class EditFragment : Fragment() {
 
@@ -41,11 +41,26 @@ class EditFragment : Fragment() {
                 setLifecycleOwner(this@EditFragment)
             }
 
-        // Use this to bind onClick or other data binding from main_fragment.xml
+        // Use this to bind onClick or other data binding from edit_fragment.xml
         binding.hdl = this
 
         // Return the view
         return binding.root
+    }
+
+    /**
+     * This will open the image choser
+     * and update the image.
+     */
+    fun btnEditImage(v: View){
+        TedBottomPicker.Builder(this.requireContext())
+            .setOnImageSelectedListener {
+                val file = File(it.path)
+                compressImageUpdate(activity, editModel, file, show_image_note)
+            }
+            .setEmptySelectionText("Cancel")
+            .showGalleryTile(false) // Prevent user from picking image from google-photos, ... which seems not supported yet
+            .create().show(fragmentManager)
     }
 
     /**
@@ -66,37 +81,21 @@ class EditFragment : Fragment() {
         v.findNavController().popBackStack()
     }
 
-    @SuppressLint("ShowToast")
-        /**
+    /**
      * Save the edit and switch back to previous
      */
     fun btnSaveAction(v: View) {
-        // TODO
         runOnIoThread {
             val pn = editModel.getThisNoteStatic(noteId)
             val title = edit_title_note.text.toString()
             val content = edit_content_note.text.toString()
 
-            if((!title.isEmpty() && title != pn.title)
-                || (!content.isEmpty() && content != pn.content)) {
-                saveOnDb(pn, title, content)
-            } else if (editModel.hasPhotoUpdated){
-                this.findNavController().popBackStack()
+            if((!title.isEmpty() && title != pn.title) || (!content.isEmpty() && content != pn.content) || (editModel.hasPhotoUpdated)) {
+                editModel.updateOnDb(pn, title, content, noteId)
+                v.findNavController().popBackStack()
             } else {
-                Toast.makeText(context, "Please, either hit back or edit something.", Toast.LENGTH_SHORT)
+                activity!!.runOnUiThread { makeToast(requireContext(), "Please, either hit back or edit something.") }
             }
         }
-    }
-
-    /**
-     * Save the note on the db if it's needed
-     * updateNote is on runOnIoThread
-     */
-    fun saveOnDb(pn: Notes, title: String, content: String){
-        val n = Notes(title, content, pn.image, pn.date)
-        n.id = noteId
-
-        editModel.updateNote(n)
-        this.findNavController().popBackStack()
     }
 }

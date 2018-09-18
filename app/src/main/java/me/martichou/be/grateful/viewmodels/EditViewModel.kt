@@ -2,15 +2,25 @@ package me.martichou.be.grateful.viewmodels
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.ViewModel
+import android.util.Log
 import me.martichou.be.grateful.data.Notes
 import me.martichou.be.grateful.repository.NotesRepository
+import me.martichou.be.grateful.utilities.randomNumber
 
 class EditViewModel internal constructor(
     private val notesRepository: NotesRepository,
     id: Long
 ) : ViewModel() {
 
+    val randomImageName: String = randomNumber(100000000, 999999999)
     var hasPhotoUpdated: Boolean = false
+
+    /**
+     * Change the boolean value
+     */
+    fun changeHasPhotoUpdated(b: Boolean) {
+        hasPhotoUpdated = b
+    }
 
     /**
      * Get the note from the db
@@ -23,12 +33,31 @@ class EditViewModel internal constructor(
     fun getThisNoteStatic(noteId: Long) = notesRepository.getThisNoteStatic(noteId)
 
     /**
-     * Update the note
-     */
-    fun updateNote(note: Notes) = notesRepository.update(note)
-
-    /**
      * Delete the note
      */
     fun deleteNote(note: Notes) = notesRepository.delete(note)
+
+    /**
+     * Return the photo name if there is one
+     * else, blank
+     */
+    fun photoOrNot(img: String): String {
+        Log.i("PhotoOrNot", "Working")
+        return if (hasPhotoUpdated) {
+            randomImageName
+        } else {
+            img
+        }
+    }
+
+    /**
+     * Save the note on the db if it's needed
+     * updateNote is on runOnIoThread
+     */
+    fun updateOnDb(pn: Notes, title: String, content: String, id: Long){
+        val n = Notes(title, content, photoOrNot(pn.image), pn.date)
+        n.id = id
+
+        notesRepository.update(n)
+    }
 }

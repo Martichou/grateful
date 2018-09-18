@@ -2,15 +2,17 @@ package me.martichou.be.grateful.adapters
 
 import android.content.Context
 import android.databinding.BindingAdapter
+import android.graphics.Bitmap
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
-import android.widget.RelativeLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.bumptech.glide.load.resource.bitmap.CenterInside
 import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.SimpleTarget
+import com.bumptech.glide.request.transition.Transition
+import me.martichou.be.grateful.R
 import java.io.File
 
 /**
@@ -19,34 +21,53 @@ import java.io.File
  * If image is null or equals to none, set the view
  * as gone to prevent big white space.
  */
+// TODO - Rounded corners
 @BindingAdapter("imageFromFile")
 fun imageFromFile(view: ImageView, imageUrl: String?) {
-    // TODO - Solve the round corner on showFragment as well as the double call
     view.visibility = View.VISIBLE
     if (!imageUrl.isNullOrEmpty() && !imageUrl.equals("none")) {
-
-        val image = File(view.context.getDir("imgForNotes", Context.MODE_PRIVATE), imageUrl)
         Glide.with(view.context)
-            .load(image)
-            .transition(DrawableTransitionOptions.withCrossFade())
-            .apply(RequestOptions().transforms(CenterCrop(), RoundedCorners(25)))
-            .into(view)
+            .asBitmap()
+            .load(File(view.context.getDir("imgForNotes", Context.MODE_PRIVATE), imageUrl))
+            .apply(RequestOptions().transforms(CenterInside()).override(1024, 1024))
+            .into(object : SimpleTarget<Bitmap>() {
+                override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+                    view.setImageBitmap(resource)
+                }
+            })
     } else {
         view.visibility = View.GONE
     }
 }
 
-@BindingAdapter("isGone")
-fun isGone(v: TextView, content: String?) {
-    if (content.isNullOrEmpty()) {
-        v.visibility = View.GONE
+/**
+ * Bind the app:imageFromFile="imgName" from xml
+ * and apply a transition + rounded corners.
+ * If image is null or equals to none, set the view
+ * as gone to prevent big white space.
+ */
+// TODO - Rounded corners
+@BindingAdapter("imageFromFileEdit")
+fun imageFromFileEdit(view: ImageView, imageUrl: String?) {
+    // TODO - Make another conditional shit
+    if (!imageUrl.isNullOrEmpty() && !imageUrl.equals("none")) {
+        Glide.with(view.context)
+            .asBitmap()
+            .load(File(view.context.getDir("imgForNotes", Context.MODE_PRIVATE), imageUrl))
+            .apply(RequestOptions().transforms(CenterInside()).override(1024, 1024))
+            .into(view)
     } else {
-        v.visibility = View.VISIBLE
+        Glide.with(view.context)
+            .asBitmap()
+            .load(R.drawable.posterization)
+            .apply(RequestOptions().transforms(CenterInside()).override(1024, 1024))
+            .into(view)
+        Log.i("Placeholder", "Done")
     }
 }
 
-@BindingAdapter("isNeedToBeGone")
-fun isNeedToBeGone(v: RelativeLayout, content: String?) {
+@BindingAdapter("isGone")
+fun isGone(v: TextView, content: String?) {
     if (content.isNullOrEmpty()) {
         v.visibility = View.GONE
     } else {
