@@ -22,7 +22,8 @@
                           android:orientation="vertical"
                           tools:context="me.martichou.be.grateful.MainActivity">
 
-                <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:onClick="@{hdl::btnEditImage}" >
+                <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:onClick="@{hdl::btnEditImage}">
 
                     <ImageView
                             android:id="@+id/show_image_note"
