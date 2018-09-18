@@ -14,15 +14,11 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import com.bumptech.glide.Glide
-import com.bumptech.glide.TransitionOptions
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterInside
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
-import id.zelory.compressor.Compressor
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.viewmodels.AddViewModel
 import me.martichou.be.grateful.viewmodels.EditViewModel
@@ -89,99 +85,66 @@ fun setupPermissions(context: Context, activity: FragmentActivity) {
  * TODO - In both update or save: --> Make the random number dependant on the id
  */
 @SuppressLint("CheckResult")
-fun compressImage(context: Context?, viewModel: AddViewModel, file: File, add_btn: Button) {
-    Compressor(context)
-        .setQuality(50)
-        .setCompressFormat(Bitmap.CompressFormat.WEBP)
-        .compressToFileAsFlowable(file)
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe {
-            val storageDir = context!!.getDir("imgForNotes", Context.MODE_PRIVATE)
-
-            val success = if (!storageDir.exists()) {
-                storageDir.mkdirs()
+fun compressImage(activity: FragmentActivity?, isAdd: Boolean, viewModel: AddViewModel?, editViewModel: EditViewModel?, file: File, add_btn: Button?, imageView: ImageView?) {
+    runOnIoThread {
+        val storageDir = activity!!.getDir("imgForNotes", Context.MODE_PRIVATE)
+        val success = if (!storageDir.exists()) {
+            storageDir.mkdirs()
+        } else {
+            true
+        }
+        if (success) {
+            val imageFile: File = if(isAdd) {
+                File(storageDir, viewModel!!.randomImageName)
             } else {
-                true
+                File(storageDir, editViewModel!!.randomImageName)
             }
-            if (success) {
-                val imageFile = File(storageDir, viewModel.randomImageName)
-                if (imageFile.exists()) {
-                    val deleted = imageFile.delete()
-                    if (!deleted) {
-                        Toast.makeText(context, "Error: AA-AR-148, make a report.", Toast.LENGTH_LONG)
-                            .show()
-                    }
+            if (imageFile.exists()) {
+                val deleted = imageFile.delete()
+                if (!deleted) {
+                    Log.i("Error", "Cannot delete the file..")
                 }
-
-                var fos: FileOutputStream? = null
+            }
+            var fos: FileOutputStream? = null
+            try {
+                fos = FileOutputStream(imageFile)
+                BitmapFactory.decodeFile(file.absolutePath).compress(Bitmap.CompressFormat.JPEG, 50, fos)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            } finally {
                 try {
-                    fos = FileOutputStream(imageFile)
-                    BitmapFactory.decodeFile(file.absolutePath).compress(Bitmap.CompressFormat.JPEG, 50, fos)
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                } finally {
-                    try {
-                        fos?.close()
-                        viewModel.changeHasPhoto(true)
-                        viewModel.changeIsWorking(false)
-
-                        add_btn.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_check, 0)
-                        add_btn.setPadding(20, 0, 10, 0)
-                    } catch (e: IOException) {
-                        e.printStackTrace()
+                    fos?.close()
+                    if (isAdd) {
+                        compressNextIfAdd(activity, viewModel!!, add_btn!!)
+                    } else {
+                        compressNextIfUpdate(activity, editViewModel!!, imageView!!, imageFile)
                     }
+                } catch (e: IOException) {
+                    e.printStackTrace()
                 }
             }
         }
+    }
 }
 
-@SuppressLint("CheckResult")
-fun compressImageUpdate(activity: FragmentActivity?, viewModel: EditViewModel, file: File, imageView: ImageView) {
-    Compressor(activity)
-        .setQuality(50)
-        .setCompressFormat(Bitmap.CompressFormat.WEBP)
-        .compressToFileAsFlowable(file)
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe {
-            val storageDir = activity!!.getDir("imgForNotes", Context.MODE_PRIVATE)
+fun compressNextIfAdd(activity: FragmentActivity?, viewModel: AddViewModel, add_btn: Button){
+    viewModel.changeHasPhoto(true)
+    viewModel.changeIsWorking(false)
 
-            val success = if (!storageDir.exists()) {
-                storageDir.mkdirs()
-            } else {
-                true
-            }
-            if (success) {
-                // TODO - Remove previous image
-                val imageFile = File(storageDir, viewModel.randomImageName)
+    activity!!.runOnUiThread {
+        add_btn.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_check, 0)
+        add_btn.setPadding(20, 0, 10, 0)
+    }
+}
 
-                var fos: FileOutputStream? = null
-                try {
-                    fos = FileOutputStream(imageFile)
-                    BitmapFactory.decodeFile(file.absolutePath).compress(Bitmap.CompressFormat.JPEG, 50, fos)
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                } finally {
-                    try {
-                        fos?.close()
-                        viewModel.changeHasPhotoUpdated(true)
+fun compressNextIfUpdate(activity: FragmentActivity?, viewModel: EditViewModel, imageView: ImageView, imageFile: File){
+    viewModel.changeHasPhotoUpdated(true)
 
-                        // TODO - Fix why can't change more than one time image
-                        // TODO - Rounded corners
-                        Glide.with(activity)
-                            .asBitmap()
-                            .load(imageFile)
-                            .apply(RequestOptions().transforms(CenterInside()).override(1024, 1024))
-                            .into(object : SimpleTarget<Bitmap>() {
-                                override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                                    imageView.setImageBitmap(resource)
-                                }
-                            })
-                    } catch (e: IOException) {
-                        e.printStackTrace()
-                    }
-                }
-            }
-        }
+    activity!!.runOnUiThread {
+        Glide.with(activity).asBitmap().load(imageFile)
+            .apply(RequestOptions().transforms(CenterInside()).override(1024,1024).skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE))
+            .into(object : SimpleTarget<Bitmap>() {
+                override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) { imageView.setImageBitmap(resource) }
+            })
+    }
 }

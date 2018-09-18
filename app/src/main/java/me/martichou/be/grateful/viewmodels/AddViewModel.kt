@@ -1,6 +1,7 @@
 package me.martichou.be.grateful.viewmodels
 
 import android.arch.lifecycle.ViewModel
+import android.util.Log
 import me.martichou.be.grateful.data.Notes
 import me.martichou.be.grateful.repository.NotesRepository
 import me.martichou.be.grateful.utilities.randomNumber

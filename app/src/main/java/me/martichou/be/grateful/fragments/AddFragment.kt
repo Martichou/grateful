@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.navigation.findNavController
 import gun0912.tedbottompicker.TedBottomPicker
 import kotlinx.android.synthetic.main.add_fragment.*
@@ -16,6 +15,7 @@ import me.martichou.be.grateful.databinding.AddFragmentBinding
 import me.martichou.be.grateful.utilities.InjectorUtils
 import me.martichou.be.grateful.utilities.compressImage
 import me.martichou.be.grateful.utilities.currentTime
+import me.martichou.be.grateful.utilities.makeToast
 import me.martichou.be.grateful.viewmodels.AddViewModel
 import java.io.File
 
@@ -59,7 +59,7 @@ class AddFragment : Fragment() {
                 val file = File(it.path)
                 viewModel.changeIsWorking(true)
 
-                compressImage(context, viewModel, file, add_photo_btn)
+                compressImage(activity, true, viewModel, null, file, add_photo_btn, null)
             }
             .setEmptySelectionText("Cancel")
             .showGalleryTile(false) // Prevent user from picking image from google-photos, ... which seems not supported yet
@@ -70,7 +70,7 @@ class AddFragment : Fragment() {
      * Return the photo name if there is one
      * else, blank
      */
-    fun photoOrNot(): String {
+    private fun photoOrNot(): String {
         return if (viewModel.hasPhoto) {
             viewModel.randomImageName
         } else {
@@ -79,18 +79,20 @@ class AddFragment : Fragment() {
     }
 
     @SuppressLint("ShowToast")
-        /**
-         * Close this fragment and save info
-         */
+    /**
+     * Close this fragment and save info
+     */
     fun btnSaveAction(v: View) {
         if (!viewModel.isWorking) {
             val title: String = add_title_edit.text.toString()
             if (!title.isEmpty()) run {
                 viewModel.insertNote(Notes(title, add_content_edit.text.toString(), photoOrNot(), currentTime()))
                 v.findNavController().popBackStack()
+            } else {
+                makeToast(context!!, "Enter at least one title.")
             }
         } else {
-            Toast.makeText(context, "Try again in a few seconds...", Toast.LENGTH_SHORT)
+            makeToast(context!!, "Try again in a few seconds...")
         }
     }
 }

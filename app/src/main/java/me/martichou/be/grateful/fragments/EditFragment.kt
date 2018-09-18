@@ -2,6 +2,7 @@ package me.martichou.be.grateful.fragments
 
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
+import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -13,7 +14,7 @@ import kotlinx.android.synthetic.main.edit_fragment.*
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.databinding.EditFragmentBinding
 import me.martichou.be.grateful.utilities.InjectorUtils
-import me.martichou.be.grateful.utilities.compressImageUpdate
+import me.martichou.be.grateful.utilities.compressImage
 import me.martichou.be.grateful.utilities.makeToast
 import me.martichou.be.grateful.utilities.runOnIoThread
 import me.martichou.be.grateful.viewmodels.EditViewModel
@@ -54,9 +55,9 @@ class EditFragment : Fragment() {
      */
     fun btnEditImage(v: View){
         TedBottomPicker.Builder(this.requireContext())
-            .setOnImageSelectedListener {
-                val file = File(it.path)
-                compressImageUpdate(activity, editModel, file, show_image_note)
+            .setOnImageSelectedListener { it: Uri? ->
+                val file = File(it!!.path)
+                compressImage(activity, false, null, editModel, file, null, show_image_note)
             }
             .setEmptySelectionText("Cancel")
             .showGalleryTile(false) // Prevent user from picking image from google-photos, ... which seems not supported yet

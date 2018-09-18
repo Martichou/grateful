@@ -42,7 +42,6 @@ class EditViewModel internal constructor(
      * else, blank
      */
     fun photoOrNot(img: String): String {
-        Log.i("PhotoOrNot", "Working")
         return if (hasPhotoUpdated) {
             randomImageName
         } else {
