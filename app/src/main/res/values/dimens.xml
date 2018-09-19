@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="grateful_margin_page">20dp</dimen>
+    <dimen name="grateful_margin_page">15dp</dimen>
     <dimen name="show_margin_lr">20dp</dimen>
 
     <dimen name="main_title">18sp</dimen>

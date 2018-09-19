@@ -8,10 +8,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.CenterInside
+import com.bumptech.glide.load.resource.bitmap.FitCenter
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
+import com.google.android.material.shape.MaterialShapeDrawable
+import com.google.android.material.shape.RoundedCornerTreatment
 import me.martichou.be.grateful.R
 import java.io.File
 
@@ -29,7 +34,7 @@ fun imageFromFile(view: ImageView, imageUrl: String?) {
         Glide.with(view.context)
             .asBitmap()
             .load(File(view.context.getDir("imgForNotes", Context.MODE_PRIVATE), imageUrl))
-            .apply(RequestOptions().transforms(CenterInside()).override(1024, 1024))
+            .apply(RequestOptions().transforms(RoundedCorners(25)).override(1024, 1024))
             .into(object : SimpleTarget<Bitmap>() {
                 override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                     view.setImageBitmap(resource)
@@ -54,13 +59,13 @@ fun imageFromFileEdit(view: ImageView, imageUrl: String?) {
         Glide.with(view.context)
             .asBitmap()
             .load(File(view.context.getDir("imgForNotes", Context.MODE_PRIVATE), imageUrl))
-            .apply(RequestOptions().transforms(CenterInside()).override(1024, 1024))
+            .apply(RequestOptions().transforms(RoundedCorners(25)).override(1024, 1024))
             .into(view)
     } else {
         Glide.with(view.context)
             .asBitmap()
             .load(R.drawable.posterization)
-            .apply(RequestOptions().transforms(CenterInside()).override(1024, 1024))
+            .apply(RequestOptions().transforms(RoundedCorners(25)).override(1024, 1024))
             .into(view)
     }
 }

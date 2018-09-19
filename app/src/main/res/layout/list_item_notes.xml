@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
->
+        xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
                 name="clickListener"
@@ -37,18 +36,18 @@
                 android:textColor="#c5c5c5"
                 android:textSize="@dimen/note_timestamp"/>
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/list_image_note"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:layout_marginEnd="5dp"
                 android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
                 android:layout_marginTop="10dp"
                 android:scaleType="centerCrop"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/image_of_the_note"
-                app:imageFromFile="@{n.image}"/>
+                app:imageFromFile="@{n.image}" />
 
     </LinearLayout>
 </layout>
