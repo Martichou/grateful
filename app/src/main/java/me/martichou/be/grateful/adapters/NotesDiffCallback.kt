@@ -1,6 +1,6 @@
 package me.martichou.be.grateful.adapters
 
-import android.support.v7.util.DiffUtil
+import androidx.recyclerview.widget.DiffUtil
 import me.martichou.be.grateful.data.Notes
 
 class NotesDiffCallback : DiffUtil.ItemCallback<Notes>() {

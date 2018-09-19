@@ -8,7 +8,7 @@
         <variable name="viewModel" type="me.martichou.be.grateful.viewmodels.ShowViewModel"/>
     </data>
 
-    <android.support.v4.widget.NestedScrollView android:layout_width="match_parent"
+    <androidx.core.widget.NestedScrollView android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:paddingBottom="10dp">
 
@@ -90,6 +90,6 @@
 
         </RelativeLayout>
 
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </layout>

@@ -55,13 +55,13 @@
                 android:textSize="@dimen/what_made_me"
                 android:textStyle="bold"/>
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/notes_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
                 android:clipToPadding="false"
-                app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:context="me.martichou.be.grateful.fragments.MainFragment"
                 tools:listitem="@layout/list_item_notes"/>
 

@@ -1,8 +1,8 @@
 package me.martichou.be.grateful
 
-import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v4.app.FragmentActivity
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.FragmentActivity
 import androidx.navigation.Navigation
 import me.martichou.be.grateful.databinding.MainActivityBinding
 import me.martichou.be.grateful.utilities.setupPermissions

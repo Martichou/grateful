@@ -1,12 +1,12 @@
 package me.martichou.be.grateful.adapters
 
 import android.content.Context
-import android.databinding.BindingAdapter
 import android.graphics.Bitmap
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterInside
 import com.bumptech.glide.request.RequestOptions
@@ -25,7 +25,7 @@ import java.io.File
 @BindingAdapter("imageFromFile")
 fun imageFromFile(view: ImageView, imageUrl: String?) {
     view.visibility = View.VISIBLE
-    if (!imageUrl.isNullOrEmpty() && !imageUrl.equals("none")) {
+    if (!imageUrl.isNullOrEmpty() && imageUrl != "none") {
         Glide.with(view.context)
             .asBitmap()
             .load(File(view.context.getDir("imgForNotes", Context.MODE_PRIVATE), imageUrl))
@@ -50,7 +50,7 @@ fun imageFromFile(view: ImageView, imageUrl: String?) {
 @BindingAdapter("imageFromFileEdit")
 fun imageFromFileEdit(view: ImageView, imageUrl: String?) {
     // TODO - Make another conditional shit
-    if (!imageUrl.isNullOrEmpty() && !imageUrl.equals("none")) {
+    if (!imageUrl.isNullOrEmpty() && imageUrl != "none") {
         Glide.with(view.context)
             .asBitmap()
             .load(File(view.context.getDir("imgForNotes", Context.MODE_PRIVATE), imageUrl))
@@ -62,7 +62,6 @@ fun imageFromFileEdit(view: ImageView, imageUrl: String?) {
             .load(R.drawable.posterization)
             .apply(RequestOptions().transforms(CenterInside()).override(1024, 1024))
             .into(view)
-        Log.i("Placeholder", "Done")
     }
 }
 
