@@ -83,18 +83,6 @@ class AddFragment : Fragment() {
         }
     }
 
-    /**
-     * Return the photo name if there is one
-     * else, blank
-     */
-    private fun photoOrNot(): String {
-        return if (viewModel.hasPhoto) {
-            viewModel.randomImageName
-        } else {
-            ""
-        }
-    }
-
     @SuppressLint("ShowToast")
     /**
      * Close this fragment and save info
@@ -103,10 +91,10 @@ class AddFragment : Fragment() {
         if (!viewModel.isWorking) {
             val title: String = add_title_edit.text.toString()
             if (!title.isEmpty()) run {
-                viewModel.insertNote(Notes(title, add_content_edit.text.toString(), photoOrNot(), currentTime()))
+                viewModel.insertNote(Notes(title, add_content_edit.text.toString(), viewModel.photoOrNot(), currentTime()))
                 v.findNavController().popBackStack()
             } else {
-                makeToast(context!!, "Enter at least one title.")
+                makeToast(context!!, "Enter at least one title")
             }
         } else {
             makeToast(context!!, "Try again in a few seconds...")

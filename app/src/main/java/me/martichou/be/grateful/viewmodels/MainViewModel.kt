@@ -22,9 +22,4 @@ class MainViewModel internal constructor(
      * Get all notes existing in the db
      */
     fun getAllNotes() = notesList
-
-    /**
-     * Delete all notes
-     */
-    fun deleteAll() = notesRepository.deleteAll()
 }

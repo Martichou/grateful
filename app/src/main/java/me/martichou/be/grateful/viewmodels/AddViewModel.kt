@@ -31,4 +31,16 @@ class AddViewModel internal constructor(
     fun changeHasPhoto(b: Boolean) {
         hasPhoto = b
     }
+
+    /**
+     * Return the photo name if there is one
+     * else, blank
+     */
+    fun photoOrNot(): String {
+        return if (hasPhoto) {
+            randomImageName
+        } else {
+            ""
+        }
+    }
 }

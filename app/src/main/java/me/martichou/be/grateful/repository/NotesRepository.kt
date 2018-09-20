@@ -62,13 +62,4 @@ class NotesRepository private constructor(private val notesDao: NotesDao) {
             notesDao.deleteNote(notes)
         }
     }
-
-    /**
-     * Delete all notes
-     */
-    fun deleteAll() {
-        runOnIoThread {
-            notesDao.deleteAll()
-        }
-    }
 }

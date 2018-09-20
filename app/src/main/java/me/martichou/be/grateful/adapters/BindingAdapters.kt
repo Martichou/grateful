@@ -22,7 +22,7 @@ import java.io.File
 
 /**
  * Bind the app:imageFromFile="imgName" from xml
- * and apply a transition + rounded corners.
+ * and apply a rounded corners.
  * If image is null or equals to none, set the view
  * as gone to prevent big white space.
  */
@@ -46,10 +46,10 @@ fun imageFromFile(view: ImageView, imageUrl: String?) {
 }
 
 /**
- * Bind the app:imageFromFile="imgName" from xml
- * and apply a transition + rounded corners.
+ * Bind the app:imageFromFileEdit="imgName" from xml
+ * and apply rounded corners.
  * If image is null or equals to none, set the view
- * as gone to prevent big white space.
+ * as placeholder.
  */
 // TODO - Rounded corners
 @BindingAdapter("imageFromFileEdit")
