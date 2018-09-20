@@ -14,7 +14,6 @@ import androidx.navigation.findNavController
 import com.zhihu.matisse.Matisse
 import com.zhihu.matisse.MimeType
 import kotlinx.android.synthetic.main.add_fragment.*
-import kotlinx.android.synthetic.main.edit_fragment.*
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.data.Notes
 import me.martichou.be.grateful.databinding.AddFragmentBinding
@@ -36,6 +35,7 @@ class AddFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Define binding
         val binding = AddFragmentBinding.inflate(inflater, container, false)
         val context = context ?: return binding.root
 
