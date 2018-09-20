@@ -25,7 +25,8 @@ buildscript {
         supportLibraryVersion = '1.0.0-rc02'
         uiAutomatorVersion = '2.2.0-alpha4'
         workVersion = '1.0.0-alpha08'
-        Matisse = '0.5.2-beta3'
+        matisse = '0.5.2-beta3'
+        firebase = '16.0.3'
     }
 
     repositories {
