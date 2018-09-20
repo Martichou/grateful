@@ -29,7 +29,8 @@
                         android:adjustViewBounds="true"
                         android:maxHeight="400dp"
                         android:scaleType="centerCrop"
-                        app:imageFromFile="@{viewModel.note.image}"/>
+                        app:imageFromFile="@{viewModel.note.image}"
+                        android:contentDescription="@string/image_of_your_dedicated_note"/>
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -86,7 +87,8 @@
                     android:gravity="center"
                     android:padding="8dp"
                     android:src="@drawable/ic_edit"
-                    android:onClick="@{hdl::btnEditAction}"/>
+                    android:onClick="@{hdl::btnEditAction}"
+                    android:contentDescription="@string/edit_your_note_button"/>
 
         </RelativeLayout>
 

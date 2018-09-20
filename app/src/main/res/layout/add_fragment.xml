@@ -25,7 +25,7 @@
                     <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="W R I T E"
+                            android:text="@string/w_r_i_t_e"
                             android:layout_centerVertical="true"
                             android:textColor="#302939"
                             android:textSize="@dimen/add_title"
@@ -39,7 +39,7 @@
                             android:layout_centerVertical="true"
                             android:background="@drawable/rounded_button_dark"
                             android:foreground="@drawable/ripple_circle"
-                            android:text="C L O S E"
+                            android:text="@string/c_l_o_s_e"
                             android:textColor="#fff"
                             android:textSize="@dimen/add_btn_up_txt"
                             android:onClick="@{hdl::btnCloseAction}"/>
@@ -52,7 +52,7 @@
                             android:layout_alignParentEnd="true"
                             android:background="@drawable/rounded_button_dark"
                             android:foreground="@drawable/ripple_circle"
-                            android:text="S A V E"
+                            android:text="@string/s_a_v_e"
                             android:textColor="#fff"
                             android:textSize="@dimen/add_btn_up_txt"
                             android:onClick="@{hdl::btnSaveAction}"/>
@@ -72,7 +72,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:letterSpacing="0.1"
-                        android:text="WHAT MADE YOU SMILE TODAY"
+                        android:text="@string/what_made_you_smile_today"
                         android:textSize="@dimen/add_what_made_you"
                         android:textStyle="bold"/>
 
@@ -84,14 +84,14 @@
                         android:layout_marginTop="10dp"
                         android:background="@drawable/rounded_edit_red"
                         android:gravity="top"
-                        android:hint="Write the title of this grateful card here..."
+                        android:hint="@string/write_the_title_of_this_grateful_card_here"
                         android:inputType="textMultiLine"
                         android:letterSpacing="0.1"
                         android:lines="5"
                         android:maxLines="5"
                         android:minLines="5"
                         android:padding="10dp"
-                        android:textSize="@dimen/add_edit"/>
+                        android:textSize="@dimen/add_edit" tools:ignore="Autofill,LabelFor"/>
 
             </LinearLayout>
             <!-- White part -->
@@ -117,7 +117,7 @@
                             android:background="@drawable/rounded_button_grey"
                             android:foreground="@drawable/ripple_circle"
                             android:gravity="center"
-                            android:text="N O T E"
+                            android:text="@string/n_o_t_e"
                             android:textColor="#94908f"
                             android:textSize="@dimen/add_btn_down_txt"/>
 
@@ -130,7 +130,7 @@
                             android:background="@drawable/rounded_button_grey"
                             android:foreground="@drawable/ripple_circle"
                             android:gravity="center"
-                            android:text="P H O T O"
+                            android:text="@string/p_h_o_t_o"
                             android:textColor="#94908f"
                             android:textSize="@dimen/add_btn_down_txt"
                             android:onClick="@{hdl::openImageSelector}"/>
@@ -146,14 +146,14 @@
                         android:layout_marginTop="10dp"
                         android:background="@drawable/rounded_edit_grey"
                         android:gravity="top"
-                        android:hint="Write down what you want to remember for this grateful card..."
+                        android:hint="@string/write_down_what_you_want_to_remember_for_this_grateful_card"
                         android:inputType="textMultiLine"
                         android:letterSpacing="0.1"
                         android:lines="10"
                         android:maxLines="20"
                         android:minLines="10"
                         android:padding="10dp"
-                        android:textSize="@dimen/add_edit"/>
+                        android:textSize="@dimen/add_edit" tools:ignore="Autofill,LabelFor"/>
 
             </LinearLayout>
 

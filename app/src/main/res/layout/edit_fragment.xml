@@ -32,14 +32,15 @@
                             android:adjustViewBounds="true"
                             android:maxHeight="400dp"
                             android:scaleType="centerCrop"
-                            app:imageFromFileEdit="@{viewModel.note.image}"/>
+                            app:imageFromFileEdit="@{viewModel.note.image}"
+                            android:contentDescription="@string/image_of_your_dedicated_note"/>
 
                     <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_centerHorizontal="true"
-                            android:src="@drawable/ic_addphoto"/>
+                            android:src="@drawable/ic_addphoto" tools:ignore="ContentDescription"/>
 
                 </RelativeLayout>
 
@@ -68,7 +69,7 @@
                         android:maxLines="20"
                         android:minLines="1"
                         android:padding="10dp"
-                        android:textSize="@dimen/add_edit"/>
+                        android:textSize="@dimen/add_edit" tools:ignore="Autofill,LabelFor"/>
 
                 <EditText
                         android:id="@+id/edit_content_note"
@@ -85,7 +86,7 @@
                         android:maxLines="20"
                         android:minLines="5"
                         android:padding="10dp"
-                        android:textSize="@dimen/add_edit"/>
+                        android:textSize="@dimen/add_edit" tools:ignore="Autofill,LabelFor"/>
 
             </LinearLayout>
 
@@ -102,7 +103,8 @@
                     android:gravity="center"
                     android:padding="8dp"
                     android:src="@drawable/ic_delete"
-                    android:onClick="@{hdl::btnDeleteAction}"/>
+                    android:onClick="@{hdl::btnDeleteAction}"
+                    android:contentDescription="@string/delete_the_note_button"/>
 
             <Button
                     style="?android:attr/borderlessButtonStyle"
@@ -117,7 +119,7 @@
                     android:layout_marginEnd="@dimen/grateful_margin_page"
                     android:background="@drawable/rounded_button_darkgrey"
                     android:foreground="@drawable/ripple_circle"
-                    android:text="C L O S E"
+                    android:text="@string/c_l_o_s_e"
                     android:textColor="#fff"
                     android:textSize="@dimen/main_btn_new_txt"
                     android:onClick="@{hdl::btnCloseAction}"/>
@@ -135,7 +137,8 @@
                     android:gravity="center"
                     android:padding="8dp"
                     android:src="@drawable/ic_check"
-                    android:onClick="@{hdl::btnSaveAction}"/>
+                    android:onClick="@{hdl::btnSaveAction}"
+                    android:contentDescription="@string/save_edited_note_button"/>
 
         </RelativeLayout>
 
