@@ -1,18 +1,17 @@
 package me.martichou.be.grateful.utilities
 
 import android.content.Context
-import com.bumptech.glide.request.RequestOptions
-import com.bumptech.glide.Glide
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.widget.ImageView
 import com.bumptech.glide.Priority
+import com.bumptech.glide.request.RequestOptions
 import com.zhihu.matisse.engine.ImageEngine
 
 internal class Glide4Engine : ImageEngine {
 
     override fun loadThumbnail(context: Context, resize: Int, placeholder: Drawable, imageView: ImageView, uri: Uri) {
-        Glide.with(context)
+        GlideApp.with(context)
             .asBitmap() // some .jpeg files are actually gif
             .load(uri)
             .apply(
@@ -28,7 +27,7 @@ internal class Glide4Engine : ImageEngine {
         context: Context, resize: Int, placeholder: Drawable, imageView: ImageView,
         uri: Uri
     ) {
-        Glide.with(context)
+        GlideApp.with(context)
             .asBitmap() // some .jpeg files are actually gif
             .load(uri)
             .apply(
@@ -41,7 +40,7 @@ internal class Glide4Engine : ImageEngine {
     }
 
     override fun loadImage(context: Context, resizeX: Int, resizeY: Int, imageView: ImageView, uri: Uri) {
-        Glide.with(context)
+        GlideApp.with(context)
             .load(uri)
             .apply(
                 RequestOptions()
@@ -53,7 +52,7 @@ internal class Glide4Engine : ImageEngine {
     }
 
     override fun loadGifImage(context: Context, resizeX: Int, resizeY: Int, imageView: ImageView, uri: Uri) {
-        Glide.with(context)
+        GlideApp.with(context)
             .asGif()
             .load(uri)
             .apply(

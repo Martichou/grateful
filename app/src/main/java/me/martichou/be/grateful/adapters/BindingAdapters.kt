@@ -2,22 +2,16 @@ package me.martichou.be.grateful.adapters
 
 import android.content.Context
 import android.graphics.Bitmap
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.load.resource.bitmap.CenterInside
-import com.bumptech.glide.load.resource.bitmap.FitCenter
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
-import com.google.android.material.shape.MaterialShapeDrawable
-import com.google.android.material.shape.RoundedCornerTreatment
 import me.martichou.be.grateful.R
+import me.martichou.be.grateful.utilities.GlideApp
 import java.io.File
 
 /**
@@ -31,7 +25,7 @@ import java.io.File
 fun imageFromFile(view: ImageView, imageUrl: String?) {
     view.visibility = View.VISIBLE
     if (!imageUrl.isNullOrEmpty() && imageUrl != "none") {
-        Glide.with(view.context)
+        GlideApp.with(view.context)
             .asBitmap()
             .load(File(view.context.getDir("imgForNotes", Context.MODE_PRIVATE), imageUrl))
             .apply(RequestOptions().transforms(RoundedCorners(25)).override(1024, 1024))
@@ -56,13 +50,13 @@ fun imageFromFile(view: ImageView, imageUrl: String?) {
 fun imageFromFileEdit(view: ImageView, imageUrl: String?) {
     // TODO - Make another conditional shit
     if (!imageUrl.isNullOrEmpty() && imageUrl != "none") {
-        Glide.with(view.context)
+        GlideApp.with(view.context)
             .asBitmap()
             .load(File(view.context.getDir("imgForNotes", Context.MODE_PRIVATE), imageUrl))
             .apply(RequestOptions().transforms(RoundedCorners(25)).override(1024, 1024))
             .into(view)
     } else {
-        Glide.with(view.context)
+        GlideApp.with(view.context)
             .asBitmap()
             .load(R.drawable.posterization)
             .apply(RequestOptions().transforms(RoundedCorners(25)).override(1024, 1024))
