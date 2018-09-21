@@ -1,97 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable name="hdl" type="me.martichou.be.grateful.fragments.ShowFragment"/>
-        <variable name="viewModel" type="me.martichou.be.grateful.viewmodels.ShowViewModel"/>
+        <variable name="hdl" type="me.martichou.be.grateful.fragments.ShowFragment" />
+        <variable name="showModel" type="me.martichou.be.grateful.viewmodels.ShowViewModel" />
     </data>
 
-    <androidx.core.widget.NestedScrollView android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:paddingBottom="10dp">
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/grateful_margin_page"
-                        android:layout_marginStart="@dimen/grateful_margin_page"
-                        android:layout_marginTop="@dimen/grateful_margin_page"
-                        tools:context="me.martichou.be.grateful.MainActivity">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            <LinearLayout android:id="@+id/show_main" android:layout_width="match_parent"
-                          android:layout_height="match_parent"
-                          android:orientation="vertical">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/show_image_note"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/image_of_your_dedicated_note"
+                android:scaleType="centerCrop"
+                app:imageFromFile="@{showModel.note.image}" />
 
-                <ImageView
-                        android:id="@+id/show_image_note"
-                        android:layout_width="match_parent"
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-15dp"
+                android:layout_marginBottom="-15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_below="@id/show_image_note"
+                app:cardCornerRadius="15dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:adjustViewBounds="true"
-                        android:maxHeight="400dp"
-                        android:scaleType="centerCrop"
-                        app:imageFromFile="@{viewModel.note.image}"
-                        android:contentDescription="@string/image_of_your_dedicated_note"/>
+                        android:drawableStart="@drawable/ic_stop"
+                        android:drawablePadding="20dp"
+                        android:drawableTint="@color/red"
+                        android:text="@{showModel.note.title}"
+                        android:textAppearance="@style/TextAppearanceH6"
+                        android:textSize="@dimen/note_title"/>
 
-                <TextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
-                        android:letterSpacing="0.10"
-                        android:text="W H A T   M A D E   M E   S M I L E"
-                        android:textColor="#FF6575"
-                        android:textSize="@dimen/what_made_me"
-                        android:textStyle="bold"/>
+                        android:text="@{showModel.note.content}"
+                        android:textAppearance="@style/TextAppearanceSubtitle1"
+                        android:textSize="@dimen/note_content"/>
 
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:letterSpacing="0.05"
-                        android:maxEms="14"
-                        android:textColor="#767676"
-                        android:textSize="@dimen/note_title"
-                        android:textStyle="normal"
-                        android:text="@{viewModel.note.title}"/>
+                </LinearLayout>
 
-                <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:letterSpacing="0.05"
-                        android:textColor="#8c8c8c"
-                        android:textSize="@dimen/note_content"
-                        android:text="@{viewModel.note.content}"
-                        app:isGone="@{viewModel.note.content}"/>
-
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:letterSpacing="0.10"
-                        android:textColor="#c5c5c5"
-                        android:textSize="@dimen/note_timestamp"
-                        android:text="@{viewModel.note.date}"/>
-
-            </LinearLayout>
-
-            <ImageView
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="@dimen/show_edit_wh"
-                    android:layout_height="@dimen/show_edit_wh"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_below="@+id/show_main"
-                    android:layout_marginTop="25dp"
-                    android:background="@drawable/round_button_red"
-                    android:foreground="@drawable/ripple_circle"
-                    android:gravity="center"
-                    android:padding="8dp"
-                    android:src="@drawable/ic_edit"
-                    android:onClick="@{hdl::btnEditAction}"
-                    android:contentDescription="@string/edit_your_note_button"/>
+            </com.google.android.material.card.MaterialCardView>
 
         </RelativeLayout>
 
-    </androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>

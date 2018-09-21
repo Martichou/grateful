@@ -1,58 +1,51 @@
 package me.martichou.be.grateful.fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.findNavController
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.adapters.NotesAdapter
 import me.martichou.be.grateful.databinding.MainFragmentBinding
+import me.martichou.be.grateful.fragments.dialogFragment.BottomsheetFragment
 import me.martichou.be.grateful.utilities.InjectorUtils
 import me.martichou.be.grateful.viewmodels.MainViewModel
 
 class MainFragment : Fragment() {
 
     private lateinit var viewModel: MainViewModel
+    private lateinit var binding: MainFragmentBinding
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val binding = MainFragmentBinding.inflate(inflater, container, false)
-        val context = context ?: return binding.root
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        viewModel = ViewModelProviders.of(this, InjectorUtils.provideMainViewModelFactory(requireContext().applicationContext)).get(MainViewModel::class.java)
+        binding = MainFragmentBinding.inflate(inflater, container, false).apply {
+            setLifecycleOwner(this@MainFragment)
+            this.notesList.adapter = viewModel.adapter
+            this.hdl = this@MainFragment
+            subscribeUi(viewModel.adapter)
+        }
 
-        // Use InjectorUtils to inject the viewmodel
-        val factory = InjectorUtils.provideMainViewModelFactory(context)
-        viewModel = ViewModelProviders.of(this, factory).get(MainViewModel::class.java)
+        setHasOptionsMenu(true)
 
-        // Fill in the recyclerview using our custom adapter
-        val adapter = NotesAdapter()
-        binding.notesList.adapter = adapter
-        subscribeUi(adapter)
-
-        // Use this to bind onClick or other data binding from main_fragment.xml
-        binding.hdl = this
-
-        // Return the view
         return binding.root
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        inflater?.inflate(R.menu.main, menu)
+    }
+
     private fun subscribeUi(adapter: NotesAdapter) {
-        viewModel.getAllNotes().observe(viewLifecycleOwner, Observer { notes ->
+        viewModel.notesList.observe(viewLifecycleOwner, Observer { notes ->
             if (notes != null) adapter.submitList(notes)
         })
     }
 
     /**
-     * Execute the insertion of
-     * Hello into the db for testing purpose.
+     * Open the bottomsheet
      */
     fun btnNewAction(v: View) {
-        v.findNavController().navigate(R.id.add_fragment)
+        val bottomsheetFragment = BottomsheetFragment()
+        bottomsheetFragment.show(fragmentManager, bottomsheetFragment.tag)
     }
 }

@@ -5,13 +5,12 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Notes::class], version = 1, exportSchema = false)
+@Database(entities = [Notes::class], version = 2, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun notesDao(): NotesDao
 
     companion object {
 
-        // For Singleton instantiation
         @Volatile
         private var instance: AppDatabase? = null
 
@@ -28,8 +27,7 @@ abstract class AppDatabase : RoomDatabase() {
          * Build the database.
          */
         private fun buildDatabase(context: Context): AppDatabase {
-            return Room.databaseBuilder(context, AppDatabase::class.java, "notes")
-                .build()
+            return Room.databaseBuilder(context, AppDatabase::class.java, "notes").build()
         }
     }
 }

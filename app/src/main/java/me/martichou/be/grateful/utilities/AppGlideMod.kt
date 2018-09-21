@@ -9,7 +9,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.signature.ObjectKey
 
 @GlideModule
-class AppGlideMod: AppGlideModule() {
+class AppGlideMod : AppGlideModule() {
 
     override fun applyOptions(context: Context, builder: GlideBuilder) {
         builder.setDefaultRequestOptions(requestOptions())
@@ -20,9 +20,6 @@ class AppGlideMod: AppGlideModule() {
     }
 
     private fun requestOptions(): RequestOptions {
-        // Save the last time the image was updated
-        return RequestOptions()
-            .signature(ObjectKey(System.currentTimeMillis() / (24 * 60 * 60 * 1000)))
-            .format(DecodeFormat.PREFER_ARGB_8888)
+        return RequestOptions().signature(ObjectKey(System.currentTimeMillis() / (24 * 60 * 60 * 1000))).format(DecodeFormat.PREFER_ARGB_8888)
     }
 }

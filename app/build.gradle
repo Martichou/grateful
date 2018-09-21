@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'androidx.navigation.safeargs'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'io.fabric'
 
 android {
     compileSdkVersion rootProject.compileSdkVersion
@@ -11,8 +12,8 @@ android {
         enabled = true
     }
     defaultConfig {
-        versionCode 9
-        versionName "I"
+        versionCode 10
+        versionName "J"
         applicationId "me.martichou.be.grateful"
         vectorDrawables.useSupportLibrary true
         minSdkVersion rootProject.minSdkVersion
@@ -34,21 +35,35 @@ android {
 dependencies {
     kapt "androidx.room:room-compiler:$rootProject.roomVersion"
     kapt "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
+
+    // Kotlin jetbrains libs
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$rootProject.kotlinVersion"
+
+    // Android components
     implementation "android.arch.navigation:navigation-fragment-ktx:$rootProject.navigationVersion"
     implementation "android.arch.navigation:navigation-ui-ktx:$rootProject.navigationVersion"
-    implementation "android.arch.work:work-runtime-ktx:$rootProject.workVersion"
+
+    // Androidx components
     implementation "androidx.core:core-ktx:$rootProject.ktxVersion"
-    implementation "androidx.appcompat:appcompat:$rootProject.supportLibraryVersion"
-    implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayoutVersion"
+    implementation "androidx.room:room-runtime:$rootProject.roomVersion"
+    implementation "androidx.appcompat:appcompat:$rootProject.appcompact"
     implementation "androidx.legacy:legacy-support-v4:$rootProject.supportLibraryVersion"
     implementation "androidx.recyclerview:recyclerview:$rootProject.supportLibraryVersion"
-    implementation "androidx.room:room-runtime:$rootProject.roomVersion"
     implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycleVersion"
-    implementation "com.google.android.material:material:$rootProject.supportLibraryVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayoutVersion"
+
+    // Firebase needed
     implementation "com.google.firebase:firebase-core:$rootProject.firebase"
+    implementation "com.crashlytics.sdk.android:crashlytics:2.9.6"
+
+    // Maps
+    implementation "com.google.android.gms:play-services-places:16.0.0"
+
+    // Custom libs
     implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
     implementation "com.theartofdev.edmodo:android-image-cropper:$rootProject.imgcropper"
+
+    implementation "com.yarolegovich:lovely-dialog:1.1.0"
 
     // Testing unit
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$rootProject.espressoVersion"

@@ -1,53 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
         <variable
-                name="clickListener"
-                type="android.view.View.OnClickListener"/>
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
 
         <variable
-                name="n"
-                type="me.martichou.be.grateful.data.Notes"/>
+            name="note"
+            type="me.martichou.be.grateful.data.NotesMinimal" />
     </data>
 
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="@{clickListener}"
-            android:layout_marginBottom="20dp"
-            android:orientation="vertical">
-
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:letterSpacing="0.05"
-                android:text="@{n.title}"
-                android:textColor="#767676"
-                android:textSize="@dimen/note_title"
-                android:maxEms="14"/>
-
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:letterSpacing="0.10"
-                android:text="@{n.date}"
-                android:textColor="#c5c5c5"
-                android:textSize="@dimen/note_timestamp"/>
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:minHeight="100dp"
+        android:onClick="@{clickListener}"
+        app:cardCornerRadius="4dp"
+        app:cardUseCompatPadding="true">
 
         <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/list_image_note"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginTop="10dp"
-                android:scaleType="centerCrop"
-                android:adjustViewBounds="true"
-                android:contentDescription="@string/image_of_your_dedicated_note"
-                app:imageFromFile="@{n.image}" />
+            android:id="@+id/show_image_note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/image_of_your_dedicated_note"
+            android:foreground="#37000000"
+            android:maxHeight="150dp"
+            android:scaleType="centerCrop"
+            app:imageFromFile="@{note.image}" />
 
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|start"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:text="@{note.title}"
+                android:textAppearance="@style/TextAppearanceH6"
+                android:textColor="@color/white"
+                android:textSize="@dimen/note_title"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearanceH6"
+                android:textColor="@color/white"
+                android:textSize="@dimen/note_timestamp"
+                app:dateToHours="@{note.date}" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{note.location}"
+                android:textAppearance="@style/TextAppearanceH6"
+                android:textColor="@color/white"
+                android:textSize="@dimen/note_timestamp"
+                app:isGone="@{note.location}" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
 </layout>

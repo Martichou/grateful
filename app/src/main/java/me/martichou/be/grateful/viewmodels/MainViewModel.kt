@@ -2,24 +2,20 @@ package me.martichou.be.grateful.viewmodels
 
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModel
-import me.martichou.be.grateful.data.Notes
+import me.martichou.be.grateful.adapters.NotesAdapter
+import me.martichou.be.grateful.data.NotesMinimal
 import me.martichou.be.grateful.repository.NotesRepository
 
-class MainViewModel internal constructor(
-    private val notesRepository: NotesRepository
-) : ViewModel() {
+class MainViewModel internal constructor(notesRepository: NotesRepository) : ViewModel() {
 
-    private val notesList = MediatorLiveData<List<Notes>>()
+    val notesList = MediatorLiveData<List<NotesMinimal>>()
+    val adapter: NotesAdapter
 
     /**
-     * Fill in the notesList
+     * Fill in the notesList & adapter
      */
     init {
         notesList.addSource(notesRepository.getallNotes(), notesList::setValue)
+        adapter = NotesAdapter()
     }
-
-    /**
-     * Get all notes existing in the db
-     */
-    fun getAllNotes() = notesList
 }

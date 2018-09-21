@@ -1,13 +1,12 @@
 package me.martichou.be.grateful.fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
+import android.view.*
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import com.yarolegovich.lovelydialog.LovelyStandardDialog
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.databinding.ShowFragmentBinding
 import me.martichou.be.grateful.utilities.InjectorUtils
@@ -15,37 +14,53 @@ import me.martichou.be.grateful.viewmodels.ShowViewModel
 
 class ShowFragment : Fragment() {
 
+    private lateinit var viewModel: ShowViewModel
+    private lateinit var binding: ShowFragmentBinding
     private var noteId: Long = 0
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         noteId = ShowFragmentArgs.fromBundle(arguments).noteId
+        viewModel = ViewModelProviders.of(this, InjectorUtils.provideShowViewModelFactory(requireContext().applicationContext, noteId)).get(ShowViewModel::class.java)
+        binding = ShowFragmentBinding.inflate(inflater, container, false).apply {
+            setLifecycleOwner(this@ShowFragment)
+            this.hdl = this@ShowFragment
+            this.showModel = viewModel
+            executePendingBindings()
+        }
 
-        // Use InjectorUtils to inject the viewmodel
-        val factory = InjectorUtils.provideShowViewModelFactory(requireActivity(), noteId)
-        val showViewModel = ViewModelProviders.of(this, factory).get(ShowViewModel::class.java)
-        val binding =
-            DataBindingUtil.inflate<ShowFragmentBinding>(inflater, R.layout.show_fragment, container, false).apply {
-                viewModel = showViewModel
-                setLifecycleOwner(this@ShowFragment)
-            }
+        setHasOptionsMenu(true)
 
-        // Use this to bind onClick or other data binding from show_fragment.xml
-        binding.hdl = this
-
-        // Return the view
         return binding.root
     }
 
-    /**
-     * Execute the insertion of
-     * Hello into the db for testing purpose.
-     */
-    fun btnEditAction(v: View) {
-        v.findNavController().navigate(ShowFragmentDirections.NoteDetailFragmentToEditDetailFragment(noteId))
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        inflater?.inflate(R.menu.show, menu)
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.edit_note -> {
+                true
+            }
+            R.id.delete_note -> {
+
+                LovelyStandardDialog(context, LovelyStandardDialog.ButtonLayout.HORIZONTAL)
+                        .setTopColorRes(R.color.red)
+                        .setButtonsColorRes(R.color.black)
+                        .setIcon(R.drawable.ic_delete_white)
+                        .setTitle("Take a second...")
+                        .setMessage("Are you sure you really want to delete this note? After that you won't be able to recover it.")
+                        .setPositiveButton(android.R.string.yes) {
+                            this.findNavController().popBackStack()
+                            viewModel.deleteNote(noteId)
+                        }
+                        .setNegativeButton(android.R.string.cancel, null)
+                        .show()
+
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
 }

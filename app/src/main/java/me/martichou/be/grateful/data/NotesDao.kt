@@ -1,23 +1,16 @@
 package me.martichou.be.grateful.data
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 
 @Dao
 interface NotesDao {
 
-    @Query("SELECT * FROM notes ORDER BY id DESC")
-    fun getAllNotes(): LiveData<List<Notes>>
+    @Query("SELECT id, title, image, color, date, location  FROM notes ORDER BY id DESC")
+    fun getAllNotes(): LiveData<List<NotesMinimal>>
 
     @Query("SELECT * FROM notes WHERE id = :noteId")
     fun getThisNote(noteId: Long): LiveData<Notes>
-
-    @Query("SELECT * FROM notes WHERE id = :noteId")
-    fun getThisNoteStatic(noteId: Long): Notes
 
     @Insert
     fun insertNote(notes: Notes)
@@ -28,6 +21,6 @@ interface NotesDao {
     @Delete
     fun deleteNote(notes: Notes)
 
-    @Query("DELETE FROM notes ")
-    fun deleteAll()
+    @Query("DELETE FROM notes WHERE id =:noteId")
+    fun deleteNoteById(noteId: Long)
 }
