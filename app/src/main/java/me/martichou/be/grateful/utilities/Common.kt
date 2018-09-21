@@ -12,6 +12,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -19,6 +20,8 @@ import com.bumptech.glide.load.resource.bitmap.CenterInside
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
+import com.theartofdev.edmodo.cropper.CropImage
+import com.theartofdev.edmodo.cropper.CropImageView
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.viewmodels.AddViewModel
 import me.martichou.be.grateful.viewmodels.EditViewModel
@@ -77,6 +80,18 @@ fun setupPermissions(context: Context, activity: FragmentActivity) {
             101
         )
     }
+}
+
+/**
+ * Open the image cropper view
+ */
+fun imageCropper(context: Context, fragment: Fragment){
+    CropImage.activity()
+        .setGuidelines(CropImageView.Guidelines.ON)
+        .setMinCropWindowSize(0,0)
+        .setMaxCropResultSize(4096, 2048)
+        .setAspectRatio(4, 3)
+        .start(context, fragment)
 }
 
 /**

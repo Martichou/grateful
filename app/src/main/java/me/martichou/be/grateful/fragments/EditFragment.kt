@@ -11,12 +11,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import com.theartofdev.edmodo.cropper.CropImage
-import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.edit_fragment.*
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.databinding.EditFragmentBinding
 import me.martichou.be.grateful.utilities.InjectorUtils
 import me.martichou.be.grateful.utilities.compressImage
+import me.martichou.be.grateful.utilities.imageCropper
 import me.martichou.be.grateful.utilities.makeToast
 import me.martichou.be.grateful.utilities.runOnIoThread
 import me.martichou.be.grateful.viewmodels.EditViewModel
@@ -56,11 +56,7 @@ class EditFragment : Fragment(){
      * and update the image.
      */
     fun btnEditImage(v: View) {
-        CropImage.activity()
-            .setGuidelines(CropImageView.Guidelines.ON)
-            .setMinCropWindowSize(0,0)
-            .setMaxCropResultSize(4096, 2048)
-            .start(requireContext(), this)
+        imageCropper(context!!, this)
     }
 
     /**
@@ -72,7 +68,7 @@ class EditFragment : Fragment(){
                 val image = File(CropImage.getActivityResult(data).uri.path)
                 compressImage(activity, false, null, editModel, image, null, show_image_note)
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-                makeToast(requireContext(), "We're sorry, there was an error.")
+                makeToast(context!!, "We're sorry, there was an error.")
             }
         }
     }
