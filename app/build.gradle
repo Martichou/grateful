@@ -48,7 +48,7 @@ dependencies {
     implementation "com.google.android.material:material:$rootProject.supportLibraryVersion"
     implementation "com.google.firebase:firebase-core:$rootProject.firebase"
     implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
-    implementation "com.zhihu.android:matisse:$rootProject.matisse"
+    implementation "com.theartofdev.edmodo:android-image-cropper:$rootProject.imgcropper"
 
     // Testing unit
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$rootProject.espressoVersion"

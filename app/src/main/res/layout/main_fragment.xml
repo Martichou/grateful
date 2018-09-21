@@ -10,14 +10,11 @@
     <!-- TODO: Check how to push the bottom part of the screen when scrolling down. -->
     <!-- It's a workaround -->
 
-    <androidx.core.widget.NestedScrollView android:layout_width="match_parent"
-                                           android:layout_height="wrap_content"
-                                           android:layout_marginEnd="@dimen/grateful_margin_page"
-                                           android:layout_marginStart="@dimen/grateful_margin_page">
-
         <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
                       android:orientation="vertical"
                       android:paddingTop="@dimen/grateful_margin_page"
+                      android:layout_marginEnd="@dimen/grateful_margin_page"
+                      android:layout_marginStart="@dimen/grateful_margin_page"
                       tools:context="me.martichou.be.grateful.MainActivity">
 
             <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
@@ -70,7 +67,5 @@
                     tools:listitem="@layout/list_item_notes"/>
 
         </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView>
 
 </layout>

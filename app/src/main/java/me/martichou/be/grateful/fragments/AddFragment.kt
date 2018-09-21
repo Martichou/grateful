@@ -1,9 +1,8 @@
 package me.martichou.be.grateful.fragments
 
 import android.annotation.SuppressLint
-import android.app.Activity
+import android.app.Activity.RESULT_OK
 import android.content.Intent
-import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,13 +10,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
-import com.zhihu.matisse.Matisse
-import com.zhihu.matisse.MimeType
+import com.theartofdev.edmodo.cropper.CropImage
+import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.add_fragment.*
-import me.martichou.be.grateful.R
 import me.martichou.be.grateful.data.Notes
 import me.martichou.be.grateful.databinding.AddFragmentBinding
-import me.martichou.be.grateful.utilities.Glide4Engine
 import me.martichou.be.grateful.utilities.InjectorUtils
 import me.martichou.be.grateful.utilities.compressImage
 import me.martichou.be.grateful.utilities.currentTime
@@ -27,7 +24,6 @@ import java.io.File
 
 class AddFragment : Fragment() {
 
-    private val codeCh = 234
     private lateinit var viewModel: AddViewModel
 
     override fun onCreateView(
@@ -61,25 +57,24 @@ class AddFragment : Fragment() {
      * Open the image selector
      */
     fun openImageSelector(v: View) {
-        Matisse.from(this@AddFragment)
-            .choose(MimeType.ofImage())
-            .countable(true)
-            .maxSelectable(1)
-            .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
-            .thumbnailScale(0.85f)
-            .theme(R.style.Matisse_Dracula)
-            .imageEngine(Glide4Engine())
-            .forResult(codeCh)
+        CropImage.activity()
+            .setGuidelines(CropImageView.Guidelines.ON)
+            .setMinCropWindowSize(0,0)
+            .setMaxCropResultSize(4096, 2048)
+            .start(requireContext(), this)
     }
 
     /**
      * Callback for the Matisse call
      */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == codeCh && resultCode == Activity.RESULT_OK) {
-            val image = File(Matisse.obtainPathResult(data!!)[0])
-            compressImage(activity, true, viewModel, null, image, add_photo_btn, null)
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                val image = File(CropImage.getActivityResult(data).uri.path)
+                compressImage(activity, true, viewModel, null, image, add_photo_btn, null)
+            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                makeToast(requireContext(), "We're sorry, there was an error.")
+            }
         }
     }
 
@@ -94,7 +89,7 @@ class AddFragment : Fragment() {
                 viewModel.insertNote(Notes(title, add_content_edit.text.toString(), viewModel.photoOrNot(), currentTime()))
                 v.findNavController().popBackStack()
             } else {
-                makeToast(context!!, "Enter at least one title")
+                makeToast(context!!, "Enter at least a title")
             }
         } else {
             makeToast(context!!, "Try again in a few seconds...")

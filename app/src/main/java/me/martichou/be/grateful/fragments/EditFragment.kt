@@ -2,7 +2,6 @@ package me.martichou.be.grateful.fragments
 
 import android.app.Activity.RESULT_OK
 import android.content.Intent
-import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,12 +10,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
-import com.zhihu.matisse.Matisse
-import com.zhihu.matisse.MimeType
+import com.theartofdev.edmodo.cropper.CropImage
+import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.edit_fragment.*
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.databinding.EditFragmentBinding
-import me.martichou.be.grateful.utilities.Glide4Engine
 import me.martichou.be.grateful.utilities.InjectorUtils
 import me.martichou.be.grateful.utilities.compressImage
 import me.martichou.be.grateful.utilities.makeToast
@@ -26,7 +24,6 @@ import java.io.File
 
 class EditFragment : Fragment(){
 
-    private val codeCh = 234
     private var noteId: Long = 0
     private lateinit var editModel: EditViewModel
 
@@ -55,29 +52,28 @@ class EditFragment : Fragment(){
     }
 
     /**
-     * This will open the image choser
+     * This will open the image chooser
      * and update the image.
      */
     fun btnEditImage(v: View) {
-        Matisse.from(this@EditFragment)
-            .choose(MimeType.ofImage())
-            .countable(true)
-            .maxSelectable(1)
-            .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
-            .thumbnailScale(0.85f)
-            .theme(R.style.Matisse_Dracula)
-            .imageEngine(Glide4Engine())
-            .forResult(codeCh)
+        CropImage.activity()
+            .setGuidelines(CropImageView.Guidelines.ON)
+            .setMinCropWindowSize(0,0)
+            .setMaxCropResultSize(4096, 2048)
+            .start(requireContext(), this)
     }
 
     /**
-     * Callback for the Matisse call
+     * Callback for the cropper call
      */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == codeCh && resultCode == RESULT_OK) {
-            val image = File(Matisse.obtainPathResult(data!!)[0])
-            compressImage(activity, false, null, editModel, image, null, show_image_note)
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                val image = File(CropImage.getActivityResult(data).uri.path)
+                compressImage(activity, false, null, editModel, image, null, show_image_note)
+            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                makeToast(requireContext(), "We're sorry, there was an error.")
+            }
         }
     }
 

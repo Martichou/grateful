@@ -20,7 +20,6 @@ import java.io.File
  * If image is null or equals to none, set the view
  * as gone to prevent big white space.
  */
-// TODO - Rounded corners
 @BindingAdapter("imageFromFile")
 fun imageFromFile(view: ImageView, imageUrl: String?) {
     view.visibility = View.VISIBLE
@@ -28,7 +27,7 @@ fun imageFromFile(view: ImageView, imageUrl: String?) {
         GlideApp.with(view.context)
             .asBitmap()
             .load(File(view.context.getDir("imgForNotes", Context.MODE_PRIVATE), imageUrl))
-            .apply(RequestOptions().transforms(RoundedCorners(25)).override(1024, 1024))
+            .apply(RequestOptions().transforms(RoundedCorners(25)).override(768, 768))
             .into(object : SimpleTarget<Bitmap>() {
                 override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                     view.setImageBitmap(resource)
@@ -45,7 +44,6 @@ fun imageFromFile(view: ImageView, imageUrl: String?) {
  * If image is null or equals to none, set the view
  * as placeholder.
  */
-// TODO - Rounded corners
 @BindingAdapter("imageFromFileEdit")
 fun imageFromFileEdit(view: ImageView, imageUrl: String?) {
     // TODO - Make another conditional shit
@@ -53,13 +51,13 @@ fun imageFromFileEdit(view: ImageView, imageUrl: String?) {
         GlideApp.with(view.context)
             .asBitmap()
             .load(File(view.context.getDir("imgForNotes", Context.MODE_PRIVATE), imageUrl))
-            .apply(RequestOptions().transforms(RoundedCorners(25)).override(1024, 1024))
+            .apply(RequestOptions().transforms(RoundedCorners(25)).override(768, 768))
             .into(view)
     } else {
         GlideApp.with(view.context)
             .asBitmap()
             .load(R.drawable.posterization)
-            .apply(RequestOptions().transforms(RoundedCorners(25)).override(1024, 1024))
+            .apply(RequestOptions().transforms(RoundedCorners(25)).override(768, 768))
             .into(view)
     }
 }
