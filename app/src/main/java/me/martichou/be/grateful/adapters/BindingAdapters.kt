@@ -29,7 +29,7 @@ fun imageFromFile(view: ImageView, imageUrl: String?) {
         GlideApp.with(view.context)
             .asBitmap()
             .load(File(view.context.getDir("imgForNotes", Context.MODE_PRIVATE), imageUrl))
-            .apply(RequestOptions().override(1024, 768))
+            .apply(RequestOptions().override(1512, 1396))
             .into(object : SimpleTarget<Bitmap>() {
                 override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                     view.setImageBitmap(resource)

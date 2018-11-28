@@ -4,10 +4,9 @@
 
     <data class="MainActivityBinding"/>
 
-    <LinearLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar"
@@ -19,10 +18,9 @@
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
+                android:layout_height="wrap_content"
                 android:background="@color/primary"
                 android:theme="@style/AppTheme.PopupOverlay"
-                app:layout_scrollFlags="scroll|snap"
                 app:titleTextAppearance="@style/TextAppearanceH5"/>
 
         </com.google.android.material.appbar.AppBarLayout>
@@ -33,8 +31,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:defaultNavHost="true"
-            app:navGraph="@navigation/main_nav_notes"/>
+            app:navGraph="@navigation/main_nav_notes"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
-    </LinearLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>

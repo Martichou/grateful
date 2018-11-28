@@ -119,3 +119,4 @@ fun compressImage(activity: FragmentActivity?, viewModel: AddViewModel, file: Fi
         }
     }
 }
+
