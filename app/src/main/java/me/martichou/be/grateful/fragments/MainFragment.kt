@@ -44,7 +44,7 @@ class MainFragment : Fragment() {
     /**
      * Open the bottomsheet
      */
-    fun btnNewAction(v: View) {
+    fun btnNewAction(view: View) {
         val bottomsheetFragment = BottomsheetFragment()
         bottomsheetFragment.show(fragmentManager, bottomsheetFragment.tag)
     }

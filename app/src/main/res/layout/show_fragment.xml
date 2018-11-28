@@ -7,70 +7,57 @@
         <variable name="showModel" type="me.martichou.be.grateful.viewmodels.ShowViewModel" />
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RelativeLayout
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/show_image_note"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:maxHeight="400dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/image_of_your_dedicated_note"
+            android:scaleType="centerCrop"
+            app:imageFromFile="@{showModel.note.image}" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/show_image_note"
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="25dp"
+            android:layout_marginStart="25dp"
+            android:layout_below="@id/show_image_note"
+            app:cardCornerRadius="15dp">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxHeight="400dp"
-                android:adjustViewBounds="true"
-                android:contentDescription="@string/image_of_your_dedicated_note"
-                android:scaleType="centerCrop"
-                app:imageFromFile="@{showModel.note.image}" />
+                android:layout_margin="20dp"
+                android:orientation="vertical">
 
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="-25dp"
-                android:layout_marginEnd="25dp"
-                android:layout_marginStart="25dp"
-                android:layout_below="@id/show_image_note"
-                app:cardCornerRadius="15dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
-                    android:orientation="vertical">
+                    android:drawableStart="@drawable/ic_stop"
+                    android:drawablePadding="20dp"
+                    android:drawableTint="@color/red"
+                    android:text="@{showModel.note.title}"
+                    android:textAppearance="@style/TextAppearanceH6"
+                    android:textSize="@dimen/note_title"/>
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_stop"
-                        android:drawablePadding="20dp"
-                        android:drawableTint="@color/red"
-                        android:text="@{showModel.note.title}"
-                        android:textAppearance="@style/TextAppearanceH6"
-                        android:textSize="@dimen/note_title"/>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@{showModel.note.content}"
+                    android:textAppearance="@style/TextAppearanceSubtitle1"
+                    android:textSize="@dimen/note_content"
+                    app:isGone="@{showModel.note.content}"/>
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:text="@{showModel.note.content}"
-                        android:textAppearance="@style/TextAppearanceSubtitle1"
-                        android:textSize="@dimen/note_content"
-                        app:isGone="@{showModel.note.content}"/>
+            </LinearLayout>
 
-                </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.gms.maps.MapView
-                android:id="@+id/map"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/show_image_note"/>
-
-        </RelativeLayout>
-
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </RelativeLayout>
 
 </layout>

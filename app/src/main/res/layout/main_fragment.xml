@@ -7,7 +7,7 @@
         <variable name="hdl" type="me.martichou.be.grateful.fragments.MainFragment" />
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -15,8 +15,8 @@
             android:id="@+id/notes_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="25dp"
-            android:layout_marginEnd="25dp"
+            android:paddingStart="25dp"
+            android:paddingEnd="25dp"
             android:clipToPadding="false"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/list_item_notes" />
@@ -26,12 +26,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="25dp"
-            android:src="@drawable/ic_add_black"
             android:onClick="@{hdl::btnNewAction}"
             app:backgroundTint="@color/white"
             app:elevation="6dp"
             app:fabSize="normal"/>
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </FrameLayout>
 
 </layout>
