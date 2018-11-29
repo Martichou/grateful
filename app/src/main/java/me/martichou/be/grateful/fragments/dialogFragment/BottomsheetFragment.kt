@@ -13,9 +13,9 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.theartofdev.edmodo.cropper.CropImage
 import kotlinx.android.synthetic.main.add_bottomsheet_fragment.*
-import me.martichou.be.grateful.BottomsheetFragmentBinding
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.data.Notes
+import me.martichou.be.grateful.databinding.AddBottomsheetFragmentBinding
 import me.martichou.be.grateful.utilities.*
 import me.martichou.be.grateful.viewmodels.AddViewModel
 import java.io.File
@@ -25,14 +25,14 @@ open class BottomsheetFragment : BottomSheetDialogFragment() {
 
     private val placePicker = 548
 
-    private lateinit var binding: BottomsheetFragmentBinding
+    private lateinit var binding: AddBottomsheetFragmentBinding
     private lateinit var viewModel: AddViewModel
 
     override fun getTheme(): Int = R.style.BottomSheetDialogTheme
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewModel = ViewModelProviders.of(this, InjectorUtils.provideAddViewModelFactory(context!!)).get(AddViewModel::class.java)
-        binding = BottomsheetFragmentBinding.inflate(inflater, container, false).apply {
+        binding = AddBottomsheetFragmentBinding.inflate(inflater, container, false).apply {
             setLifecycleOwner(this@BottomsheetFragment)
             this.hdl = this@BottomsheetFragment
         }

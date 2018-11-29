@@ -2,6 +2,7 @@ package me.martichou.be.grateful.fragments
 
 import android.os.Bundle
 import android.view.*
+import androidx.core.view.doOnLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -24,6 +25,11 @@ class MainFragment : Fragment() {
             this.notesList.adapter = viewModel.adapter
             this.hdl = this@MainFragment
             subscribeUi(viewModel.adapter)
+        }
+
+        postponeEnterTransition()
+        binding.notesList.doOnLayout {
+            startPostponedEnterTransition()
         }
 
         setHasOptionsMenu(true)

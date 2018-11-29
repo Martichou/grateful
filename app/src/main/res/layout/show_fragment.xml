@@ -6,6 +6,7 @@
     <data>
         <variable name="hdl" type="me.martichou.be.grateful.fragments.ShowFragment" />
         <variable name="showModel" type="me.martichou.be.grateful.viewmodels.ShowViewModel" />
+        <variable name="requestListener" type="com.bumptech.glide.request.RequestListener&lt;android.graphics.Bitmap&gt;" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -42,7 +43,8 @@
                     android:scaleType="centerCrop"
                     android:foreground="@drawable/bg_alpha"
                     app:imageFromFile="@{showModel.note.image}"
-                    app:layout_collapseMode="parallax"/>
+                    app:layout_collapseMode="parallax"
+                    app:requestListener="@{requestListener}"/>
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/detail_toolbar"

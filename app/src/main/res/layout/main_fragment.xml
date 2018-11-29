@@ -17,7 +17,7 @@
             android:layout_height="match_parent"
             android:paddingStart="25dp"
             android:paddingEnd="25dp"
-            android:clipToPadding="false"
+            android:nestedScrollingEnabled="true"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/list_item_notes" />
 

@@ -1,18 +1,23 @@
 package me.martichou.be.grateful.fragments
 
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.text.Spannable
-import android.text.SpannableString
-import android.text.style.RelativeSizeSpan
-import android.util.Log
 import android.view.*
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.yarolegovich.lovelydialog.LovelyStandardDialog
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.databinding.ShowFragmentBinding
 import me.martichou.be.grateful.utilities.InjectorUtils
+import me.martichou.be.grateful.utilities.MoveViews
 import me.martichou.be.grateful.viewmodels.ShowViewModel
 
 class ShowFragment : Fragment() {
@@ -29,11 +34,15 @@ class ShowFragment : Fragment() {
             setLifecycleOwner(this@ShowFragment)
             this.hdl = this@ShowFragment
             this.showModel = viewModel
+
+            ViewCompat.setTransitionName(showImageNote, noteId.toString())
+            requestListener = imageListener
         }
 
-        val span: Spannable = SpannableString("Allo")
-        span.setSpan(RelativeSizeSpan(1.5f), 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        binding.bignewspaper.text = span
+        postponeEnterTransition()
+        sharedElementEnterTransition = MoveViews().apply {
+            interpolator = FastOutSlowInInterpolator()
+        }
 
         setHasOptionsMenu(true)
 
@@ -67,6 +76,18 @@ class ShowFragment : Fragment() {
                 true
             }
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private val imageListener = object : RequestListener<Bitmap> {
+        override fun onResourceReady(resource: Bitmap?, model: Any?, target: Target<Bitmap>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+            startPostponedEnterTransition()
+            return false
+        }
+
+        override fun onLoadFailed(e: GlideException?, model: Any?, target: com.bumptech.glide.request.target.Target<Bitmap>?, isFirstResource: Boolean): Boolean {
+            startPostponedEnterTransition()
+            return false
         }
     }
 

@@ -5,7 +5,7 @@
     <data>
         <variable
             name="clickListener"
-            type="android.view.View.OnClickListener" />
+            type="me.martichou.be.grateful.adapters.NotesAdapter.OnNoteItemClickListener" />
 
         <variable
             name="note"
@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:minHeight="100dp"
-        android:onClick="@{clickListener}"
+        android:onClick="@{v -> clickListener.onNoteItemClick(v, note)}"
         app:cardCornerRadius="4dp"
         app:cardUseCompatPadding="true">
 
@@ -30,6 +30,7 @@
             android:foreground="#37000000"
             android:maxHeight="150dp"
             android:scaleType="centerCrop"
+            android:transitionName="@{note.id}"
             app:imageFromFile="@{note.image}" />
 
         <LinearLayout

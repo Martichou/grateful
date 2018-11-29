@@ -2,8 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data class=".BottomsheetFragmentBinding">
-
+    <data>
         <variable
             name="hdl"
             type="me.martichou.be.grateful.fragments.dialogFragment.BottomsheetFragment" />

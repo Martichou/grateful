@@ -3,7 +3,9 @@ package me.martichou.be.grateful.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import me.martichou.be.grateful.data.NotesMinimal
@@ -16,8 +18,7 @@ class NotesAdapter : ListAdapter<NotesMinimal, NotesAdapter.ViewHolder>(NotesDif
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val note = getItem(position)
         holder.apply {
-            bind(createOnClickListener(note.id), note)
-            itemView.tag = note
+            bind(createOnClickListener(), note)
         }
     }
 
@@ -29,19 +30,28 @@ class NotesAdapter : ListAdapter<NotesMinimal, NotesAdapter.ViewHolder>(NotesDif
         )
     }
 
-    private fun createOnClickListener(noteId: Long): View.OnClickListener {
-        return View.OnClickListener {
-            it.findNavController().navigate(MainFragmentDirections.ActionNoteListFragmentToNoteDetailFragment(noteId))
+    private fun createOnClickListener(): OnNoteItemClickListener {
+        return object : OnNoteItemClickListener {
+            override fun onNoteItemClick(rootView: View, notes: NotesMinimal) {
+                val binding = DataBindingUtil.getBinding<ListItemNotesBinding>(rootView)
+                val navigatorExtras = FragmentNavigatorExtras(binding!!.showImageNote to notes.id)
+                val direction = MainFragmentDirections.ActionNoteListFragmentToNoteDetailFragment(notes.id.toLong())
+                rootView.findNavController().navigate(direction, navigatorExtras)
+            }
         }
     }
 
     class ViewHolder(private val binding: ListItemNotesBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(listener: View.OnClickListener, item: NotesMinimal) {
+        fun bind(listener: OnNoteItemClickListener, item: NotesMinimal) {
             binding.apply {
                 clickListener = listener
                 note = item
                 executePendingBindings()
             }
         }
+    }
+
+    interface OnNoteItemClickListener {
+        fun onNoteItemClick(rootView: View, notes: NotesMinimal)
     }
 }

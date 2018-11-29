@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
@@ -23,14 +24,15 @@ import java.io.File
 // TODO - By the presence of the # before or not.
 
 // TODO - Maybe update .into
-@BindingAdapter("imageFromFile")
-fun imageFromFile(view: ImageView, imageUrl: String?) {
+@BindingAdapter("imageFromFile", "requestListener", requireAll = false)
+fun imageFromFile(view: ImageView, imageUrl: String?, listener: RequestListener<Bitmap>?) {
     if (!imageUrl.isNullOrEmpty() && imageUrl != "none") {
         GlideApp.with(view.context)
             .asBitmap()
             .load(File(view.context.getDir("imgForNotes", Context.MODE_PRIVATE), imageUrl))
-            .apply(RequestOptions().override(1365, 1024))
-            .thumbnail(0.5f)
+            .apply(RequestOptions().override(1024, 768).centerCrop())
+            .thumbnail(0.2f)
+            .listener(listener)
             .into(object : SimpleTarget<Bitmap>() {
                 override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                     view.setImageBitmap(resource)
