@@ -72,7 +72,7 @@ fun imageCropper(context: Context, fragment: Fragment) {
     CropImage.activity()
             .setGuidelines(CropImageView.Guidelines.ON)
             .setMinCropWindowSize(0, 0)
-            .setMaxCropResultSize(2048, 1536)
+            .setMaxCropResultSize(4096, 3072)
             .setAspectRatio(4, 3)
             .start(context, fragment)
 }

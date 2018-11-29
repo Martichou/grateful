@@ -8,4 +8,8 @@
     <color name="grey_light">#b4b4b4</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+    <color name="translucent_scrim_top">#26ffffff</color>
+    <color name="translucent_scrim_top_center">#0cffffff</color>
+    <color name="translucent_scrim_bottom">#2affffff</color>
+    <color name="translucent_scrim_bottom_center">#0dffffff</color>
 </resources>

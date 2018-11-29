@@ -1,6 +1,10 @@
 package me.martichou.be.grateful.fragments
 
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.RelativeSizeSpan
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
@@ -25,8 +29,11 @@ class ShowFragment : Fragment() {
             setLifecycleOwner(this@ShowFragment)
             this.hdl = this@ShowFragment
             this.showModel = viewModel
-            executePendingBindings()
         }
+
+        val span: Spannable = SpannableString("Allo")
+        span.setSpan(RelativeSizeSpan(1.5f), 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        binding.bignewspaper.text = span
 
         setHasOptionsMenu(true)
 
