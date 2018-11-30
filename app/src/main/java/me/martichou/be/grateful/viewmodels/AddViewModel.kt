@@ -9,7 +9,7 @@ class AddViewModel internal constructor(private val notesRepository: NotesReposi
 
     val randomImageName: String = randomNumber(100000000, 999999999)
     var isWorking: Boolean = false
-    var hasPhoto: Boolean = false
+    private var hasPhoto: Boolean = false
     var place: String? = null
 
     /**

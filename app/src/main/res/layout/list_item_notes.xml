@@ -12,14 +12,14 @@
             type="me.martichou.be.grateful.data.NotesMinimal" />
     </data>
 
-    <com.google.android.material.card.MaterialCardView
+    <com.google.android.material.circularreveal.cardview.CircularRevealCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:minHeight="100dp"
         android:onClick="@{v -> clickListener.onNoteItemClick(v, note)}"
-        app:cardCornerRadius="4dp"
-        app:cardUseCompatPadding="true">
+        app:cardCornerRadius="4dp">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/show_image_note"
@@ -27,7 +27,6 @@
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:contentDescription="@string/image_of_your_dedicated_note"
-            android:foreground="#37000000"
             android:maxHeight="150dp"
             android:scaleType="centerCrop"
             android:transitionName="@{note.id}"
@@ -69,6 +68,6 @@
 
         </LinearLayout>
 
-    </com.google.android.material.card.MaterialCardView>
+    </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
 
 </layout>

@@ -12,7 +12,6 @@ import me.martichou.be.grateful.data.NotesMinimal
 import me.martichou.be.grateful.databinding.ListItemNotesBinding
 import me.martichou.be.grateful.fragments.MainFragmentDirections
 
-
 class NotesAdapter : ListAdapter<NotesMinimal, NotesAdapter.ViewHolder>(NotesDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -33,10 +32,9 @@ class NotesAdapter : ListAdapter<NotesMinimal, NotesAdapter.ViewHolder>(NotesDif
     private fun createOnClickListener(): OnNoteItemClickListener {
         return object : OnNoteItemClickListener {
             override fun onNoteItemClick(rootView: View, notes: NotesMinimal) {
-                val binding = DataBindingUtil.getBinding<ListItemNotesBinding>(rootView)
-                val navigatorExtras = FragmentNavigatorExtras(binding!!.showImageNote to notes.id)
-                val direction = MainFragmentDirections.ActionNoteListFragmentToNoteDetailFragment(notes.id.toLong())
-                rootView.findNavController().navigate(direction, navigatorExtras)
+                rootView.findNavController().navigate(
+                        MainFragmentDirections.ActionNoteListFragmentToNoteDetailFragment(notes.id.toLong()),
+                        FragmentNavigatorExtras(DataBindingUtil.getBinding<ListItemNotesBinding>(rootView)!!.showImageNote to notes.id))
             }
         }
     }

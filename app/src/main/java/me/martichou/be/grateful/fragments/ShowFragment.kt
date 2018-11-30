@@ -1,7 +1,6 @@
 package me.martichou.be.grateful.fragments
 
 import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.*
 import androidx.core.view.ViewCompat

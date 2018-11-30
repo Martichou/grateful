@@ -41,7 +41,6 @@
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/image_of_your_dedicated_note"
                     android:scaleType="centerCrop"
-                    android:foreground="@drawable/bg_alpha"
                     app:imageFromFile="@{showModel.note.image}"
                     app:layout_collapseMode="parallax"
                     app:requestListener="@{requestListener}"/>
@@ -64,24 +63,16 @@
             android:layout_marginStart="25dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/bignewspaper"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:orientation="vertical">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/bignewspaper"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="@{showModel.note.content}"
-                    android:textAppearance="@style/TextAppearanceSubtitle1"
-                    android:textSize="@dimen/note_content"
-                    android:textStyle="italic"
-                    app:isGone="@{showModel.note.content}"/>
-
-            </LinearLayout>
+                android:layout_marginTop="20dp"
+                android:text="@{showModel.note.content}"
+                android:textAppearance="@style/TextAppearanceSubtitle1"
+                android:textSize="@dimen/note_content"
+                android:textStyle="italic"
+                app:isGone="@{showModel.note.content}"/>
 
         </androidx.core.widget.NestedScrollView>
 

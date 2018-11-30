@@ -9,8 +9,6 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
-import com.bumptech.glide.request.target.SimpleTarget
-import com.bumptech.glide.request.transition.Transition
 import me.martichou.be.grateful.utilities.GlideApp
 import java.io.File
 
@@ -22,25 +20,18 @@ import java.io.File
 // TODO - Try to pass multiple string inside the imageUrl string and split them (color - image)
 // TODO - Or just save in image column, either the name of the image or the HEX code and sort them
 // TODO - By the presence of the # before or not.
-
-// TODO - Maybe update .into
 @BindingAdapter("imageFromFile", "requestListener", requireAll = false)
 fun imageFromFile(view: ImageView, imageUrl: String?, listener: RequestListener<Bitmap>?) {
     if (!imageUrl.isNullOrEmpty() && imageUrl != "none") {
         GlideApp.with(view.context)
             .asBitmap()
             .load(File(view.context.getDir("imgForNotes", Context.MODE_PRIVATE), imageUrl))
-            .apply(RequestOptions().override(1024, 768).centerCrop())
-            .thumbnail(0.2f)
+            .apply(RequestOptions().override(1024, 768))
+            .thumbnail(0.1f)
             .listener(listener)
-            .into(object : SimpleTarget<Bitmap>() {
-                override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                    view.setImageBitmap(resource)
-                }
-            })
+            .into(view)
     }
 }
-
 
 /**
  * Will hide the textview if the string is empty
@@ -52,16 +43,6 @@ fun isGone(v: TextView, content: String?) {
     } else {
         v.visibility = View.VISIBLE
     }
-}
-
-/**
- * Format raw date to only "25 Sep" by exemple
- */
-@SuppressLint("SetTextI18n")
-@BindingAdapter("dateToNumberOnly")
-fun dateToNumberOnly(v: TextView, content: String?) {
-    val splited = content!!.split(" ")
-    v.text = splited[2] + " " + splited[1]
 }
 
 /**

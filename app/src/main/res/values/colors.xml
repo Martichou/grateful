@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#FFFFFF</color>
-    <color name="primary_dark">#FFFFFF</color>
-    <color name="accent">#FFFFFF</color>
+    <color name="primary">#FFF</color>
+    <color name="primary_dark">#FFF</color>
+    <color name="accent">#FFF</color>
     <color name="red">#FF6575</color>
     <color name="grey">#767676</color>
     <color name="grey_light">#b4b4b4</color>
-    <color name="white">#FFFFFF</color>
-    <color name="black">#000000</color>
-    <color name="translucent_scrim_top">#26ffffff</color>
-    <color name="translucent_scrim_top_center">#0cffffff</color>
-    <color name="translucent_scrim_bottom">#2affffff</color>
-    <color name="translucent_scrim_bottom_center">#0dffffff</color>
+    <color name="white">#FFF</color>
+    <color name="black">#000</color>
 </resources>

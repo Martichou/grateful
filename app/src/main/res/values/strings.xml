@@ -15,4 +15,7 @@
     <string name="save_edited_note_button">Save edited note button</string>
     <string name="delete_the_note_button">Delete the note button</string>
     <string name="grateful">Grateful</string>
+    <string name="add_details">Add details</string>
+    <string name="new_grateful_card">New grateful card</string>
+    <string name="save">Save</string>
 </resources>

@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 class SplashScreen: AppCompatActivity() {
 
     private var mDelayHandler: Handler? = null
-    private val DELAY: Long = 750
+    private val mDelay: Long = 500
 
     private val mRunnable: Runnable = Runnable {
         if (!isFinishing) {
@@ -23,7 +23,7 @@ class SplashScreen: AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         mDelayHandler = Handler()
-        mDelayHandler!!.postDelayed(mRunnable, DELAY)
+        mDelayHandler!!.postDelayed(mRunnable, mDelay)
 
     }
 
