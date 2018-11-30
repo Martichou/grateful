@@ -2,14 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/edit_note"
+    <item
+        android:id="@+id/edit_note"
         android:icon="@drawable/ic_edit"
-        app:showAsAction="always"
-        android:title="@string/edit_your_note_button"/>
+        android:title="@string/edit_your_note_button"
+        app:showAsAction="always" />
 
-    <item android:id="@+id/delete_note"
+    <item
+        android:id="@+id/delete_note"
         android:icon="@drawable/ic_delete"
-        app:showAsAction="ifRoom"
-        android:title="@string/delete_the_note_button"/>
+        android:title="@string/delete_the_note_button"
+        app:showAsAction="ifRoom" />
 
 </menu>

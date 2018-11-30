@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="hdl"
             type="me.martichou.be.grateful.fragments.dialogFragment.BottomsheetFragment" />
@@ -73,9 +74,9 @@
                 android:layout_marginStart="20dp"
                 android:background="@drawable/bg_roundgrey"
                 android:foreground="@drawable/ripple_circle"
-                android:src="@drawable/ic_image"
+                android:onClick="@{hdl::openImageSelector}"
                 android:scaleType="centerInside"
-                android:onClick="@{hdl::openImageSelector}" />
+                android:src="@drawable/ic_image" />
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/add_loc_btn_bs"
@@ -86,9 +87,9 @@
                 android:layout_toEndOf="@+id/add_photo_btn_bs"
                 android:background="@drawable/bg_roundgrey"
                 android:foreground="@drawable/ripple_circle"
-                android:src="@drawable/ic_location"
+                android:onClick="@{hdl::openMapsSelector}"
                 android:scaleType="centerInside"
-                android:onClick="@{hdl::openMapsSelector}" />
+                android:src="@drawable/ic_location" />
 
             <com.google.android.material.button.MaterialButton
                 android:layout_width="wrap_content"

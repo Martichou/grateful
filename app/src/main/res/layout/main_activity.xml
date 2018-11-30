@@ -19,7 +19,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/primary"
                 android:theme="@style/AppTheme.PopupOverlay"
-                app:titleTextAppearance="@style/TextAppearanceH5"/>
+                app:titleTextAppearance="@style/TextAppearanceH5" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -29,8 +29,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:defaultNavHost="true"
-            app:navGraph="@navigation/main_nav_notes"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:navGraph="@navigation/main_nav_notes" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

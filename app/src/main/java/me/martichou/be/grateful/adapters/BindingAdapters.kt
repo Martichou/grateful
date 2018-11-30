@@ -24,12 +24,12 @@ import java.io.File
 fun imageFromFile(view: ImageView, imageUrl: String?, listener: RequestListener<Bitmap>?) {
     if (!imageUrl.isNullOrEmpty() && imageUrl != "none") {
         GlideApp.with(view.context)
-            .asBitmap()
-            .load(File(view.context.getDir("imgForNotes", Context.MODE_PRIVATE), imageUrl))
-            .apply(RequestOptions().override(1024, 768))
-            .thumbnail(0.1f)
-            .listener(listener)
-            .into(view)
+                .asBitmap()
+                .load(File(view.context.getDir("imgForNotes", Context.MODE_PRIVATE), imageUrl))
+                .apply(RequestOptions().override(1024, 768))
+                .thumbnail(0.1f)
+                .listener(listener)
+                .into(view)
     }
 }
 

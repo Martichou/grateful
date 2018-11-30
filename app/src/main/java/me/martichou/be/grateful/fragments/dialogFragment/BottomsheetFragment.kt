@@ -36,7 +36,6 @@ open class BottomsheetFragment : BottomSheetDialogFragment() {
             setLifecycleOwner(this@BottomsheetFragment)
             this.hdl = this@BottomsheetFragment
         }
-        openKeyboard(dialog)
         return binding.root
     }
 

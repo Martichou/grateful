@@ -23,9 +23,9 @@ class NotesAdapter : ListAdapter<NotesMinimal, NotesAdapter.ViewHolder>(NotesDif
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            ListItemNotesBinding.inflate(
-                LayoutInflater.from(parent.context), parent, false
-            )
+                ListItemNotesBinding.inflate(
+                        LayoutInflater.from(parent.context), parent, false
+                )
         )
     }
 

@@ -1,13 +1,12 @@
 package me.martichou.be.grateful.utilities
 
 import android.Manifest
-import android.app.Dialog
+import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Log
-import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.app.ActivityCompat
@@ -27,7 +26,7 @@ import java.util.*
 /**
  * Called to setup needed permission for Grateful
  */
-fun setupPermissions(context: Context, activity: FragmentActivity) {
+fun setupPermissions(activity: Activity, context: Context) {
     val permission = ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)
     if (permission != PackageManager.PERMISSION_GRANTED) {
         ActivityCompat.requestPermissions(activity, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 101)
@@ -53,14 +52,6 @@ fun randomNumber(min: Int, max: Int): String {
  */
 fun makeToast(c: Context, s: String) {
     Toast.makeText(c, s, Toast.LENGTH_SHORT).show()
-}
-
-/**
- * Open the keyboard and push the content to view the full edittext
- */
-fun openKeyboard(dialog: Dialog) {
-    dialog.window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE)
-    dialog.window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
 }
 
 /**

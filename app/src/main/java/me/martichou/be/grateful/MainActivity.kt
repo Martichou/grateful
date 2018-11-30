@@ -7,6 +7,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.setupActionBarWithNavController
 import me.martichou.be.grateful.databinding.MainActivityBinding
+import me.martichou.be.grateful.utilities.setupPermissions
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,6 +25,8 @@ class MainActivity : AppCompatActivity() {
         navController = Navigation.findNavController(this, R.id.main_notes_nav_fragment)
         setSupportActionBar(binding.toolbar)
         setupActionBarWithNavController(navController)
+
+        setupPermissions(this, this)
 
     }
 
