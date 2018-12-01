@@ -1,6 +1,6 @@
 package me.martichou.be.grateful.fragments
 
-import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.*
 import androidx.core.view.ViewCompat
@@ -31,20 +31,21 @@ class ShowFragment : Fragment() {
         viewModel = ViewModelProviders.of(this, InjectorUtils.provideShowViewModelFactory(requireContext().applicationContext, noteId)).get(ShowViewModel::class.java)
         binding = ShowFragmentBinding.inflate(inflater, container, false).apply {
             setLifecycleOwner(this@ShowFragment)
-            this.hdl = this@ShowFragment
-            this.showModel = viewModel
-
-            ViewCompat.setTransitionName(showImageNote, noteId.toString())
-            requestListener = imageListener
         }
+
+        binding.showModel = viewModel
+        binding.requestListener = imageListener
+
+        ViewCompat.setTransitionName(binding.showImageNote, noteId.toString())
 
         postponeEnterTransition()
         sharedElementEnterTransition = MoveViews().apply {
             interpolator = FastOutSlowInInterpolator()
         }
 
-        setHasOptionsMenu(true)
+        binding.hdl = this
 
+        setHasOptionsMenu(true)
         return binding.root
     }
 
@@ -78,13 +79,13 @@ class ShowFragment : Fragment() {
         }
     }
 
-    private val imageListener = object : RequestListener<Bitmap> {
-        override fun onResourceReady(resource: Bitmap?, model: Any?, target: Target<Bitmap>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+    private val imageListener = object : RequestListener<Drawable> {
+        override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
             startPostponedEnterTransition()
             return false
         }
 
-        override fun onLoadFailed(e: GlideException?, model: Any?, target: com.bumptech.glide.request.target.Target<Bitmap>?, isFirstResource: Boolean): Boolean {
+        override fun onLoadFailed(e: GlideException?, model: Any?, target: com.bumptech.glide.request.target.Target<Drawable>?, isFirstResource: Boolean): Boolean {
             startPostponedEnterTransition()
             return false
         }

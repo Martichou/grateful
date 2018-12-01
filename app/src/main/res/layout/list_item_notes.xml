@@ -25,20 +25,17 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/show_image_note"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
+            android:layout_height="150dp"
             android:contentDescription="@string/image_of_your_dedicated_note"
-            android:maxHeight="150dp"
             android:scaleType="centerCrop"
-            android:transitionName="@{note.id}"
-            app:imageFromFile="@{note.image}" />
+            android:transitionName="@{note.id}" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|start"
-            android:layout_margin="10dp"
-            android:orientation="vertical">
+            android:layout_gravity="bottom"
+            android:orientation="vertical"
+            android:padding="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -49,14 +46,6 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/note_title"
                 android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearanceH6"
-                android:textColor="@color/white"
-                android:textSize="@dimen/note_timestamp"
-                app:dateToHours="@{note.date}" />
 
             <TextView
                 android:layout_width="wrap_content"

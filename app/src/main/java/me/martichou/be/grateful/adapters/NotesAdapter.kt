@@ -1,5 +1,6 @@
 package me.martichou.be.grateful.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,9 +9,13 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import me.martichou.be.grateful.data.NotesMinimal
 import me.martichou.be.grateful.databinding.ListItemNotesBinding
 import me.martichou.be.grateful.fragments.MainFragmentDirections
+import me.martichou.be.grateful.utilities.GlideApp
+import java.io.File
 
 class NotesAdapter : ListAdapter<NotesMinimal, NotesAdapter.ViewHolder>(NotesDiffCallback()) {
 
@@ -22,11 +27,7 @@ class NotesAdapter : ListAdapter<NotesMinimal, NotesAdapter.ViewHolder>(NotesDif
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(
-                ListItemNotesBinding.inflate(
-                        LayoutInflater.from(parent.context), parent, false
-                )
-        )
+        return ViewHolder(ListItemNotesBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     private fun createOnClickListener(): OnNoteItemClickListener {
@@ -41,10 +42,16 @@ class NotesAdapter : ListAdapter<NotesMinimal, NotesAdapter.ViewHolder>(NotesDif
 
     class ViewHolder(private val binding: ListItemNotesBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(listener: OnNoteItemClickListener, item: NotesMinimal) {
+            GlideApp.with(itemView.context)
+                    .load(File(itemView.context.getDir("imgForNotes", Context.MODE_PRIVATE), item.image))
+                    .override(1024, 768)
+                    .diskCacheStrategy(DiskCacheStrategy.DATA)
+                    .thumbnail(0.1f)
+                    .transition(DrawableTransitionOptions.withCrossFade())
+                    .into(binding.showImageNote)
             binding.apply {
                 clickListener = listener
                 note = item
-                executePendingBindings()
             }
         }
     }

@@ -15,7 +15,7 @@
 
         <variable
             name="requestListener"
-            type="com.bumptech.glide.request.RequestListener&lt;android.graphics.Bitmap&gt;" />
+            type="com.bumptech.glide.request.RequestListener&lt;android.graphics.drawable.Drawable&gt;" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -68,15 +68,15 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginEnd="25dp"
+            android:paddingStart="25dp"
+            android:paddingEnd="25dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/bignewspaper"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:paddingTop="20dp"
                 android:text="@{showModel.note.content}"
                 android:textAppearance="@style/TextAppearanceSubtitle1"
                 android:textSize="@dimen/note_content"

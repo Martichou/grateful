@@ -34,8 +34,11 @@ open class BottomsheetFragment : BottomSheetDialogFragment() {
         viewModel = ViewModelProviders.of(this, InjectorUtils.provideAddViewModelFactory(context!!)).get(AddViewModel::class.java)
         binding = AddBottomsheetFragmentBinding.inflate(inflater, container, false).apply {
             setLifecycleOwner(this@BottomsheetFragment)
-            this.hdl = this@BottomsheetFragment
         }
+
+        binding.hdl = this
+        binding.addTitleNoteBs.requestFocus()
+
         return binding.root
     }
 

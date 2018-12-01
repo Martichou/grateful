@@ -1,32 +1,29 @@
 package me.martichou.be.grateful.adapters
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Priority
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.RequestOptions
 import me.martichou.be.grateful.utilities.GlideApp
 import java.io.File
 
 /**
  * Bind the app:imageFromFile="imgName" from xml
- * If image is null or equals to none, set the view
- * as gone to prevent big white space.
  */
-// TODO - Try to pass multiple string inside the imageUrl string and split them (color - image)
-// TODO - Or just save in image column, either the name of the image or the HEX code and sort them
-// TODO - By the presence of the # before or not.
 @BindingAdapter("imageFromFile", "requestListener", requireAll = false)
-fun imageFromFile(view: ImageView, imageUrl: String?, listener: RequestListener<Bitmap>?) {
-    if (!imageUrl.isNullOrEmpty() && imageUrl != "none") {
+fun imageFromFile(view: ImageView, imageUrl: String?, listener: RequestListener<Drawable>?) {
+    if (!imageUrl.isNullOrEmpty()) {
         GlideApp.with(view.context)
-                .asBitmap()
                 .load(File(view.context.getDir("imgForNotes", Context.MODE_PRIVATE), imageUrl))
-                .apply(RequestOptions().override(1024, 768))
+                .override(1024, 768)
+                .diskCacheStrategy(DiskCacheStrategy.DATA)
                 .thumbnail(0.1f)
                 .listener(listener)
                 .into(view)
@@ -43,15 +40,4 @@ fun isGone(v: TextView, content: String?) {
     } else {
         v.visibility = View.VISIBLE
     }
-}
-
-/**
- * Format raw date to only "12:15" by exemple
- */
-@SuppressLint("SetTextI18n")
-@BindingAdapter("dateToHours")
-fun dateToHours(v: TextView, content: String?) {
-    // TODO - PM/AM check
-    val splited = content!!.split(" ")[3].split(":")
-    v.text = "At " + splited[0] + ":" + splited[1]
 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Grateful</string>
+    <string name="app_name" translatable="false">Grateful</string>
     <string name="image_of_your_dedicated_note">Image of your dedicated note.</string>
     <string name="edit_your_note_button">Edit your note button</string>
     <string name="delete_the_note_button">Delete the note button</string>
