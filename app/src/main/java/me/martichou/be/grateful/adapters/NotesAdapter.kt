@@ -44,10 +44,10 @@ class NotesAdapter : ListAdapter<NotesMinimal, NotesAdapter.ViewHolder>(NotesDif
         fun bind(listener: OnNoteItemClickListener, item: NotesMinimal) {
             GlideApp.with(itemView.context)
                     .load(File(itemView.context.getDir("imgForNotes", Context.MODE_PRIVATE), item.image))
-                    .override(1024, 768)
-                    .diskCacheStrategy(DiskCacheStrategy.DATA)
                     .thumbnail(0.1f)
+                    .override(1024, 768)
                     .transition(DrawableTransitionOptions.withCrossFade())
+                    .diskCacheStrategy(DiskCacheStrategy.DATA)
                     .into(binding.showImageNote)
             binding.apply {
                 clickListener = listener
