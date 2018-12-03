@@ -43,8 +43,6 @@ class ShowFragment : Fragment() {
             interpolator = FastOutSlowInInterpolator()
         }
 
-        binding.hdl = this
-
         setHasOptionsMenu(true)
         return binding.root
     }

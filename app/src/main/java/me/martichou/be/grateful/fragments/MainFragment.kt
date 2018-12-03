@@ -1,17 +1,14 @@
 package me.martichou.be.grateful.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.core.view.doOnLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.LinearLayoutManager
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.adapters.NotesAdapter
 import me.martichou.be.grateful.databinding.MainFragmentBinding
-import me.martichou.be.grateful.fragments.dialogFragment.BottomsheetFragment
 import me.martichou.be.grateful.utilities.InjectorUtils
 import me.martichou.be.grateful.viewmodels.MainViewModel
 
@@ -36,8 +33,6 @@ class MainFragment : Fragment() {
             startPostponedEnterTransition()
         }
 
-        binding.hdl = this
-
         setHasOptionsMenu(true)
         return binding.root
     }
@@ -50,13 +45,5 @@ class MainFragment : Fragment() {
         viewModel.notesList.observe(viewLifecycleOwner, Observer { notes ->
             if (notes != null) adapter.submitList(notes)
         })
-    }
-
-    /**
-     * Open the bottomsheet
-     */
-    fun btnNewAction(view: View) {
-        val bottomsheetFragment = BottomsheetFragment()
-        bottomsheetFragment.show(fragmentManager, bottomsheetFragment.tag)
     }
 }

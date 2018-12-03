@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.ui.setupActionBarWithNavController
 import me.martichou.be.grateful.databinding.MainActivityBinding
 import me.martichou.be.grateful.utilities.setupPermissions
 
@@ -19,19 +18,21 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding: MainActivityBinding = DataBindingUtil.setContentView(this,
-                R.layout.main_activity)
+        DataBindingUtil.setContentView<MainActivityBinding>(this, R.layout.main_activity)
 
         navController = Navigation.findNavController(this, R.id.main_notes_nav_fragment)
-        setSupportActionBar(binding.toolbar)
-        setupActionBarWithNavController(navController)
 
         setupPermissions(this, this)
-
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp() || super.onSupportNavigateUp()
-    }
+    /**
+     * /**
+        * Open the bottomsheet
+        */
+        fun btnNewAction(view: View) {
+            val bottomsheetFragment = BottomsheetFragment()
+            bottomsheetFragment.show(fragmentManager, bottomsheetFragment.tag)
+        }
+     */
 
 }

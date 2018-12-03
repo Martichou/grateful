@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="main_title">24sp</dimen>
     <dimen name="note_title">18sp</dimen>
     <dimen name="note_content">14sp</dimen>
     <dimen name="note_timestamp">10sp</dimen>
