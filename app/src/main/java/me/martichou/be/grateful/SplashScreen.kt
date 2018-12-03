@@ -28,6 +28,18 @@ class SplashScreen : AppCompatActivity() {
 
     }
 
+    override fun onPause() {
+        super.onPause()
+
+        mDelayHandler?.removeCallbacks(mRunnable)
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        mDelayHandler?.post(mRunnable)
+    }
+
     public override fun onDestroy() {
         if (mDelayHandler != null) {
             mDelayHandler!!.removeCallbacks(mRunnable)
