@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.ui.setupActionBarWithNavController
 import me.martichou.be.grateful.databinding.MainActivityBinding
 import me.martichou.be.grateful.fragments.dialogFragment.BottomsheetFragment
 import me.martichou.be.grateful.utilities.setupPermissions

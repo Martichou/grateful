@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="hdl"
             type="me.martichou.be.grateful.MainActivity" />
@@ -17,8 +18,8 @@
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:navGraph="@navigation/main_nav_notes"
-            app:defaultNavHost="true"/>
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/main_nav_notes" />
 
         <View
             android:layout_width="match_parent"
@@ -31,19 +32,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            app:hideOnScroll="true"
             app:backgroundTint="@color/white"
             app:fabAlignmentMode="center"
             app:fabCradleMargin="0dp"
             app:fabCradleRoundedCornerRadius="0dp"
-            app:navigationIcon="@drawable/ic_menu_black"/>
+            app:hideOnScroll="true"
+            app:navigationIcon="@drawable/ic_menu_black" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_add_white"
             android:onClick="@{hdl::btnNewAction}"
+            android:src="@drawable/ic_add_white"
             app:layout_anchor="@id/bottom_app_bar" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
