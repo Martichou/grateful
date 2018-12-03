@@ -2,19 +2,23 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <variable
+            name="hdl"
+            type="me.martichou.be.grateful.MainActivity" />
+    </data>
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- layout_marginBottom is a workaroud -->
         <fragment
             android:id="@+id/main_notes_nav_fragment"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="60dp"
             app:navGraph="@navigation/main_nav_notes"
-            app:defaultNavHost="true" />
+            app:defaultNavHost="true"/>
 
         <View
             android:layout_width="match_parent"
@@ -27,17 +31,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
+            app:hideOnScroll="true"
             app:backgroundTint="@color/white"
             app:fabAlignmentMode="center"
             app:fabCradleMargin="0dp"
             app:fabCradleRoundedCornerRadius="0dp"
-            app:navigationIcon="@drawable/ic_menu_black" />
+            app:navigationIcon="@drawable/ic_menu_black"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_add_white"
+            android:onClick="@{hdl::btnNewAction}"
             app:layout_anchor="@id/bottom_app_bar" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -2,35 +2,41 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/app_bar"
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.AppBarOverlay"
-            app:elevation="0dp">
+            android:layout_height="wrap_content">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/detail_toolbar"
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/app_bar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/AppTheme.PopupOverlay"
-                app:layout_scrollFlags="scroll|enterAlways">
+                android:theme="@style/AppTheme.AppBarOverlay">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/detail_toolbar"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/app_name"
-                    android:layout_gravity="center"
-                    android:textSize="@dimen/main_title"
-                    android:textAppearance="@style/TextAppearanceSubtitle2"/>
+                    android:theme="@style/AppTheme.PopupOverlay"
+                    app:layout_scrollFlags="scroll|enterAlways">
 
-            </androidx.appcompat.widget.Toolbar>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/app_name"
+                        android:layout_gravity="center"
+                        android:textSize="@dimen/main_title"
+                        android:textAppearance="@style/TextAppearanceSubtitle2"/>
 
-        </com.google.android.material.appbar.AppBarLayout>
+                </androidx.appcompat.widget.Toolbar>
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/notes_list"
@@ -38,9 +44,8 @@
             android:layout_height="match_parent"
             android:paddingStart="25dp"
             android:paddingEnd="25dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </LinearLayout>
 
 </layout>

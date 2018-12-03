@@ -17,6 +17,7 @@ import me.martichou.be.grateful.fragments.MainFragmentDirections
 import me.martichou.be.grateful.utilities.GlideApp
 import java.io.File
 
+
 class NotesAdapter : ListAdapter<NotesMinimal, NotesAdapter.ViewHolder>(NotesDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
