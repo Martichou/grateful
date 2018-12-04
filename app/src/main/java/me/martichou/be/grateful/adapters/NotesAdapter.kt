@@ -10,7 +10,9 @@ import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.bumptech.glide.request.RequestOptions
 import me.martichou.be.grateful.data.NotesMinimal
 import me.martichou.be.grateful.databinding.ListItemNotesBinding
 import me.martichou.be.grateful.fragments.MainFragmentDirections

@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import me.martichou.be.grateful.adapters.NotesAdapter
 import me.martichou.be.grateful.databinding.MainFragmentBinding
+import me.martichou.be.grateful.utilities.DividerRV
 import me.martichou.be.grateful.utilities.InjectorUtils
 import me.martichou.be.grateful.viewmodels.MainViewModel
 
@@ -24,6 +25,7 @@ class MainFragment : Fragment() {
             setLifecycleOwner(this@MainFragment)
         }
 
+        binding.notesList.addItemDecoration(DividerRV(25))
         binding.notesList.setHasFixedSize(true)
         binding.notesList.adapter = viewModel.adapter
 
