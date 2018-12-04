@@ -4,24 +4,13 @@ import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.util.Log
 import android.widget.Toast
-import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
-import me.martichou.be.grateful.R
-import me.martichou.be.grateful.viewmodels.AddViewModel
-import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
 import java.util.*
-
 
 /**
  * Called to setup needed permission for Grateful
@@ -65,47 +54,3 @@ fun imageCropper(context: Context, fragment: Fragment) {
             .setAspectRatio(4, 3)
             .start(context, fragment)
 }
-
-/**
- * Used to save image on the apps storage
- * Compressed cause it will lag if it's not.
- */
-fun compressImage(activity: FragmentActivity?, viewModel: AddViewModel, file: File, add_btn: AppCompatImageButton) {
-    runOnIoThread {
-        val storageDir = activity!!.getDir("imgForNotes", Context.MODE_PRIVATE)
-        val success = if (!storageDir.exists()) {
-            storageDir.mkdirs()
-        } else {
-            true
-        }
-        if (success) {
-            val imageFile = File(storageDir, viewModel.randomImageName)
-            if (imageFile.exists()) {
-                val deleted = imageFile.delete()
-                if (!deleted) {
-                    Log.i("Error", "Cannot delete the file..")
-                }
-            }
-            var fos: FileOutputStream? = null
-            try {
-                fos = FileOutputStream(imageFile)
-                BitmapFactory.decodeFile(file.absolutePath).compress(Bitmap.CompressFormat.JPEG, 50, fos)
-            } catch (e: Exception) {
-                e.printStackTrace()
-            } finally {
-                try {
-                    fos?.close()
-                    viewModel.changeHasPhoto(true)
-                    viewModel.changeIsWorking(false)
-
-                    activity.runOnUiThread {
-                        add_btn.background = ContextCompat.getDrawable(activity, R.drawable.bg_roundaccent)
-                    }
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                }
-            }
-        }
-    }
-}
-

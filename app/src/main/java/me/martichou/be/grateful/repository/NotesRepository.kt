@@ -4,7 +4,6 @@ import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.withContext
 import me.martichou.be.grateful.data.Notes
 import me.martichou.be.grateful.data.NotesDao
-import me.martichou.be.grateful.utilities.runOnIoThread
 
 class NotesRepository private constructor(private val notesDao: NotesDao) {
 

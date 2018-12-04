@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.gms.location.places.ui.PlacePicker
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -19,7 +20,6 @@ import me.martichou.be.grateful.databinding.AddBottomsheetFragmentBinding
 import me.martichou.be.grateful.utilities.*
 import me.martichou.be.grateful.viewmodels.AddViewModel
 import java.io.File
-
 
 open class BottomsheetFragment : BottomSheetDialogFragment() {
 
@@ -68,7 +68,7 @@ open class BottomsheetFragment : BottomSheetDialogFragment() {
                 when (resultCode) {
                     Activity.RESULT_OK -> {
                         val image = File(CropImage.getActivityResult(data).uri.path)
-                        compressImage(activity, viewModel, image, add_photo_btn_bs)
+                        CompressImage(requireContext(), viewModel, image, add_photo_btn_bs)
                     }
                     CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE -> {
                         makeToast(context!!, "We're sorry, there was an error.")
@@ -79,7 +79,7 @@ open class BottomsheetFragment : BottomSheetDialogFragment() {
                 when (resultCode) {
                     Activity.RESULT_OK -> {
                         viewModel.place = PlacePicker.getPlace(context, data).address.toString()
-                        add_loc_btn_bs.background = activity!!.resources.getDrawable(R.drawable.bg_roundaccent)
+                        add_loc_btn_bs.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_roundaccent)
                     }
                     Activity.RESULT_CANCELED -> {
                         makeToast(context!!, "We're sorry, there was an error.")
