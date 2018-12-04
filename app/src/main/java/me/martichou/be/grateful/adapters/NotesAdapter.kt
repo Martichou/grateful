@@ -10,9 +10,7 @@ import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.bumptech.glide.request.RequestOptions
 import me.martichou.be.grateful.data.NotesMinimal
 import me.martichou.be.grateful.databinding.ListItemNotesBinding
 import me.martichou.be.grateful.fragments.MainFragmentDirections
@@ -47,7 +45,7 @@ class NotesAdapter : ListAdapter<NotesMinimal, NotesAdapter.ViewHolder>(NotesDif
             GlideApp.with(itemView.context)
                     .load(File(itemView.context.getDir("imgForNotes", Context.MODE_PRIVATE), item.image))
                     .thumbnail(0.1f)
-                    .override(1024, 768)
+                    .override(binding.showImageNote.width, binding.showImageNote.height)
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .diskCacheStrategy(DiskCacheStrategy.DATA)
                     .into(binding.showImageNote)
