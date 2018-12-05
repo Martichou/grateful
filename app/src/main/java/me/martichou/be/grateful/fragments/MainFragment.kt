@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import me.martichou.be.grateful.adapters.NotesAdapter
 import me.martichou.be.grateful.databinding.MainFragmentBinding
 import me.martichou.be.grateful.fragments.dialogFragment.BottomsheetFragment
@@ -16,10 +17,12 @@ import me.martichou.be.grateful.utilities.DividerRV
 import me.martichou.be.grateful.utilities.InjectorUtils
 import me.martichou.be.grateful.viewmodels.MainViewModel
 
+
 class MainFragment : Fragment() {
 
     private lateinit var viewModel: MainViewModel
     private lateinit var binding: MainFragmentBinding
+    private lateinit var notesList: RecyclerView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewModel = ViewModelProviders.of(this, InjectorUtils.provideMainViewModelFactory(requireContext().applicationContext)).get(MainViewModel::class.java)
@@ -27,19 +30,21 @@ class MainFragment : Fragment() {
             setLifecycleOwner(this@MainFragment)
         }
 
-        binding.hdl = this
+        notesList = binding.notesList
 
-        binding.notesList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        binding.notesList.addItemDecoration(DividerRV(40))
-        binding.notesList.setHasFixedSize(true)
-        binding.notesList.adapter = viewModel.adapter
+        notesList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        notesList.addItemDecoration(DividerRV(40))
+        notesList.setHasFixedSize(true)
+        notesList.adapter = viewModel.adapter
 
         subscribeUi(viewModel.adapter)
 
         postponeEnterTransition()
-        binding.notesList.doOnLayout {
+        notesList.doOnLayout {
             startPostponedEnterTransition()
         }
+
+        binding.hdl = this
 
         return binding.root
     }
