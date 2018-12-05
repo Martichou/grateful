@@ -9,234 +9,235 @@
             type="me.martichou.be.grateful.fragments.MainFragment" />
     </data>
 
-        <androidx.coordinatorlayout.widget.CoordinatorLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-            <com.google.android.material.appbar.AppBarLayout
-                android:id="@+id/app_bar"
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:elevation="0dp">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/detail_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/AppTheme.AppBarOverlay"
-                app:elevation="0dp">
+                android:theme="@style/AppTheme.PopupOverlay"
+                app:layout_scrollFlags="scroll|snap">
 
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/detail_toolbar"
-                    android:layout_width="match_parent"
+                <RelativeLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:theme="@style/AppTheme.PopupOverlay"
-                    app:layout_scrollFlags="scroll|snap">
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="23dp"
+                    android:layout_marginEnd="23dp"
+                    android:layout_marginBottom="0dp"
+                    android:gravity="center_vertical">
 
-                    <RelativeLayout
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/toolbar_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginStart="23dp"
-                        android:layout_marginEnd="23dp"
-                        android:gravity="center_vertical">
+                        android:text="@string/app_name"
+                        android:textSize="28sp"
+                        android:textAppearance="@style/TextAppearanceSubtitle2"
+                        android:textColor="@color/dark"
+                        android:layout_alignParentStart="true"
+                        android:layout_toStartOf="@id/toolbar_profile" />
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/toolbar_title"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/app_name"
-                            android:textSize="28sp"
-                            android:textAppearance="@style/TextAppearanceSubtitle2"
-                            android:textColor="@color/black"
-                            android:layout_alignParentStart="true"
-                            android:layout_toStartOf="@id/toolbar_profile" />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/toolbar_slogan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/positivity_everyday"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/nunitolight"
+                        android:textColor="@color/grey_light"
+                        android:layout_alignParentStart="true"
+                        android:layout_below="@id/toolbar_title" />
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/toolbar_slogan"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/positivity_everyday"
-                            android:textSize="20sp"
-                            android:fontFamily="@font/nunitolight"
-                            android:textColor="@color/grey_light"
-                            android:layout_alignParentStart="true"
-                            android:layout_below="@id/toolbar_title" />
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/toolbar_profile"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        app:cardCornerRadius="27.5dp">
 
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/toolbar_profile"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_centerVertical="true"
-                            android:layout_alignParentEnd="true"
-                            app:cardCornerRadius="27.5dp">
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/profile"
+                            android:scaleType="centerCrop" />
 
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/profile"
-                                android:scaleType="centerCrop" />
+                    </androidx.cardview.widget.CardView>
 
-                        </androidx.cardview.widget.CardView>
+                </RelativeLayout>
 
-                    </RelativeLayout>
+            </androidx.appcompat.widget.Toolbar>
 
-                </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
 
-            </com.google.android.material.appbar.AppBarLayout>
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <androidx.core.widget.NestedScrollView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="20dp"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical">
 
-                <LinearLayout
+                <androidx.appcompat.widget.SearchView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginEnd="23dp"
+                    android:layout_marginStart="23dp"
+                    android:layout_marginTop="2dp"
+                    android:layoutDirection="rtl"
+                    android:background="@drawable/border"
+                    android:elevation="2dp"
+                    app:queryHint="Search for a gratitude note" />
+
+                <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:orientation="vertical">
+                    android:layout_marginStart="23dp"
+                    android:layout_marginEnd="23dp"
+                    android:text="@string/what_made_me_smiled_today"
+                    android:textColor="@color/bright_grey"
+                    android:fontFamily="@font/nunito_sans_semibold"
+                    android:textSize="15sp" />
 
-                    <androidx.appcompat.widget.SearchView
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="225dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="23dp"
+                    android:layout_marginEnd="23dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:clipToPadding="false"
+                    android:onClick="@{hdl::btnNewAction}"
+                    android:foreground="@drawable/ripple_circle"
+                    app:cardCornerRadius="15dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
-                        android:layout_marginEnd="23dp"
-                        android:layout_marginStart="23dp"
-                        android:layout_marginTop="2dp"
-                        android:layoutDirection="rtl"
-                        android:background="@drawable/border"
-                        android:elevation="2dp"
-                        app:queryHint="Search for a gratitude note" />
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:foreground="#784d4d4d"
+                        android:src="@drawable/landing" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/add_image"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginStart="10dp"
+                    android:background="@color/quartz"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="23dp"
+                    android:layout_marginEnd="23dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginStart="23dp"
-                        android:layout_marginEnd="23dp"
-                        android:text="@string/what_made_me_smiled_today"
+                        android:text="@string/gratitude"
                         android:textColor="@color/bright_grey"
                         android:fontFamily="@font/nunito_sans_semibold"
-                        android:textSize="15sp" />
+                        android:textSize="15sp"
+                        android:layout_toStartOf="@id/viewallnotes"
+                        android:layout_alignParentStart="true" />
 
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="250dp"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="23dp"
-                        android:layout_marginEnd="23dp"
-                        android:layout_marginTop="3dp"
-                        android:layout_marginBottom="3dp"
-                        android:clipToPadding="false"
-                        android:onClick="@{hdl::btnNewAction}"
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/viewallnotes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/view_all"
+                        android:drawableEnd="@drawable/ic_keyboard_arrow"
+                        android:textColor="@color/bright_grey"
+                        android:fontFamily="@font/nunito_sans_semibold"
+                        android:textSize="15sp"
+                        android:gravity="center"
                         android:foreground="@drawable/ripple_circle"
-                        app:cardCornerRadius="15dp">
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:layout_alignParentEnd="true"/>
 
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:foreground="#784d4d4d"
-                            android:src="@drawable/landing" />
+                </RelativeLayout>
 
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:layout_width="45dp"
-                            android:layout_height="45dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/add_image"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/notes_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="175dp"
+                    android:layout_marginStart="20dp"
+                    android:clipToPadding="false"
+                    android:nestedScrollingEnabled="false"/>
 
-                    </androidx.cardview.widget.CardView>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginStart="10dp"
+                    android:background="@color/quartz"/>
 
-                    <View
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginStart="23dp"
+                    android:layout_marginEnd="23dp"
+                    android:text="@string/places"
+                    android:textColor="@color/bright_grey"
+                    android:fontFamily="@font/nunito_sans_semibold"
+                    android:textSize="15sp" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="23dp"
+                    android:layout_marginEnd="23dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="10dp"
+                    android:clipToPadding="false"
+                    app:cardCornerRadius="15dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="match_parent"
-                        android:layout_height="0.5dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginStart="10dp"
-                        android:background="@color/quartz"/>
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/mapingg" />
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginStart="23dp"
-                        android:layout_marginEnd="23dp"
-                        android:layout_marginBottom="10dp"
-                        android:orientation="horizontal">
+                </androidx.cardview.widget.CardView>
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/gratitude"
-                            android:textColor="@color/bright_grey"
-                            android:fontFamily="@font/nunito_sans_semibold"
-                            android:textSize="15sp"
-                            android:layout_toStartOf="@id/viewallnotes"
-                            android:layout_alignParentStart="true" />
+            </LinearLayout>
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/viewallnotes"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/view_all"
-                            android:drawableEnd="@drawable/ic_keyboard_arrow"
-                            android:textColor="@color/bright_grey"
-                            android:fontFamily="@font/nunito_sans_semibold"
-                            android:textSize="15sp"
-                            android:gravity="center"
-                            android:foreground="@drawable/ripple_circle"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:layout_alignParentEnd="true"/>
+        </androidx.core.widget.NestedScrollView>
 
-                    </RelativeLayout>
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/notes_list"
-                        android:layout_width="match_parent"
-                        android:layout_height="175dp"
-                        android:layout_marginStart="20dp"
-                        android:clipToPadding="false"
-                        android:nestedScrollingEnabled="false"/>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.5dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginStart="10dp"
-                        android:background="@color/quartz"/>
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginStart="23dp"
-                        android:layout_marginEnd="23dp"
-                        android:text="@string/places"
-                        android:textColor="@color/bright_grey"
-                        android:fontFamily="@font/nunito_sans_semibold"
-                        android:textSize="15sp" />
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="300dp"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="23dp"
-                        android:layout_marginEnd="23dp"
-                        android:layout_marginTop="3dp"
-                        android:layout_marginBottom="10dp"
-                        android:clipToPadding="false"
-                        app:cardCornerRadius="15dp">
-
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/mapingg" />
-
-                    </androidx.cardview.widget.CardView>
-
-                </LinearLayout>
-
-            </androidx.core.widget.NestedScrollView>
-
-        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>

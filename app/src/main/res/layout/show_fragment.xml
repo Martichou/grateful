@@ -13,37 +13,62 @@
             type="com.bumptech.glide.request.RequestListener&lt;android.graphics.drawable.Drawable&gt;" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="400dp"
-            android:layout_gravity="center"
-            android:layout_margin="25dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="3dp">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/show_image_note"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:adjustViewBounds="true"
-                android:contentDescription="@string/image_of_your_dedicated_note"
-                android:scaleType="centerCrop"
-                app:imageFromFile="@{showModel.note.image}"
-                app:layout_collapseMode="parallax"
-                app:requestListener="@{requestListener}" />
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.core.widget.NestedScrollView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="25dp"
-            android:paddingEnd="25dp"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="275dp"
+                android:layout_marginStart="23dp"
+                android:layout_marginEnd="23dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="15dp"
+                app:cardCornerRadius="15dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/show_image_note"
+                    android:layout_width="match_parent"
+                    android:layout_height="275dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/image_of_your_dedicated_note"
+                    android:scaleType="centerCrop"
+                    app:imageFromFile="@{showModel.note.image}"
+                    app:layout_collapseMode="parallax"
+                    app:requestListener="@{requestListener}" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="23dp"
+                android:layout_marginStart="23dp"
+                android:layout_marginEnd="23dp"
+                android:text="@{showModel.note.date}"
+                android:textColor="@color/bright_grey"
+                android:fontFamily="@font/nunito_sans_semibold"
+                android:textSize="15sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="40dp"
+                android:layout_marginStart="23dp"
+                android:layout_marginEnd="23dp"
+                android:maxLines="1"
+                android:text="@{showModel.note.title}"
+                android:fontFamily="@font/nunito_sans"
+                android:textColor="@color/dark"
+                android:textSize="@dimen/note_title"
+                android:textStyle="bold" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/bignewspaper"
@@ -56,8 +81,8 @@
                 android:textStyle="italic"
                 app:isGone="@{showModel.note.content}" />
 
-        </androidx.core.widget.NestedScrollView>
+        </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </layout>
