@@ -13,49 +13,30 @@
             type="com.bumptech.glide.request.RequestListener&lt;android.graphics.drawable.Drawable&gt;" />
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/app_bar"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fitsSystemWindows="true"
-            android:theme="@style/ThemeOverlay.AppCompat.Light">
+            android:layout_height="400dp"
+            android:layout_gravity="center"
+            android:layout_margin="25dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="3dp">
 
-            <com.google.android.material.appbar.CollapsingToolbarLayout
-                android:id="@+id/toolbar_layout"
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/show_image_note"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:fitsSystemWindows="true"
-                app:collapsedTitleTextAppearance="@style/TextAppearanceH5"
-                app:contentScrim="?attr/colorPrimary"
-                app:expandedTitleTextAppearance="@style/TextAppearanceH5bis"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                app:title="@{showModel.note.title}">
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/image_of_your_dedicated_note"
+                android:scaleType="centerCrop"
+                app:imageFromFile="@{showModel.note.image}"
+                app:layout_collapseMode="parallax"
+                app:requestListener="@{requestListener}" />
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/show_image_note"
-                    android:layout_width="match_parent"
-                    android:layout_height="400dp"
-                    android:adjustViewBounds="true"
-                    android:contentDescription="@string/image_of_your_dedicated_note"
-                    android:scaleType="centerCrop"
-                    app:imageFromFile="@{showModel.note.image}"
-                    app:layout_collapseMode="parallax"
-                    app:requestListener="@{requestListener}" />
-
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/detail_toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    app:layout_collapseMode="pin"
-                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-
-            </com.google.android.material.appbar.CollapsingToolbarLayout>
-
-        </com.google.android.material.appbar.AppBarLayout>
+        </androidx.cardview.widget.CardView>
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -77,6 +58,6 @@
 
         </androidx.core.widget.NestedScrollView>
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

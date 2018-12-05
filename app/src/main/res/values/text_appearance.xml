@@ -20,7 +20,7 @@
     </style>
 
     <style name="TextAppearanceSubtitle2" parent="TextAppearance.MaterialComponents.Subtitle2">
-        <item name="fontFamily">@font/nunito_sans_semibold</item>
+        <item name="fontFamily">@font/nunito_sans_bold</item>
     </style>
 
     <style name="TextAppearanceBody1" parent="TextAppearance.MaterialComponents.Body1">

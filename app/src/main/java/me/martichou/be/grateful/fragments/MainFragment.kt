@@ -1,8 +1,6 @@
 package me.martichou.be.grateful.fragments
 
-import android.opengl.Visibility
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,8 +8,10 @@ import androidx.core.view.doOnLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import me.martichou.be.grateful.adapters.NotesAdapter
 import me.martichou.be.grateful.databinding.MainFragmentBinding
+import me.martichou.be.grateful.fragments.dialogFragment.BottomsheetFragment
 import me.martichou.be.grateful.utilities.DividerRV
 import me.martichou.be.grateful.utilities.InjectorUtils
 import me.martichou.be.grateful.viewmodels.MainViewModel
@@ -27,7 +27,10 @@ class MainFragment : Fragment() {
             setLifecycleOwner(this@MainFragment)
         }
 
-        binding.notesList.addItemDecoration(DividerRV(25))
+        binding.hdl = this
+
+        binding.notesList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.notesList.addItemDecoration(DividerRV(40))
         binding.notesList.setHasFixedSize(true)
         binding.notesList.adapter = viewModel.adapter
 
@@ -45,17 +48,15 @@ class MainFragment : Fragment() {
         viewModel.notesList.observe(viewLifecycleOwner, Observer { notes ->
             if (notes != null){
                 adapter.submitList(notes)
-                toggleEmptyNotes()
             }
         })
     }
 
-    private fun toggleEmptyNotes(){
-        val v = binding.itsempty
-        if(viewModel.adapter.itemCount == 0 && v.visibility == View.GONE){
-            v.visibility = View.VISIBLE
-        }else{
-            v.visibility = View.GONE
-        }
+    /**
+     * Open the bottomsheet
+     */
+    fun btnNewAction(view: View) {
+        val bottomsheetFragment = BottomsheetFragment()
+        bottomsheetFragment.show(fragmentManager, bottomsheetFragment.tag)
     }
 }
