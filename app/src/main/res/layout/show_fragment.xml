@@ -21,16 +21,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:clipToPadding="false"
             android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="275dp"
-                android:layout_marginStart="23dp"
-                android:layout_marginEnd="23dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginBottom="15dp"
                 app:cardCornerRadius="15dp">
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -49,36 +49,31 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="23dp"
-                android:layout_marginStart="23dp"
-                android:layout_marginEnd="23dp"
-                android:text="@{showModel.note.date}"
-                android:textColor="@color/bright_grey"
+                android:layout_marginTop="20dp"
+                android:text="6 Dec ° Namur"
+                android:textColor="@color/grey_show"
                 android:fontFamily="@font/nunito_sans_semibold"
-                android:textSize="15sp" />
+                android:textSize="@dimen/note_timestamp" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="40dp"
-                android:layout_marginStart="23dp"
-                android:layout_marginEnd="23dp"
+                android:layout_marginTop="20dp"
                 android:maxLines="1"
                 android:text="@{showModel.note.title}"
-                android:fontFamily="@font/nunito_sans"
+                android:fontFamily="@font/nunito_sans_bold"
                 android:textColor="@color/dark"
-                android:textSize="@dimen/note_title"
+                android:textSize="@dimen/note_title_show"
                 android:textStyle="bold" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/bignewspaper"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="20dp"
+                android:layout_marginTop="25dp"
                 android:text="@{showModel.note.content}"
                 android:textAppearance="@style/TextAppearanceSubtitle1"
                 android:textSize="@dimen/note_content"
-                android:textStyle="italic"
                 app:isGone="@{showModel.note.content}" />
 
         </LinearLayout>

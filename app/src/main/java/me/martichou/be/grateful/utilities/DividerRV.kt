@@ -8,7 +8,16 @@ class DividerRV internal constructor(private val horizontalSpaceHeight: Int): Re
 
     override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView,
                        state: RecyclerView.State) {
-        outRect.right = horizontalSpaceHeight
+        val itemCount = state.itemCount
+        val itemPosition = parent.getChildAdapterPosition(view)
+        if(itemPosition == 0){
+            outRect.left = 30
+            outRect.right = horizontalSpaceHeight
+        } else if(itemCount > 0 && itemPosition == itemCount - 1) {
+            outRect.right = 30
+        } else {
+            outRect.right = horizontalSpaceHeight
+        }
     }
 
 }

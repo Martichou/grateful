@@ -17,9 +17,9 @@
         android:layout_width="350dp"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_margin="3dp"
         android:onClick="@{v -> clickListener.onNoteItemClick(v, note)}"
         android:foreground="@drawable/ripple_circle"
+        app:cardUseCompatPadding="true"
         app:cardCornerRadius="15dp">
 
         <androidx.appcompat.widget.AppCompatImageView

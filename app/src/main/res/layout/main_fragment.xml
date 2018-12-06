@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
@@ -58,10 +59,11 @@
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/toolbar_profile"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
                         android:layout_centerVertical="true"
                         android:layout_alignParentEnd="true"
+                        app:cardUseCompatPadding="true"
                         app:cardCornerRadius="27.5dp">
 
                         <androidx.appcompat.widget.AppCompatImageView
@@ -81,34 +83,31 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <LinearLayout
                 android:id="@+id/linear_main"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="10dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:clipToPadding="false"
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.SearchView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginEnd="23dp"
-                    android:layout_marginStart="23dp"
-                    android:layout_marginTop="2dp"
                     android:layoutDirection="rtl"
                     android:background="@drawable/border"
-                    android:elevation="2dp"
+                    android:elevation="3dp"
                     app:queryHint="Search for a gratitude note" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginStart="23dp"
-                    android:layout_marginEnd="23dp"
+                    android:layout_marginTop="20dp"
                     android:text="@string/what_made_me_smiled_today"
                     android:textColor="@color/bright_grey"
                     android:fontFamily="@font/nunito_sans_semibold"
@@ -118,10 +117,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="225dp"
                     android:layout_gravity="center"
-                    android:layout_marginStart="23dp"
-                    android:layout_marginEnd="23dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginBottom="3dp"
+                    android:layout_marginTop="10dp"
                     android:clipToPadding="false"
                     android:onClick="@{hdl::btnNewAction}"
                     android:foreground="@drawable/ripple_circle"
@@ -145,18 +141,13 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="10dp"
                     android:background="@color/quartz"/>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginStart="23dp"
-                    android:layout_marginEnd="23dp"
-                    android:layout_marginBottom="10dp"
                     android:orientation="horizontal">
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -190,25 +181,20 @@
                     android:id="@+id/notes_list"
                     android:layout_width="match_parent"
                     android:layout_height="175dp"
-                    android:layout_marginStart="20dp"
-                    android:clipToPadding="false"
+                    android:layout_marginStart="-20dp"
+                    android:layout_marginEnd="-20dp"
                     android:nestedScrollingEnabled="false"/>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="10dp"
                     android:background="@color/quartz"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginStart="23dp"
-                    android:layout_marginEnd="23dp"
                     android:text="@string/places"
                     android:textColor="@color/bright_grey"
                     android:fontFamily="@font/nunito_sans_semibold"
@@ -218,10 +204,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
                     android:layout_gravity="center"
-                    android:layout_marginStart="23dp"
-                    android:layout_marginEnd="23dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
                     android:clipToPadding="false"
                     app:cardCornerRadius="15dp">
 
