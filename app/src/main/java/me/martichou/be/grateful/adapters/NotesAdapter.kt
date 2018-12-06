@@ -33,6 +33,10 @@ class NotesAdapter : ListAdapter<NotesMinimal, NotesAdapter.ViewHolder>(NotesDif
     private fun createOnClickListener(): OnNoteItemClickListener {
         return object : OnNoteItemClickListener {
             override fun onNoteItemClick(rootView: View, notes: NotesMinimal) {
+
+                // TODO - Exclude view from transition
+                // ((rootView.context as AppCompatActivity).supportFragmentManager.getFragment().exitTransition)
+
                 rootView.findNavController().navigate(
                         MainFragmentDirections.ActionNoteListFragmentToNoteDetailFragment(notes.id.toLong()),
                         FragmentNavigatorExtras(DataBindingUtil.getBinding<ListItemNotesBinding>(rootView)!!.showImageNote to notes.id))

@@ -2,20 +2,20 @@ package me.martichou.be.grateful.fragments
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
-import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import me.martichou.be.grateful.R
 import me.martichou.be.grateful.databinding.ShowFragmentBinding
 import me.martichou.be.grateful.utilities.InjectorUtils
-import me.martichou.be.grateful.utilities.MoveViews
 import me.martichou.be.grateful.viewmodels.ShowViewModel
 
 class ShowFragment : Fragment() {
@@ -32,15 +32,14 @@ class ShowFragment : Fragment() {
             setLifecycleOwner(this@ShowFragment)
         }
 
+        postponeEnterTransition()
+
         binding.showModel = viewModel
         binding.requestListener = imageListener
 
         ViewCompat.setTransitionName(binding.showImageNote, noteId.toString())
 
-        postponeEnterTransition()
-        sharedElementEnterTransition = MoveViews().apply {
-            interpolator = FastOutSlowInInterpolator()
-        }
+        sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(R.transition.sharedimage_enter)
 
         return binding.root
     }

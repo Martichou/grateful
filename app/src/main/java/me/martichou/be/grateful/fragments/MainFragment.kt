@@ -1,6 +1,7 @@
 package me.martichou.be.grateful.fragments
 
 import android.os.Bundle
+import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,13 +11,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import me.martichou.be.grateful.R
 import me.martichou.be.grateful.adapters.NotesAdapter
 import me.martichou.be.grateful.databinding.MainFragmentBinding
 import me.martichou.be.grateful.fragments.dialogFragment.BottomsheetFragment
 import me.martichou.be.grateful.utilities.DividerRV
 import me.martichou.be.grateful.utilities.InjectorUtils
 import me.martichou.be.grateful.viewmodels.MainViewModel
-
 
 class MainFragment : Fragment() {
 
@@ -30,6 +31,10 @@ class MainFragment : Fragment() {
             setLifecycleOwner(this@MainFragment)
         }
 
+        postponeEnterTransition()
+
+        binding.hdl = this
+
         notesList = binding.notesList
 
         notesList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -39,12 +44,11 @@ class MainFragment : Fragment() {
 
         subscribeUi(viewModel.adapter)
 
-        postponeEnterTransition()
         notesList.doOnLayout {
             startPostponedEnterTransition()
         }
 
-        binding.hdl = this
+        exitTransition = TransitionInflater.from(context).inflateTransition(R.transition.sharedimage_exit)
 
         return binding.root
     }
