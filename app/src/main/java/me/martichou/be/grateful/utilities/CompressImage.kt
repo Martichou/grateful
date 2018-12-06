@@ -42,7 +42,7 @@ class CompressImage(context: Context, viewModel: AddViewModel, file: File, add_b
                 val fos: FileOutputStream = async(IO) { FileOutputStream(imageFile) }.await()
                 try {
                     async(IO) {
-                        BitmapFactory.decodeFile(file.absolutePath).compress(Bitmap.CompressFormat.JPEG, 70, fos)
+                        BitmapFactory.decodeFile(file.absolutePath).compress(Bitmap.CompressFormat.JPEG, 75, fos)
                     }.await()
                 } catch (e: Exception) {
                     e.printStackTrace()

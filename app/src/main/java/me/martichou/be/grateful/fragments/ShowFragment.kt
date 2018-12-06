@@ -1,11 +1,15 @@
 package me.martichou.be.grateful.fragments
 
+import android.graphics.Outline
 import android.graphics.drawable.Drawable
+import android.os.Build
 import android.os.Bundle
 import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewOutlineProvider
+import androidx.annotation.RequiresApi
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
@@ -34,14 +38,31 @@ class ShowFragment : Fragment() {
 
         postponeEnterTransition()
 
+        roundShowImage()
+
         binding.showModel = viewModel
         binding.requestListener = imageListener
 
-        ViewCompat.setTransitionName(binding.showImageNote, noteId.toString())
+        ViewCompat.setTransitionName(binding.shownoteImage, noteId.toString())
 
         sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(R.transition.sharedimage_enter)
 
         return binding.root
+    }
+
+    private fun roundShowImage(){
+        val image = binding.shownoteImage
+        val curveRadius = 65F
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            image.outlineProvider = object : ViewOutlineProvider() {
+                @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+                override fun getOutline(view: View, outline: Outline?) {
+                    outline?.setRoundRect(0, -curveRadius.toInt(), view.width,view.height, curveRadius)
+                }
+            }
+            image.clipToOutline = true
+        }
     }
 
     private val imageListener = object : RequestListener<Drawable> {

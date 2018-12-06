@@ -6,9 +6,9 @@
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/red</item>
         <item name="android:windowBackground">@color/primary</item>
-        <item name="android:fitsSystemWindows">true</item>
         <item name="android:windowContentTransitions">true</item>
-
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowTranslucentStatus">true</item>
         <item name="textAppearanceBody1">@style/TextAppearanceBody1</item>
         <item name="textAppearanceBody2">@style/TextAppearanceBody2</item>
         <item name="textAppearanceSubtitle1">@style/TextAppearanceSubtitle1</item>

@@ -17,6 +17,7 @@ import me.martichou.be.grateful.databinding.MainFragmentBinding
 import me.martichou.be.grateful.fragments.dialogFragment.BottomsheetFragment
 import me.martichou.be.grateful.utilities.DividerRV
 import me.martichou.be.grateful.utilities.InjectorUtils
+import me.martichou.be.grateful.utilities.roundProfile
 import me.martichou.be.grateful.viewmodels.MainViewModel
 
 class MainFragment : Fragment() {
@@ -32,6 +33,10 @@ class MainFragment : Fragment() {
         }
 
         postponeEnterTransition()
+
+        roundProfile(binding.mainProfile)
+        binding.mainLanding.clipToOutline = true
+        binding.mainMapview.clipToOutline = true
 
         binding.hdl = this
 

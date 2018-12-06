@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
@@ -12,7 +11,8 @@
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar"
@@ -44,7 +44,7 @@
                         android:textAppearance="@style/TextAppearanceSubtitle2"
                         android:textColor="@color/dark"
                         android:layout_alignParentStart="true"
-                        android:layout_toStartOf="@id/toolbar_profile" />
+                        android:layout_toStartOf="@id/main_profile" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/toolbar_slogan"
@@ -57,22 +57,14 @@
                         android:layout_alignParentStart="true"
                         android:layout_below="@id/toolbar_title" />
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/toolbar_profile"
-                        android:layout_width="65dp"
-                        android:layout_height="65dp"
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/main_profile"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
                         android:layout_centerVertical="true"
                         android:layout_alignParentEnd="true"
-                        app:cardUseCompatPadding="true"
-                        app:cardCornerRadius="27.5dp">
-
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/profile"
-                            android:scaleType="centerCrop" />
-
-                    </androidx.cardview.widget.CardView>
+                        android:src="@drawable/profile"
+                        android:scaleType="centerCrop" />
 
                 </RelativeLayout>
 
@@ -113,30 +105,16 @@
                     android:fontFamily="@font/nunito_sans_semibold"
                     android:textSize="15sp" />
 
-                <androidx.cardview.widget.CardView
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/main_landing"
                     android:layout_width="match_parent"
-                    android:layout_height="225dp"
-                    android:layout_gravity="center"
+                    android:layout_height="255dp"
                     android:layout_marginTop="10dp"
-                    android:clipToPadding="false"
+                    android:background="@drawable/bg_rounded"
+                    android:scaleType="centerCrop"
                     android:onClick="@{hdl::btnNewAction}"
                     android:foreground="@drawable/ripple_circle"
-                    app:cardCornerRadius="15dp">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
-                        android:foreground="#784d4d4d"
-                        android:src="@drawable/landing" />
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/add_image"/>
-
-                </androidx.cardview.widget.CardView>
+                    android:src="@drawable/landing" />
 
                 <View
                     android:layout_width="match_parent"
@@ -181,6 +159,7 @@
                     android:id="@+id/notes_list"
                     android:layout_width="match_parent"
                     android:layout_height="175dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginStart="-20dp"
                     android:layout_marginEnd="-20dp"
                     android:nestedScrollingEnabled="false"/>
@@ -200,21 +179,14 @@
                     android:fontFamily="@font/nunito_sans_semibold"
                     android:textSize="15sp" />
 
-                <androidx.cardview.widget.CardView
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/main_mapview"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
-                    android:layout_gravity="center"
                     android:layout_marginTop="10dp"
-                    android:clipToPadding="false"
-                    app:cardCornerRadius="15dp">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/mapingg" />
-
-                </androidx.cardview.widget.CardView>
+                    android:background="@drawable/bg_rounded"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/mapingg" />
 
             </LinearLayout>
 

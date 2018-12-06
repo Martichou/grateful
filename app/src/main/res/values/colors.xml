@@ -11,7 +11,7 @@
     <color name="dark">#232323</color>
     <color name="grey_show">#ACB6BB</color>
     <color name="tranquil">#D7E8E4</color>
-    <color name="quartz">#D4D4D5</color>
+    <color name="quartz">#c4c4c4</color>
     <color name="bright_grey">#545556</color>
     <color name="ic_launcher_background">#FFF</color>
 </resources>

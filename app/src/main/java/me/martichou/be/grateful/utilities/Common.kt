@@ -4,7 +4,13 @@ import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
+import android.graphics.Outline
+import android.os.Build
+import android.view.View
+import android.view.ViewOutlineProvider
 import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -49,8 +55,16 @@ fun makeToast(c: Context, s: String) {
 fun imageCropper(context: Context, fragment: Fragment) {
     CropImage.activity()
             .setGuidelines(CropImageView.Guidelines.ON)
-            .setMinCropWindowSize(0, 0)
-            .setMaxCropResultSize(4096, 3072)
-            .setAspectRatio(4, 3)
+            .setAspectRatio(3, 4)
             .start(context, fragment)
+}
+
+fun roundProfile(image: AppCompatImageView){
+    image.outlineProvider = object : ViewOutlineProvider() {
+        @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+        override fun getOutline(view: View, outline: Outline?) {
+            outline?.setOval(0, 0, view.width,view.height)
+        }
+    }
+    image.clipToOutline = true
 }
