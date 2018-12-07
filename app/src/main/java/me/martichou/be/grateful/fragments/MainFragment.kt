@@ -36,16 +36,19 @@ class MainFragment : Fragment() {
 
         postponeEnterTransition()
 
+        // Make image on main page rounded without a cardview
         roundProfile(binding.mainProfile)
         binding.mainLanding.clipToOutline = true
         binding.mainMapview.clipToOutline = true
 
+        // Initialize the recyclerview
         notesList = binding.notesList
         notesList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         notesList.addItemDecoration(DividerRV(40))
         notesList.setHasFixedSize(true)
         notesList.adapter = viewModel.adapter
 
+        // Observe change
         subscribeUi(viewModel.adapter)
 
         notesList.doOnLayout {

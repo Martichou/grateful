@@ -114,7 +114,7 @@
                     android:scaleType="centerCrop"
                     android:onClick="@{hdl::btnNewAction}"
                     android:foreground="@drawable/ripple_circle"
-                    android:src="@drawable/landing" />
+                    android:src="@drawable/landing_made" />
 
                 <View
                     android:layout_width="match_parent"
