@@ -101,11 +101,12 @@
                         android:drawableStart="@drawable/ic_location"
                         android:drawableTint="@color/dark"
                         android:drawablePadding="5dp"
-                        android:text="Central Park"
+                        android:text="@{showModel.note.location}"
                         android:textStyle="bold"
                         android:textColor="@color/dark"
                         android:fontFamily="@font/nunito_sans_bold"
-                        android:textSize="16sp"/>
+                        android:textSize="16sp"
+                        app:isGone="@{showModel.note.location}"/>
 
                 </LinearLayout>
 

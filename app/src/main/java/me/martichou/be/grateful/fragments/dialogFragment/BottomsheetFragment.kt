@@ -3,12 +3,13 @@ package me.martichou.be.grateful.fragments.dialogFragment
 import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
+import android.location.Geocoder
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProviders
 import com.google.android.gms.location.places.ui.PlacePicker
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -20,6 +21,7 @@ import me.martichou.be.grateful.databinding.AddBottomsheetFragmentBinding
 import me.martichou.be.grateful.utilities.*
 import me.martichou.be.grateful.viewmodels.AddViewModel
 import java.io.File
+import java.io.IOException
 
 open class BottomsheetFragment : BottomSheetDialogFragment() {
 
@@ -77,7 +79,14 @@ open class BottomsheetFragment : BottomSheetDialogFragment() {
             placePicker -> {
                 when (resultCode) {
                     Activity.RESULT_OK -> {
-                        viewModel.place = PlacePicker.getPlace(context, data).address.toString()
+                        val selected: String?
+                        val place = PlacePicker.getPlace(context, data)
+                        selected = try{
+                            Geocoder(context).getFromLocation(place.latLng.latitude, place.latLng.longitude, 1)[0].locality
+                        }catch (e: IOException){
+                            place.name.toString()
+                        }
+                        viewModel.placeCity = selected
                         add_loc_btn_bs.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_roundaccent)
                     }
                     Activity.RESULT_CANCELED -> {
@@ -96,7 +105,7 @@ open class BottomsheetFragment : BottomSheetDialogFragment() {
         if (!viewModel.isWorking) {
             val titleOfTheNote: String = add_title_note_bs.text.toString()
             if (!titleOfTheNote.isEmpty()) run {
-                viewModel.insertNote(Notes(titleOfTheNote, add_content_note_bs.text.toString(), viewModel.photoOrNot(), "", currentTime().toString(), viewModel.locOrNot()))
+                viewModel.insertNote(Notes(titleOfTheNote, add_content_note_bs.text.toString(), viewModel.photoOrNot(), "", currentTime(), viewModel.locOrNot()))
                 dismiss()
             } else {
                 makeToast(context!!, "Enter at least a title")

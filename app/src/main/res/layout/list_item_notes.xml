@@ -55,15 +55,6 @@
                 android:textSize="@dimen/note_timestamp"
                 app:isGone="@{note.date}" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{note.location}"
-                android:textAppearance="@style/TextAppearanceH6"
-                android:textColor="@color/white"
-                android:textSize="@dimen/note_timestamp"
-                app:isGone="@{note.location}" />
-
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

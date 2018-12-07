@@ -6,6 +6,8 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.Outline
 import android.os.Build
+import android.util.Log
+import android.util.Log.d
 import android.view.View
 import android.view.ViewOutlineProvider
 import android.widget.Toast
@@ -16,7 +18,16 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.time.format.TextStyle
 import java.util.*
+import java.util.Calendar.SHORT_STANDALONE
+import java.util.Calendar.NARROW_STANDALONE
+
+
 
 /**
  * Called to setup needed permission for Grateful
@@ -31,8 +42,11 @@ fun setupPermissions(activity: Activity, context: Context) {
 /**
  * @return the time with DAY MONTH N° YEARS
  */
-fun currentTime(): Date {
-    return Calendar.getInstance().time
+fun currentTime(): String {
+    val calendar = Calendar.getInstance()
+    val date = calendar.time
+
+    return SimpleDateFormat("EE ha", Locale.getDefault()).format(date.time).toLowerCase().capitalize().replace(".", ",")
 }
 
 /**
