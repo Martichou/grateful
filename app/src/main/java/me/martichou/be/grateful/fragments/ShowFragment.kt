@@ -12,37 +12,35 @@ import android.view.ViewOutlineProvider
 import androidx.annotation.RequiresApi
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.databinding.ShowFragmentBinding
-import me.martichou.be.grateful.utilities.InjectorUtils
+import me.martichou.be.grateful.utilities.getNotesRepository
+import me.martichou.be.grateful.utilities.getViewModel
 import me.martichou.be.grateful.viewmodels.ShowViewModel
 
 class ShowFragment : Fragment() {
 
-    private lateinit var viewModel: ShowViewModel
+    private val noteId: Long = ShowFragmentArgs.fromBundle(arguments).noteId
+
+    private val viewModel by lazy {
+        getViewModel { ShowViewModel(getNotesRepository(requireContext()), noteId) }
+    }
     private lateinit var binding: ShowFragmentBinding
 
-    private var noteId: Long = 0
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        noteId = ShowFragmentArgs.fromBundle(arguments).noteId
-        viewModel = ViewModelProviders.of(this, InjectorUtils.provideShowViewModelFactory(requireContext().applicationContext, noteId)).get(ShowViewModel::class.java)
         binding = ShowFragmentBinding.inflate(inflater, container, false).apply {
+            showModel = viewModel
+            requestListener = imageListener
             setLifecycleOwner(this@ShowFragment)
         }
 
         postponeEnterTransition()
 
         roundShowImage()
-
-        binding.showModel = viewModel
-        binding.requestListener = imageListener
-
         ViewCompat.setTransitionName(binding.shownoteImage, noteId.toString())
 
         sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(R.transition.sharedimage_enter)

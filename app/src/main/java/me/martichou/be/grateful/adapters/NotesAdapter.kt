@@ -46,17 +46,19 @@ class NotesAdapter : ListAdapter<NotesMinimal, NotesAdapter.ViewHolder>(NotesDif
 
     class ViewHolder(private val binding: ListItemNotesBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(listener: OnNoteItemClickListener, item: NotesMinimal) {
-            GlideApp.with(itemView.context)
-                    .load(File(itemView.context.getDir("imgForNotes", Context.MODE_PRIVATE), item.image))
-                    .thumbnail(0.1f)
-                    .override(binding.showImageNote.width, binding.showImageNote.height)
-                    .transition(DrawableTransitionOptions.withCrossFade())
-                    .diskCacheStrategy(DiskCacheStrategy.DATA)
-                    .into(binding.showImageNote)
             binding.apply {
                 clickListener = listener
                 note = item
+                executePendingBindings()
             }
+
+            GlideApp.with(itemView.context)
+                .load(File(itemView.context.getDir("imgForNotes", Context.MODE_PRIVATE), item.image))
+                .thumbnail(0.1f)
+                .override(binding.showImageNote.width, binding.showImageNote.height)
+                .transition(DrawableTransitionOptions.withCrossFade())
+                .diskCacheStrategy(DiskCacheStrategy.DATA)
+                .into(binding.showImageNote)
         }
     }
 

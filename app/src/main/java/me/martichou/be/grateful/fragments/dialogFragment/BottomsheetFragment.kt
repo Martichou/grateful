@@ -25,19 +25,18 @@ open class BottomsheetFragment : BottomSheetDialogFragment() {
 
     private val placePicker = 548
 
+    private val viewModel by lazy {
+        getViewModel { AddViewModel(getNotesRepository(requireContext())) }
+    }
     private lateinit var binding: AddBottomsheetFragmentBinding
-    private lateinit var viewModel: AddViewModel
 
     override fun getTheme(): Int = R.style.BottomSheetDialogTheme
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        viewModel = ViewModelProviders.of(this, InjectorUtils.provideAddViewModelFactory(context!!)).get(AddViewModel::class.java)
         binding = AddBottomsheetFragmentBinding.inflate(inflater, container, false).apply {
+            hdl = this@BottomsheetFragment
             setLifecycleOwner(this@BottomsheetFragment)
         }
-
-        binding.hdl = this
-        binding.addTitleNoteBs.requestFocus()
 
         return binding.root
     }
