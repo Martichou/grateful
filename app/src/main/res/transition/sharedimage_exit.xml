@@ -4,6 +4,6 @@
     android:interpolator="@android:interpolator/fast_out_slow_in"
     android:startDelay="0">
     <fade>
-        <targets android:targetId="@id/linear_main"/>
+        <targets android:targetId="@id/linear_main" />
     </fade>
 </transitionSet>

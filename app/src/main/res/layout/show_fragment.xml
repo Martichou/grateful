@@ -21,8 +21,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:baselineAligned="false"
+            android:orientation="vertical"
             android:weightSum="1">
 
             <FrameLayout
@@ -43,11 +43,11 @@
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:layout_width="50dp"
                     android:layout_height="50dp"
+                    android:layout_gravity="bottom|end"
                     android:layout_margin="20dp"
                     android:background="@drawable/bg_roundedwhite"
                     android:foreground="@drawable/ripple_circle"
-                    android:src="@drawable/ic_edit"
-                    android:layout_gravity="bottom|end"/>
+                    android:src="@drawable/ic_edit" />
 
             </FrameLayout>
 
@@ -55,8 +55,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.35"
-                android:paddingTop="20dp"
                 android:paddingStart="20dp"
+                android:paddingTop="20dp"
                 android:paddingEnd="20dp"
                 android:paddingBottom="20dp">
 
@@ -64,9 +64,9 @@
                     android:id="@+id/shownote_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_sans_bold"
                     android:maxLines="1"
                     android:text="@{showModel.note.title}"
-                    android:fontFamily="@font/nunito_sans_bold"
                     android:textColor="@color/dark"
                     android:textSize="@dimen/main_title"
                     android:textStyle="bold" />
@@ -75,50 +75,50 @@
                     android:id="@+id/shownote_info"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
                     android:layout_below="@id/shownote_title"
+                    android:layout_marginTop="20dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
                         android:drawableStart="@drawable/ic_clock"
-                        android:drawableTint="@color/dark"
                         android:drawablePadding="5dp"
-                        android:text="Sun, 12pm"
-                        android:textStyle="bold"
-                        android:textColor="@color/dark"
+                        android:drawableTint="@color/dark"
                         android:fontFamily="@font/nunito_sans_bold"
-                        android:textSize="16sp"/>
+                        android:gravity="center"
+                        android:text="Sun, 12pm"
+                        android:textColor="@color/dark"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:gravity="center"
                         android:drawableStart="@drawable/ic_location"
-                        android:drawableTint="@color/dark"
                         android:drawablePadding="5dp"
-                        android:text="@{showModel.note.location}"
-                        android:textStyle="bold"
-                        android:textColor="@color/dark"
+                        android:drawableTint="@color/dark"
                         android:fontFamily="@font/nunito_sans_bold"
+                        android:gravity="center"
+                        android:text="@{showModel.note.location}"
+                        android:textColor="@color/dark"
                         android:textSize="16sp"
-                        app:isGone="@{showModel.note.location}"/>
+                        android:textStyle="bold"
+                        app:isGone="@{showModel.note.location}" />
 
                 </LinearLayout>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
                     android:layout_below="@id/shownote_info"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/nunito_sans"
                     android:text="@{showModel.note.content}"
                     android:textColor="@color/grey_show"
-                    android:fontFamily="@font/nunito_sans"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
 
             </RelativeLayout>
 

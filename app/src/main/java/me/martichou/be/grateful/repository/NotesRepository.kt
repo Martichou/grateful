@@ -31,7 +31,7 @@ class NotesRepository private constructor(private val notesDao: NotesDao) {
      * Insert a note using Notes
      */
     suspend fun insert(notes: Notes) {
-        withContext(IO){
+        withContext(IO) {
             notesDao.insertNote(notes)
         }
     }
@@ -40,7 +40,7 @@ class NotesRepository private constructor(private val notesDao: NotesDao) {
      * Update a note using Notes
      */
     suspend fun update(notes: Notes) {
-        withContext(IO){
+        withContext(IO) {
             notesDao.updateNote(notes)
         }
     }
@@ -49,7 +49,7 @@ class NotesRepository private constructor(private val notesDao: NotesDao) {
      * Delete a note using Notes
      */
     suspend fun delete(notes: Notes) {
-        withContext(IO){
+        withContext(IO) {
             notesDao.deleteNote(notes)
         }
     }

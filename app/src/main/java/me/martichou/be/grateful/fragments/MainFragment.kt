@@ -62,7 +62,7 @@ class MainFragment : Fragment() {
 
     private fun subscribeUi(adapter: NotesAdapter) {
         viewModel.notesList.observe(viewLifecycleOwner, Observer { notes ->
-            if (notes != null){
+            if (notes != null) {
                 adapter.submitList(notes)
             }
         })

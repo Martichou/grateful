@@ -39,32 +39,32 @@
                         android:id="@+id/toolbar_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_toStartOf="@id/main_profile"
                         android:text="@string/app_name"
-                        android:textSize="28sp"
                         android:textAppearance="@style/TextAppearanceSubtitle2"
                         android:textColor="@color/dark"
-                        android:layout_alignParentStart="true"
-                        android:layout_toStartOf="@id/main_profile" />
+                        android:textSize="28sp" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/toolbar_slogan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/positivity_everyday"
-                        android:textSize="20sp"
-                        android:fontFamily="@font/nunitolight"
-                        android:textColor="@color/grey_light"
+                        android:layout_below="@id/toolbar_title"
                         android:layout_alignParentStart="true"
-                        android:layout_below="@id/toolbar_title" />
+                        android:fontFamily="@font/nunitolight"
+                        android:text="@string/positivity_everyday"
+                        android:textColor="@color/grey_light"
+                        android:textSize="20sp" />
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/main_profile"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
-                        android:layout_centerVertical="true"
                         android:layout_alignParentEnd="true"
-                        android:src="@drawable/profile"
-                        android:scaleType="centerCrop" />
+                        android:layout_centerVertical="true"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/profile" />
 
                 </RelativeLayout>
 
@@ -81,28 +81,28 @@
                 android:id="@+id/linear_main"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="15dp"
-                android:paddingBottom="10dp"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
                 android:clipToPadding="false"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingStart="20dp"
+                android:paddingTop="15dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="10dp">
 
                 <androidx.appcompat.widget.SearchView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layoutDirection="rtl"
                     android:background="@drawable/border"
                     android:elevation="3dp"
+                    android:layoutDirection="rtl"
                     app:queryHint="Search for a gratitude note" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
+                    android:fontFamily="@font/nunito_sans_semibold"
                     android:text="@string/what_made_me_smiled_today"
                     android:textColor="@color/bright_grey"
-                    android:fontFamily="@font/nunito_sans_semibold"
                     android:textSize="15sp" />
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -111,9 +111,9 @@
                     android:layout_height="255dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/bg_rounded"
-                    android:scaleType="centerCrop"
-                    android:onClick="@{hdl::btnNewAction}"
                     android:foreground="@drawable/ripple_circle"
+                    android:onClick="@{hdl::btnNewAction}"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/landing_made" />
 
                 <View
@@ -121,7 +121,7 @@
                     android:layout_height="0.5dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="10dp"
-                    android:background="@color/quartz"/>
+                    android:background="@color/quartz" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -131,27 +131,27 @@
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_toStartOf="@id/viewallnotes"
+                        android:fontFamily="@font/nunito_sans_semibold"
                         android:text="@string/gratitude"
                         android:textColor="@color/bright_grey"
-                        android:fontFamily="@font/nunito_sans_semibold"
-                        android:textSize="15sp"
-                        android:layout_toStartOf="@id/viewallnotes"
-                        android:layout_alignParentStart="true" />
+                        android:textSize="15sp" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/viewallnotes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/view_all"
-                        android:drawableEnd="@drawable/ic_keyboard_arrow"
-                        android:textColor="@color/bright_grey"
-                        android:fontFamily="@font/nunito_sans_semibold"
-                        android:textSize="15sp"
-                        android:gravity="center"
-                        android:foreground="@drawable/ripple_circle"
+                        android:layout_alignParentEnd="true"
                         android:clickable="true"
+                        android:drawableEnd="@drawable/ic_keyboard_arrow"
                         android:focusable="true"
-                        android:layout_alignParentEnd="true"/>
+                        android:fontFamily="@font/nunito_sans_semibold"
+                        android:foreground="@drawable/ripple_circle"
+                        android:gravity="center"
+                        android:text="@string/view_all"
+                        android:textColor="@color/bright_grey"
+                        android:textSize="15sp" />
 
                 </RelativeLayout>
 
@@ -159,24 +159,24 @@
                     android:id="@+id/notes_list"
                     android:layout_width="match_parent"
                     android:layout_height="175dp"
-                    android:layout_marginTop="10dp"
                     android:layout_marginStart="-20dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginEnd="-20dp"
-                    android:nestedScrollingEnabled="false"/>
+                    android:nestedScrollingEnabled="false" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
-                    android:background="@color/quartz"/>
+                    android:background="@color/quartz" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_sans_semibold"
                     android:text="@string/places"
                     android:textColor="@color/bright_grey"
-                    android:fontFamily="@font/nunito_sans_semibold"
                     android:textSize="15sp" />
 
                 <androidx.appcompat.widget.AppCompatImageView

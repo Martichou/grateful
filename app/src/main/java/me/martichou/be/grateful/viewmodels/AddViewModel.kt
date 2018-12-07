@@ -1,7 +1,6 @@
 package me.martichou.be.grateful.viewmodels
 
 import androidx.lifecycle.ViewModel
-import com.google.android.gms.maps.model.LatLngBounds
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.Job
@@ -31,6 +30,7 @@ class AddViewModel internal constructor(private val notesRepository: NotesReposi
      * viewModelJob.cancel().  This is called in [onCleared].
      */
     private val viewModelScope = CoroutineScope(Main + viewModelJob)
+
     /**
      * Cancel all coroutines when the ViewModel is cleared.
      */
@@ -47,19 +47,27 @@ class AddViewModel internal constructor(private val notesRepository: NotesReposi
     /**
      * Change the boolean value
      */
-    fun changeIsWorking(b: Boolean) { isWorking = b }
+    fun changeIsWorking(b: Boolean) {
+        isWorking = b
+    }
 
     /**
      * Change the boolean value
      */
-    fun changeHasPhoto(b: Boolean) { hasPhoto = b }
+    fun changeHasPhoto(b: Boolean) {
+        hasPhoto = b
+    }
 
     /**
      * Return the photo name if there is one
      * else, blank
      */
     fun photoOrNot(): String {
-        return if (hasPhoto) { randomImageName } else { "" }
+        return if (hasPhoto) {
+            randomImageName
+        } else {
+            ""
+        }
     }
 
     /**
@@ -67,6 +75,10 @@ class AddViewModel internal constructor(private val notesRepository: NotesReposi
      * else, blank
      */
     fun locOrNot(): String {
-        return if (placeCity.isNullOrBlank()) { "" } else { placeCity.toString() }
+        return if (placeCity.isNullOrBlank()) {
+            ""
+        } else {
+            placeCity.toString()
+        }
     }
 }

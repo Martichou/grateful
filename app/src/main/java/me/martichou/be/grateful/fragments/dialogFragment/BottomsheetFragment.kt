@@ -5,7 +5,6 @@ import android.app.Dialog
 import android.content.Intent
 import android.location.Geocoder
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -81,9 +80,9 @@ open class BottomsheetFragment : BottomSheetDialogFragment() {
                     Activity.RESULT_OK -> {
                         val selected: String?
                         val place = PlacePicker.getPlace(context, data)
-                        selected = try{
+                        selected = try {
                             Geocoder(context).getFromLocation(place.latLng.latitude, place.latLng.longitude, 1)[0].locality
-                        }catch (e: IOException){
+                        } catch (e: IOException) {
                             place.name.toString()
                         }
                         viewModel.placeCity = selected

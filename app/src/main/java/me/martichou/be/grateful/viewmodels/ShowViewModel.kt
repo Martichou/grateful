@@ -26,6 +26,7 @@ class ShowViewModel internal constructor(private val notesRepository: NotesRepos
      * viewModelJob.cancel().  This is called in [onCleared].
      */
     private val viewModelScope = CoroutineScope(Main + viewModelJob)
+
     /**
      * Cancel all coroutines when the ViewModel is cleared.
      */

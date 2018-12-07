@@ -6,8 +6,6 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.Outline
 import android.os.Build
-import android.util.Log
-import android.util.Log.d
 import android.view.View
 import android.view.ViewOutlineProvider
 import android.widget.Toast
@@ -19,14 +17,7 @@ import androidx.fragment.app.Fragment
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.time.format.TextStyle
 import java.util.*
-import java.util.Calendar.SHORT_STANDALONE
-import java.util.Calendar.NARROW_STANDALONE
-
 
 
 /**
@@ -73,11 +64,11 @@ fun imageCropper(context: Context, fragment: Fragment) {
             .start(context, fragment)
 }
 
-fun roundProfile(image: AppCompatImageView){
+fun roundProfile(image: AppCompatImageView) {
     image.outlineProvider = object : ViewOutlineProvider() {
         @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
         override fun getOutline(view: View, outline: Outline?) {
-            outline?.setOval(0, 0, view.width,view.height)
+            outline?.setOval(0, 0, view.width, view.height)
         }
     }
     image.clipToOutline = true

@@ -53,12 +53,12 @@ class NotesAdapter : ListAdapter<NotesMinimal, NotesAdapter.ViewHolder>(NotesDif
             }
 
             GlideApp.with(itemView.context)
-                .load(File(itemView.context.getDir("imgForNotes", Context.MODE_PRIVATE), item.image))
-                .thumbnail(0.1f)
-                .override(binding.showImageNote.width, binding.showImageNote.height)
-                .transition(DrawableTransitionOptions.withCrossFade())
-                .diskCacheStrategy(DiskCacheStrategy.DATA)
-                .into(binding.showImageNote)
+                    .load(File(itemView.context.getDir("imgForNotes", Context.MODE_PRIVATE), item.image))
+                    .thumbnail(0.1f)
+                    .override(binding.showImageNote.width, binding.showImageNote.height)
+                    .transition(DrawableTransitionOptions.withCrossFade())
+                    .diskCacheStrategy(DiskCacheStrategy.DATA)
+                    .into(binding.showImageNote)
         }
     }
 

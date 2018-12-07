@@ -48,7 +48,7 @@ class ShowFragment : Fragment() {
         return binding.root
     }
 
-    private fun roundShowImage(){
+    private fun roundShowImage() {
         val image = binding.shownoteImage
         val curveRadius = 65F
 
@@ -56,7 +56,7 @@ class ShowFragment : Fragment() {
             image.outlineProvider = object : ViewOutlineProvider() {
                 @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
                 override fun getOutline(view: View, outline: Outline?) {
-                    outline?.setRoundRect(0, -curveRadius.toInt(), view.width,view.height, curveRadius)
+                    outline?.setRoundRect(0, -curveRadius.toInt(), view.width, view.height, curveRadius)
                 }
             }
             image.clipToOutline = true

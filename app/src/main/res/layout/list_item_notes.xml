@@ -18,8 +18,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:background="@drawable/bg_rounded"
-        android:onClick="@{v -> clickListener.onNoteItemClick(v, note)}"
-        android:foreground="@drawable/ripple_circle">
+        android:foreground="@drawable/ripple_circle"
+        android:onClick="@{v -> clickListener.onNoteItemClick(v, note)}">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/show_image_note"

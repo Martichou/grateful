@@ -25,7 +25,11 @@ class CompressImage(context: Context, viewModel: AddViewModel, file: File, add_b
 
     init {
         scope.launch {
-            if (if (!storageDir.exists()) { storageDir.mkdirs() } else { true }) {
+            if (if (!storageDir.exists()) {
+                        storageDir.mkdirs()
+                    } else {
+                        true
+                    }) {
                 val imageFile = File(storageDir, viewModel.randomImageName)
                 if (imageFile.exists()) {
                     val deleted = imageFile.delete()
@@ -36,7 +40,7 @@ class CompressImage(context: Context, viewModel: AddViewModel, file: File, add_b
                 }
                 val fos: FileOutputStream = async(IO) { FileOutputStream(imageFile) }.await()
                 try {
-                    async(IO) {BitmapFactory.decodeFile(file.absolutePath).compress(Bitmap.CompressFormat.JPEG, 75, fos)}.await()
+                    async(IO) { BitmapFactory.decodeFile(file.absolutePath).compress(Bitmap.CompressFormat.JPEG, 75, fos) }.await()
                 } catch (e: Exception) {
                     e.printStackTrace()
                 } finally {
