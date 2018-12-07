@@ -24,14 +24,14 @@ import me.martichou.be.grateful.viewmodels.ShowViewModel
 
 class ShowFragment : Fragment() {
 
-    private val noteId: Long = ShowFragmentArgs.fromBundle(arguments).noteId
-
+    private var noteId: Long = 0
     private val viewModel by lazy {
         getViewModel { ShowViewModel(getNotesRepository(requireContext()), noteId) }
     }
     private lateinit var binding: ShowFragmentBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        noteId = ShowFragmentArgs.fromBundle(arguments).noteId
         binding = ShowFragmentBinding.inflate(inflater, container, false).apply {
             showModel = viewModel
             requestListener = imageListener
