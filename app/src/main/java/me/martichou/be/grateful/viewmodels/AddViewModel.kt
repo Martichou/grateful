@@ -15,7 +15,6 @@ class AddViewModel internal constructor(private val notesRepository: NotesReposi
     var isWorking: Boolean = false
     private var hasPhoto: Boolean = false
     var placeCity: String? = null
-    var formatedDate: String? = null
 
     /**
      * This is the job for all coroutines started by this ViewModel.

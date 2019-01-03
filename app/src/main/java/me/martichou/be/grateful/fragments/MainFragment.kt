@@ -2,6 +2,7 @@ package me.martichou.be.grateful.fragments
 
 import android.os.Bundle
 import android.transition.TransitionInflater
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,6 +32,7 @@ class MainFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = MainFragmentBinding.inflate(inflater, container, false).apply {
             hdl = this@MainFragment
+            mainModel = viewModel
             setLifecycleOwner(this@MainFragment)
         }
 
@@ -72,7 +74,12 @@ class MainFragment : Fragment() {
      * Open the bottomsheet
      */
     fun btnNewAction(view: View) {
-        val bottomsheetFragment = BottomsheetFragment()
-        bottomsheetFragment.show(fragmentManager, bottomsheetFragment.tag)
+        Log.d("TGHSJK", viewModel.today.toString() + "okkkkkk")
+        if (!(viewModel.today)) {
+            val bottomsheetFragment = BottomsheetFragment()
+            bottomsheetFragment.show(fragmentManager, bottomsheetFragment.tag)
+        } else {
+            // Open today note
+        }
     }
 }

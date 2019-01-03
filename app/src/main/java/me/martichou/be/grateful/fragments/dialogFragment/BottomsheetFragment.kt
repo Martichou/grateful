@@ -104,7 +104,13 @@ open class BottomsheetFragment : BottomSheetDialogFragment() {
         if (!viewModel.isWorking) {
             val titleOfTheNote: String = add_title_note_bs.text.toString()
             if (!titleOfTheNote.isEmpty()) run {
-                viewModel.insertNote(Notes(titleOfTheNote, add_content_note_bs.text.toString(), viewModel.photoOrNot(), "", currentTime(), viewModel.locOrNot()))
+                viewModel.insertNote(Notes(titleOfTheNote,
+                        add_content_note_bs.text.toString(),
+                        viewModel.photoOrNot(),
+                        "",
+                        currentTime(),
+                        todayDate(),
+                        viewModel.locOrNot()))
                 dismiss()
             } else {
                 makeToast(context!!, "Enter at least a title")

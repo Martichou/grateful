@@ -4,6 +4,7 @@ import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.withContext
 import me.martichou.be.grateful.data.Notes
 import me.martichou.be.grateful.data.NotesDao
+import me.martichou.be.grateful.utilities.todayDate
 
 class NotesRepository private constructor(private val notesDao: NotesDao) {
 
@@ -19,7 +20,12 @@ class NotesRepository private constructor(private val notesDao: NotesDao) {
     /**
      * Return all notes from db
      */
-    fun getallNotes() = notesDao.getAllNotes()
+    fun getallNotes() = notesDao.getAllNotes(todayDate())
+
+    /**
+     * Get unique note by date
+     */
+    fun getNoteAtDate(date: String) = notesDao.getNoteAtDate(date)
 
     /**
      * Return one note in Livedata

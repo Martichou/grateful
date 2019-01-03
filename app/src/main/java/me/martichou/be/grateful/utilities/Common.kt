@@ -41,6 +41,14 @@ fun currentTime(): String {
 }
 
 /**
+ *
+ */
+fun todayDate(): String {
+    val sdf = SimpleDateFormat("dd/M/yyyy", Locale.getDefault())
+    return sdf.format(Date())
+}
+
+/**
  * @return a random number
  */
 fun randomNumber(min: Int, max: Int): String {

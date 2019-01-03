@@ -7,6 +7,10 @@
         <variable
             name="hdl"
             type="me.martichou.be.grateful.fragments.MainFragment" />
+
+        <variable
+            name="mainModel"
+            type="me.martichou.be.grateful.viewmodels.MainViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

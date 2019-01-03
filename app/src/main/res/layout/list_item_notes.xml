@@ -18,6 +18,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:background="@drawable/bg_rounded"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:foreground="@drawable/ripple_circle"
         android:onClick="@{v -> clickListener.onNoteItemClick(v, note)}">
 

@@ -21,6 +21,9 @@ data class Notes(
         @ColumnInfo(name = "date")
         val date: String,
 
+        @ColumnInfo(name = "dateToSearch")
+        val dateToSearch: String,
+
         @ColumnInfo(name = "location")
         val location: String
 ) {
