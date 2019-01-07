@@ -1,9 +1,10 @@
 package me.martichou.be.grateful.fragments
 
-import android.graphics.Color
 import android.os.Bundle
 import android.transition.TransitionInflater
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.core.view.doOnLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -15,8 +16,8 @@ import me.martichou.be.grateful.fragments.dialogFragment.BottomsheetFragment
 import me.martichou.be.grateful.utilities.DividerRV
 import me.martichou.be.grateful.utilities.getNotesRepository
 import me.martichou.be.grateful.utilities.getViewModel
+import me.martichou.be.grateful.utilities.statusBarWhite
 import me.martichou.be.grateful.viewmodels.MainViewModel
-
 
 class MainFragment : Fragment() {
 
@@ -35,11 +36,7 @@ class MainFragment : Fragment() {
 
         postponeEnterTransition()
 
-        // Change status bar color
-        val window: Window = requireActivity().window
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.statusBarColor = Color.WHITE
+        statusBarWhite(requireActivity())
 
         // Prepare recyclerview
         recentNotesList = binding.recentNotesList

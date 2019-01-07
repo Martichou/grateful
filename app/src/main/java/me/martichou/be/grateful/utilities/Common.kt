@@ -4,6 +4,8 @@ import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
+import android.graphics.Color
+import android.view.Window
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -83,4 +85,13 @@ fun statusBarTrans(activity: FragmentActivity) {
     val window = activity.window
     window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
     window.clearFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+}
+
+/**
+ * Set status bar to white
+ */
+fun statusBarWhite(activity: FragmentActivity) {
+    val window: Window = activity.window
+    window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+    window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
 }

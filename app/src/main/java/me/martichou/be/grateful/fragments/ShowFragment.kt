@@ -42,9 +42,6 @@ class ShowFragment : Fragment() {
 
         postponeEnterTransition()
 
-        // Set translucent status bar
-        statusBarTrans(requireActivity())
-
         roundShowImage()
         ViewCompat.setTransitionName(binding.shownoteImage, noteId.toString())
 
@@ -71,11 +68,15 @@ class ShowFragment : Fragment() {
     private val imageListener = object : RequestListener<Drawable> {
         override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
             startPostponedEnterTransition()
+            // Set translucent status bar
+            statusBarTrans(requireActivity())
             return false
         }
 
         override fun onLoadFailed(e: GlideException?, model: Any?, target: com.bumptech.glide.request.target.Target<Drawable>?, isFirstResource: Boolean): Boolean {
             startPostponedEnterTransition()
+            // Set translucent status bar
+            statusBarTrans(requireActivity())
             return false
         }
     }
