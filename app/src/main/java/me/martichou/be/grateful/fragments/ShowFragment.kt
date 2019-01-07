@@ -31,7 +31,7 @@ class ShowFragment : Fragment() {
     private lateinit var binding: ShowFragmentBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        noteId = ShowFragmentArgs.fromBundle(arguments).noteId
+        noteId = ShowFragmentArgs.fromBundle(arguments!!).noteId
         binding = ShowFragmentBinding.inflate(inflater, container, false).apply {
             showModel = viewModel
             requestListener = imageListener
