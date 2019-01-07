@@ -109,7 +109,7 @@ open class BottomsheetFragment : BottomSheetDialogFragment() {
                         viewModel.photoOrNot(),
                         "",
                         currentTime(),
-                        todayDate(),
+                        dateToSearch(),
                         viewModel.locOrNot()))
                 dismiss()
             } else {

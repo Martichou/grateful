@@ -9,7 +9,10 @@ import androidx.databinding.BindingAdapter
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestListener
 import me.martichou.be.grateful.utilities.GlideApp
+import me.martichou.be.grateful.utilities.stringToDate
 import java.io.File
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * Bind the app:imageFromFile="imgName" from xml
@@ -36,4 +39,21 @@ fun isGone(v: TextView, content: String?) {
     } else {
         v.visibility = View.VISIBLE
     }
+}
+
+/**
+ * Set 07 if it was 07/02/2019
+ */
+@BindingAdapter("getNumberFromDate")
+fun getNumberFromDate(v: TextView, content: String?) {
+    v.text = content!!.split("/")[0]
+}
+
+/**
+ * Set lun/mon/...
+ */
+@BindingAdapter("getNameOfDay")
+fun getNameOfDay(v: TextView, content: String?) {
+    val sdf = SimpleDateFormat("EE", Locale.getDefault())
+    v.text = sdf.format(stringToDate(content)).removeSuffix(".")
 }

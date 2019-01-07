@@ -7,10 +7,6 @@
         <variable
             name="hdl"
             type="me.martichou.be.grateful.fragments.MainFragment" />
-
-        <variable
-            name="mainModel"
-            type="me.martichou.be.grateful.viewmodels.MainViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -29,48 +25,19 @@
                 android:id="@+id/detail_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_marginEnd="20dp"
                 android:theme="@style/AppTheme.PopupOverlay"
                 app:layout_scrollFlags="scroll|snap">
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/toolbar_title"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="23dp"
-                    android:layout_marginEnd="23dp"
-                    android:gravity="center_vertical">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/toolbar_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_toStartOf="@id/main_profile"
-                        android:text="@string/app_name"
-                        android:textAppearance="@style/TextAppearanceSubtitle2"
-                        android:textColor="@color/dark"
-                        android:textSize="28sp" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/toolbar_slogan"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/toolbar_title"
-                        android:layout_alignParentStart="true"
-                        android:fontFamily="@font/nunitolight"
-                        android:text="@string/positivity_everyday"
-                        android:textColor="@color/grey_light"
-                        android:textSize="20sp" />
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/main_profile"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/profile" />
-
-                </RelativeLayout>
+                    android:text="@string/app_name"
+                    android:textAlignment="center"
+                    android:textColor="@color/dark"
+                    android:textSize="28sp" />
 
             </androidx.appcompat.widget.Toolbar>
 
@@ -84,117 +51,50 @@
             <LinearLayout
                 android:id="@+id/linear_main"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:clipToPadding="false"
                 android:orientation="vertical"
                 android:paddingStart="20dp"
-                android:paddingTop="15dp"
                 android:paddingEnd="20dp"
                 android:paddingBottom="10dp">
 
-                <androidx.appcompat.widget.SearchView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/border"
-                    android:elevation="3dp"
-                    android:layoutDirection="rtl"
-                    app:queryHint="Search for a gratitude note" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/nunito_sans_semibold"
-                    android:text="@string/what_made_me_smiled_today"
-                    android:textColor="@color/bright_grey"
-                    android:textSize="15sp" />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/main_landing"
-                    android:layout_width="match_parent"
-                    android:layout_height="255dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/bg_rounded"
-                    android:foreground="@drawable/ripple_circle"
-                    android:onClick="@{hdl::btnNewAction}"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/landing_made" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@color/quartz" />
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_toStartOf="@id/viewallnotes"
-                        android:fontFamily="@font/nunito_sans_semibold"
-                        android:text="@string/gratitude"
-                        android:textColor="@color/bright_grey"
-                        android:textSize="15sp" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/viewallnotes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:clickable="true"
-                        android:drawableEnd="@drawable/ic_keyboard_arrow"
-                        android:focusable="true"
-                        android:fontFamily="@font/nunito_sans_semibold"
-                        android:foreground="@drawable/ripple_circle"
-                        android:gravity="center"
-                        android:text="@string/view_all"
-                        android:textColor="@color/bright_grey"
-                        android:textSize="15sp" />
-
-                </RelativeLayout>
-
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/notes_list"
+                    android:id="@+id/recentNotesList"
                     android:layout_width="match_parent"
-                    android:layout_height="175dp"
-                    android:layout_marginStart="-20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="-20dp"
-                    android:nestedScrollingEnabled="false" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@color/quartz" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nunito_sans_semibold"
-                    android:text="@string/places"
-                    android:textColor="@color/bright_grey"
-                    android:textSize="15sp" />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/main_mapview"
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/bg_rounded"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/mapingg" />
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:nestedScrollingEnabled="false"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:background="@drawable/bottomappbarshadown"
+            app:layout_anchor="@id/bottom_app_bar" />
+
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottom_app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:backgroundTint="@color/white"
+            app:fabAlignmentMode="center"
+            app:fabCradleMargin="0dp"
+            app:fabCradleRoundedCornerRadius="0dp"
+            app:hideOnScroll="true"
+            app:navigationIcon="@drawable/ic_menu_black" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{hdl::btnNewAction}"
+            android:src="@drawable/ic_add_white"
+            app:layout_anchor="@id/bottom_app_bar" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

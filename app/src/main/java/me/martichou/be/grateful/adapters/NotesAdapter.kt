@@ -11,13 +11,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import me.martichou.be.grateful.data.NotesMinimal
+import me.martichou.be.grateful.data.Notes
 import me.martichou.be.grateful.databinding.ListItemNotesBinding
 import me.martichou.be.grateful.fragments.MainFragmentDirections
 import me.martichou.be.grateful.utilities.GlideApp
 import java.io.File
 
-class NotesAdapter : ListAdapter<NotesMinimal, NotesAdapter.ViewHolder>(NotesDiffCallback()) {
+class NotesAdapter : ListAdapter<Notes, NotesAdapter.ViewHolder>(NotesDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val note = getItem(position)
@@ -32,20 +32,16 @@ class NotesAdapter : ListAdapter<NotesMinimal, NotesAdapter.ViewHolder>(NotesDif
 
     private fun createOnClickListener(): OnNoteItemClickListener {
         return object : OnNoteItemClickListener {
-            override fun onNoteItemClick(rootView: View, notes: NotesMinimal) {
-
-                // TODO - Exclude view from transition
-                // ((rootView.context as AppCompatActivity).supportFragmentManager.getFragment().exitTransition)
-
+            override fun onNoteItemClick(rootView: View, notes: Notes) {
                 rootView.findNavController().navigate(
-                        MainFragmentDirections.ActionNoteListFragmentToNoteDetailFragment(notes.id.toLong()),
-                        FragmentNavigatorExtras(DataBindingUtil.getBinding<ListItemNotesBinding>(rootView)!!.showImageNote to notes.id))
+                        MainFragmentDirections.ActionNoteListFragmentToNoteDetailFragment(notes.id),
+                        FragmentNavigatorExtras(DataBindingUtil.getBinding<ListItemNotesBinding>(rootView)!!.showImageNote to notes.id.toString()))
             }
         }
     }
 
     class ViewHolder(private val binding: ListItemNotesBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(listener: OnNoteItemClickListener, item: NotesMinimal) {
+        fun bind(listener: OnNoteItemClickListener, item: Notes) {
             binding.apply {
                 clickListener = listener
                 note = item
@@ -54,15 +50,15 @@ class NotesAdapter : ListAdapter<NotesMinimal, NotesAdapter.ViewHolder>(NotesDif
 
             GlideApp.with(itemView.context)
                     .load(File(itemView.context.getDir("imgForNotes", Context.MODE_PRIVATE), item.image))
-                    .thumbnail(0.1f)
-                    .override(binding.showImageNote.width, binding.showImageNote.height)
+                    .override(binding.showImageNote.width, binding.showImageNote.height).fitCenter()
                     .transition(DrawableTransitionOptions.withCrossFade())
-                    .diskCacheStrategy(DiskCacheStrategy.DATA)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .thumbnail(0.2f)
                     .into(binding.showImageNote)
         }
     }
 
     interface OnNoteItemClickListener {
-        fun onNoteItemClick(rootView: View, notes: NotesMinimal)
+        fun onNoteItemClick(rootView: View, notes: Notes)
     }
 }

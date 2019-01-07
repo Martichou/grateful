@@ -4,16 +4,12 @@ import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
-import android.graphics.Outline
-import android.os.Build
-import android.view.View
-import android.view.ViewOutlineProvider
+import android.view.WindowManager
 import android.widget.Toast
-import androidx.annotation.RequiresApi
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import java.text.SimpleDateFormat
@@ -41,11 +37,20 @@ fun currentTime(): String {
 }
 
 /**
- *
+ * @return the current month
  */
-fun todayDate(): String {
-    val sdf = SimpleDateFormat("dd/M/yyyy", Locale.getDefault())
+fun dateToSearch(): String {
+    val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
     return sdf.format(Date())
+}
+
+/**
+ * @return date from string
+ */
+fun stringToDate(aDate: String?): Date? {
+    if (aDate == null) return null
+    val simpledateformat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+    return simpledateformat.parse(aDate)
 }
 
 /**
@@ -68,16 +73,14 @@ fun makeToast(c: Context, s: String) {
 fun imageCropper(context: Context, fragment: Fragment) {
     CropImage.activity()
             .setGuidelines(CropImageView.Guidelines.ON)
-            .setAspectRatio(3, 4)
             .start(context, fragment)
 }
 
-fun roundProfile(image: AppCompatImageView) {
-    image.outlineProvider = object : ViewOutlineProvider() {
-        @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-        override fun getOutline(view: View, outline: Outline?) {
-            outline?.setOval(0, 0, view.width, view.height)
-        }
-    }
-    image.clipToOutline = true
+/**
+ * Set status bar to translucent
+ */
+fun statusBarTrans(activity: FragmentActivity) {
+    val window = activity.window
+    window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+    window.clearFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
 }

@@ -20,7 +20,9 @@ import me.martichou.be.grateful.R
 import me.martichou.be.grateful.databinding.ShowFragmentBinding
 import me.martichou.be.grateful.utilities.getNotesRepository
 import me.martichou.be.grateful.utilities.getViewModel
+import me.martichou.be.grateful.utilities.statusBarTrans
 import me.martichou.be.grateful.viewmodels.ShowViewModel
+
 
 class ShowFragment : Fragment() {
 
@@ -39,6 +41,9 @@ class ShowFragment : Fragment() {
         }
 
         postponeEnterTransition()
+
+        // Set translucent status bar
+        statusBarTrans(requireActivity())
 
         roundShowImage()
         ViewCompat.setTransitionName(binding.shownoteImage, noteId.toString())

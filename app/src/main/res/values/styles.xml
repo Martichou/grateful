@@ -5,17 +5,9 @@
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/red</item>
+
         <item name="android:windowBackground">@color/primary</item>
         <item name="android:windowContentTransitions">true</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:windowTranslucentStatus">true</item>
-        <item name="textAppearanceBody1">@style/TextAppearanceBody1</item>
-        <item name="textAppearanceBody2">@style/TextAppearanceBody2</item>
-        <item name="textAppearanceSubtitle1">@style/TextAppearanceSubtitle1</item>
-        <item name="textAppearanceSubtitle2">@style/TextAppearanceSubtitle2</item>
-        <item name="textAppearanceCaption">@style/TextAppearanceCaption</item>
-        <item name="textAppearanceButton">@style/TextAppearanceButton</item>
-        <item name="textAppearanceHeadline6">@style/TextAppearanceH6</item>
     </style>
 
     <style name="AppTheme" parent="BaseAppTheme" />
@@ -54,7 +46,7 @@
     <style name="BottomSheetEntryDivider">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1dp</item>
-        <item name="android:background">#EEEEEE</item>
+        <item name="android:background">#EEE</item>
     </style>
 
 </resources>

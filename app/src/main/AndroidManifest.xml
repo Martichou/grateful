@@ -23,6 +23,7 @@
         android:required="false" />
 
     <application
+        android:name=".ApplicationController"
         android:allowBackup="true"
         android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
@@ -30,7 +31,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
-        android:name=".ApplicationController"
         tools:ignore="GoogleAppIndexingWarning">
         <uses-library
             android:name="org.apache.http.legacy"
@@ -45,8 +45,8 @@
 
         <activity
             android:name=".SplashScreen"
-            android:theme="@style/SplashScreen"
-            android:launchMode="singleInstance">
+            android:launchMode="singleInstance"
+            android:theme="@style/SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -55,12 +55,12 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:windowSoftInputMode="adjustPan"
-            android:launchMode="singleInstance"/>
+            android:launchMode="singleInstance"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
-            android:theme="@style/Base.Theme.AppCompat"
-            android:launchMode="singleInstance"/>
+            android:launchMode="singleInstance"
+            android:theme="@style/Base.Theme.AppCompat" />
     </application>
 
 </manifest>

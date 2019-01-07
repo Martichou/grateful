@@ -1,29 +1,41 @@
 package me.martichou.be.grateful.data
 
 import androidx.lifecycle.LiveData
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Query
+import androidx.room.Update
 
 @Dao
 interface NotesDao {
 
-    @Query("SELECT id, title, image, color, date, location  FROM notes WHERE NOT dateToSearch = :date ORDER BY id DESC")
-    fun getAllNotes(date: String): LiveData<List<NotesMinimal>>
+    /**
+     * Return all note without exception
+     */
+    @Query("SELECT * FROM notes ORDER BY id DESC")
+    fun getAllNote(): LiveData<List<Notes>>
 
+    /**
+     * Return the note with id = noteId
+     */
     @Query("SELECT * FROM notes WHERE id = :noteId")
     fun getThisNote(noteId: Long): LiveData<Notes>
 
-    @Query("SELECT * FROM notes WHERE dateToSearch = :date LIMIT 1")
-    fun getNoteAtDate(date: String): LiveData<Notes>
-
+    /**
+     * Insert note object into database
+     */
     @Insert
     fun insertNote(notes: Notes)
 
+    /**
+     * Update note by using a note object
+     */
     @Update
     fun updateNote(notes: Notes)
 
-    @Delete
-    fun deleteNote(notes: Notes)
-
+    /**
+     * Delete a node using his ID
+     */
     @Query("DELETE FROM notes WHERE id =:noteId")
     fun deleteNoteById(noteId: Long)
 }

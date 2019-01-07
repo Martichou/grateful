@@ -1,15 +1,12 @@
 package me.martichou.be.grateful.fragments
 
+import android.graphics.Color
 import android.os.Bundle
 import android.transition.TransitionInflater
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.core.view.doOnLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.adapters.NotesAdapter
@@ -18,8 +15,8 @@ import me.martichou.be.grateful.fragments.dialogFragment.BottomsheetFragment
 import me.martichou.be.grateful.utilities.DividerRV
 import me.martichou.be.grateful.utilities.getNotesRepository
 import me.martichou.be.grateful.utilities.getViewModel
-import me.martichou.be.grateful.utilities.roundProfile
 import me.martichou.be.grateful.viewmodels.MainViewModel
+
 
 class MainFragment : Fragment() {
 
@@ -27,33 +24,32 @@ class MainFragment : Fragment() {
         getViewModel { MainViewModel(getNotesRepository(requireContext())) }
     }
     private lateinit var binding: MainFragmentBinding
-    private lateinit var notesList: RecyclerView
+
+    private lateinit var recentNotesList: RecyclerView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = MainFragmentBinding.inflate(inflater, container, false).apply {
             hdl = this@MainFragment
-            mainModel = viewModel
             setLifecycleOwner(this@MainFragment)
         }
 
         postponeEnterTransition()
 
-        // Make image on main page rounded without a cardview
-        roundProfile(binding.mainProfile)
-        binding.mainLanding.clipToOutline = true
-        binding.mainMapview.clipToOutline = true
+        // Change status bar color
+        val window: Window = requireActivity().window
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.statusBarColor = Color.WHITE
 
-        // Initialize the recyclerview
-        notesList = binding.notesList
-        notesList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        notesList.addItemDecoration(DividerRV(40))
-        notesList.setHasFixedSize(true)
-        notesList.adapter = viewModel.adapter
+        // Prepare recyclerview
+        recentNotesList = binding.recentNotesList
+        recentNotesList.addItemDecoration(DividerRV())
+        recentNotesList.adapter = viewModel.adapterRecently
 
         // Observe change
-        subscribeUi(viewModel.adapter)
+        subscribeUirecentNotesList(viewModel.adapterRecently)
 
-        notesList.doOnLayout {
+        recentNotesList.doOnLayout {
             startPostponedEnterTransition()
         }
 
@@ -62,8 +58,11 @@ class MainFragment : Fragment() {
         return binding.root
     }
 
-    private fun subscribeUi(adapter: NotesAdapter) {
-        viewModel.notesList.observe(viewLifecycleOwner, Observer { notes ->
+    /**
+     * Observe recentNotesList for and update adapter
+     */
+    private fun subscribeUirecentNotesList(adapter: NotesAdapter) {
+        viewModel.recentNotesList.observe(viewLifecycleOwner, Observer { notes ->
             if (notes != null) {
                 adapter.submitList(notes)
             }
@@ -71,15 +70,10 @@ class MainFragment : Fragment() {
     }
 
     /**
-     * Open the bottomsheet
+     * New note action
      */
     fun btnNewAction(view: View) {
-        Log.d("TGHSJK", viewModel.today.toString() + "okkkkkk")
-        if (!(viewModel.today)) {
-            val bottomsheetFragment = BottomsheetFragment()
-            bottomsheetFragment.show(fragmentManager, bottomsheetFragment.tag)
-        } else {
-            // Open today note
-        }
+        val bottomsheetFragment = BottomsheetFragment()
+        bottomsheetFragment.show(fragmentManager, bottomsheetFragment.tag)
     }
 }
