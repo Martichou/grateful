@@ -1,10 +1,14 @@
 package me.martichou.be.grateful.fragments
 
+import android.graphics.Outline
 import android.graphics.drawable.Drawable
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewOutlineProvider
+import androidx.annotation.RequiresApi
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.transition.Fade
@@ -37,6 +41,7 @@ class ShowFragment : Fragment() {
 
         postponeEnterTransition() // wait for glide callback
         setupTransition()
+        roundShowImage()
 
         return binding.root
     }
@@ -77,6 +82,16 @@ class ShowFragment : Fragment() {
             interpolator = AnimUtils.getFastOutLinearInInterpolator()
             duration = resources.getInteger(R.integer.config_duration_area_small).toLong()
         }
+    }
+
+    private fun roundShowImage() {
+        binding.shownoteImage.outlineProvider = object : ViewOutlineProvider() {
+            @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+            override fun getOutline(view: View, outline: Outline?) {
+                outline?.setRoundRect(0, (-65F).toInt(), view.width, view.height, 65F)
+            }
+        }
+        binding.shownoteImage.clipToOutline = true
     }
 
 }
