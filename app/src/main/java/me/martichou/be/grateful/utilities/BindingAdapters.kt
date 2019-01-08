@@ -21,7 +21,6 @@ fun imageFromFile(view: ImageView, imageUrl: String?, listener: RequestListener<
     if (!imageUrl.isNullOrEmpty()) {
         GlideApp.with(view.context)
                 .load(File(view.context.getDir("imgForNotes", Context.MODE_PRIVATE), imageUrl))
-                .transition(DrawableTransitionOptions.withCrossFade())
                 .override(view.measuredWidth, view.measuredHeight)
                 .diskCacheStrategy(DiskCacheStrategy.DATA)
                 .thumbnail(0.2f)
