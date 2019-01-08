@@ -3,13 +3,13 @@ package me.martichou.be.grateful.utilities
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.util.Log
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.content.ContextCompat
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.IO
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.viewmodels.AddViewModel
+import timber.log.Timber
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -34,18 +34,18 @@ class CompressImage(context: Context, viewModel: AddViewModel, file: File, add_b
                 if (imageFile.exists()) {
                     val deleted = imageFile.delete()
                     if (!deleted) {
-                        Log.i("Error", "Cannot delete the file..")
+                        Timber.e("Cannot delete the file..")
                         exitProcess(-1)
                     }
                 }
-                val fos: FileOutputStream = async(IO) { FileOutputStream(imageFile) }.await()
+                val fos: FileOutputStream = withContext(IO) { FileOutputStream(imageFile) }
                 try {
-                    async(IO) { BitmapFactory.decodeFile(file.absolutePath).compress(Bitmap.CompressFormat.JPEG, 75, fos) }.await()
+                    withContext(IO) { BitmapFactory.decodeFile(file.absolutePath).compress(Bitmap.CompressFormat.JPEG, 75, fos) }
                 } catch (e: Exception) {
                     e.printStackTrace()
                 } finally {
                     try {
-                        async(IO) { fos.close() }.await()
+                        withContext(IO) { fos.close() }
                         viewModel.changeHasPhoto(true)
                         viewModel.changeIsWorking(false)
 
