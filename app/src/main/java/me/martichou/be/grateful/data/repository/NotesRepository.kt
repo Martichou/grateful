@@ -1,4 +1,4 @@
-package me.martichou.be.grateful.repository
+package me.martichou.be.grateful.data.repository
 
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.withContext

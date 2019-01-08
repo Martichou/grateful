@@ -6,7 +6,7 @@
 
         <variable
             name="clickListener"
-            type="me.martichou.be.grateful.adapters.NotesAdapter.OnNoteItemClickListener" />
+            type="me.martichou.be.grateful.recyclerView.NotesAdapter" />
 
         <variable
             name="note"

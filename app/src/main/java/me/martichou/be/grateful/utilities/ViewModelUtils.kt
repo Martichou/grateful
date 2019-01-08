@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
 import me.martichou.be.grateful.data.AppDatabase
-import me.martichou.be.grateful.repository.NotesRepository
+import me.martichou.be.grateful.data.repository.NotesRepository
 import me.martichou.be.grateful.viewmodels.BaseViewModelFactory
 
 /**

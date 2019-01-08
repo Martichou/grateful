@@ -44,7 +44,7 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name=".SplashScreen"
+            android:name=".activities.SplashScreen"
             android:launchMode="singleInstance"
             android:theme="@style/SplashScreen">
             <intent-filter>
@@ -54,7 +54,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:launchMode="singleInstance"
             android:windowSoftInputMode="adjustPan" />
         <activity

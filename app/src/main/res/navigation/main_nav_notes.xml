@@ -6,9 +6,9 @@
 
     <fragment
         android:id="@+id/main_fragment"
-        android:name="me.martichou.be.grateful.fragments.MainFragment"
+        android:name="me.martichou.be.grateful.fragments.HomeMainFragment"
         android:label="Grateful"
-        tools:layout="@layout/main_fragment">
+        tools:layout="@layout/fragment_homemain">
 
         <action
             android:id="@+id/action_note_list_fragment_to_note_detail_fragment"
@@ -18,9 +18,9 @@
 
     <fragment
         android:id="@+id/show_fragment"
-        android:name="me.martichou.be.grateful.fragments.ShowFragment"
+        android:name="me.martichou.be.grateful.fragments.ShowMainFragment"
         android:label=" "
-        tools:layout="@layout/show_fragment">
+        tools:layout="@layout/fragment_showmain">
 
         <argument
             android:name="noteId"

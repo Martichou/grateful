@@ -1,4 +1,4 @@
-package me.martichou.be.grateful
+package me.martichou.be.grateful.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,7 +12,6 @@ class SplashScreen : AppCompatActivity() {
 
     private val mRunnable: Runnable = Runnable {
         if (!isFinishing) {
-
             val intent = Intent(applicationContext, MainActivity::class.java)
             startActivity(intent)
             finish()

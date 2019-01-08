@@ -7,7 +7,7 @@ import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import me.martichou.be.grateful.data.Notes
-import me.martichou.be.grateful.repository.NotesRepository
+import me.martichou.be.grateful.data.repository.NotesRepository
 
 class ShowViewModel internal constructor(private val notesRepository: NotesRepository, id: Long) : ViewModel() {
 

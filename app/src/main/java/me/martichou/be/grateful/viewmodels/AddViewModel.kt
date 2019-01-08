@@ -6,7 +6,7 @@ import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import me.martichou.be.grateful.data.Notes
-import me.martichou.be.grateful.repository.NotesRepository
+import me.martichou.be.grateful.data.repository.NotesRepository
 import me.martichou.be.grateful.utilities.randomNumber
 
 class AddViewModel internal constructor(private val notesRepository: NotesRepository) : ViewModel() {

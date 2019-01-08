@@ -9,13 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.transition.Fade
 import me.martichou.be.grateful.R
-import me.martichou.be.grateful.adapters.NotesAdapter
+import me.martichou.be.grateful.recyclerView.NotesAdapter
 import me.martichou.be.grateful.databinding.MainFragmentBinding
-import me.martichou.be.grateful.fragments.dialogFragment.BottomsheetFragment
 import me.martichou.be.grateful.utilities.*
 import me.martichou.be.grateful.viewmodels.MainViewModel
 
-class MainFragment : Fragment() {
+class HomeMainFragment : Fragment() {
 
     private val viewModel by lazy {
         getViewModel { MainViewModel(getNotesRepository(requireContext())) }
@@ -24,8 +23,8 @@ class MainFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = MainFragmentBinding.inflate(inflater, container, false).apply {
-            hdl = this@MainFragment
-            setLifecycleOwner(this@MainFragment)
+            hdl = this@HomeMainFragment
+            setLifecycleOwner(this@HomeMainFragment)
         }
 
         // Prepare recyclerview
@@ -60,7 +59,7 @@ class MainFragment : Fragment() {
      * New note action
      */
     fun btnNewAction(view: View) {
-        val bottomsheetFragment = BottomsheetFragment()
+        val bottomsheetFragment = AddMainFragment()
         bottomsheetFragment.show(fragmentManager, bottomsheetFragment.tag)
     }
 

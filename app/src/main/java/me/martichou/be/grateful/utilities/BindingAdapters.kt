@@ -1,4 +1,4 @@
-package me.martichou.be.grateful.adapters
+package me.martichou.be.grateful.utilities
 
 import android.content.Context
 import android.graphics.drawable.Drawable
@@ -9,8 +9,6 @@ import androidx.databinding.BindingAdapter
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestListener
-import me.martichou.be.grateful.utilities.GlideApp
-import me.martichou.be.grateful.utilities.stringToDate
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*

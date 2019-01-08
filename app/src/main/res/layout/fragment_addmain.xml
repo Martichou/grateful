@@ -6,7 +6,7 @@
 
         <variable
             name="hdl"
-            type="me.martichou.be.grateful.fragments.dialogFragment.BottomsheetFragment" />
+            type="me.martichou.be.grateful.fragments.AddMainFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

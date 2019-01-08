@@ -22,7 +22,7 @@ import me.martichou.be.grateful.utilities.*
 import me.martichou.be.grateful.viewmodels.ShowViewModel
 
 
-class ShowFragment : Fragment() {
+class ShowMainFragment : Fragment() {
 
     private var noteId: Long = 0
     private val viewModel by lazy {
@@ -34,7 +34,7 @@ class ShowFragment : Fragment() {
         noteId = ShowFragmentArgs.fromBundle(arguments!!).noteId
         binding = ShowFragmentBinding.inflate(inflater, container, false).apply {
             showModel = viewModel
-            setLifecycleOwner(this@ShowFragment)
+            setLifecycleOwner(this@ShowMainFragment)
             ViewCompat.setTransitionName(shownoteImage, noteId.toString())
             requestListener = imageListener
         }

@@ -1,4 +1,4 @@
-package me.martichou.be.grateful.fragments.dialogFragment
+package me.martichou.be.grateful.fragments
 
 import android.app.Activity
 import android.app.Dialog
@@ -13,7 +13,7 @@ import com.google.android.gms.location.places.ui.PlacePicker
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.theartofdev.edmodo.cropper.CropImage
-import kotlinx.android.synthetic.main.add_bottomsheet_fragment.*
+import kotlinx.android.synthetic.main.fragment_addmain.*
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.data.Notes
 import me.martichou.be.grateful.databinding.AddBottomsheetFragmentBinding
@@ -22,7 +22,7 @@ import me.martichou.be.grateful.viewmodels.AddViewModel
 import java.io.File
 import java.io.IOException
 
-open class BottomsheetFragment : BottomSheetDialogFragment() {
+open class AddMainFragment : BottomSheetDialogFragment() {
 
     private val placePicker = 548
 
@@ -35,8 +35,8 @@ open class BottomsheetFragment : BottomSheetDialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = AddBottomsheetFragmentBinding.inflate(inflater, container, false).apply {
-            hdl = this@BottomsheetFragment
-            setLifecycleOwner(this@BottomsheetFragment)
+            hdl = this@AddMainFragment
+            setLifecycleOwner(this@AddMainFragment)
         }
 
         return binding.root
