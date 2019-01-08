@@ -6,7 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import me.martichou.be.grateful.R
-import me.martichou.be.grateful.databinding.MainActivityBinding
+import me.martichou.be.grateful.databinding.ActivityMainBinding
 import me.martichou.be.grateful.utilities.setupPermissions
 
 class MainActivity : AppCompatActivity() {
@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        DataBindingUtil.setContentView<MainActivityBinding>(this, R.layout.activity_main)
+        DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
 
         navController = Navigation.findNavController(this, R.id.main_notes_nav_fragment)
 

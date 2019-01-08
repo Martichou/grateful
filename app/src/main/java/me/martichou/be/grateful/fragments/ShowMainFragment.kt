@@ -17,7 +17,7 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import me.martichou.be.grateful.R
-import me.martichou.be.grateful.databinding.ShowFragmentBinding
+import me.martichou.be.grateful.databinding.FragmentShowmainBinding
 import me.martichou.be.grateful.utilities.*
 import me.martichou.be.grateful.viewmodels.ShowViewModel
 
@@ -28,11 +28,11 @@ class ShowMainFragment : Fragment() {
     private val viewModel by lazy {
         getViewModel { ShowViewModel(getNotesRepository(requireContext()), noteId) }
     }
-    private lateinit var binding: ShowFragmentBinding
+    private lateinit var binding: FragmentShowmainBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        noteId = ShowFragmentArgs.fromBundle(arguments!!).noteId
-        binding = ShowFragmentBinding.inflate(inflater, container, false).apply {
+        noteId = ShowMainFragmentArgs.fromBundle(arguments!!).noteId
+        binding = FragmentShowmainBinding.inflate(inflater, container, false).apply {
             showModel = viewModel
             setLifecycleOwner(this@ShowMainFragment)
             ViewCompat.setTransitionName(shownoteImage, noteId.toString())

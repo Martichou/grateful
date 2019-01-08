@@ -9,8 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.transition.Fade
 import me.martichou.be.grateful.R
+import me.martichou.be.grateful.databinding.FragmentHomemainBinding
 import me.martichou.be.grateful.recyclerView.NotesAdapter
-import me.martichou.be.grateful.databinding.MainFragmentBinding
 import me.martichou.be.grateful.utilities.*
 import me.martichou.be.grateful.viewmodels.MainViewModel
 
@@ -19,10 +19,10 @@ class HomeMainFragment : Fragment() {
     private val viewModel by lazy {
         getViewModel { MainViewModel(getNotesRepository(requireContext())) }
     }
-    private lateinit var binding: MainFragmentBinding
+    private lateinit var binding: FragmentHomemainBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = MainFragmentBinding.inflate(inflater, container, false).apply {
+        binding = FragmentHomemainBinding.inflate(inflater, container, false).apply {
             hdl = this@HomeMainFragment
             setLifecycleOwner(this@HomeMainFragment)
         }

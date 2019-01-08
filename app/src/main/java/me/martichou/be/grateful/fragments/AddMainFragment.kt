@@ -16,7 +16,7 @@ import com.theartofdev.edmodo.cropper.CropImage
 import kotlinx.android.synthetic.main.fragment_addmain.*
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.data.Notes
-import me.martichou.be.grateful.databinding.AddBottomsheetFragmentBinding
+import me.martichou.be.grateful.databinding.FragmentAddmainBinding
 import me.martichou.be.grateful.utilities.*
 import me.martichou.be.grateful.viewmodels.AddViewModel
 import java.io.File
@@ -29,12 +29,12 @@ open class AddMainFragment : BottomSheetDialogFragment() {
     private val viewModel by lazy {
         getViewModel { AddViewModel(getNotesRepository(requireContext())) }
     }
-    private lateinit var binding: AddBottomsheetFragmentBinding
+    private lateinit var binding: FragmentAddmainBinding
 
     override fun getTheme(): Int = R.style.BottomSheetDialogTheme
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = AddBottomsheetFragmentBinding.inflate(inflater, container, false).apply {
+        binding = FragmentAddmainBinding.inflate(inflater, container, false).apply {
             hdl = this@AddMainFragment
             setLifecycleOwner(this@AddMainFragment)
         }
