@@ -55,7 +55,8 @@
                 android:layout_height="185dp"
                 android:contentDescription="@string/image_of_your_dedicated_note"
                 android:scaleType="centerCrop"
-                android:transitionName="@{String.valueOf(note.id)}" />
+                android:transitionName="@{String.valueOf(note.id)}"
+                app:imageFromFile="@{note.image}"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"

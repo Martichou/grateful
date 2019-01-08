@@ -33,9 +33,16 @@ class NotesAdapter : ListAdapter<Notes, NotesAdapter.ViewHolder>(NotesDiffCallba
     private fun createOnClickListener(): OnNoteItemClickListener {
         return object : OnNoteItemClickListener {
             override fun onNoteItemClick(rootView: View, notes: Notes) {
-                rootView.findNavController().navigate(
-                        MainFragmentDirections.ActionNoteListFragmentToNoteDetailFragment(notes.id),
-                        FragmentNavigatorExtras(DataBindingUtil.getBinding<ListItemNotesBinding>(rootView)!!.showImageNote to notes.id.toString()))
+                val direction = MainFragmentDirections
+                        .ActionNoteListFragmentToNoteDetailFragment(notes.id)
+
+                DataBindingUtil.getBinding<ListItemNotesBinding>(rootView)?.let {
+                    val navigatorExtras = FragmentNavigatorExtras(it.showImageNote to notes.id.toString())
+                    rootView.findNavController().navigate(direction, navigatorExtras)
+                } ?: run {
+                    // fail to getBinding for transition anim. we still proceed to navigate
+                    rootView.findNavController().navigate(direction)
+                }
             }
         }
     }
@@ -47,14 +54,6 @@ class NotesAdapter : ListAdapter<Notes, NotesAdapter.ViewHolder>(NotesDiffCallba
                 note = item
                 executePendingBindings()
             }
-
-            GlideApp.with(itemView.context)
-                    .load(File(itemView.context.getDir("imgForNotes", Context.MODE_PRIVATE), item.image))
-                    .override(binding.showImageNote.width, binding.showImageNote.height).fitCenter()
-                    .transition(DrawableTransitionOptions.withCrossFade())
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .thumbnail(0.2f)
-                    .into(binding.showImageNote)
         }
     }
 
