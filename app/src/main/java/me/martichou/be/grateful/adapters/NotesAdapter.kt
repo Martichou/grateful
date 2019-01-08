@@ -1,6 +1,5 @@
 package me.martichou.be.grateful.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,13 +8,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import me.martichou.be.grateful.data.Notes
 import me.martichou.be.grateful.databinding.ListItemNotesBinding
 import me.martichou.be.grateful.fragments.MainFragmentDirections
-import me.martichou.be.grateful.utilities.GlideApp
-import java.io.File
 
 class NotesAdapter : ListAdapter<Notes, NotesAdapter.ViewHolder>(NotesDiffCallback()) {
 

@@ -4,7 +4,6 @@ import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
-import android.graphics.Color
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Toast
@@ -75,6 +74,7 @@ fun makeToast(c: Context, s: String) {
 fun imageCropper(context: Context, fragment: Fragment) {
     CropImage.activity()
             .setGuidelines(CropImageView.Guidelines.ON)
+            .setAspectRatio(3, 4)
             .start(context, fragment)
 }
 

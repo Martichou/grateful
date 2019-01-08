@@ -11,9 +11,10 @@ import me.martichou.be.grateful.utilities.randomNumber
 
 class AddViewModel internal constructor(private val notesRepository: NotesRepository) : ViewModel() {
 
+    private var hasPhoto: Boolean = false
+
     val randomImageName: String = randomNumber(100000000, 999999999)
     var isWorking: Boolean = false
-    private var hasPhoto: Boolean = false
     var placeCity: String? = null
 
     /**

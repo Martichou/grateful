@@ -16,7 +16,10 @@ package me.martichou.be.grateful.utilities
  * limitations under the License.
  */
 
-import androidx.transition.*
+import androidx.transition.ChangeBounds
+import androidx.transition.ChangeClipBounds
+import androidx.transition.ChangeTransform
+import androidx.transition.TransitionSet
 
 class MoveViews : TransitionSet() {
 
