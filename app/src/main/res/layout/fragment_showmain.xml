@@ -84,9 +84,8 @@
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/ic_clock"
                         android:drawablePadding="5dp"
-                        android:drawableTint="@color/dark"
                         android:gravity="center"
-                        android:text="Sun, 12pm"
+                        android:text="@{showModel.note.date}"
                         android:textColor="@color/dark"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -97,7 +96,6 @@
                         android:layout_marginStart="20dp"
                         android:drawableStart="@drawable/ic_location"
                         android:drawablePadding="5dp"
-                        android:drawableTint="@color/dark"
                         android:gravity="center"
                         android:text="@{showModel.note.location}"
                         android:textColor="@color/dark"

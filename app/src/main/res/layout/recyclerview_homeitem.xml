@@ -30,7 +30,7 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="00"
+                android:text="@string/_00"
                 android:textColor="@color/black"
                 android:textSize="24sp"
                 app:getNumberFromDate="@{note.dateToSearch}" />
@@ -38,7 +38,7 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="xxx"
+                android:text="@string/xxx"
                 app:getNameOfDay="@{note.dateToSearch}" />
 
         </LinearLayout>
