@@ -84,6 +84,14 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:bindIsGone="@{thisVm.hasNotes}"/>
 
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/nonethinking"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/thinking"
+                    android:scaleType="fitCenter"
+                    android:visibility="gone"/>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
