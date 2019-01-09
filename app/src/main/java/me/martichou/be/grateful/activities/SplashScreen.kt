@@ -4,16 +4,19 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
+import me.martichou.be.grateful.R
 
 class SplashScreen : AppCompatActivity() {
 
-    private var mDelayHandler: Handler? = null
-    private val mDelay: Long = 500
+    private lateinit var mDelayHandler: Handler
 
     private val mRunnable: Runnable = Runnable {
         if (!isFinishing) {
             val intent = Intent(applicationContext, MainActivity::class.java)
             startActivity(intent)
+
+            overridePendingTransition(R.anim.activity_slide_up, R.anim.activity_fade_out)
+
             finish()
         }
     }
@@ -23,26 +26,24 @@ class SplashScreen : AppCompatActivity() {
 
         mDelayHandler = Handler()
 
-        mDelayHandler!!.postDelayed(mRunnable, mDelay)
+        mDelayHandler.post(mRunnable)
 
     }
 
     override fun onPause() {
         super.onPause()
 
-        mDelayHandler?.removeCallbacks(mRunnable)
+        mDelayHandler.removeCallbacks(mRunnable)
     }
 
     override fun onResume() {
         super.onResume()
 
-        mDelayHandler?.post(mRunnable)
+        mDelayHandler.post(mRunnable)
     }
 
     public override fun onDestroy() {
-        if (mDelayHandler != null) {
-            mDelayHandler!!.removeCallbacks(mRunnable)
-        }
+        mDelayHandler.removeCallbacks(mRunnable)
 
         super.onDestroy()
     }
