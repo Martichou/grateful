@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.view.doOnLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.Fade
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.databinding.FragmentHomemainBinding
@@ -46,6 +47,17 @@ class HomeMainFragment : Fragment() {
             statusBarWhite(requireActivity())
         }
         setupTransition()
+
+        binding.recentNotesList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if (dy > 0 && binding.fab.visibility == View.VISIBLE) {
+                    binding.fab.hide()
+                } else if (dy < 0 && binding.fab.visibility != View.VISIBLE) {
+                    binding.fab.show()
+                }
+            }
+        })
 
         return binding.root
     }
