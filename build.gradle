@@ -24,6 +24,7 @@ buildscript {
         imgcropper = '2.7.0'
         rxjava = '2.2.5'
         timber = '4.7.1'
+        ktlintVersion = '0.29.0'
 
         // Test dependencies
         espressoVersion = '3.1.0-alpha4'
@@ -47,6 +48,10 @@ buildscript {
     }
 }
 
+plugins {
+    id "com.diffplug.gradle.spotless" version "3.13.0"
+}
+
 allprojects {
     repositories {
         google()
@@ -54,5 +59,12 @@ allprojects {
         maven { url "https://jitpack.io" }
         maven { url "http://dl.bintray.com/kotlin/kotlin-eap" }
         maven { url "https://maven.google.com/" }
+    }
+}
+
+spotless {
+    kotlin {
+        target "**/*.kt"
+        ktlint(ktlintVersion)
     }
 }
