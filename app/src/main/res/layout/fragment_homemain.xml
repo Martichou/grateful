@@ -65,6 +65,7 @@
                     android:id="@+id/recentNotesList"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:paddingBottom="20dp"
                     android:clipToPadding="false"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
