@@ -6,8 +6,12 @@ import androidx.recyclerview.widget.RecyclerView
 
 class DividerRV internal constructor() : RecyclerView.ItemDecoration() {
 
-    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView,
-                                state: RecyclerView.State) {
+    override fun getItemOffsets(
+        outRect: Rect,
+        view: View,
+        parent: RecyclerView,
+        state: RecyclerView.State
+    ) {
         val itemCount = state.itemCount
         val itemPosition = parent.getChildAdapterPosition(view)
         if (itemPosition != 0 && itemCount > 0 && itemPosition == itemCount - 1) {
@@ -17,5 +21,4 @@ class DividerRV internal constructor() : RecyclerView.ItemDecoration() {
         }
         view.clipToOutline = true
     }
-
 }

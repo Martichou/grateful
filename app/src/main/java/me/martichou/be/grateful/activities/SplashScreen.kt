@@ -27,7 +27,6 @@ class SplashScreen : AppCompatActivity() {
         mDelayHandler = Handler()
 
         mDelayHandler.post(mRunnable)
-
     }
 
     override fun onPause() {
@@ -47,6 +46,4 @@ class SplashScreen : AppCompatActivity() {
 
         super.onDestroy()
     }
-
-
 }

@@ -25,5 +25,4 @@ class MainActivity : AppCompatActivity() {
 
         setupPermissions(this, this)
     }
-
 }

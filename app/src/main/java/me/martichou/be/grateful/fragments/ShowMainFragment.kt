@@ -96,5 +96,4 @@ class ShowMainFragment : Fragment() {
         }
         binding.shownoteImage.clipToOutline = true
     }
-
 }

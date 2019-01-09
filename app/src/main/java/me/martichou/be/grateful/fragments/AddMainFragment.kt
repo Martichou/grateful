@@ -124,5 +124,4 @@ open class AddMainFragment : BottomSheetDialogFragment() {
             makeToast(context!!, "Try again in a few seconds...")
         }
     }
-
 }

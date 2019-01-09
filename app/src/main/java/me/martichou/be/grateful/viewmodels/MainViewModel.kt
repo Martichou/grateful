@@ -15,7 +15,7 @@ class MainViewModel internal constructor(notesRepository: NotesRepository) : Vie
      * Fill in the notesList & adapter
      */
     init {
-        recentNotesList.addSource(notesRepository.getAllNote()){
+        recentNotesList.addSource(notesRepository.getAllNote()) {
             recentNotesList.value = it
             hasNotes.set(true)
         }

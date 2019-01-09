@@ -6,26 +6,26 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "notes")
 data class Notes(
-        @ColumnInfo(name = "title")
-        val title: String,
+    @ColumnInfo(name = "title")
+    val title: String,
 
-        @ColumnInfo(name = "content")
-        val content: String,
+    @ColumnInfo(name = "content")
+    val content: String,
 
-        @ColumnInfo(name = "image")
-        val image: String,
+    @ColumnInfo(name = "image")
+    val image: String,
 
-        @ColumnInfo(name = "color")
-        val color: String,
+    @ColumnInfo(name = "color")
+    val color: String,
 
-        @ColumnInfo(name = "date")
-        val date: String,
+    @ColumnInfo(name = "date")
+    val date: String,
 
-        @ColumnInfo(name = "dateToSearch")
-        val dateToSearch: String,
+    @ColumnInfo(name = "dateToSearch")
+    val dateToSearch: String,
 
-        @ColumnInfo(name = "location")
-        val location: String
+    @ColumnInfo(name = "location")
+    val location: String
 ) {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
