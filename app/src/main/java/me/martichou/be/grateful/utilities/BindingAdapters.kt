@@ -41,6 +41,15 @@ fun isGone(v: TextView, content: String?) {
     }
 }
 
+@BindingAdapter("bindIsGone")
+fun bindIsGone(view: View, isGone: Boolean) {
+    view.visibility = if (isGone) {
+        View.GONE
+    } else {
+        View.VISIBLE
+    }
+}
+
 /**
  * Set 07 if it was 07/02/2019
  */

@@ -23,12 +23,14 @@ class HomeMainFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentHomemainBinding.inflate(inflater, container, false).apply {
-            hdl = this@HomeMainFragment
             setLifecycleOwner(this@HomeMainFragment)
+            thisVm = viewModel
+            hdl = this@HomeMainFragment
         }
 
         // Prepare recyclerview
         val adapter = NotesAdapter()
+        binding.recentNotesList.setHasFixedSize(true)
         binding.recentNotesList.addItemDecoration(DividerRV())
         binding.recentNotesList.adapter = adapter
         subscribeUirecentNotesList(adapter)

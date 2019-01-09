@@ -35,8 +35,8 @@ open class AddMainFragment : BottomSheetDialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentAddmainBinding.inflate(inflater, container, false).apply {
-            hdl = this@AddMainFragment
             setLifecycleOwner(this@AddMainFragment)
+            hdl = this@AddMainFragment
         }
 
         return binding.root

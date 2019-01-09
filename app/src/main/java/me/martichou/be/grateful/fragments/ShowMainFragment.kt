@@ -33,8 +33,8 @@ class ShowMainFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         noteId = ShowMainFragmentArgs.fromBundle(arguments!!).noteId
         binding = FragmentShowmainBinding.inflate(inflater, container, false).apply {
-            showModel = viewModel
             setLifecycleOwner(this@ShowMainFragment)
+            showModel = viewModel
             ViewCompat.setTransitionName(shownoteImage, noteId.toString())
             requestListener = imageListener
         }
