@@ -55,8 +55,11 @@ class HomeMainFragment : Fragment() {
      */
     private fun subscribeUirecentNotesList(adapter: NotesAdapter) {
         viewModel.getNotes().observe(viewLifecycleOwner, Observer { notes ->
-            if (notes != null) {
+            if (notes.isNullOrEmpty()) {
+                binding.nonethinking.visibility = View.VISIBLE
+            } else {
                 adapter.submitList(notes)
+                binding.nonethinking.visibility = View.GONE // TODO -> test this
             }
         })
     }
