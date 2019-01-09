@@ -11,7 +11,7 @@ import me.martichou.be.grateful.utilities.randomNumber
 
 class AddViewModel internal constructor(private val notesRepository: NotesRepository) : ViewModel() {
 
-    private var hasPhoto: Boolean = false
+    var hasPhoto: Boolean = false
 
     val randomImageName: String = randomNumber(100000000, 999999999)
     var isWorking: Boolean = false
@@ -56,18 +56,6 @@ class AddViewModel internal constructor(private val notesRepository: NotesReposi
      */
     fun changeHasPhoto(b: Boolean) {
         hasPhoto = b
-    }
-
-    /**
-     * Return the photo name if there is one
-     * else, blank
-     */
-    fun photoOrNot(): String {
-        return if (hasPhoto) {
-            randomImageName
-        } else {
-            ""
-        }
     }
 
     /**

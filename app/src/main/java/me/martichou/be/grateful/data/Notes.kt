@@ -15,9 +15,6 @@ data class Notes(
     @ColumnInfo(name = "image")
     val image: String,
 
-    @ColumnInfo(name = "color")
-    val color: String,
-
     @ColumnInfo(name = "date")
     val date: String,
 

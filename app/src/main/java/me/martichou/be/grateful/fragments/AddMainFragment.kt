@@ -104,15 +104,13 @@ open class AddMainFragment : BottomSheetDialogFragment() {
     /**
      * Close this fragment and save info
      */
-    // TODO - Check for color
     fun btnSaveAction(v: View) {
-        if (!viewModel.isWorking) {
+        if (!viewModel.isWorking && viewModel.hasPhoto) {
             val titleOfTheNote: String = binding.addTitleNoteBs.text.toString()
             if (!titleOfTheNote.isEmpty()) run {
                 viewModel.insertNote(Notes(titleOfTheNote,
                         binding.addContentNoteBs.text.toString(),
-                        viewModel.photoOrNot(),
-                        "",
+                        viewModel.randomImageName,
                         currentTime(),
                         dateToSearch(),
                         viewModel.locOrNot()))
@@ -121,7 +119,7 @@ open class AddMainFragment : BottomSheetDialogFragment() {
                 makeToast(context!!, "Enter at least a title")
             }
         } else {
-            makeToast(context!!, "Try again in a few seconds...")
+            makeToast(context!!, "You have to set an image")
         }
     }
 }
