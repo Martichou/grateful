@@ -18,9 +18,12 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.databinding.FragmentShowmainBinding
-import me.martichou.be.grateful.utilities.*
+import me.martichou.be.grateful.utilities.AnimUtils
+import me.martichou.be.grateful.utilities.MoveViews
+import me.martichou.be.grateful.utilities.getNotesRepository
+import me.martichou.be.grateful.utilities.getViewModel
+import me.martichou.be.grateful.utilities.statusBarTrans
 import me.martichou.be.grateful.viewmodels.ShowViewModel
-
 
 class ShowMainFragment : Fragment() {
 

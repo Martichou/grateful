@@ -14,8 +14,10 @@ import androidx.fragment.app.FragmentActivity
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import java.text.SimpleDateFormat
-import java.util.*
-
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
+import kotlin.random.Random
 
 /**
  * Called to setup needed permission for Grateful
@@ -58,7 +60,7 @@ fun stringToDate(aDate: String?): Date? {
  * @return a random number
  */
 fun randomNumber(min: Int, max: Int): String {
-    return Random().nextInt(max - min + 1 + min).toString()
+    return Random.nextInt(max - min + 1 + min).toString()
 }
 
 /**

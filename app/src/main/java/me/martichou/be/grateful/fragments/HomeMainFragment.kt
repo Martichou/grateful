@@ -11,7 +11,11 @@ import androidx.transition.Fade
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.databinding.FragmentHomemainBinding
 import me.martichou.be.grateful.recyclerView.NotesAdapter
-import me.martichou.be.grateful.utilities.*
+import me.martichou.be.grateful.utilities.AnimUtils
+import me.martichou.be.grateful.utilities.DividerRV
+import me.martichou.be.grateful.utilities.getNotesRepository
+import me.martichou.be.grateful.utilities.getViewModel
+import me.martichou.be.grateful.utilities.statusBarWhite
 import me.martichou.be.grateful.viewmodels.MainViewModel
 
 class HomeMainFragment : Fragment() {

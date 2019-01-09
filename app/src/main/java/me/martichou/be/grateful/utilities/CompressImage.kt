@@ -5,8 +5,12 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.content.ContextCompat
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.viewmodels.AddViewModel
 import timber.log.Timber

@@ -13,11 +13,16 @@ import com.google.android.gms.location.places.ui.PlacePicker
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.theartofdev.edmodo.cropper.CropImage
-import kotlinx.android.synthetic.main.fragment_addmain.*
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.data.Notes
 import me.martichou.be.grateful.databinding.FragmentAddmainBinding
-import me.martichou.be.grateful.utilities.*
+import me.martichou.be.grateful.utilities.CompressImage
+import me.martichou.be.grateful.utilities.currentTime
+import me.martichou.be.grateful.utilities.dateToSearch
+import me.martichou.be.grateful.utilities.getNotesRepository
+import me.martichou.be.grateful.utilities.getViewModel
+import me.martichou.be.grateful.utilities.imageCropper
+import me.martichou.be.grateful.utilities.makeToast
 import me.martichou.be.grateful.viewmodels.AddViewModel
 import java.io.File
 import java.io.IOException
@@ -68,7 +73,7 @@ open class AddMainFragment : BottomSheetDialogFragment() {
                 when (resultCode) {
                     Activity.RESULT_OK -> {
                         val image = File(CropImage.getActivityResult(data).uri.path)
-                        CompressImage(requireContext(), viewModel, image, add_photo_btn_bs)
+                        CompressImage(requireContext(), viewModel, image, binding.addPhotoBtnBs)
                     }
                     CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE -> {
                         makeToast(context!!, "We're sorry, there was an error.")
@@ -86,7 +91,7 @@ open class AddMainFragment : BottomSheetDialogFragment() {
                             place.name.toString()
                         }
                         viewModel.placeCity = selected
-                        add_loc_btn_bs.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_roundaccent)
+                        binding.addLocBtnBs.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_roundaccent)
                     }
                     Activity.RESULT_CANCELED -> {
                         makeToast(context!!, "We're sorry, there was an error.")
@@ -102,10 +107,10 @@ open class AddMainFragment : BottomSheetDialogFragment() {
     // TODO - Check for color
     fun btnSaveAction(v: View) {
         if (!viewModel.isWorking) {
-            val titleOfTheNote: String = add_title_note_bs.text.toString()
+            val titleOfTheNote: String = binding.addTitleNoteBs.text.toString()
             if (!titleOfTheNote.isEmpty()) run {
                 viewModel.insertNote(Notes(titleOfTheNote,
-                        add_content_note_bs.text.toString(),
+                        binding.addContentNoteBs.text.toString(),
                         viewModel.photoOrNot(),
                         "",
                         currentTime(),
