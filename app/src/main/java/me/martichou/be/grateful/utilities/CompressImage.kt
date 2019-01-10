@@ -23,7 +23,7 @@ class CompressImage(context: Context, viewModel: AddViewModel, file: File, add_b
 
     private val job = SupervisorJob()
 
-    private val scope = CoroutineScope(Dispatchers.Default + job)
+    private val scope = CoroutineScope(Dispatchers.Main + job)
 
     private val storageDir = context.getDir("imgForNotes", Context.MODE_PRIVATE)
 
