@@ -75,9 +75,9 @@ fun makeToast(c: Context, s: String) {
  */
 fun imageCropper(context: Context, fragment: Fragment) {
     CropImage.activity()
-            .setGuidelines(CropImageView.Guidelines.ON)
-            .setAspectRatio(3, 4)
-            .start(context, fragment)
+        .setGuidelines(CropImageView.Guidelines.ON)
+        .setAspectRatio(3, 4)
+        .start(context, fragment)
 }
 
 /**

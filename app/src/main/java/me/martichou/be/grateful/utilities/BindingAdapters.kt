@@ -19,12 +19,12 @@ import java.util.Locale
 fun imageFromFile(view: ImageView, imageUrl: String?, listener: RequestListener<Drawable>?) {
     if (!imageUrl.isNullOrEmpty()) {
         GlideApp.with(view.context)
-                .load(File(view.context.getDir("imgForNotes", Context.MODE_PRIVATE), imageUrl))
-                .override(view.measuredWidth, view.measuredHeight)
-                .diskCacheStrategy(DiskCacheStrategy.DATA)
-                .thumbnail(0.2f)
-                .listener(listener)
-                .into(view)
+            .load(File(view.context.getDir("imgForNotes", Context.MODE_PRIVATE), imageUrl))
+            .override(view.measuredWidth, view.measuredHeight)
+            .diskCacheStrategy(DiskCacheStrategy.DATA)
+            .thumbnail(0.2f)
+            .listener(listener)
+            .into(view)
     }
 }
 

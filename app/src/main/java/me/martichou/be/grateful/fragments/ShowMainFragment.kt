@@ -50,14 +50,25 @@ class ShowMainFragment : Fragment() {
     }
 
     private val imageListener = object : RequestListener<Drawable> {
-        override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+        override fun onResourceReady(
+            resource: Drawable?,
+            model: Any?,
+            target: Target<Drawable>?,
+            dataSource: DataSource?,
+            isFirstResource: Boolean
+        ): Boolean {
             startPostponedEnterTransition()
             // Set translucent status bar
             statusBarTrans(requireActivity())
             return false
         }
 
-        override fun onLoadFailed(e: GlideException?, model: Any?, target: com.bumptech.glide.request.target.Target<Drawable>?, isFirstResource: Boolean): Boolean {
+        override fun onLoadFailed(
+            e: GlideException?,
+            model: Any?,
+            target: com.bumptech.glide.request.target.Target<Drawable>?,
+            isFirstResource: Boolean
+        ): Boolean {
             startPostponedEnterTransition()
             // Set translucent status bar
             statusBarTrans(requireActivity())

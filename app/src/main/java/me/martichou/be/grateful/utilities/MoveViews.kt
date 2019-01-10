@@ -29,7 +29,7 @@ class MoveViews : TransitionSet() {
 
     private fun init() {
         addTransition(ChangeClipBounds())
-                .addTransition(ChangeTransform())
-                .addTransition(ChangeBounds())
+            .addTransition(ChangeTransform())
+            .addTransition(ChangeBounds())
     }
 }

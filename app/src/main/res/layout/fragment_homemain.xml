@@ -1,128 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
+	<data>
 
-        <variable
-            name="hdl"
-            type="me.martichou.be.grateful.fragments.HomeMainFragment" />
+		<variable
+			name="hdl"
+			type="me.martichou.be.grateful.fragments.HomeMainFragment"/>
 
-        <variable
-            name="thisVm"
-            type="me.martichou.be.grateful.viewmodels.MainViewModel" />
-    </data>
+		<variable
+			name="thisVm"
+			type="me.martichou.be.grateful.viewmodels.MainViewModel"/>
+	</data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+	<androidx.coordinatorlayout.widget.CoordinatorLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:fitsSystemWindows="true">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="vertical">
 
-            <com.google.android.material.appbar.AppBarLayout
-                android:id="@+id/app_bar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:theme="@style/AppTheme.AppBarOverlay"
-                app:elevation="0dp">
+			<com.google.android.material.appbar.AppBarLayout
+				android:id="@+id/app_bar"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:theme="@style/AppTheme.AppBarOverlay"
+				app:elevation="0dp">
 
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/detail_toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="3dp"
-                    android:layout_marginEnd="20dp"
-                    android:theme="@style/AppTheme.PopupOverlay"
-                    app:layout_scrollFlags="scroll|snap">
+				<androidx.appcompat.widget.Toolbar
+					android:id="@+id/detail_toolbar"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="3dp"
+					android:layout_marginEnd="20dp"
+					android:theme="@style/AppTheme.PopupOverlay"
+					app:layout_scrollFlags="scroll|snap">
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/toolbar_title"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/app_name"
-                        android:textAlignment="center"
-                        android:textColor="@color/dark"
-                        android:textSize="28sp" />
+					<androidx.appcompat.widget.AppCompatTextView
+						android:id="@+id/toolbar_title"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:text="@string/app_name"
+						android:textAlignment="center"
+						android:textColor="@color/dark"
+						android:textSize="28sp"
+						android:onClick="@{hdl::gototest}"/>
 
-                </androidx.appcompat.widget.Toolbar>
+				</androidx.appcompat.widget.Toolbar>
 
-            </com.google.android.material.appbar.AppBarLayout>
+			</com.google.android.material.appbar.AppBarLayout>
 
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/linear_main"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp">
+			<androidx.constraintlayout.widget.ConstraintLayout
+				android:id="@+id/linear_main"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:paddingStart="20dp"
+				android:paddingEnd="20dp">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recentNotesList"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingBottom="20dp"
-                    android:clipToPadding="false"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                    tools:listitem="@layout/recyclerview_homeitem"/>
+				<androidx.recyclerview.widget.RecyclerView
+					android:id="@+id/recentNotesList"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:paddingBottom="20dp"
+					android:clipToPadding="false"
+					app:layout_constraintBottom_toBottomOf="parent"
+					app:layout_constraintEnd_toEndOf="parent"
+					app:layout_constraintStart_toStartOf="parent"
+					app:layout_constraintTop_toTopOf="parent"
+					app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+					app:layout_behavior="@string/appbar_scrolling_view_behavior"
+					tools:listitem="@layout/recyclerview_homeitem"/>
 
-                <ProgressBar
-                    android:id="@+id/loading_ui"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:bindIsGone="@{thisVm.hasNotes}"/>
+				<ProgressBar
+					android:id="@+id/loading_ui"
+					android:layout_width="75dp"
+					android:layout_height="75dp"
+					app:layout_constraintBottom_toBottomOf="parent"
+					app:layout_constraintEnd_toEndOf="parent"
+					app:layout_constraintStart_toStartOf="parent"
+					app:layout_constraintTop_toTopOf="parent"
+					app:bindIsGone="@{thisVm.hasNotes}"/>
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/nonethinking"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/thinking"
-                    android:scaleType="fitCenter"
-                    android:visibility="gone"/>
+				<androidx.appcompat.widget.AppCompatImageView
+					android:id="@+id/nonethinking"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:src="@drawable/thinking"
+					android:scaleType="fitCenter"
+					android:visibility="gone"/>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+			</androidx.constraintlayout.widget.ConstraintLayout>
 
-        </LinearLayout>
+		</LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="8dp"
-            android:background="@drawable/bottomappbarshadown"
-            app:layout_anchor="@id/bottom_app_bar" />
+		<View
+			android:layout_width="match_parent"
+			android:layout_height="8dp"
+			android:background="@drawable/bottomappbarshadown"
+			app:layout_anchor="@id/bottom_app_bar"/>
 
-        <com.google.android.material.bottomappbar.BottomAppBar
-            android:id="@+id/bottom_app_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            app:backgroundTint="@color/white"
-            app:fabAlignmentMode="center"
-            app:fabCradleMargin="0dp"
-            app:fabCradleRoundedCornerRadius="0dp"
-            app:hideOnScroll="true"
-            app:navigationIcon="@drawable/ic_menu_black" />
+		<com.google.android.material.bottomappbar.BottomAppBar
+			android:id="@+id/bottom_app_bar"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_gravity="bottom"
+			app:backgroundTint="@color/white"
+			app:fabAlignmentMode="center"
+			app:fabCradleMargin="0dp"
+			app:fabCradleRoundedCornerRadius="0dp"
+			app:hideOnScroll="true"
+			app:navigationIcon="@drawable/ic_menu_black"/>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="@{hdl::btnNewAction}"
-            android:src="@drawable/ic_add_white"
-            app:layout_anchor="@id/bottom_app_bar" />
+		<com.google.android.material.floatingactionbutton.FloatingActionButton
+			android:id="@+id/fab"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:onClick="@{hdl::btnNewAction}"
+			android:src="@drawable/ic_add_white"
+			app:layout_anchor="@id/bottom_app_bar"/>
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+	</androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>

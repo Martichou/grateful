@@ -1,5 +1,6 @@
 package me.martichou.be.grateful.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.Fade
 import me.martichou.be.grateful.R
+import me.martichou.be.grateful.activities.TestActivity
 import me.martichou.be.grateful.databinding.FragmentHomemainBinding
 import me.martichou.be.grateful.recyclerView.NotesAdapter
 import me.martichou.be.grateful.utilities.AnimUtils
@@ -82,6 +84,11 @@ class HomeMainFragment : Fragment() {
     fun btnNewAction(view: View) {
         val bottomsheetFragment = AddMainFragment()
         bottomsheetFragment.show(fragmentManager, bottomsheetFragment.tag)
+    }
+
+    fun gototest(view: View) {
+        val intent = Intent(requireContext(), TestActivity::class.java)
+        startActivity(intent)
     }
 
     private fun setupTransition() {

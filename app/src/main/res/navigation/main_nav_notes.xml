@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@+id/main_fragment">
+			xmlns:app="http://schemas.android.com/apk/res-auto"
+			xmlns:tools="http://schemas.android.com/tools"
+			app:startDestination="@+id/main_fragment">
 
-    <fragment
-        android:id="@+id/main_fragment"
-        android:name="me.martichou.be.grateful.fragments.HomeMainFragment"
-        android:label="Grateful"
-        tools:layout="@layout/fragment_homemain">
+	<fragment
+		android:id="@+id/main_fragment"
+		android:name="me.martichou.be.grateful.fragments.HomeMainFragment"
+		android:label="Grateful"
+		tools:layout="@layout/fragment_homemain">
 
-        <action
-            android:id="@+id/action_note_list_fragment_to_note_detail_fragment"
-            app:destination="@id/show_fragment" />
+		<action
+			android:id="@+id/action_note_list_fragment_to_note_detail_fragment"
+			app:destination="@id/show_fragment"/>
 
-    </fragment>
+	</fragment>
 
-    <fragment
-        android:id="@+id/show_fragment"
-        android:name="me.martichou.be.grateful.fragments.ShowMainFragment"
-        android:label=" "
-        tools:layout="@layout/fragment_showmain">
+	<fragment
+		android:id="@+id/show_fragment"
+		android:name="me.martichou.be.grateful.fragments.ShowMainFragment"
+		android:label=" "
+		tools:layout="@layout/fragment_showmain">
 
-        <argument
-            android:name="noteId"
-            app:argType="long" />
+		<argument
+			android:name="noteId"
+			app:argType="long"/>
 
-    </fragment>
+	</fragment>
 
 </navigation>

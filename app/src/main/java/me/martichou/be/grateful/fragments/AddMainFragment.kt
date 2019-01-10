@@ -86,12 +86,17 @@ open class AddMainFragment : BottomSheetDialogFragment() {
                         val selected: String?
                         val place = PlacePicker.getPlace(context, data)
                         selected = try {
-                            Geocoder(context).getFromLocation(place.latLng.latitude, place.latLng.longitude, 1)[0].locality
+                            Geocoder(context).getFromLocation(
+                                place.latLng.latitude,
+                                place.latLng.longitude,
+                                1
+                            )[0].locality
                         } catch (e: IOException) {
                             place.name.toString()
                         }
                         viewModel.placeCity = selected
-                        binding.addLocBtnBs.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_roundaccent)
+                        binding.addLocBtnBs.background =
+                            ContextCompat.getDrawable(requireContext(), R.drawable.bg_roundaccent)
                     }
                     Activity.RESULT_CANCELED -> {
                         makeToast(context!!, "We're sorry, there was an error.")
@@ -108,12 +113,16 @@ open class AddMainFragment : BottomSheetDialogFragment() {
         if (!viewModel.isWorking && viewModel.hasPhoto) {
             val titleOfTheNote: String = binding.addTitleNoteBs.text.toString()
             if (!titleOfTheNote.isEmpty()) run {
-                viewModel.insertNote(Notes(titleOfTheNote,
+                viewModel.insertNote(
+                    Notes(
+                        titleOfTheNote,
                         binding.addContentNoteBs.text.toString(),
                         viewModel.randomImageName,
                         currentTime(),
                         dateToSearch(),
-                        viewModel.locOrNot()))
+                        viewModel.locOrNot()
+                    )
+                )
                 dismiss()
             } else {
                 makeToast(context!!, "Enter at least a title")

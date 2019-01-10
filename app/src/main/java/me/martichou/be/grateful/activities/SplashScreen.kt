@@ -12,7 +12,7 @@ class SplashScreen : AppCompatActivity() {
 
     private val mRunnable: Runnable = Runnable {
         if (!isFinishing) {
-            val intent = Intent(applicationContext, TestActivity::class.java)
+            val intent = Intent(applicationContext, MainActivity::class.java)
             startActivity(intent)
 
             overridePendingTransition(R.anim.activity_slide_up, R.anim.activity_fade_out)
