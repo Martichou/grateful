@@ -22,30 +22,6 @@
 			app:layout_constraintTop_toTopOf="parent"
 			app:srcCompat="@drawable/pool"/>
 
-
-		<View
-			android:id="@+id/hamburgerBg"
-			android:background="#ffffff"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toTopOf="parent"
-			android:layout_marginTop="10dp"
-			android:layout_marginStart="16dp"
-			android:layout_width="35dp"
-			android:layout_height="35dp"/>
-
-		<ImageView
-			android:id="@+id/hamburgerIcon"
-			app:layout_constraintTop_toTopOf="@id/hamburgerBg"
-			app:layout_constraintBottom_toBottomOf="@id/hamburgerBg"
-			app:layout_constraintStart_toStartOf="@id/hamburgerBg"
-			app:layout_constraintEnd_toEndOf="@id/hamburgerBg"
-			android:tint="#90caf9"
-			android:padding="9dp"
-			app:srcCompat="@drawable/ic_menu_black"
-			android:layout_width="0dp"
-			android:layout_height="0dp"/>
-
-
 		<androidx.constraintlayout.widget.Guideline
 			android:id="@+id/guideline1"
 			android:layout_width="wrap_content"
@@ -79,7 +55,7 @@
 			android:layout_marginTop="12dp"
 			android:fontFamily="serif-monospace"
 			android:gravity="center"
-			android:text="The Starry Night"
+			android:text="Testing easter-egg"
 			android:textColor="#000000"
 			android:textSize="28sp"
 			android:textStyle="bold"
@@ -106,7 +82,7 @@
 			android:layout_marginTop="10dp"
 			android:fontFamily="serif-monospace"
 			android:gravity="center"
-			android:text="Vincent van Gogh"
+			android:text="Martin ANDRE"
 			android:textColor="#000000"
 			android:textSize="18sp"
 			android:textStyle="italic"
@@ -133,7 +109,7 @@
 			android:layout_marginTop="8dp"
 			android:fontFamily="serif-monospace"
 			android:gravity="center"
-			android:text="June, 1889"
+			android:text="June, 2030"
 			android:textColor="#000000"
 			android:textSize="16sp"
 			android:textStyle="italic"

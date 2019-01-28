@@ -21,15 +21,7 @@
 	<string name="what_made_me_smiled_today">What made me smiled today</string>
 	<string name="_00">00</string>
 	<string name="xxx">xxx</string>
-	<string name="lorem_ipsum">The Starry Night is an oil on canvas by the Dutch post-impressionist painter Vincent van
-		Gogh. Painted in June 1889, it depicts the view from the east-facing window of his asylum room at
-		Saint-Rémy-de-Provence, just before sunrise, with the addition of an idealized village. It has been in the
-		permanent collection of the Museum of Modern Art in New York City since 1941, acquired through the Lillie P.
-		Bliss Bequest. Regarded as among Van Gogh\'s finest works, The Starry Night is one of the most recognized
-		paintings in the history of Western culture In the aftermath of the 23 December 1888 breakdown that resulted in
-		the self-mutilation of his left ear,Van Gogh voluntarily admitted himself to the Saint-Paul-de-Mausole lunatic
-		asylum on 8 May 1889. Housed in a former monastery, Saint-Paul-de-Mausole catered to the wealthy and was less
-		than half full when Van Gogh arrived, allowing him to occupy not only a second-story bedroom but also a
-		ground-floor room for use as a painting studio
+	<string name="lorem_ipsum">
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet metus nec tellus mollis volutpat. Quisque semper consequat bibendum. Integer semper enim in rhoncus commodo. Ut vitae porttitor nibh, eget posuere velit. Sed sed urna nunc. Sed tempor fringilla iaculis. Morbi faucibus odio sapien, vel rutrum libero pretium ut. Donec quis faucibus leo. Suspendisse consequat ex vel diam maximus, vel vehicula risus suscipit. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce consectetur convallis mi ut tristique. Aliquam laoreet, sem id accumsan fringilla, sem tortor efficitur nunc, sed mattis risus odio vel mi.
 	</string>
 </resources>

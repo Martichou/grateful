@@ -1,7 +1,6 @@
 package me.martichou.be.grateful.activities
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.motion.widget.MotionLayout
 import me.martichou.be.grateful.R
@@ -26,12 +25,6 @@ class TestActivity : AppCompatActivity(), MotionLayout.TransitionListener {
         super.onCreate(savedInstanceState)
         layoutId = R.layout.multiple_animation_test
         setContentView(layoutId)
-        window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-            or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-            or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-            or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-            or View.SYSTEM_UI_FLAG_FULLSCREEN
-            or View.SYSTEM_UI_FLAG_IMMERSIVE)
         motionLayout.setTransitionListener(this)
     }
 }
