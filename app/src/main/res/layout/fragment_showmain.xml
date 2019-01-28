@@ -16,25 +16,26 @@
 	<androidx.core.widget.NestedScrollView
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent"
+		android:background="#cccccc"
 		android:fillViewport="true">
 
-		<LinearLayout
+		<androidx.constraintlayout.widget.ConstraintLayout
 			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:baselineAligned="false"
-			android:orientation="vertical"
-			android:weightSum="1">
+			android:layout_height="match_parent">
 
 			<FrameLayout
-				android:layout_width="match_parent"
+				android:layout_width="0dp"
 				android:layout_height="0dp"
-				android:layout_weight="0.65"
+				app:layout_constraintBottom_toTopOf="@id/guideline2"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent"
 				app:layout_collapseMode="parallax">
 
 				<androidx.appcompat.widget.AppCompatImageView
 					android:id="@+id/shownote_image"
-					android:layout_width="match_parent"
-					android:layout_height="match_parent"
+					android:layout_width="fill_parent"
+					android:layout_height="fill_parent"
 					android:contentDescription="@string/image_of_your_dedicated_note"
 					android:scaleType="centerCrop"
 					app:imageFromFile="@{showModel.note.image}"
@@ -44,21 +45,42 @@
 					android:layout_width="50dp"
 					android:layout_height="50dp"
 					android:layout_gravity="bottom|end"
-					android:layout_margin="20dp"
+					android:layout_marginEnd="16dp"
+					android:layout_marginBottom="80dp"
 					android:background="@drawable/bg_roundedwhite"
 					android:foreground="@drawable/ripple_circle"
 					android:src="@drawable/ic_edit"/>
 
 			</FrameLayout>
 
+			<androidx.constraintlayout.widget.Guideline
+				android:id="@+id/guideline1"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal"
+				app:layout_constraintGuide_percent="0.60"/>
+
+			<androidx.constraintlayout.widget.Guideline
+				android:id="@+id/guideline2"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal"
+				app:layout_constraintGuide_percent="0.65"/>
+
 			<RelativeLayout
-				android:layout_width="match_parent"
+				android:id="@+id/bgView"
+				android:layout_width="0dp"
 				android:layout_height="0dp"
-				android:layout_weight="0.35"
-				android:paddingStart="20dp"
-				android:paddingTop="20dp"
-				android:paddingEnd="20dp"
-				android:paddingBottom="20dp">
+				android:background="#ffffff"
+				android:layout_marginEnd="16dp"
+				android:layout_marginStart="16dp"
+				android:paddingStart="16dp"
+				android:paddingEnd="16dp"
+				android:paddingTop="16dp"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/guideline1">
 
 				<androidx.appcompat.widget.AppCompatTextView
 					android:id="@+id/shownote_title"
@@ -114,9 +136,21 @@
 					android:textColor="@color/grey_show"
 					android:textSize="16sp"/>
 
+				<androidx.appcompat.widget.AppCompatImageView
+					android:id="@+id/nonethinking"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_marginTop="16dp"
+					android:layout_marginBottom="16dp"
+					android:layout_below="@id/shownote_info"
+					android:src="@drawable/thinking"
+					android:scaleType="fitCenter"
+					android:visibility="gone"
+					app:thinkingvisible="@{showModel.note.content}"/>
+
 			</RelativeLayout>
 
-		</LinearLayout>
+		</androidx.constraintlayout.widget.ConstraintLayout>
 
 	</androidx.core.widget.NestedScrollView>
 

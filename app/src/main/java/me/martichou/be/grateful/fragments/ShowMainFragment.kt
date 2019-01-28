@@ -99,12 +99,13 @@ class ShowMainFragment : Fragment() {
     }
 
     private fun roundShowImage() {
-        binding.shownoteImage.outlineProvider = object : ViewOutlineProvider() {
+        binding.bgView.outlineProvider = object : ViewOutlineProvider() {
             @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
             override fun getOutline(view: View, outline: Outline?) {
-                outline?.setRoundRect(0, (-65F).toInt(), view.width, view.height, 65F)
+                outline?.setRoundRect(0, 0, view.width, view.height, 65F)
             }
         }
-        binding.shownoteImage.clipToOutline = true
+        binding.bgView.clipToOutline = true
     }
+
 }

@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestListener
@@ -64,4 +65,13 @@ fun getNumberFromDate(v: TextView, content: String?) {
 fun getNameOfDay(v: TextView, content: String?) {
     val sdf = SimpleDateFormat("EE", Locale.getDefault())
     v.text = sdf.format(stringToDate(content)).removeSuffix(".")
+}
+
+@BindingAdapter("thinkingvisible")
+fun thinkingvisible(v: AppCompatImageView, content: String?) {
+    if(content.isNullOrEmpty()){
+        v.visibility = View.VISIBLE
+    } else {
+        v.visibility = View.GONE
+    }
 }
