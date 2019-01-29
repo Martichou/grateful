@@ -1,16 +1,33 @@
 package me.martichou.be.grateful.activities
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.motion.widget.MotionLayout
+import androidx.databinding.DataBindingUtil
 import me.martichou.be.grateful.R
+import me.martichou.be.grateful.databinding.MultipleAnimationTestBinding
+import me.martichou.be.grateful.utilities.getNotesRepository
+import me.martichou.be.grateful.utilities.getViewModel
+import me.martichou.be.grateful.viewmodels.ShowViewModel
 
 class TestActivity : AppCompatActivity(), MotionLayout.TransitionListener {
 
-    private var layoutId = 0
+    private var noteId: Long = 0
+    private val viewModel by lazy {
+        getViewModel { ShowViewModel(getNotesRepository(this), noteId) }
+    }
+    private lateinit var mL: MotionLayout
 
-    private val motionLayout by lazy {
-        findViewById<MotionLayout>(R.id.motionLayout)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        noteId = intent.getLongExtra("noteId", 0)
+        DataBindingUtil.setContentView<MultipleAnimationTestBinding>(this, R.layout.multiple_animation_test).apply {
+            setLifecycleOwner(this@TestActivity)
+            showModel = viewModel
+            hdl = this@TestActivity
+            mL = motionLayout
+        }
     }
 
     override fun onTransitionTrigger(p0: MotionLayout?, p1: Int, p2: Boolean, p3: Float) {}
@@ -21,10 +38,9 @@ class TestActivity : AppCompatActivity(), MotionLayout.TransitionListener {
 
     override fun onTransitionCompleted(p0: MotionLayout?, p1: Int) {}
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        layoutId = R.layout.multiple_animation_test
-        setContentView(layoutId)
-        motionLayout.setTransitionListener(this)
+    fun deletethisnote(view: View){
+        viewModel.deleteNote(noteId)
+        finish()
     }
+
 }

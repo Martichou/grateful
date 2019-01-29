@@ -8,11 +8,17 @@
 		android:id="@+id/main_fragment"
 		android:name="me.martichou.be.grateful.fragments.HomeMainFragment"
 		android:label="Grateful"
-		tools:layout="@layout/fragment_homemain">
+	>
 
 		<action
 			android:id="@+id/action_note_list_fragment_to_note_detail_fragment"
 			app:destination="@id/show_fragment"/>
+
+		<action
+			android:id="@+id/action_main_fragment_to_test_activity"
+			app:destination="@id/test_activity" app:enterAnim="@anim/activity_slide_up"
+			app:exitAnim="@anim/zoom_out"
+		/>
 
 	</fragment>
 
@@ -27,5 +33,16 @@
 			app:argType="long"/>
 
 	</fragment>
+
+	<activity
+		android:id="@+id/test_activity"
+		android:name="me.martichou.be.grateful.activities.TestActivity"
+		android:label=" ">
+
+		<argument
+			android:name="noteId"
+			app:argType="long"/>
+
+	</activity>
 
 </navigation>

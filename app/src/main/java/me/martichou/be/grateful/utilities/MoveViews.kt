@@ -30,6 +30,6 @@ class MoveViews : TransitionSet() {
     private fun init() {
         addTransition(ChangeClipBounds())
             .addTransition(ChangeTransform())
-            .addTransition(ChangeBounds())
+            .addTransition(ChangeBounds()).ordering = ORDERING_TOGETHER
     }
 }
