@@ -28,7 +28,7 @@ class NotesAdapter : ListAdapter<Notes, NotesAdapter.ViewHolder>(NotesDiffCallba
     private fun createOnClickListener(): OnNoteItemClickListener {
         return object : OnNoteItemClickListener {
             override fun onNoteItemClick(rootView: View, notes: Notes) {
-                val direction = HomeMainFragmentDirections.ActionMainFragmentToTestActivity(notes.id)
+                val direction = HomeMainFragmentDirections.actionMainFragmentToTestActivity(notes.id)
 
                 DataBindingUtil.getBinding<RecyclerviewHomeitemBinding>(rootView)?.let {
                     val navigatorExtras = FragmentNavigatorExtras(it.showImageNote to notes.id.toString())
