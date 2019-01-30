@@ -69,7 +69,7 @@ fun getNameOfDay(v: TextView, content: String?) {
 
 @BindingAdapter("thinkingvisible")
 fun thinkingvisible(v: AppCompatImageView, content: String?) {
-    if(content.isNullOrEmpty()){
+    if (content.isNullOrEmpty()) {
         v.visibility = View.VISIBLE
     } else {
         v.visibility = View.GONE

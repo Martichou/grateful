@@ -45,7 +45,6 @@ interface NotesDao {
     @Query("UPDATE notes SET image = :image WHERE id = :noteId")
     fun updateImage(image: String, noteId: Long)
 
-
     /**
      * Update note by using a note object
      */

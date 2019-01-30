@@ -11,7 +11,7 @@
 
 		<variable
 			name="hdl"
-			type="me.martichou.be.grateful.activities.TestActivity" />
+			type="me.martichou.be.grateful.activities.TestActivity"/>
 	</data>
 
 	<androidx.constraintlayout.motion.widget.MotionLayout
@@ -71,7 +71,7 @@
 				<com.google.android.material.textfield.TextInputEditText
 					android:id="@+id/titlenoteshow"
 					android:layout_width="match_parent"
-				 	android:layout_height="wrap_content"
+					android:layout_height="wrap_content"
 					android:layout_marginTop="12dp"
 					android:gravity="center"
 					android:background="@null"
@@ -131,7 +131,7 @@
 						app:layout_constraintEnd_toStartOf="@id/deleteimg"
 						app:layout_constraintStart_toStartOf="parent"
 						app:layout_constraintTop_toTopOf="parent"
-						app:srcCompat="@drawable/ic_image_white" />
+						app:srcCompat="@drawable/ic_image_white"/>
 
 					<androidx.appcompat.widget.AppCompatImageView
 						android:id="@+id/deleteimg"
@@ -144,7 +144,7 @@
 						app:layout_constraintEnd_toStartOf="@id/shareImage"
 						app:layout_constraintStart_toEndOf="@id/editimg"
 						app:layout_constraintTop_toTopOf="parent"
-						app:srcCompat="@drawable/ic_delete" />
+						app:srcCompat="@drawable/ic_delete"/>
 
 					<androidx.appcompat.widget.AppCompatImageView
 						android:id="@+id/shareImage"
@@ -156,7 +156,7 @@
 						app:layout_constraintEnd_toEndOf="parent"
 						app:layout_constraintStart_toEndOf="@id/deleteimg"
 						app:layout_constraintTop_toTopOf="parent"
-						app:srcCompat="@drawable/ic_share" />
+						app:srcCompat="@drawable/ic_share"/>
 
 					<androidx.appcompat.widget.AppCompatTextView
 						android:id="@+id/editText"
@@ -171,7 +171,7 @@
 						app:layout_constraintBottom_toBottomOf="parent"
 						app:layout_constraintEnd_toEndOf="@id/editimg"
 						app:layout_constraintStart_toStartOf="@id/editimg"
-						app:layout_constraintTop_toBottomOf="@id/editimg" />
+						app:layout_constraintTop_toBottomOf="@id/editimg"/>
 
 
 					<androidx.appcompat.widget.AppCompatTextView
@@ -187,7 +187,7 @@
 						app:layout_constraintBottom_toBottomOf="parent"
 						app:layout_constraintEnd_toEndOf="@id/deleteimg"
 						app:layout_constraintStart_toStartOf="@id/deleteimg"
-						app:layout_constraintTop_toBottomOf="@id/deleteimg" />
+						app:layout_constraintTop_toBottomOf="@id/deleteimg"/>
 
 
 					<androidx.appcompat.widget.AppCompatTextView
@@ -202,7 +202,7 @@
 						app:layout_constraintBottom_toBottomOf="parent"
 						app:layout_constraintEnd_toEndOf="@id/shareImage"
 						app:layout_constraintStart_toStartOf="@id/shareImage"
-						app:layout_constraintTop_toBottomOf="@id/shareImage" />
+						app:layout_constraintTop_toBottomOf="@id/shareImage"/>
 
 				</androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -20,7 +20,13 @@ import java.io.FileOutputStream
 import java.io.IOException
 import kotlin.system.exitProcess
 
-class CompressImage(context: Context, viewModel: AddViewModel?, edittest: ShowViewModel?, file: File, add_btn: AppCompatImageButton?) {
+class CompressImage(
+    context: Context,
+    viewModel: AddViewModel?,
+    edittest: ShowViewModel?,
+    file: File,
+    add_btn: AppCompatImageButton?
+) {
 
     private val job = SupervisorJob()
 
@@ -38,9 +44,9 @@ class CompressImage(context: Context, viewModel: AddViewModel?, edittest: ShowVi
                     true
                 }
             ) {
-                if(viewModel != null){
+                if (viewModel != null) {
                     imageFile = File(storageDir, viewModel.randomImageName)
-                } else if(edittest != null) {
+                } else if (edittest != null) {
                     imageFile = File(storageDir, edittest.randomImageName)
                 }
 
@@ -65,9 +71,9 @@ class CompressImage(context: Context, viewModel: AddViewModel?, edittest: ShowVi
 
                         edittest?.updateImage()
 
-                        if(edittest != null){
+                        if (edittest != null) {
                             val file2 = File(storageDir, edittest.note.value!!.image)
-                            if(file2.exists()){
+                            if (file2.exists()) {
                                 val deleted = file2.delete()
                                 Timber.d("Deleting 2")
                                 if (!deleted) {

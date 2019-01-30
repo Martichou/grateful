@@ -35,11 +35,12 @@ class TestActivity : AppCompatActivity(), MotionLayout.TransitionListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         noteId = intent.getLongExtra("noteId", 0)
-        binding = DataBindingUtil.setContentView<MultipleAnimationTestBinding>(this, R.layout.multiple_animation_test).apply {
-            setLifecycleOwner(this@TestActivity)
-            showModel = viewModel
-            hdl = this@TestActivity
-        }
+        binding =
+            DataBindingUtil.setContentView<MultipleAnimationTestBinding>(this, R.layout.multiple_animation_test).apply {
+                setLifecycleOwner(this@TestActivity)
+                showModel = viewModel
+                hdl = this@TestActivity
+            }
 
         binding.motionLayout.setTransitionListener(this)
 
@@ -70,7 +71,7 @@ class TestActivity : AppCompatActivity(), MotionLayout.TransitionListener {
         KeyboardVisibilityEvent.setEventListener(
             this
         ) {
-            if(!it){
+            if (!it) {
                 when (this.currentFocus) {
                     binding.titlenoteshow -> {
                         binding.titlenoteshow.clearFocus()
@@ -85,7 +86,7 @@ class TestActivity : AppCompatActivity(), MotionLayout.TransitionListener {
 
     override fun onPause() {
         super.onPause()
-        if(binding.titlenoteshow.text.toString().isEmpty()) {
+        if (binding.titlenoteshow.text.toString().isEmpty()) {
             viewModel.updateTitle(viewModel.backedtitle)
             Timber.d(viewModel.backedtitle)
             makeToast(this, "You cannot use empty title.")
@@ -112,12 +113,12 @@ class TestActivity : AppCompatActivity(), MotionLayout.TransitionListener {
 
     override fun onTransitionCompleted(p0: MotionLayout?, p1: Int) {}
 
-    fun deletethisnote(view: View){
+    fun deletethisnote(view: View) {
         viewModel.deleteNote(noteId)
         finish()
     }
 
-    fun updateImage(view: View){
+    fun updateImage(view: View) {
         CropImage.activity()
             .setGuidelines(CropImageView.Guidelines.ON)
             .setAspectRatio(3, 4)
@@ -139,5 +140,4 @@ class TestActivity : AppCompatActivity(), MotionLayout.TransitionListener {
             }
         }
     }
-
 }

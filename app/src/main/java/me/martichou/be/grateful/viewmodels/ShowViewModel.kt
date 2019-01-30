@@ -11,7 +11,8 @@ import me.martichou.be.grateful.data.repository.NotesRepository
 import me.martichou.be.grateful.utilities.randomNumber
 import timber.log.Timber
 
-class ShowViewModel internal constructor(private val notesRepository: NotesRepository, private val id: Long) : ViewModel() {
+class ShowViewModel internal constructor(private val notesRepository: NotesRepository, private val id: Long) :
+    ViewModel() {
 
     var note = MediatorLiveData<Notes>()
     var backedtitle: String = ""
@@ -47,7 +48,7 @@ class ShowViewModel internal constructor(private val notesRepository: NotesRepos
     }
 
     fun updateTitle(ti: String) = viewModelScope.launch {
-        if(backedtitle.isEmpty()) {
+        if (backedtitle.isEmpty()) {
             backedtitle = ti
             Timber.d("BACKEDTITLE = $backedtitle")
         }
