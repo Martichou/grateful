@@ -8,7 +8,7 @@ buildscript {
         targetSdkVersion = 28
 
         // App dependencies
-        roomVersion = '2.1.0-alpha03'
+        roomVersion = '2.1.0-alpha04'
         glideVersion = '4.8.0'
         kotlinVersion = '1.3.11'
         navigationVersion = '1.0.0-alpha09'
