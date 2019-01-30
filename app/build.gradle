@@ -87,6 +87,7 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjava"
     implementation "com.jakewharton.timber:timber:$rootProject.timber"
     implementation 'com.github.florent37:shapeofview:1.4.6'
+    implementation "net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:2.2.1"
 
     // Testing unit
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$rootProject.espressoVersion"

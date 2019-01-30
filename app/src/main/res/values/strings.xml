@@ -24,7 +24,7 @@
 	<string name="lorem_ipsum">
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet metus nec tellus mollis volutpat. Quisque semper consequat bibendum. Integer semper enim in rhoncus commodo. Ut vitae porttitor nibh, eget posuere velit. Sed sed urna nunc. Sed tempor fringilla iaculis. Morbi faucibus odio sapien, vel rutrum libero pretium ut. Donec quis faucibus leo. Suspendisse consequat ex vel diam maximus, vel vehicula risus suscipit. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce consectetur convallis mi ut tristique. Aliquam laoreet, sem id accumsan fringilla, sem tortor efficitur nunc, sed mattis risus odio vel mi.
 	</string>
-	<string name="edit">Edit</string>
+	<string name="edit">Edit Pic</string>
 	<string name="delte">Delete</string>
 	<string name="share">Share</string>
 </resources>

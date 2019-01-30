@@ -8,10 +8,14 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import me.martichou.be.grateful.data.Notes
 import me.martichou.be.grateful.data.repository.NotesRepository
+import me.martichou.be.grateful.utilities.randomNumber
+import timber.log.Timber
 
-class ShowViewModel internal constructor(private val notesRepository: NotesRepository, id: Long) : ViewModel() {
+class ShowViewModel internal constructor(private val notesRepository: NotesRepository, private val id: Long) : ViewModel() {
 
     var note = MediatorLiveData<Notes>()
+    var backedtitle: String = ""
+    val randomImageName: String = randomNumber(100000000, 999999999)
 
     /**
      * This is the job for all coroutines started by this ViewModel.
@@ -41,6 +45,21 @@ class ShowViewModel internal constructor(private val notesRepository: NotesRepos
     init {
         note.addSource(notesRepository.getThisNote(id), note::setValue)
     }
+
+    fun updateTitle(ti: String) = viewModelScope.launch {
+        if(backedtitle.isEmpty()) {
+            backedtitle = ti
+            Timber.d("BACKEDTITLE = $backedtitle")
+        }
+
+        notesRepository.updateTitle(ti, id)
+    }
+
+    fun updateContent(cont: String) = viewModelScope.launch {
+        notesRepository.updateContent(cont, id)
+    }
+
+    fun updateImage() = viewModelScope.launch { notesRepository.updateImage(randomImageName, id) }
 
     fun deleteNote(noteId: Long) = viewModelScope.launch { notesRepository.deleteById(noteId) }
 }

@@ -65,34 +65,29 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:background="#fff"
-				android:orientation="vertical">
+				android:orientation="vertical"
+				android:gravity="center_horizontal">
 
-				<androidx.appcompat.widget.AppCompatTextView
-					android:id="@+id/titleTextView"
+				<com.google.android.material.textfield.TextInputEditText
+					android:id="@+id/titlenoteshow"
 					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
+				 	android:layout_height="wrap_content"
 					android:layout_marginTop="12dp"
 					android:gravity="center"
+					android:background="@null"
 					android:text="@{showModel.note.title}"
 					android:textColor="#000000"
 					android:textSize="28sp"
-					android:textStyle="bold"/>
-
-				<View
-					android:id="@+id/divider"
-					android:layout_width="match_parent"
-					android:layout_height="0.7dp"
-					android:layout_marginStart="24dp"
-					android:layout_marginTop="10dp"
-					android:layout_marginEnd="24dp"
-					android:background="#cccccc"/>
+					android:textStyle="bold"
+					android:inputType="text"
+					android:maxLines="1"/>
 
 				<LinearLayout
 					android:id="@+id/shownote_info"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:layout_marginTop="10dp"
-					android:gravity="center_horizontal"
+					android:gravity="center"
 					android:orientation="horizontal">
 
 					<androidx.appcompat.widget.AppCompatTextView
@@ -100,7 +95,6 @@
 						android:layout_height="wrap_content"
 						android:drawableStart="@drawable/ic_clock"
 						android:drawablePadding="5dp"
-						android:gravity="center"
 						android:text="@{showModel.note.date}"
 						android:textColor="@color/dark"
 						android:textSize="16sp"/>
@@ -111,7 +105,6 @@
 						android:layout_marginStart="20dp"
 						android:drawableStart="@drawable/ic_location"
 						android:drawablePadding="5dp"
-						android:gravity="center"
 						android:text="@{showModel.note.location}"
 						android:textColor="@color/dark"
 						android:textSize="16sp"
@@ -134,10 +127,11 @@
 						android:layout_marginTop="12dp"
 						android:padding="3dp"
 						android:tint="#ffffff"
+						android:onClick="@{hdl::updateImage}"
 						app:layout_constraintEnd_toStartOf="@id/deleteimg"
 						app:layout_constraintStart_toStartOf="parent"
 						app:layout_constraintTop_toTopOf="parent"
-						app:srcCompat="@drawable/ic_edit" />
+						app:srcCompat="@drawable/ic_image_white" />
 
 					<androidx.appcompat.widget.AppCompatImageView
 						android:id="@+id/deleteimg"
@@ -173,6 +167,7 @@
 						android:text="@string/edit"
 						android:textColor="#ffffff"
 						android:textSize="15sp"
+						android:onClick="@{hdl::updateImage}"
 						app:layout_constraintBottom_toBottomOf="parent"
 						app:layout_constraintEnd_toEndOf="@id/editimg"
 						app:layout_constraintStart_toStartOf="@id/editimg"
@@ -211,16 +206,17 @@
 
 				</androidx.constraintlayout.widget.ConstraintLayout>
 
-				<androidx.appcompat.widget.AppCompatTextView
-					android:id="@+id/contentText"
+				<com.google.android.material.textfield.TextInputEditText
+					android:id="@+id/notecontentshow"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:nestedScrollingEnabled="false"
+					android:background="@null"
 					android:layout_marginTop="8dp"
 					android:layout_marginStart="16dp"
 					android:layout_marginEnd="16dp"
 					android:text="@{showModel.note.content}"
-					android:textSize="17sp"/>
+					android:textSize="17sp"
+					android:inputType="textMultiLine"/>
 
 			</LinearLayout>
 

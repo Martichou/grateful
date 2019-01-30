@@ -37,6 +37,33 @@ class NotesRepository private constructor(private val notesDao: NotesDao) {
     }
 
     /**
+     * Update title by id
+     */
+    suspend fun updateTitle(title: String, noteId: Long){
+        withContext(IO) {
+            notesDao.updateTitle(title, noteId)
+        }
+    }
+
+    /**
+     * Update title by id
+     */
+    suspend fun updateContent(content: String, noteId: Long){
+        withContext(IO) {
+            notesDao.updateContent(content, noteId)
+        }
+    }
+
+    /**
+     * Update title by id
+     */
+    suspend fun updateImage(image: String, noteId: Long){
+        withContext(IO) {
+            notesDao.updateImage(image, noteId)
+        }
+    }
+
+    /**
      * Update a note using Notes
      */
     suspend fun update(notes: Notes) {

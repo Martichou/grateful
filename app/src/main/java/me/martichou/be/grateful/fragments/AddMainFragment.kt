@@ -73,7 +73,7 @@ open class AddMainFragment : BottomSheetDialogFragment() {
                 when (resultCode) {
                     Activity.RESULT_OK -> {
                         val image = File(CropImage.getActivityResult(data).uri.path)
-                        CompressImage(requireContext(), viewModel, image, binding.addPhotoBtnBs)
+                        CompressImage(requireContext(), viewModel, null, image, binding.addPhotoBtnBs)
                     }
                     CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE -> {
                         makeToast(context!!, "We're sorry, there was an error.")
