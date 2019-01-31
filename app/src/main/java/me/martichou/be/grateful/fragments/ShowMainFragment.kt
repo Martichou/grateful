@@ -1,16 +1,13 @@
 package me.martichou.be.grateful.fragments
 
-import android.graphics.Outline
 import android.graphics.drawable.Drawable
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewOutlineProvider
-import androidx.annotation.RequiresApi
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.transition.Fade
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
@@ -22,7 +19,6 @@ import me.martichou.be.grateful.utilities.AnimUtils
 import me.martichou.be.grateful.utilities.MoveViews
 import me.martichou.be.grateful.utilities.getNotesRepository
 import me.martichou.be.grateful.utilities.getViewModel
-import me.martichou.be.grateful.utilities.statusBarTrans
 import me.martichou.be.grateful.viewmodels.ShowViewModel
 
 class ShowMainFragment : Fragment() {
@@ -38,15 +34,19 @@ class ShowMainFragment : Fragment() {
         binding = FragmentShowmainBinding.inflate(inflater, container, false).apply {
             setLifecycleOwner(this@ShowMainFragment)
             showModel = viewModel
-            ViewCompat.setTransitionName(shownoteImage, noteId.toString())
             requestListener = imageListener
+            hdl = this@ShowMainFragment
+            ViewCompat.setTransitionName(shownoteImage, noteId.toString())
         }
 
         postponeEnterTransition() // wait for glide callback
         setupTransition()
-        roundShowImage()
 
         return binding.root
+    }
+
+    fun editaction(view: View){
+        findNavController().navigate(ShowMainFragmentDirections.actionShowFragmentToEditFragment(noteId))
     }
 
     private val imageListener = object : RequestListener<Drawable> {
@@ -59,7 +59,7 @@ class ShowMainFragment : Fragment() {
         ): Boolean {
             startPostponedEnterTransition()
             // Set translucent status bar
-            statusBarTrans(requireActivity())
+            //statusBarTrans(requireActivity())
             return false
         }
 
@@ -71,7 +71,7 @@ class ShowMainFragment : Fragment() {
         ): Boolean {
             startPostponedEnterTransition()
             // Set translucent status bar
-            statusBarTrans(requireActivity())
+            //statusBarTrans(requireActivity())
             return false
         }
     }
@@ -98,13 +98,4 @@ class ShowMainFragment : Fragment() {
         }
     }
 
-    private fun roundShowImage() {
-        binding.bgView.outlineProvider = object : ViewOutlineProvider() {
-            @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-            override fun getOutline(view: View, outline: Outline?) {
-                outline?.setRoundRect(0, 0, view.width, view.height, 65F)
-            }
-        }
-        binding.bgView.clipToOutline = true
-    }
 }

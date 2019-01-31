@@ -87,7 +87,6 @@ class HomeMainFragment : Fragment() {
     }
 
     fun gototest(view: View) {
-        //
     }
 
     private fun setupTransition() {

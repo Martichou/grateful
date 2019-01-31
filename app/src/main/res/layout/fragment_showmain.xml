@@ -5,6 +5,9 @@
 	<data>
 
 		<variable
+			name="hdl"
+			type="me.martichou.be.grateful.fragments.ShowMainFragment"/>
+		<variable
 			name="showModel"
 			type="me.martichou.be.grateful.viewmodels.ShowViewModel"/>
 
@@ -13,144 +16,128 @@
 			type="com.bumptech.glide.request.RequestListener&lt;android.graphics.drawable.Drawable&gt;"/>
 	</data>
 
-	<androidx.core.widget.NestedScrollView
-		android:layout_width="fill_parent"
-		android:layout_height="fill_parent"
-		android:background="#cccccc"
-		android:fillViewport="true">
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
 
-		<androidx.constraintlayout.widget.ConstraintLayout
-			android:layout_width="match_parent"
-			android:layout_height="match_parent">
+		<androidx.constraintlayout.widget.Guideline
+			android:id="@+id/guideline1"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			app:layout_constraintGuide_percent="0.70"/>
 
-			<androidx.constraintlayout.widget.Guideline
-				android:id="@+id/guideline1"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:orientation="horizontal"
-				app:layout_constraintGuide_percent="0.60"/>
+		<FrameLayout
+			android:layout_width="0dp"
+			android:layout_height="0dp"
+			app:layout_constraintBottom_toTopOf="@id/guideline1"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent">
 
-			<androidx.constraintlayout.widget.Guideline
-				android:id="@+id/guideline2"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:orientation="horizontal"
-				app:layout_constraintGuide_percent="0.65"/>
+			<androidx.appcompat.widget.AppCompatImageView
+				android:id="@+id/shownote_image"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:contentDescription="@string/image_of_your_dedicated_note"
+				android:scaleType="centerCrop"
+				app:srcCompat="@drawable/pool"
+				app:imageFromFile="@{showModel.note.image}"
+				app:requestListener="@{requestListener}"/>
 
-			<FrameLayout
-				android:layout_width="0dp"
-				android:layout_height="0dp"
-				app:layout_constraintBottom_toTopOf="@id/guideline2"
-				app:layout_constraintEnd_toEndOf="parent"
-				app:layout_constraintStart_toStartOf="parent"
-				app:layout_constraintTop_toTopOf="parent">
-
-				<androidx.appcompat.widget.AppCompatImageView
-					android:id="@+id/shownote_image"
-					android:layout_width="fill_parent"
-					android:layout_height="fill_parent"
-					android:contentDescription="@string/image_of_your_dedicated_note"
-					android:scaleType="centerCrop"
-					app:imageFromFile="@{showModel.note.image}"
-					app:requestListener="@{requestListener}"/>
-
-				<androidx.appcompat.widget.AppCompatImageButton
-					android:layout_width="50dp"
-					android:layout_height="50dp"
-					android:layout_gravity="bottom|end"
-					android:layout_marginEnd="16dp"
-					android:layout_marginBottom="80dp"
-					android:background="@drawable/bg_roundedwhite"
-					android:foreground="@drawable/ripple_circle"
-					android:src="@drawable/ic_edit"/>
-
-			</FrameLayout>
-
-			<RelativeLayout
-				android:id="@+id/bgView"
-				android:layout_width="0dp"
-				android:layout_height="0dp"
-				android:background="#ffffff"
+			<androidx.appcompat.widget.AppCompatImageButton
+				android:layout_width="50dp"
+				android:layout_height="50dp"
+				android:layout_gravity="bottom|end"
 				android:layout_marginEnd="16dp"
-				android:layout_marginStart="16dp"
-				android:paddingStart="16dp"
-				android:paddingEnd="16dp"
-				android:paddingTop="16dp"
-				app:layout_constraintBottom_toBottomOf="parent"
-				app:layout_constraintEnd_toEndOf="parent"
-				app:layout_constraintStart_toStartOf="parent"
-				app:layout_constraintTop_toBottomOf="@id/guideline1">
+				android:layout_marginBottom="16dp"
+				android:onClick="@{hdl::editaction}"
+				android:background="@drawable/bg_roundedwhite"
+				android:foreground="@drawable/ripple_circle"
+				android:src="@drawable/ic_edit_black"/>
+
+		</FrameLayout>
+
+		<RelativeLayout
+			android:id="@+id/bgView"
+			android:layout_width="0dp"
+			android:layout_height="0dp"
+			android:background="#ffffff"
+			android:layout_marginStart="16dp"
+			android:layout_marginEnd="16dp"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/guideline1">
+
+			<LinearLayout
+				android:id="@+id/shownote_info"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="16dp"
+				android:gravity="center_vertical"
+				android:orientation="horizontal">
 
 				<androidx.appcompat.widget.AppCompatTextView
-					android:id="@+id/shownote_title"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:maxLines="1"
-					android:text="@{showModel.note.title}"
+					android:drawableStart="@drawable/ic_clock"
+					android:drawablePadding="5dp"
+					android:gravity="center"
+					android:text="@{showModel.note.date}"
 					android:textColor="@color/dark"
-					android:textSize="@dimen/main_title"
+					android:textSize="16sp"
 					android:textStyle="bold"/>
 
-				<LinearLayout
-					android:id="@+id/shownote_info"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_below="@id/shownote_title"
-					android:layout_marginTop="20dp"
-					android:gravity="center_vertical"
-					android:orientation="horizontal">
-
-					<androidx.appcompat.widget.AppCompatTextView
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:drawableStart="@drawable/ic_clock"
-						android:drawablePadding="5dp"
-						android:gravity="center"
-						android:text="@{showModel.note.date}"
-						android:textColor="@color/dark"
-						android:textSize="16sp"
-						android:textStyle="bold"/>
-
-					<androidx.appcompat.widget.AppCompatTextView
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:layout_marginStart="20dp"
-						android:drawableStart="@drawable/ic_location"
-						android:drawablePadding="5dp"
-						android:gravity="center"
-						android:text="@{showModel.note.location}"
-						android:textColor="@color/dark"
-						android:textSize="16sp"
-						android:textStyle="bold"
-						app:isGone="@{showModel.note.location}"/>
-
-				</LinearLayout>
-
 				<androidx.appcompat.widget.AppCompatTextView
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:layout_below="@id/shownote_info"
-					android:layout_marginTop="20dp"
-					android:text="@{showModel.note.content}"
-					android:textColor="@color/grey_show"
-					android:textSize="16sp"/>
+					android:layout_marginStart="20dp"
+					android:drawableStart="@drawable/ic_location"
+					android:drawablePadding="5dp"
+					android:gravity="center"
+					android:text="@{showModel.note.location}"
+					android:textColor="@color/dark"
+					android:textSize="16sp"
+					android:textStyle="bold"
+					app:isGone="@{showModel.note.location}"/>
 
-				<androidx.appcompat.widget.AppCompatImageView
-					android:id="@+id/nonethinking"
-					android:layout_width="match_parent"
-					android:layout_height="match_parent"
-					android:layout_marginTop="16dp"
-					android:layout_marginBottom="16dp"
-					android:layout_below="@id/shownote_info"
-					android:src="@drawable/thinking"
-					android:scaleType="fitCenter"
-					android:visibility="gone"
-					app:thinkingvisible="@{showModel.note.content}"/>
+			</LinearLayout>
 
-			</RelativeLayout>
+			<androidx.appcompat.widget.AppCompatTextView
+				android:id="@+id/shownote_title"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="16dp"
+				android:layout_below="@id/shownote_info"
+				android:maxLines="1"
+				android:text="@{showModel.note.title}"
+				android:textColor="@color/dark"
+				android:textSize="@dimen/main_title"
+				android:textStyle="bold"/>
 
-		</androidx.constraintlayout.widget.ConstraintLayout>
+			<androidx.appcompat.widget.AppCompatTextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_below="@id/shownote_title"
+				android:text="@{showModel.note.content}"
+				android:textColor="@color/grey_show"
+				android:textSize="16sp"/>
 
-	</androidx.core.widget.NestedScrollView>
+			<androidx.appcompat.widget.AppCompatImageView
+				android:id="@+id/nonethinking"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="16dp"
+				android:layout_marginBottom="16dp"
+				android:layout_below="@id/shownote_title"
+				android:src="@drawable/thinking"
+				android:scaleType="fitCenter"
+				android:visibility="gone"
+				app:thinkingvisible="@{showModel.note.content}"/>
+
+		</RelativeLayout>
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
