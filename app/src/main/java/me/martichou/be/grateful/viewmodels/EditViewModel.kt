@@ -43,5 +43,18 @@ class EditViewModel internal constructor(private val notesRepository: NotesRepos
         note.addSource(notesRepository.getThisNote(id), note::setValue)
     }
 
+    fun updateNote(title: String, content: String) = viewModelScope.launch {
+        val n = Notes(
+            title = title,
+            content = content,
+            image = note.value!!.image,
+            date = note.value!!.date,
+            dateToSearch = note.value!!.dateToSearch,
+            location = note.value!!.location
+        )
+        n.id = note.value!!.id
+        notesRepository.update(n)
+    }
+
     fun deleteNote() = viewModelScope.launch { notesRepository.deleteById(id) }
 }

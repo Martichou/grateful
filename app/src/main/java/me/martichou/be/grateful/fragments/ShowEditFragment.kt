@@ -39,4 +39,9 @@ class ShowEditFragment : Fragment() {
         findNavController().popBackStack(main_fragment, false)
     }
 
+    fun editthisnote(view: View){
+        viewModel.updateNote(binding.editnoteTitle.text.toString(), binding.editnoteContent.text.toString())
+        findNavController().popBackStack()
+    }
+
 }

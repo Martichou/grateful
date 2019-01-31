@@ -55,7 +55,7 @@
 					android:orientation="vertical">
 
 					<com.google.android.material.textfield.TextInputEditText
-						android:id="@+id/shownote_title"
+						android:id="@+id/editnote_title"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:layout_marginTop="20dp"
@@ -68,6 +68,7 @@
 						android:inputType="text"/>
 
 					<com.google.android.material.textfield.TextInputEditText
+						android:id="@+id/editnote_content"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:layout_marginTop="16dp"
@@ -121,6 +122,7 @@
 			android:foreground="@drawable/ripple_circle_white"
 			android:clickable="true"
 			android:focusable="true"
+			android:onClick="@{hdl::editthisnote}"
 			app:layout_anchorGravity="bottom|center_horizontal"
 			app:layout_anchor="@id/app_bar"
 			app:cardCornerRadius="20dp"
