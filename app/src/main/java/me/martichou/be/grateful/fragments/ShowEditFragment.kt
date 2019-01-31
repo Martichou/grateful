@@ -44,4 +44,8 @@ class ShowEditFragment : Fragment() {
         findNavController().popBackStack()
     }
 
+    fun launchpickimage(view: View){
+        // TODO
+    }
+
 }
