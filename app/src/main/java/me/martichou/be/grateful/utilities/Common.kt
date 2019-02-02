@@ -14,7 +14,6 @@ import androidx.fragment.app.FragmentActivity
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import java.text.SimpleDateFormat
-import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 import kotlin.random.Random
@@ -33,10 +32,7 @@ fun setupPermissions(activity: Activity, context: Context) {
  * @return the time with DAY MONTH N° YEARS
  */
 fun currentTime(): String {
-    val calendar = Calendar.getInstance()
-    val date = calendar.time
-
-    return SimpleDateFormat("EE ha", Locale.getDefault()).format(date.time).toLowerCase().capitalize().replace(".", ",")
+    return SimpleDateFormat("EE ha", Locale.getDefault()).format(Date()).toLowerCase().capitalize().replace(".", ",")
 }
 
 /**
@@ -45,6 +41,14 @@ fun currentTime(): String {
 fun dateToSearch(): String {
     val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
     return sdf.format(Date())
+}
+
+/**
+ * From 02/02/2019 -> 2 Feb 2019
+ */
+fun formatDate(aDate: String?): String? {
+    if (aDate == null) return null
+    return SimpleDateFormat("d MMM y", Locale.getDefault()).format(stringToDate(aDate)).replace(". ", " ")
 }
 
 /**

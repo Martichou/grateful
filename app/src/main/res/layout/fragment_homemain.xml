@@ -66,9 +66,10 @@
 						android:layout_width="match_parent"
 						android:layout_height="match_parent"
 						android:foreground="@drawable/ripple_circle"
-						android:gravity="center"
+						android:paddingStart="16dp"
+						android:paddingEnd="16dp"
+						android:gravity="center_vertical"
 						android:clickable="true"
-						android:orientation="vertical"
 						android:focusable="true"
 						android:onClick="@{hdl::ooccalendar}">
 
@@ -80,15 +81,30 @@
 							android:ellipsize="end"
 							android:maxLines="1"
 							android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
-							android:textColor="@color/black" />
+							android:textColor="@color/black" tools:ignore="RelativeOverlap"/>
+
+						<androidx.appcompat.widget.AppCompatTextView
+							android:id="@+id/dateselected"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_below="@id/title"/>
 
 						<androidx.appcompat.widget.AppCompatImageView
 							android:id="@+id/date_picker_arrow"
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
-							android:layout_alignBottom="@id/title"
-							android:layout_toEndOf="@id/title"
-							app:srcCompat="@drawable/ic_arrow_drop_down" />
+							android:layout_alignBottom="@id/dateselected"
+							android:layout_alignTop="@+id/dateselected"
+							android:layout_toEndOf="@id/dateselected"
+							app:srcCompat="@drawable/ic_arrow_drop_down"/>
+
+						<androidx.appcompat.widget.AppCompatImageView
+							android:id="@+id/gotoday"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_alignParentEnd="true"
+							android:layout_centerVertical="true"
+							app:srcCompat="@drawable/ic_today"/>
 
 					</RelativeLayout>
 

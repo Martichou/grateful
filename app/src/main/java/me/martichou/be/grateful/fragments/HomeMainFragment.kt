@@ -6,22 +6,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.ViewCompat
 import androidx.core.view.doOnLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.Fade
+import com.google.android.material.appbar.AppBarLayout
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.databinding.FragmentHomemainBinding
 import me.martichou.be.grateful.recyclerView.NotesAdapter
 import me.martichou.be.grateful.utilities.AnimUtils
 import me.martichou.be.grateful.utilities.DividerRV
+import me.martichou.be.grateful.utilities.formatDate
 import me.martichou.be.grateful.utilities.getNotesRepository
 import me.martichou.be.grateful.utilities.getViewModel
 import me.martichou.be.grateful.viewmodels.MainViewModel
-
-
 
 class HomeMainFragment : Fragment() {
 
@@ -40,6 +40,7 @@ class HomeMainFragment : Fragment() {
 
         // Prepare recyclerview and bind
         val adapter = NotesAdapter()
+        binding.recentNotesList.layoutManager = LinearLayoutManager(context)
         binding.recentNotesList.setHasFixedSize(true)
         binding.recentNotesList.addItemDecoration(DividerRV())
         binding.recentNotesList.adapter = adapter
@@ -56,6 +57,26 @@ class HomeMainFragment : Fragment() {
 
         // Hide fab on scroll and bottomappbar too
         setupScrollListener()
+
+        // Arrow rotation on offset change
+        binding.appBar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, i ->
+            val totalScrollRange = appBarLayout.totalScrollRange
+            val progress = (-i).toFloat() / totalScrollRange
+            binding.datePickerArrow.rotation = 180 + progress * 180
+            isExpanded = i == 0
+        })
+
+        // Update subtitle while scrolling
+        binding.recentNotesList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                val itemPosition = (binding.recentNotesList.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
+
+                if(binding.dateselected.text != formatDate(viewModel.getNotes().value!![itemPosition].dateToSearch))
+                    binding.dateselected.text = formatDate(viewModel.getNotes().value!![itemPosition].dateToSearch)
+            }
+        })
 
         return binding.root
     }
@@ -85,9 +106,6 @@ class HomeMainFragment : Fragment() {
     }
 
     fun ooccalendar(view: View) {
-        val rotation = (if (isExpanded) 0 else 180).toFloat()
-        ViewCompat.animate(binding.datePickerArrow).rotation(rotation).start()
-
         isExpanded = !isExpanded
         binding.appBar.setExpanded(isExpanded, true)
     }
