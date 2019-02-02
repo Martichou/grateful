@@ -21,6 +21,7 @@ import me.martichou.be.grateful.utilities.DividerRV
 import me.martichou.be.grateful.utilities.formatDate
 import me.martichou.be.grateful.utilities.getNotesRepository
 import me.martichou.be.grateful.utilities.getViewModel
+import me.martichou.be.grateful.utilities.stringToDate
 import me.martichou.be.grateful.viewmodels.MainViewModel
 
 class HomeMainFragment : Fragment() {
@@ -75,6 +76,7 @@ class HomeMainFragment : Fragment() {
 
                 if(binding.dateselected.text != formatDate(viewModel.getNotes().value!![itemPosition].dateToSearch))
                     binding.dateselected.text = formatDate(viewModel.getNotes().value!![itemPosition].dateToSearch)
+                    binding.compactcalendarView.date = stringToDate(viewModel.getNotes().value!![itemPosition].dateToSearch)!!.time
             }
         })
 
