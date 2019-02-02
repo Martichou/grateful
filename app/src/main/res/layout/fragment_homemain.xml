@@ -65,13 +65,11 @@
 						android:id="@+id/date_picker_button"
 						android:layout_width="match_parent"
 						android:layout_height="match_parent"
-						android:foreground="@drawable/ripple_circle"
 						android:paddingStart="16dp"
 						android:paddingEnd="16dp"
 						android:gravity="center_vertical"
 						android:clickable="true"
-						android:focusable="true"
-						android:onClick="@{hdl::ooccalendar}">
+						android:focusable="true">
 
 						<androidx.appcompat.widget.AppCompatTextView
 							android:id="@+id/title"
@@ -81,13 +79,18 @@
 							android:ellipsize="end"
 							android:maxLines="1"
 							android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
-							android:textColor="@color/black" tools:ignore="RelativeOverlap"/>
+							android:textColor="@color/black" tools:ignore="RelativeOverlap"
+							android:onClick="@{hdl::ooccalendar}"
+							android:foreground="@drawable/ripple_circle"/>
 
 						<androidx.appcompat.widget.AppCompatTextView
 							android:id="@+id/dateselected"
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
-							android:layout_below="@id/title"/>
+							android:layout_below="@id/title"
+							android:text="@string/unknown"
+							android:onClick="@{hdl::ooccalendar}"
+							android:foreground="@drawable/ripple_circle"/>
 
 						<androidx.appcompat.widget.AppCompatImageView
 							android:id="@+id/date_picker_arrow"
@@ -96,7 +99,9 @@
 							android:layout_alignBottom="@id/dateselected"
 							android:layout_alignTop="@+id/dateselected"
 							android:layout_toEndOf="@id/dateselected"
-							app:srcCompat="@drawable/ic_arrow_drop_down"/>
+							app:srcCompat="@drawable/ic_arrow_drop_down"
+							android:onClick="@{hdl::ooccalendar}"
+							android:foreground="@drawable/ripple_circle"/>
 
 						<androidx.appcompat.widget.AppCompatImageView
 							android:id="@+id/gotoday"
@@ -104,7 +109,9 @@
 							android:layout_height="wrap_content"
 							android:layout_alignParentEnd="true"
 							android:layout_centerVertical="true"
-							app:srcCompat="@drawable/ic_today"/>
+							app:srcCompat="@drawable/ic_today"
+							android:foreground="@drawable/ripple_circle"
+							android:onClick="@{hdl::gototop}"/>
 
 					</RelativeLayout>
 

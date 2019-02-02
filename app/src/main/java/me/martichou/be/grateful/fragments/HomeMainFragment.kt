@@ -110,6 +110,10 @@ class HomeMainFragment : Fragment() {
         binding.appBar.setExpanded(isExpanded, true)
     }
 
+    fun gototop(view: View) {
+        binding.recentNotesList.smoothScrollToPosition(0)
+    }
+
     private fun setupTransition() {
         exitTransition = Fade().apply {
             interpolator = AnimUtils.getFastOutSlowInInterpolator()
