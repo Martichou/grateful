@@ -58,10 +58,6 @@
 			android:launchMode="singleInstance"
 			android:windowSoftInputMode="adjustPan"/>
 		<activity
-			android:name=".activities.TestActivity"
-			android:launchMode="singleInstance"
-			android:windowSoftInputMode="adjustResize"/>
-		<activity
 			android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
 			android:launchMode="singleInstance"
 			android:theme="@style/Base.Theme.AppCompat"/>

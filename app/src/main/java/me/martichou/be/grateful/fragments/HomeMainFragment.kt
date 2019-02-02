@@ -1,9 +1,12 @@
 package me.martichou.be.grateful.fragments
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.ViewCompat
 import androidx.core.view.doOnLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -16,8 +19,9 @@ import me.martichou.be.grateful.utilities.AnimUtils
 import me.martichou.be.grateful.utilities.DividerRV
 import me.martichou.be.grateful.utilities.getNotesRepository
 import me.martichou.be.grateful.utilities.getViewModel
-import me.martichou.be.grateful.utilities.statusBarWhite
 import me.martichou.be.grateful.viewmodels.MainViewModel
+
+
 
 class HomeMainFragment : Fragment() {
 
@@ -25,6 +29,7 @@ class HomeMainFragment : Fragment() {
         getViewModel { MainViewModel(getNotesRepository(requireContext())) }
     }
     private lateinit var binding: FragmentHomemainBinding
+    private var isExpanded = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentHomemainBinding.inflate(inflater, container, false).apply {
@@ -33,31 +38,24 @@ class HomeMainFragment : Fragment() {
             hdl = this@HomeMainFragment
         }
 
-        // Prepare recyclerview
+        // Prepare recyclerview and bind
         val adapter = NotesAdapter()
         binding.recentNotesList.setHasFixedSize(true)
         binding.recentNotesList.addItemDecoration(DividerRV())
         binding.recentNotesList.adapter = adapter
         subscribeUirecentNotesList(adapter)
 
-        // Wait RecyclerView to layout for detail to list image return animation
+        // Wait RecyclerView layout for detail to list image return animation
         postponeEnterTransition()
         binding.recentNotesList.doOnLayout {
             startPostponedEnterTransition()
-            statusBarWhite(requireActivity())
         }
+
+        // Setup exit animation with a fadeout
         setupTransition()
 
-        binding.recentNotesList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                if (dy > 0 && binding.fab.visibility == View.VISIBLE) {
-                    binding.fab.hide()
-                } else if (dy < 0 && binding.fab.visibility != View.VISIBLE) {
-                    binding.fab.show()
-                }
-            }
-        })
+        // Hide fab on scroll and bottomappbar too
+        setupScrollListener()
 
         return binding.root
     }
@@ -86,7 +84,12 @@ class HomeMainFragment : Fragment() {
         bottomsheetFragment.show(fragmentManager, bottomsheetFragment.tag)
     }
 
-    fun gototest(view: View) {
+    fun ooccalendar(view: View) {
+        val rotation = (if (isExpanded) 0 else 180).toFloat()
+        ViewCompat.animate(binding.datePickerArrow).rotation(rotation).start()
+
+        isExpanded = !isExpanded
+        binding.appBar.setExpanded(isExpanded, true)
     }
 
     private fun setupTransition() {
@@ -94,5 +97,40 @@ class HomeMainFragment : Fragment() {
             interpolator = AnimUtils.getFastOutSlowInInterpolator()
             duration = resources.getInteger(R.integer.config_duration_area_small).toLong()
         }
+    }
+
+    private fun setupScrollListener(){
+        binding.recentNotesList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if (dy > 0 && binding.fab.visibility == View.VISIBLE) {
+                    binding.fab.hide()
+                    binding.bottomAppBar.animate().alpha(0.0f).setListener(object : AnimatorListenerAdapter() {
+                        override fun onAnimationEnd(animation: Animator?) {
+                            super.onAnimationEnd(animation)
+                            binding.bottomAppBar.visibility = View.GONE
+                        }
+
+                        override fun onAnimationStart(animation: Animator?) {
+                            super.onAnimationStart(animation)
+                            binding.shadow.visibility = View.GONE
+                        }
+                    }).duration = 200
+                } else if (dy < 0 && binding.fab.visibility != View.VISIBLE) {
+                    binding.bottomAppBar.animate().alpha(1.0f).setListener(object : AnimatorListenerAdapter() {
+                        override fun onAnimationStart(animation: Animator?) {
+                            super.onAnimationStart(animation)
+                            binding.bottomAppBar.visibility = View.VISIBLE
+                        }
+
+                        override fun onAnimationEnd(animation: Animator?) {
+                            super.onAnimationEnd(animation)
+                            binding.shadow.visibility = View.VISIBLE
+                        }
+                    }).duration = 200
+                    binding.fab.show()
+                }
+            }
+        })
     }
 }
