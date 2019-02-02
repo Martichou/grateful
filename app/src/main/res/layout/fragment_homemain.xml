@@ -135,12 +135,13 @@
 				android:layout_height="match_parent"
 				android:paddingBottom="20dp"
 				android:clipToPadding="false"
+				android:nestedScrollingEnabled="false"
+				app:spanCount="2"
 				app:layout_constraintBottom_toBottomOf="parent"
 				app:layout_constraintEnd_toEndOf="parent"
 				app:layout_constraintStart_toStartOf="parent"
 				app:layout_constraintTop_toTopOf="parent"
-				app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-				android:nestedScrollingEnabled="false"
+				app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
 				tools:listitem="@layout/recyclerview_homeitem"/>
 
 			<ProgressBar

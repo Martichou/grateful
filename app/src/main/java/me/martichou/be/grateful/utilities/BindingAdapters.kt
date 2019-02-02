@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestListener
 import java.io.File
@@ -27,6 +28,19 @@ fun imageFromFile(view: ImageView, imageUrl: String?, listener: RequestListener<
             .listener(listener)
             .into(view)
     }
+}
+
+/**
+ *
+ */
+@BindingAdapter("imageFromFileStaggered", "requestListener", requireAll = false)
+fun imageFromFileStaggered(view: ImageView, imageUrl: String?, listener: RequestListener<Drawable>?){
+    GlideApp.with(view.context)
+        .load(File(view.context.getDir("imgForNotes", Context.MODE_PRIVATE), imageUrl))
+        .override(StaggeredGridLayoutManager.LayoutParams.MATCH_PARENT, com.bumptech.glide.request.target.Target.SIZE_ORIGINAL).fitCenter()
+        .diskCacheStrategy(DiskCacheStrategy.DATA)
+        .listener(listener)
+        .into(view)
 }
 
 /**

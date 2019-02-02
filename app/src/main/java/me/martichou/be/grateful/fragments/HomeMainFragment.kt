@@ -3,14 +3,15 @@ package me.martichou.be.grateful.fragments
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.doOnLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.transition.Fade
 import com.google.android.material.appbar.AppBarLayout
 import me.martichou.be.grateful.R
@@ -23,6 +24,7 @@ import me.martichou.be.grateful.utilities.getNotesRepository
 import me.martichou.be.grateful.utilities.getViewModel
 import me.martichou.be.grateful.utilities.stringToDate
 import me.martichou.be.grateful.viewmodels.MainViewModel
+import timber.log.Timber
 
 class HomeMainFragment : Fragment() {
 
@@ -31,6 +33,7 @@ class HomeMainFragment : Fragment() {
     }
     private lateinit var binding: FragmentHomemainBinding
     private var isExpanded = false
+    private var liststate: Parcelable? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentHomemainBinding.inflate(inflater, container, false).apply {
@@ -41,7 +44,6 @@ class HomeMainFragment : Fragment() {
 
         // Prepare recyclerview and bind
         val adapter = NotesAdapter()
-        binding.recentNotesList.layoutManager = LinearLayoutManager(context)
         binding.recentNotesList.setHasFixedSize(true)
         binding.recentNotesList.addItemDecoration(DividerRV())
         binding.recentNotesList.adapter = adapter
@@ -72,15 +74,35 @@ class HomeMainFragment : Fragment() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
 
-                val itemPosition = (binding.recentNotesList.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
+                val itemPosition = (binding.recentNotesList.layoutManager as StaggeredGridLayoutManager).findFirstCompletelyVisibleItemPositions(null)
 
-                if(binding.dateselected.text != formatDate(viewModel.getNotes().value!![itemPosition].dateToSearch))
-                    binding.dateselected.text = formatDate(viewModel.getNotes().value!![itemPosition].dateToSearch)
-                    binding.compactcalendarView.date = stringToDate(viewModel.getNotes().value!![itemPosition].dateToSearch)!!.time
+                if(binding.dateselected.text != formatDate(viewModel.getNotes().value!![itemPosition[0]].dateToSearch))
+                    binding.dateselected.text = formatDate(viewModel.getNotes().value!![itemPosition[0]].dateToSearch)
+                    binding.compactcalendarView.date = stringToDate(viewModel.getNotes().value!![itemPosition[0]].dateToSearch)!!.time
             }
         })
 
         return binding.root
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        Timber.d("called")
+        super.onSaveInstanceState(outState)
+    }
+
+    // Temp workaround
+    override fun onResume() {
+        super.onResume()
+        if(liststate != null){
+            Timber.d("Called onResume")
+            binding.recentNotesList.layoutManager?.onRestoreInstanceState(liststate)
+        }
+    }
+
+    // Temp workaround
+    override fun onPause() {
+        super.onPause()
+        liststate = binding.recentNotesList.layoutManager?.onSaveInstanceState()
     }
 
     /**

@@ -15,77 +15,50 @@
 		<import type="java.lang.String"/>
 	</data>
 
-	<LinearLayout
+	<androidx.cardview.widget.CardView
 		android:layout_width="match_parent"
-		android:layout_height="185dp"
-		android:baselineAligned="false"
+		android:layout_height="wrap_content"
+		android:foreground="@drawable/ripple_circle"
 		android:onClick="@{v -> clickListener.onNoteItemClick(v, note)}"
-		android:orientation="horizontal">
+		app:cardUseCompatPadding="true"
+		app:cardElevation="5dp"
+		app:cardCornerRadius="10dp">
+
+		<androidx.appcompat.widget.AppCompatImageView
+			android:id="@+id/show_image_note"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:contentDescription="@string/image_of_your_dedicated_note"
+			android:transitionName="@{String.valueOf(note.id)}"
+			android:adjustViewBounds="true"
+			app:imageFromFileStaggered="@{note.image}"/>
 
 		<LinearLayout
-			android:layout_width="40dp"
+			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:orientation="vertical">
+			android:gravity="bottom"
+			android:orientation="vertical"
+			android:padding="20dp">
 
 			<androidx.appcompat.widget.AppCompatTextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:text="@string/_00"
-				android:textColor="@color/black"
-				android:textSize="24sp"
-				app:getNumberFromDate="@{note.dateToSearch}"/>
+				android:maxLines="1"
+				android:text="@{note.title}"
+				android:textColor="@color/white"
+				android:textSize="@dimen/note_title"
+				android:textStyle="bold"/>
 
 			<androidx.appcompat.widget.AppCompatTextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:text="@string/xxx"
-				app:getNameOfDay="@{note.dateToSearch}"/>
+				android:text="@{note.date}"
+				android:textColor="@color/white"
+				android:textSize="@dimen/note_timestamp"
+				app:isGone="@{note.date}"/>
 
 		</LinearLayout>
 
-		<androidx.cardview.widget.CardView
-			android:layout_width="match_parent"
-			android:layout_height="185dp"
-			android:foreground="@drawable/ripple_circle"
-			app:cardCornerRadius="10dp">
-
-			<androidx.appcompat.widget.AppCompatImageView
-				android:id="@+id/show_image_note"
-				android:layout_width="match_parent"
-				android:layout_height="185dp"
-				android:contentDescription="@string/image_of_your_dedicated_note"
-				android:scaleType="centerCrop"
-				android:transitionName="@{String.valueOf(note.id)}"
-				app:imageFromFile="@{note.image}"/>
-
-			<LinearLayout
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				android:gravity="bottom"
-				android:orientation="vertical"
-				android:padding="20dp">
-
-				<androidx.appcompat.widget.AppCompatTextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:maxLines="1"
-					android:text="@{note.title}"
-					android:textColor="@color/white"
-					android:textSize="@dimen/note_title"
-					android:textStyle="bold"/>
-
-				<androidx.appcompat.widget.AppCompatTextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:text="@{note.date}"
-					android:textColor="@color/white"
-					android:textSize="@dimen/note_timestamp"
-					app:isGone="@{note.date}"/>
-
-			</LinearLayout>
-
-		</androidx.cardview.widget.CardView>
-
-	</LinearLayout>
+	</androidx.cardview.widget.CardView>
 
 </layout>
