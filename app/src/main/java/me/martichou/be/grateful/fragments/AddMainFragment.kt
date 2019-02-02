@@ -1,6 +1,6 @@
 package me.martichou.be.grateful.fragments
 
-import android.app.Activity
+import androidx.appcompat.app.AppCompatActivity
 import android.app.Dialog
 import android.content.Intent
 import android.location.Geocoder
@@ -71,7 +71,7 @@ open class AddMainFragment : BottomSheetDialogFragment() {
         when (requestCode) {
             CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE -> {
                 when (resultCode) {
-                    Activity.RESULT_OK -> {
+                    AppCompatActivity.RESULT_OK -> {
                         val image = File(CropImage.getActivityResult(data).uri.path)
                         CompressImage(requireContext(), viewModel, null, image, binding.addPhotoBtnBs)
                     }
@@ -82,7 +82,7 @@ open class AddMainFragment : BottomSheetDialogFragment() {
             }
             placePicker -> {
                 when (resultCode) {
-                    Activity.RESULT_OK -> {
+                    AppCompatActivity.RESULT_OK -> {
                         val selected: String?
                         val place = PlacePicker.getPlace(context, data)
                         selected = try {
@@ -98,7 +98,7 @@ open class AddMainFragment : BottomSheetDialogFragment() {
                         binding.addLocBtnBs.background =
                             ContextCompat.getDrawable(requireContext(), R.drawable.bg_roundaccent)
                     }
-                    Activity.RESULT_CANCELED -> {
+                    AppCompatActivity.RESULT_CANCELED -> {
                         makeToast(context!!, "We're sorry, there was an error.")
                     }
                 }

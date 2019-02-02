@@ -1,7 +1,7 @@
 package me.martichou.be.grateful.utilities
 
 import android.Manifest
-import android.app.Activity
+import androidx.appcompat.app.AppCompatActivity
 import android.content.Context
 import android.content.pm.PackageManager
 import android.view.Window
@@ -21,7 +21,7 @@ import kotlin.random.Random
 /**
  * Called to setup needed permission for Grateful
  */
-fun setupPermissions(activity: Activity, context: Context) {
+fun setupPermissions(activity: AppCompatActivity, context: Context) {
     val permission = ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)
     if (permission != PackageManager.PERMISSION_GRANTED) {
         ActivityCompat.requestPermissions(activity, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 101)
