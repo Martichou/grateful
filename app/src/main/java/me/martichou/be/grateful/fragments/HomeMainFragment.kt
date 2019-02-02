@@ -74,9 +74,12 @@ class HomeMainFragment : Fragment() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
 
-                val itemPosition = (binding.recentNotesList.layoutManager as StaggeredGridLayoutManager).findFirstCompletelyVisibleItemPositions(null)
+                val itemPosition =
+                    (binding.recentNotesList.layoutManager as StaggeredGridLayoutManager).findFirstCompletelyVisibleItemPositions(
+                        null
+                    )
 
-                if(binding.dateselected.text != formatDate(viewModel.getNotes().value!![itemPosition[0]].dateToSearch)) {
+                if (binding.dateselected.text != formatDate(viewModel.getNotes().value!![itemPosition[0]].dateToSearch)) {
                     binding.dateselected.text = formatDate(viewModel.getNotes().value!![itemPosition[0]].dateToSearch)
                     binding.compactcalendarView.date =
                         stringToDate(viewModel.getNotes().value!![itemPosition[0]].dateToSearch)!!.time
@@ -95,7 +98,7 @@ class HomeMainFragment : Fragment() {
     // Temp workaround
     override fun onResume() {
         super.onResume()
-        if(liststate != null){
+        if (liststate != null) {
             Timber.d("Called onResume")
             binding.recentNotesList.layoutManager?.onRestoreInstanceState(liststate)
         }
@@ -147,7 +150,7 @@ class HomeMainFragment : Fragment() {
         }
     }
 
-    private fun setupScrollListener(){
+    private fun setupScrollListener() {
         binding.recentNotesList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)

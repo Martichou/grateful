@@ -47,11 +47,11 @@ class ShowMainFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        if(binding.shownoteImage.transitionName.isNullOrEmpty())
+        if (binding.shownoteImage.transitionName.isNullOrEmpty())
             ViewCompat.setTransitionName(binding.shownoteImage, noteId.toString())
     }
 
-    fun editaction(view: View){
+    fun editaction(view: View) {
         findNavController().navigate(ShowMainFragmentDirections.actionShowFragmentToEditFragment(noteId))
     }
 
@@ -103,5 +103,4 @@ class ShowMainFragment : Fragment() {
             duration = resources.getInteger(R.integer.config_duration_area_small).toLong()
         }
     }
-
 }

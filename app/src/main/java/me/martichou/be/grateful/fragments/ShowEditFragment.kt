@@ -34,18 +34,17 @@ class ShowEditFragment : Fragment() {
         return binding.root
     }
 
-    fun deletethisnote(view: View){
+    fun deletethisnote(view: View) {
         viewModel.deleteNote()
         findNavController().popBackStack(main_fragment, false)
     }
 
-    fun editthisnote(view: View){
+    fun editthisnote(view: View) {
         viewModel.updateNote(binding.editnoteTitle.text.toString(), binding.editnoteContent.text.toString())
         findNavController().popBackStack()
     }
 
-    fun launchpickimage(view: View){
+    fun launchpickimage(view: View) {
         // TODO
     }
-
 }

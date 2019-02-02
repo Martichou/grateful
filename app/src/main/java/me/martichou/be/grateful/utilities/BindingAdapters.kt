@@ -34,10 +34,13 @@ fun imageFromFile(view: ImageView, imageUrl: String?, listener: RequestListener<
  *
  */
 @BindingAdapter("imageFromFileStaggered", "requestListener", requireAll = false)
-fun imageFromFileStaggered(view: ImageView, imageUrl: String?, listener: RequestListener<Drawable>?){
+fun imageFromFileStaggered(view: ImageView, imageUrl: String?, listener: RequestListener<Drawable>?) {
     GlideApp.with(view.context)
         .load(File(view.context.getDir("imgForNotes", Context.MODE_PRIVATE), imageUrl))
-        .override(StaggeredGridLayoutManager.LayoutParams.MATCH_PARENT, com.bumptech.glide.request.target.Target.SIZE_ORIGINAL).fitCenter()
+        .override(
+            StaggeredGridLayoutManager.LayoutParams.MATCH_PARENT,
+            com.bumptech.glide.request.target.Target.SIZE_ORIGINAL
+        ).fitCenter()
         .diskCacheStrategy(DiskCacheStrategy.DATA)
         .listener(listener)
         .into(view)

@@ -1,27 +1,16 @@
 <resources>
 	<string name="app_name" translatable="false">Grateful</string>
-	<string name="app_name_lower" translatable="false">grateful</string>
 	<string name="image_of_your_dedicated_note">Image of your dedicated note.</string>
 	<string name="edit_your_note_button">Edit your note button</string>
 	<string name="delete_the_note_button">Delete the note button</string>
 	<string name="add_details">Add details</string>
 	<string name="new_grateful_card">New grateful card title</string>
 	<string name="save">Save</string>
-	<string name="start_using_the_app_by_writting_your_first_grateful_note">Start using the app by writting your first
-		grateful note !
-	</string>
-	<string name="there_isn_t_any_grateful_note_right_now_create_one">There isn\'t any grateful note right now… Create
-		one.
-	</string>
-	<string name="positivity_everyday">Positivity everyday</string>
-	<string name="what_made_you_smiled_today">What made you smiled today</string>
-	<string name="view_all">View all</string>
-	<string name="gratitude">Gratitude</string>
-	<string name="places">Places</string>
-	<string name="what_made_me_smiled_today">What made me smiled today</string>
-	<string name="_00">00</string>
-	<string name="xxx">xxx</string>
-	<string name="lorem_ipsum">
+	<string name="edit">Edit Pic</string>
+	<string name="delte">Delete</string>
+	<string name="share">Share</string>
+	<string name="unknown">unknown</string>
+	<string name="lorem_ipsum" translatable="false">
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet metus nec tellus mollis volutpat. Quisque
 		semper consequat bibendum. Integer semper enim in rhoncus commodo. Ut vitae porttitor nibh, eget posuere velit.
 		Sed sed urna nunc. Sed tempor fringilla iaculis. Morbi faucibus odio sapien, vel rutrum libero pretium ut. Donec
@@ -29,8 +18,4 @@
 		penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce consectetur convallis mi ut tristique.
 		Aliquam laoreet, sem id accumsan fringilla, sem tortor efficitur nunc, sed mattis risus odio vel mi.
 	</string>
-	<string name="edit">Edit Pic</string>
-	<string name="delte">Delete</string>
-	<string name="share">Share</string>
-	<string name="unknown">unknown</string>
 </resources>
