@@ -36,20 +36,20 @@ buildscript {
         google()
         jcenter()
         maven { url "http://dl.bintray.com/kotlin/kotlin-eap" }
-        maven { url "https://maven.fabric.io/public" }
+        //maven { url "https://maven.fabric.io/public" }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.1'
+        classpath 'com.android.tools.build:gradle:3.3.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "android.arch.navigation:navigation-safe-args-gradle-plugin:$navigationVersion"
         classpath 'com.google.firebase:firebase-plugins:1.1.5'
         classpath 'com.google.gms:google-services:4.2.0'
-        classpath 'io.fabric.tools:gradle:1.25.4'
+        //classpath 'io.fabric.tools:gradle:1.25.4'
     }
 }
 
 plugins {
-    id "com.diffplug.gradle.spotless" version "3.13.0"
+    id "com.diffplug.gradle.spotless" version "3.17.0"
 }
 
 allprojects {

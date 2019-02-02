@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'androidx.navigation.safeargs'
 apply plugin: 'com.google.firebase.firebase-perf'
-apply plugin: 'io.fabric'
+//apply plugin: 'io.fabric'
 
 final def keystorePropertiesFile = rootProject.file("keystore.properties")
 
@@ -75,7 +75,7 @@ dependencies {
 
     // Firebase needed
     implementation "com.google.firebase:firebase-core:$rootProject.firebase"
-    implementation "com.crashlytics.sdk.android:crashlytics:$rootProject.crashlytics"
+    //implementation "com.crashlytics.sdk.android:crashlytics:$rootProject.crashlytics"
     implementation 'com.google.firebase:firebase-perf:16.2.3'
 
     // Maps

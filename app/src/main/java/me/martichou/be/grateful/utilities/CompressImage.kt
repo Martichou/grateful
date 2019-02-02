@@ -47,7 +47,7 @@ class CompressImage(
                 if (viewModel != null) {
                     imageFile = File(storageDir, viewModel.randomImageName)
                 } else if (edittest != null) {
-                    //imageFile = File(storageDir, edittest.randomImageName)
+                    // imageFile = File(storageDir, edittest.randomImageName)
                 }
 
                 if (imageFile.exists()) {
@@ -69,7 +69,7 @@ class CompressImage(
                     try {
                         withContext(IO) { fos.close() }
 
-                        //edittest?.updateImage()
+                        // edittest?.updateImage()
 
                         if (edittest != null) {
                             val file2 = File(storageDir, edittest.note.value!!.image)

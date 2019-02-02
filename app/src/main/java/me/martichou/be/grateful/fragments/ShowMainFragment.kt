@@ -65,7 +65,7 @@ class ShowMainFragment : Fragment() {
         ): Boolean {
             startPostponedEnterTransition()
             // Set translucent status bar
-            //statusBarTrans(requireActivity())
+            // statusBarTrans(requireActivity())
             return false
         }
 
@@ -77,7 +77,7 @@ class ShowMainFragment : Fragment() {
         ): Boolean {
             startPostponedEnterTransition()
             // Set translucent status bar
-            //statusBarTrans(requireActivity())
+            // statusBarTrans(requireActivity())
             return false
         }
     }
