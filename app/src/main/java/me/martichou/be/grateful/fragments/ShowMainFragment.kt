@@ -45,6 +45,12 @@ class ShowMainFragment : Fragment() {
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        if(binding.shownoteImage.transitionName.isNullOrEmpty())
+            ViewCompat.setTransitionName(binding.shownoteImage, noteId.toString())
+    }
+
     fun editaction(view: View){
         findNavController().navigate(ShowMainFragmentDirections.actionShowFragmentToEditFragment(noteId))
     }
