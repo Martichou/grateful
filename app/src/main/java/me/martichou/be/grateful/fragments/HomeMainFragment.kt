@@ -76,9 +76,11 @@ class HomeMainFragment : Fragment() {
 
                 val itemPosition = (binding.recentNotesList.layoutManager as StaggeredGridLayoutManager).findFirstCompletelyVisibleItemPositions(null)
 
-                if(binding.dateselected.text != formatDate(viewModel.getNotes().value!![itemPosition[0]].dateToSearch))
+                if(binding.dateselected.text != formatDate(viewModel.getNotes().value!![itemPosition[0]].dateToSearch)) {
                     binding.dateselected.text = formatDate(viewModel.getNotes().value!![itemPosition[0]].dateToSearch)
-                    binding.compactcalendarView.date = stringToDate(viewModel.getNotes().value!![itemPosition[0]].dateToSearch)!!.time
+                    binding.compactcalendarView.date =
+                        stringToDate(viewModel.getNotes().value!![itemPosition[0]].dateToSearch)!!.time
+                }
             }
         })
 
