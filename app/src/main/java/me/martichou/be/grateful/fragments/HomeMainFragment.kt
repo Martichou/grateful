@@ -30,6 +30,7 @@ class HomeMainFragment : Fragment() {
     private lateinit var binding: FragmentHomemainBinding
     private var isExpanded = false
     private var liststate: Parcelable? = null
+    private val adapter = NotesAdapter()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentHomemainBinding.inflate(inflater, container, false).apply {
@@ -39,7 +40,6 @@ class HomeMainFragment : Fragment() {
         }
 
         // Prepare recyclerview and bind
-        val adapter = NotesAdapter()
         binding.recentNotesList.setHasFixedSize(true)
         binding.recentNotesList.addItemDecoration(DividerRV())
         binding.recentNotesList.adapter = adapter
@@ -50,6 +50,8 @@ class HomeMainFragment : Fragment() {
         binding.recentNotesList.doOnLayout {
             startPostponedEnterTransition()
         }
+
+        // Set back statusbar to white and dark icon
         statusBarWhite(requireActivity())
 
         // Setup exit animation with a fadeout
@@ -57,6 +59,9 @@ class HomeMainFragment : Fragment() {
 
         // Hide fab on scroll and bottomappbar too
         setupScrollListener()
+
+        // Listen for bottomappbar's menu click
+        setupBottomAppBarMenuListener()
 
         // Arrow rotation on offset change
         binding.appBar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, i ->
@@ -148,6 +153,12 @@ class HomeMainFragment : Fragment() {
             makeToast(requireContext(), "Already showing today's gratitude")
         }else {
             binding.recentNotesList.smoothScrollToPosition(0)
+        }
+    }
+
+    private fun setupBottomAppBarMenuListener() {
+        binding.bottomAppBar.setNavigationOnClickListener {
+            makeToast(requireContext(), "Not yet implemented")
         }
     }
 
