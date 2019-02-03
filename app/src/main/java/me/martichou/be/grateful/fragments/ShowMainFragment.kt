@@ -23,6 +23,7 @@ import me.martichou.be.grateful.viewmodels.ShowViewModel
 
 class ShowMainFragment : Fragment(), MotionLayout.TransitionListener {
 
+    // TODO - only show thinking when no content
     override fun onTransitionTrigger(p0: MotionLayout?, p1: Int, p2: Boolean, p3: Float) {}
     override fun onTransitionStarted(p0: MotionLayout?, p1: Int, p2: Int) {}
     override fun onTransitionCompleted(p0: MotionLayout?, p1: Int) {}

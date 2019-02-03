@@ -10,6 +10,7 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestListener
+import timber.log.Timber
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Locale
