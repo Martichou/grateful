@@ -24,6 +24,7 @@ import me.martichou.be.grateful.utilities.getViewModel
 import me.martichou.be.grateful.utilities.imageCropper
 import me.martichou.be.grateful.utilities.makeToast
 import me.martichou.be.grateful.viewmodels.AddViewModel
+import timber.log.Timber
 import java.io.File
 import java.io.IOException
 
@@ -85,14 +86,15 @@ open class AddMainFragment : BottomSheetDialogFragment() {
                     AppCompatActivity.RESULT_OK -> {
                         val selected: String?
                         val place = PlacePicker.getPlace(context, data)
+                        Timber.d("Place $place")
                         selected = try {
                             Geocoder(context).getFromLocation(
                                 place.latLng.latitude,
                                 place.latLng.longitude,
                                 1
                             )[0].locality
-                        } catch (e: IOException) {
-                            place.name.toString()
+                        } catch (e: IndexOutOfBoundsException) {
+                            "unknown"
                         }
                         viewModel.placeCity = selected
                         binding.addLocBtnBs.background =
