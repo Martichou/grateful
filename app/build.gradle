@@ -6,16 +6,14 @@ apply plugin: 'androidx.navigation.safeargs'
 apply plugin: 'com.google.firebase.firebase-perf'
 //apply plugin: 'io.fabric'
 
-final def keystorePropertiesFile = rootProject.file("keystore.properties")
-
 android {
     compileSdkVersion rootProject.compileSdkVersion
     dataBinding {
         enabled = true
     }
     defaultConfig {
-        versionCode 11
-        versionName "K"
+        versionCode 12
+        versionName "L-prerelease"
         applicationId "me.martichou.be.grateful"
         vectorDrawables.useSupportLibrary true
         minSdkVersion rootProject.minSdkVersion
@@ -24,15 +22,14 @@ android {
     }
     buildTypes {
         release {
-            if (keystorePropertiesFile.exists()) signingConfig signingConfigs.release
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
             versionNameSuffix "-debug"
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'),
-                    'proguard-rules.pro'
+            minifyEnabled true  // shrink
+            useProguard false   // don't obfuscate
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
