@@ -17,12 +17,7 @@ import com.google.android.material.appbar.AppBarLayout
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.databinding.FragmentHomemainBinding
 import me.martichou.be.grateful.recyclerView.NotesAdapter
-import me.martichou.be.grateful.utilities.AnimUtils
-import me.martichou.be.grateful.utilities.DividerRV
-import me.martichou.be.grateful.utilities.formatDate
-import me.martichou.be.grateful.utilities.getNotesRepository
-import me.martichou.be.grateful.utilities.getViewModel
-import me.martichou.be.grateful.utilities.stringToDate
+import me.martichou.be.grateful.utilities.*
 import me.martichou.be.grateful.viewmodels.MainViewModel
 import timber.log.Timber
 
@@ -54,6 +49,7 @@ class HomeMainFragment : Fragment() {
         binding.recentNotesList.doOnLayout {
             startPostponedEnterTransition()
         }
+        statusBarWhite(requireActivity())
 
         // Setup exit animation with a fadeout
         setupTransition()
