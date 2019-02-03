@@ -94,6 +94,7 @@
 							android:layout_height="wrap_content"
 							android:layout_marginTop="16dp"
 							android:scaleType="centerCrop"
+							android:foreground="#4c696969"
 							app:srcCompat="@drawable/pool"
 							app:imageFromFile="@{editModel.note.image}"/>
 
