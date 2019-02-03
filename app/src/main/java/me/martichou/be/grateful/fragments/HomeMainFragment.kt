@@ -71,10 +71,7 @@ class HomeMainFragment : Fragment() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
 
-                val itemPosition =
-                    (binding.recentNotesList.layoutManager as StaggeredGridLayoutManager).findFirstCompletelyVisibleItemPositions(
-                        null
-                    )
+                val itemPosition = (binding.recentNotesList.layoutManager as StaggeredGridLayoutManager).findFirstCompletelyVisibleItemPositions(null)
 
                 try {
                     if (binding.dateselected.text != formatDate(viewModel.getNotes().value!![itemPosition[0]].dateToSearch)) {
@@ -147,7 +144,11 @@ class HomeMainFragment : Fragment() {
     }
 
     fun gototop(view: View) {
-        binding.recentNotesList.smoothScrollToPosition(0)
+        if(0 == (binding.recentNotesList.layoutManager as StaggeredGridLayoutManager).findFirstCompletelyVisibleItemPositions(null)[0]){
+            makeToast(requireContext(), "Already showing today's gratitude")
+        }else {
+            binding.recentNotesList.smoothScrollToPosition(0)
+        }
     }
 
     private fun setupTransition() {
