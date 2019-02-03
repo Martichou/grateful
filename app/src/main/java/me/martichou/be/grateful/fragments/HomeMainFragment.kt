@@ -76,18 +76,22 @@ class HomeMainFragment : Fragment() {
                         null
                     )
 
-                if (binding.dateselected.text != formatDate(viewModel.getNotes().value!![itemPosition[0]].dateToSearch)) {
+                try {
+                    if (binding.dateselected.text != formatDate(viewModel.getNotes().value!![itemPosition[0]].dateToSearch)) {
 
-                    val inAnim = AnimationUtils.loadAnimation(context, R.anim.slide_up)
-                    val outAnim = AnimationUtils.loadAnimation(context, R.anim.slide_down)
+                        val inAnim = AnimationUtils.loadAnimation(context, R.anim.slide_up)
+                        val outAnim = AnimationUtils.loadAnimation(context, R.anim.slide_down)
 
-                    binding.dateselected.startAnimation(outAnim)
+                        binding.dateselected.startAnimation(outAnim)
 
-                    binding.dateselected.text = formatDate(viewModel.getNotes().value!![itemPosition[0]].dateToSearch)
+                        binding.dateselected.text = formatDate(viewModel.getNotes().value!![itemPosition[0]].dateToSearch)
 
-                    binding.dateselected.startAnimation(inAnim)
+                        binding.dateselected.startAnimation(inAnim)
 
-                    binding.compactcalendarView.date = stringToDate(viewModel.getNotes().value!![itemPosition[0]].dateToSearch)!!.time
+                        binding.compactcalendarView.date = stringToDate(viewModel.getNotes().value!![itemPosition[0]].dateToSearch)!!.time
+                    }
+                }catch (e: IndexOutOfBoundsException){
+                    Timber.d("FATAL ERROR, INDEX OUT OF BOUND $e")
                 }
             }
         })
