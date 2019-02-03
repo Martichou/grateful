@@ -18,7 +18,7 @@ buildscript {
         lifecycleVersion = '2.0.0'
         constraintLayoutVersion = '2.0.0-alpha3'
         coroutinesVersion = '1.0.1'
-        firebase = '16.0.6'
+        firebase = '16.0.7'
         crashlytics = '2.9.8'
         place = '16.0.0'
         imgcropper = '2.7.0'
