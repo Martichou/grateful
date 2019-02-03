@@ -7,6 +7,7 @@ import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.core.view.doOnLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -76,9 +77,17 @@ class HomeMainFragment : Fragment() {
                     )
 
                 if (binding.dateselected.text != formatDate(viewModel.getNotes().value!![itemPosition[0]].dateToSearch)) {
+
+                    val inAnim = AnimationUtils.loadAnimation(context, R.anim.slide_up)
+                    val outAnim = AnimationUtils.loadAnimation(context, R.anim.slide_down)
+
+                    binding.dateselected.startAnimation(outAnim)
+
                     binding.dateselected.text = formatDate(viewModel.getNotes().value!![itemPosition[0]].dateToSearch)
-                    binding.compactcalendarView.date =
-                        stringToDate(viewModel.getNotes().value!![itemPosition[0]].dateToSearch)!!.time
+
+                    binding.dateselected.startAnimation(inAnim)
+
+                    binding.compactcalendarView.date = stringToDate(viewModel.getNotes().value!![itemPosition[0]].dateToSearch)!!.time
                 }
             }
         })
@@ -86,16 +95,14 @@ class HomeMainFragment : Fragment() {
         return binding.root
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        Timber.d("called")
-        super.onSaveInstanceState(outState)
-    }
-
     // Temp workaround
     override fun onResume() {
         super.onResume()
         if (liststate != null) {
             Timber.d("Called onResume")
+            // TODO - Fix sharedelement transition due to something idk
+            // TODO - If the note wasn't showed in the first screen (when user hasn't scrolled yet)
+            // TODO - then the sharedelementanimation is glitched.
             binding.recentNotesList.layoutManager?.onRestoreInstanceState(liststate)
         }
     }

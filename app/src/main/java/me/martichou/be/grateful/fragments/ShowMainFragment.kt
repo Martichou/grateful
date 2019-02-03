@@ -1,10 +1,12 @@
 package me.martichou.be.grateful.fragments
 
 import android.graphics.drawable.Drawable
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -13,12 +15,18 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import kotlinx.android.synthetic.main.fragment_showmain.*
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.databinding.FragmentShowmainBinding
 import me.martichou.be.grateful.utilities.*
 import me.martichou.be.grateful.viewmodels.ShowViewModel
 
-class ShowMainFragment : Fragment() {
+class ShowMainFragment : Fragment(), MotionLayout.TransitionListener {
+
+    override fun onTransitionTrigger(p0: MotionLayout?, p1: Int, p2: Boolean, p3: Float) {}
+    override fun onTransitionStarted(p0: MotionLayout?, p1: Int, p2: Int) {}
+    override fun onTransitionCompleted(p0: MotionLayout?, p1: Int) {}
+    override fun onTransitionChange(p0: MotionLayout?, p1: Int, p2: Int, progress: Float) {}
 
     private var noteId: Long = 0
     private val viewModel by lazy {
@@ -33,7 +41,8 @@ class ShowMainFragment : Fragment() {
             showModel = viewModel
             requestListener = imageListener
             hdl = this@ShowMainFragment
-            ViewCompat.setTransitionName(shownoteImage, noteId.toString())
+            motionLayout.setTransitionListener(this@ShowMainFragment)
+            ViewCompat.setTransitionName(coverImage, noteId.toString())
         }
 
         postponeEnterTransition() // wait for glide callback
@@ -44,8 +53,8 @@ class ShowMainFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        if (binding.shownoteImage.transitionName.isNullOrEmpty())
-            ViewCompat.setTransitionName(binding.shownoteImage, noteId.toString())
+        if (binding.coverImage.transitionName.isNullOrEmpty())
+            ViewCompat.setTransitionName(binding.coverImage, noteId.toString())
     }
 
     fun editaction(view: View) {

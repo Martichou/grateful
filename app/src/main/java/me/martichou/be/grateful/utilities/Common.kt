@@ -4,6 +4,8 @@ import android.Manifest
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Context
 import android.content.pm.PackageManager
+import android.os.Build
+import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Toast
@@ -88,7 +90,10 @@ fun imageCropper(context: Context, fragment: Fragment) {
  */
 fun statusBarTrans(activity: FragmentActivity) {
     val window = activity.window
-    window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+    window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        window.decorView.systemUiVisibility = 0
+    }
     window.clearFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
 }
 
@@ -97,6 +102,9 @@ fun statusBarTrans(activity: FragmentActivity) {
  */
 fun statusBarWhite(activity: FragmentActivity) {
     val window: Window = activity.window
-    window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+    window.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+    }
     window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
 }
