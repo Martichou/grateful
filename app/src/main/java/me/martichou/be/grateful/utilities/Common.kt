@@ -1,14 +1,13 @@
 package me.martichou.be.grateful.utilities
 
 import android.Manifest
-import androidx.appcompat.app.AppCompatActivity
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
 import android.view.View
-import android.view.Window
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -16,8 +15,7 @@ import androidx.fragment.app.FragmentActivity
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
+import java.util.*
 import kotlin.random.Random
 
 /**
@@ -81,8 +79,8 @@ fun makeToast(c: Context, s: String) {
  */
 fun imageCropper(context: Context, fragment: Fragment) {
     CropImage.activity()
-        .setGuidelines(CropImageView.Guidelines.ON)
-        .start(context, fragment)
+            .setGuidelines(CropImageView.Guidelines.ON)
+            .start(context, fragment)
 }
 
 /**

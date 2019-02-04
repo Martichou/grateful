@@ -1,7 +1,6 @@
 package me.martichou.be.grateful.fragments
 
 import android.graphics.drawable.Drawable
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +14,6 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
-import kotlinx.android.synthetic.main.fragment_showmain.*
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.databinding.FragmentShowmainBinding
 import me.martichou.be.grateful.utilities.*
@@ -25,6 +23,7 @@ class ShowMainFragment : Fragment(), MotionLayout.TransitionListener {
 
     // TODO - only show thinking when no content
     override fun onTransitionTrigger(p0: MotionLayout?, p1: Int, p2: Boolean, p3: Float) {}
+
     override fun onTransitionStarted(p0: MotionLayout?, p1: Int, p2: Int) {}
     override fun onTransitionCompleted(p0: MotionLayout?, p1: Int) {}
     override fun onTransitionChange(p0: MotionLayout?, p1: Int, p2: Int, progress: Float) {}
@@ -64,11 +63,11 @@ class ShowMainFragment : Fragment(), MotionLayout.TransitionListener {
 
     private val imageListener = object : RequestListener<Drawable> {
         override fun onResourceReady(
-            resource: Drawable?,
-            model: Any?,
-            target: Target<Drawable>?,
-            dataSource: DataSource?,
-            isFirstResource: Boolean
+                resource: Drawable?,
+                model: Any?,
+                target: Target<Drawable>?,
+                dataSource: DataSource?,
+                isFirstResource: Boolean
         ): Boolean {
             startPostponedEnterTransition()
             // Set translucent status bar
@@ -77,10 +76,10 @@ class ShowMainFragment : Fragment(), MotionLayout.TransitionListener {
         }
 
         override fun onLoadFailed(
-            e: GlideException?,
-            model: Any?,
-            target: com.bumptech.glide.request.target.Target<Drawable>?,
-            isFirstResource: Boolean
+                e: GlideException?,
+                model: Any?,
+                target: com.bumptech.glide.request.target.Target<Drawable>?,
+                isFirstResource: Boolean
         ): Boolean {
             startPostponedEnterTransition()
             // Set translucent status bar

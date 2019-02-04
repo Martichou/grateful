@@ -10,7 +10,7 @@ import me.martichou.be.grateful.data.repository.NotesRepository
 import kotlin.coroutines.CoroutineContext
 
 class EditViewModel internal constructor(private val notesRepository: NotesRepository, private val id: Long) :
-    ViewModel(), CoroutineScope {
+        ViewModel(), CoroutineScope {
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.IO
@@ -26,15 +26,16 @@ class EditViewModel internal constructor(private val notesRepository: NotesRepos
 
     fun updateNote(title: String, content: String) {
         val n = Notes(
-            title = title,
-            content = content,
-            image = note.value!!.image,
-            date = note.value!!.date,
-            dateToSearch = note.value!!.dateToSearch,
-            location = note.value!!.location
+                title = title,
+                content = content,
+                image = note.value!!.image,
+                date = note.value!!.date,
+                dateToSearch = note.value!!.dateToSearch,
+                location = note.value!!.location
         ); n.id = note.value!!.id
         launch { notesRepository.update(n) }
     }
+
     fun deleteNote() {
         launch { notesRepository.deleteById(id) }
     }

@@ -7,7 +7,7 @@ import me.martichou.be.grateful.data.Notes
 import me.martichou.be.grateful.data.NotesDao
 import kotlin.coroutines.CoroutineContext
 
-class NotesRepository private constructor(private val notesDao: NotesDao): CoroutineScope {
+class NotesRepository private constructor(private val notesDao: NotesDao) : CoroutineScope {
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.IO

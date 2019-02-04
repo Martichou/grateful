@@ -153,7 +153,7 @@ class HomeMainFragment : Fragment() {
         }
     }
 
-    private fun setupOffsetListener(){
+    private fun setupOffsetListener() {
         binding.appBar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, i ->
             val totalScrollRange = appBarLayout.totalScrollRange
             val progress = (-i).toFloat() / totalScrollRange
@@ -162,7 +162,7 @@ class HomeMainFragment : Fragment() {
         })
     }
 
-    private fun setupScrollRvListener(){
+    private fun setupScrollRvListener() {
         binding.recentNotesList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
@@ -183,7 +183,7 @@ class HomeMainFragment : Fragment() {
 
                         binding.compactcalendarView.date = stringToDate(viewModel.getNotes().value!![itemPosition[0]].dateToSearch)!!.time
                     }
-                }catch (e: IndexOutOfBoundsException){
+                } catch (e: IndexOutOfBoundsException) {
                     Timber.d("FATAL ERROR, INDEX OUT OF BOUND $e")
                 }
             }

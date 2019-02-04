@@ -6,7 +6,7 @@ import me.martichou.be.grateful.data.Notes
 import me.martichou.be.grateful.data.repository.NotesRepository
 
 class ShowViewModel internal constructor(notesRepository: NotesRepository, id: Long) :
-    ViewModel() {
+        ViewModel() {
 
     var note = MediatorLiveData<Notes>()
 

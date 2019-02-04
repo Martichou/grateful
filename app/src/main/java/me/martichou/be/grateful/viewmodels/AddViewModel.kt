@@ -27,17 +27,25 @@ class AddViewModel internal constructor(private val notesRepository: NotesReposi
     /**
      * Change the boolean value
      */
-    fun changeIsWorking(b: Boolean) { isWorking = b }
+    fun changeIsWorking(b: Boolean) {
+        isWorking = b
+    }
 
     /**
      * Change the boolean value
      */
-    fun changeHasPhoto(b: Boolean) { hasPhoto = b }
+    fun changeHasPhoto(b: Boolean) {
+        hasPhoto = b
+    }
 
     /**
      * Return the photo name if there is one else, blank
      */
     fun locOrNot(): String {
-        return if (placeCity.isNullOrBlank()) { "" } else { placeCity.toString() }
+        return if (placeCity.isNullOrBlank()) {
+            ""
+        } else {
+            placeCity.toString()
+        }
     }
 }

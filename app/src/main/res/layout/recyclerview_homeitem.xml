@@ -1,64 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-		xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-	<data>
+    <data>
 
-		<variable
-			name="clickListener"
-			type="me.martichou.be.grateful.recyclerView.NotesAdapter.OnNoteItemClickListener"/>
+        <variable
+            name="clickListener"
+            type="me.martichou.be.grateful.recyclerView.NotesAdapter.OnNoteItemClickListener" />
 
-		<variable
-			name="note"
-			type="me.martichou.be.grateful.data.Notes"/>
+        <variable
+            name="note"
+            type="me.martichou.be.grateful.data.Notes" />
 
-		<import type="java.lang.String"/>
-	</data>
+        <import type="java.lang.String" />
+    </data>
 
-	<androidx.cardview.widget.CardView
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:foreground="@drawable/ripple_circle"
-		android:onClick="@{v -> clickListener.onNoteItemClick(v, note)}"
-		app:cardUseCompatPadding="true"
-		app:cardElevation="5dp"
-		app:cardCornerRadius="10dp">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="@drawable/ripple_circle"
+        android:onClick="@{v -> clickListener.onNoteItemClick(v, note)}"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="true">
 
-		<androidx.appcompat.widget.AppCompatImageView
-			android:id="@+id/show_image_note"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:contentDescription="@string/image_of_your_dedicated_note"
-			android:transitionName="@{String.valueOf(note.id)}"
-			android:adjustViewBounds="true"
-			app:imageFromFileStaggered="@{note.image}"/>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/show_image_note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/image_of_your_dedicated_note"
+            android:transitionName="@{String.valueOf(note.id)}"
+            app:imageFromFileStaggered="@{note.image}" />
 
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:gravity="bottom"
-			android:orientation="vertical"
-			android:padding="20dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:orientation="vertical"
+            android:padding="20dp">
 
-			<androidx.appcompat.widget.AppCompatTextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:maxLines="1"
-				android:text="@{note.title}"
-				android:textColor="@color/white"
-				android:textSize="@dimen/note_title"
-				android:textStyle="bold"/>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:text="@{note.title}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/note_title"
+                android:textStyle="bold" />
 
-			<androidx.appcompat.widget.AppCompatTextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="@{note.date}"
-				android:textColor="@color/white"
-				android:textSize="@dimen/note_timestamp"
-				app:isGone="@{note.date}"/>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{note.date}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/note_timestamp"
+                app:isGone="@{note.date}" />
 
-		</LinearLayout>
+        </LinearLayout>
 
-	</androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 </layout>

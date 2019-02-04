@@ -1,16 +1,16 @@
 <resources>
-	<string name="app_name" translatable="false">Grateful</string>
-	<string name="image_of_your_dedicated_note">Image of your dedicated note.</string>
-	<string name="edit_your_note_button">Edit your note button</string>
-	<string name="delete_the_note_button">Delete the note button</string>
-	<string name="add_details">Add details</string>
-	<string name="new_grateful_card">New grateful card title</string>
-	<string name="save">Save</string>
-	<string name="edit">Edit Pic</string>
-	<string name="delte">Delete</string>
-	<string name="share">Share</string>
-	<string name="unknown" translatable="false">14 Avr 2000</string>
-	<string name="lorem_ipsum" translatable="false">
+    <string name="app_name" translatable="false">Grateful</string>
+    <string name="image_of_your_dedicated_note">Image of your dedicated note.</string>
+    <string name="edit_your_note_button">Edit your note button</string>
+    <string name="delete_the_note_button">Delete the note button</string>
+    <string name="add_details">Add details</string>
+    <string name="new_grateful_card">New grateful card title</string>
+    <string name="save">Save</string>
+    <string name="edit">Edit Pic</string>
+    <string name="delte">Delete</string>
+    <string name="share">Share</string>
+    <string name="unknown" translatable="false">14 Avr 2000</string>
+    <string name="lorem_ipsum" translatable="false">
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet metus nec tellus mollis volutpat. Quisque
 		semper consequat bibendum. Integer semper enim in rhoncus commodo. Ut vitae porttitor nibh, eget posuere velit.
 		Sed sed urna nunc. Sed tempor fringilla iaculis. Morbi faucibus odio sapien, vel rutrum libero pretium ut. Donec

@@ -1,7 +1,6 @@
 package me.martichou.be.grateful.viewmodels
 
 import androidx.databinding.ObservableBoolean
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModel
 import me.martichou.be.grateful.data.Notes

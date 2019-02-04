@@ -10,10 +10,9 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestListener
-import timber.log.Timber
 import java.io.File
 import java.text.SimpleDateFormat
-import java.util.Locale
+import java.util.*
 
 /**
  * Bind the app:imageFromFile="imgName" from xml
@@ -22,12 +21,12 @@ import java.util.Locale
 fun imageFromFile(view: ImageView, imageUrl: String?, listener: RequestListener<Drawable>?) {
     if (!imageUrl.isNullOrEmpty()) {
         GlideApp.with(view.context)
-            .load(File(view.context.getDir("imgForNotes", Context.MODE_PRIVATE), imageUrl))
-            .override(view.measuredWidth, view.measuredHeight)
-            .diskCacheStrategy(DiskCacheStrategy.DATA)
-            .thumbnail(0.2f)
-            .listener(listener)
-            .into(view)
+                .load(File(view.context.getDir("imgForNotes", Context.MODE_PRIVATE), imageUrl))
+                .override(view.measuredWidth, view.measuredHeight)
+                .diskCacheStrategy(DiskCacheStrategy.DATA)
+                .thumbnail(0.2f)
+                .listener(listener)
+                .into(view)
     }
 }
 
@@ -37,14 +36,14 @@ fun imageFromFile(view: ImageView, imageUrl: String?, listener: RequestListener<
 @BindingAdapter("imageFromFileStaggered", "requestListener", requireAll = false)
 fun imageFromFileStaggered(view: ImageView, imageUrl: String?, listener: RequestListener<Drawable>?) {
     GlideApp.with(view.context)
-        .load(File(view.context.getDir("imgForNotes", Context.MODE_PRIVATE), imageUrl))
-        .override(
-            StaggeredGridLayoutManager.LayoutParams.MATCH_PARENT,
-            com.bumptech.glide.request.target.Target.SIZE_ORIGINAL
-        ).fitCenter()
-        .diskCacheStrategy(DiskCacheStrategy.DATA)
-        .listener(listener)
-        .into(view)
+            .load(File(view.context.getDir("imgForNotes", Context.MODE_PRIVATE), imageUrl))
+            .override(
+                    StaggeredGridLayoutManager.LayoutParams.MATCH_PARENT,
+                    com.bumptech.glide.request.target.Target.SIZE_ORIGINAL
+            ).fitCenter()
+            .diskCacheStrategy(DiskCacheStrategy.DATA)
+            .listener(listener)
+            .into(view)
 }
 
 /**

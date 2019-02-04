@@ -7,10 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 class DividerRV internal constructor() : RecyclerView.ItemDecoration() {
 
     override fun getItemOffsets(
-        outRect: Rect,
-        view: View,
-        parent: RecyclerView,
-        state: RecyclerView.State
+            outRect: Rect,
+            view: View,
+            parent: RecyclerView,
+            state: RecyclerView.State
     ) {
         val itemCount = state.itemCount
         val itemPosition = parent.getChildAdapterPosition(view)

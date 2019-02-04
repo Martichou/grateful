@@ -5,10 +5,13 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.content.ContextCompat
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.Default
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.viewmodels.AddViewModel
 import me.martichou.be.grateful.viewmodels.ShowViewModel
@@ -25,7 +28,7 @@ class CompressImage(
         private val edittest: ShowViewModel?,
         val file: File,
         private val add_btn: AppCompatImageButton?
-): CoroutineScope {
+) : CoroutineScope {
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Default
@@ -48,7 +51,7 @@ class CompressImage(
         }
     }
 
-    private fun setup(){
+    private fun setup() {
         if (viewModel != null) {
             imageFile = File(storageDir, viewModel.randomImageName)
         } else if (edittest != null) {
@@ -65,7 +68,7 @@ class CompressImage(
         }
     }
 
-    private suspend fun handling(){
+    private suspend fun handling() {
         val fos: FileOutputStream = withContext(Default) { FileOutputStream(imageFile) }
         try {
             withContext(Default) {
@@ -94,7 +97,7 @@ class CompressImage(
                 viewModel?.changeHasPhoto(true)
                 viewModel?.changeIsWorking(false)
 
-                withContext(Main){ add_btn?.background = ContextCompat.getDrawable(context, R.drawable.bg_roundaccent) }
+                withContext(Main) { add_btn?.background = ContextCompat.getDrawable(context, R.drawable.bg_roundaccent) }
 
             } catch (e: IOException) {
                 e.printStackTrace()

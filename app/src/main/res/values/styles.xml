@@ -1,48 +1,48 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-	<!-- Base application theme. -->
-	<style name="BaseAppTheme" parent="Theme.MaterialComponents.Light">
-		<item name="colorPrimary">@color/primary</item>
-		<item name="colorPrimaryDark">@color/primary_dark</item>
-		<item name="colorAccent">@color/red</item>
+    <!-- Base application theme. -->
+    <style name="BaseAppTheme" parent="Theme.MaterialComponents.Light">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/red</item>
 
-		<item name="android:windowBackground">@color/primary</item>
-	</style>
+        <item name="android:windowBackground">@color/primary</item>
+    </style>
 
-	<style name="AppTheme" parent="BaseAppTheme"/>
+    <style name="AppTheme" parent="BaseAppTheme" />
 
-	<style name="SplashScreen" parent="Theme.MaterialComponents.Light.NoActionBar">
-		<item name="android:windowBackground">@drawable/splash</item>
-	</style>
+    <style name="SplashScreen" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash</item>
+    </style>
 
-	<style name="AppTheme.NoActionBar">
-		<item name="windowActionBar">false</item>
-		<item name="windowNoTitle">true</item>
-	</style>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
 
-	<style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Light"/>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
 
-	<style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light">
-		<item name="colorControlNormal">@color/black</item>
-		<item name="android:colorControlNormal" tools:ignore="NewApi">@color/black</item>
-	</style>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light">
+        <item name="colorControlNormal">@color/black</item>
+        <item name="android:colorControlNormal" tools:ignore="NewApi">@color/black</item>
+    </style>
 
-	<style name="BottomSheet" parent="@style/Widget.Design.BottomSheet.Modal">
-		<item name="android:background">@drawable/bg_bottomsheet</item>
-	</style>
+    <style name="BottomSheet" parent="@style/Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bg_bottomsheet</item>
+    </style>
 
-	<style name="BaseBottomSheetDialog" parent="@style/Theme.Design.Light.BottomSheetDialog">
-		<item name="android:windowIsFloating">false</item>
-		<item name="bottomSheetStyle">@style/BottomSheet</item>
-		<item name="android:windowSoftInputMode">adjustResize</item>
-	</style>
+    <style name="BaseBottomSheetDialog" parent="@style/Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="bottomSheetStyle">@style/BottomSheet</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+    </style>
 
-	<style name="BottomSheetDialogTheme" parent="BaseBottomSheetDialog"/>
+    <style name="BottomSheetDialogTheme" parent="BaseBottomSheetDialog" />
 
-	<style name="BottomSheetEntryDivider">
-		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">1dp</item>
-		<item name="android:background">#EEE</item>
-	</style>
+    <style name="BottomSheetEntryDivider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">#EEE</item>
+    </style>
 
 </resources>

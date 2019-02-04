@@ -1,45 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-			xmlns:app="http://schemas.android.com/apk/res-auto"
-			xmlns:tools="http://schemas.android.com/tools"
-			app:startDestination="@+id/main_fragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@+id/main_fragment">
 
-	<fragment
-		android:id="@+id/main_fragment"
-		android:name="me.martichou.be.grateful.fragments.HomeMainFragment"
-		android:label="Grateful"
-	>
+    <fragment
+        android:id="@+id/main_fragment"
+        android:name="me.martichou.be.grateful.fragments.HomeMainFragment"
+        android:label="Grateful">
 
-		<action
-			android:id="@+id/action_note_list_fragment_to_note_detail_fragment"
-			app:destination="@id/show_fragment"/>
+        <action
+            android:id="@+id/action_note_list_fragment_to_note_detail_fragment"
+            app:destination="@id/show_fragment" />
 
-	</fragment>
+    </fragment>
 
-	<fragment
-		android:id="@+id/show_fragment"
-		android:name="me.martichou.be.grateful.fragments.ShowMainFragment"
-		android:label=" "
-		tools:layout="@layout/fragment_showmain">
+    <fragment
+        android:id="@+id/show_fragment"
+        android:name="me.martichou.be.grateful.fragments.ShowMainFragment"
+        android:label=" "
+        tools:layout="@layout/fragment_showmain">
 
-		<argument
-			android:name="noteId"
-			app:argType="long"/>
+        <argument
+            android:name="noteId"
+            app:argType="long" />
 
-		<action android:id="@+id/action_show_fragment_to_edit_fragment" app:destination="@id/edit_fragment"
-				app:enterAnim="@anim/zoom_in" app:popExitAnim="@anim/slide_down"/>
+        <action
+            android:id="@+id/action_show_fragment_to_edit_fragment"
+            app:destination="@id/edit_fragment"
+            app:enterAnim="@anim/zoom_in"
+            app:popExitAnim="@anim/slide_down" />
 
-	</fragment>
+    </fragment>
 
-	<fragment
-		android:id="@+id/edit_fragment"
-		android:name="me.martichou.be.grateful.fragments.ShowEditFragment"
-		android:label=" "
-		tools:layout="@layout/fragment_showedit">
+    <fragment
+        android:id="@+id/edit_fragment"
+        android:name="me.martichou.be.grateful.fragments.ShowEditFragment"
+        android:label=" "
+        tools:layout="@layout/fragment_showedit">
 
-		<argument
-			android:name="noteId"
-			app:argType="long"/>
+        <argument
+            android:name="noteId"
+            app:argType="long" />
 
         <action
             android:id="@+id/action_edit_fragment_to_main_fragment"
@@ -49,6 +51,6 @@
             app:popUpTo="@+id/main_fragment"
             app:popUpToInclusive="false" />
 
-	</fragment>
+    </fragment>
 
 </navigation>

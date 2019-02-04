@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-		xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-	<data>
+    <data>
 
-		<variable
-			name="hdl"
-			type="me.martichou.be.grateful.fragments.ShowMainFragment"/>
-		<variable
-			name="showModel"
-			type="me.martichou.be.grateful.viewmodels.ShowViewModel"/>
+        <variable
+            name="hdl"
+            type="me.martichou.be.grateful.fragments.ShowMainFragment" />
 
-		<variable
-			name="requestListener"
-			type="com.bumptech.glide.request.RequestListener&lt;android.graphics.drawable.Drawable&gt;"/>
-	</data>
+        <variable
+            name="showModel"
+            type="me.martichou.be.grateful.viewmodels.ShowViewModel" />
+
+        <variable
+            name="requestListener"
+            type="com.bumptech.glide.request.RequestListener&lt;android.graphics.drawable.Drawable&gt;" />
+    </data>
 
     <androidx.constraintlayout.motion.widget.MotionLayout
         android:id="@+id/motionLayout"
@@ -28,13 +29,13 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:scaleType="centerCrop"
+            app:imageFromFile="@{showModel.note.image}"
             app:layout_constraintBottom_toTopOf="@id/guideline1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/pool"
-            app:imageFromFile="@{showModel.note.image}"
-            app:requestListener="@{requestListener}"/>
+            app:requestListener="@{requestListener}"
+            app:srcCompat="@drawable/pool" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline1"
@@ -112,7 +113,7 @@
                 android:text="@{showModel.note.date}"
                 android:textColor="@color/dark"
                 android:textSize="14sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
@@ -125,7 +126,7 @@
                 android:textColor="@color/dark"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                app:isGone="@{showModel.note.location}"/>
+                app:isGone="@{showModel.note.location}" />
 
         </LinearLayout>
 
@@ -145,10 +146,10 @@
             android:id="@+id/contentText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:nestedScrollingEnabled="false"
-            android:padding="14dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
+            android:nestedScrollingEnabled="false"
+            android:padding="14dp"
             android:text="@{showModel.note.content}"
             android:textSize="17sp"
             android:textStyle="italic"
@@ -160,25 +161,25 @@
             android:id="@+id/nonethinking"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:nestedScrollingEnabled="false"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
+            android:nestedScrollingEnabled="false"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/thinking"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/contentText"/>
+            app:layout_constraintTop_toBottomOf="@id/contentText"
+            app:srcCompat="@drawable/thinking" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:src="@drawable/ic_edit"
             android:onClick="@{hdl::editaction}"
+            android:src="@drawable/ic_edit"
             app:fabSize="auto"
             app:layout_constraintBottom_toBottomOf="@id/guideline3"
-            app:layout_constraintEnd_toEndOf="@id/guideline2"/>
+            app:layout_constraintEnd_toEndOf="@id/guideline2" />
 
     </androidx.constraintlayout.motion.widget.MotionLayout>
 
