@@ -61,39 +61,10 @@ class HomeMainFragment : Fragment() {
         setupBottomAppBarMenuListener()
 
         // Arrow rotation on offset change
-        binding.appBar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, i ->
-            val totalScrollRange = appBarLayout.totalScrollRange
-            val progress = (-i).toFloat() / totalScrollRange
-            binding.datePickerArrow.rotation = 180 + progress * 180
-            isExpanded = i == 0
-        })
+        setupOffsetListener()
 
         // Update subtitle while scrolling
-        binding.recentNotesList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-
-                val itemPosition = (binding.recentNotesList.layoutManager as StaggeredGridLayoutManager).findFirstCompletelyVisibleItemPositions(null)
-
-                try {
-                    if (binding.dateselected.text != formatDate(viewModel.getNotes().value!![itemPosition[0]].dateToSearch)) {
-
-                        val inAnim = AnimationUtils.loadAnimation(context, R.anim.slide_up)
-                        val outAnim = AnimationUtils.loadAnimation(context, R.anim.slide_down)
-
-                        binding.dateselected.startAnimation(outAnim)
-
-                        binding.dateselected.text = formatDate(viewModel.getNotes().value!![itemPosition[0]].dateToSearch)
-
-                        binding.dateselected.startAnimation(inAnim)
-
-                        binding.compactcalendarView.date = stringToDate(viewModel.getNotes().value!![itemPosition[0]].dateToSearch)!!.time
-                    }
-                }catch (e: IndexOutOfBoundsException){
-                    Timber.d("FATAL ERROR, INDEX OUT OF BOUND $e")
-                }
-            }
-        })
+        setupScrollRvListener()
 
         return binding.root
     }
@@ -132,35 +103,6 @@ class HomeMainFragment : Fragment() {
                 binding.nonethinking.visibility = View.GONE
             }
         })
-    }
-
-    /**
-     * New note action
-     */
-    fun btnNewAction(view: View) {
-        val bottomsheetFragment = AddMainFragment()
-        bottomsheetFragment.show(fragmentManager, bottomsheetFragment.tag)
-    }
-
-    fun ooccalendar(view: View) {
-        isExpanded = !isExpanded
-        binding.appBar.setExpanded(isExpanded, true)
-    }
-
-    fun gototop(view: View) {
-        val item = (binding.recentNotesList.layoutManager as StaggeredGridLayoutManager).findFirstCompletelyVisibleItemPositions(null)[0]
-        Timber.d("Item $item")
-        when (item) {
-            0 -> makeToast(requireContext(), "Already showing today's gratitude")
-            -1 -> makeToast(requireContext(), "Add a gratitude first !")
-            else -> binding.recentNotesList.smoothScrollToPosition(0)
-        }
-    }
-
-    private fun setupBottomAppBarMenuListener() {
-        binding.bottomAppBar.setNavigationOnClickListener {
-            makeToast(requireContext(), "Not yet implemented")
-        }
     }
 
     private fun setupTransition() {
@@ -203,5 +145,71 @@ class HomeMainFragment : Fragment() {
                 }
             }
         })
+    }
+
+    private fun setupBottomAppBarMenuListener() {
+        binding.bottomAppBar.setNavigationOnClickListener {
+            makeToast(requireContext(), "Not yet implemented")
+        }
+    }
+
+    private fun setupOffsetListener(){
+        binding.appBar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, i ->
+            val totalScrollRange = appBarLayout.totalScrollRange
+            val progress = (-i).toFloat() / totalScrollRange
+            binding.datePickerArrow.rotation = 180 + progress * 180
+            isExpanded = i == 0
+        })
+    }
+
+    private fun setupScrollRvListener(){
+        binding.recentNotesList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                val itemPosition = (binding.recentNotesList.layoutManager as StaggeredGridLayoutManager).findFirstCompletelyVisibleItemPositions(null)
+
+                try {
+                    if (binding.dateselected.text != formatDate(viewModel.getNotes().value!![itemPosition[0]].dateToSearch)) {
+
+                        val inAnim = AnimationUtils.loadAnimation(context, R.anim.slide_up)
+                        val outAnim = AnimationUtils.loadAnimation(context, R.anim.slide_down)
+
+                        binding.dateselected.startAnimation(outAnim)
+
+                        binding.dateselected.text = formatDate(viewModel.getNotes().value!![itemPosition[0]].dateToSearch)
+
+                        binding.dateselected.startAnimation(inAnim)
+
+                        binding.compactcalendarView.date = stringToDate(viewModel.getNotes().value!![itemPosition[0]].dateToSearch)!!.time
+                    }
+                }catch (e: IndexOutOfBoundsException){
+                    Timber.d("FATAL ERROR, INDEX OUT OF BOUND $e")
+                }
+            }
+        })
+    }
+
+    /**
+     * Action button
+     */
+    fun btnNewAction(view: View) {
+        val bottomsheetFragment = AddMainFragment()
+        bottomsheetFragment.show(fragmentManager, bottomsheetFragment.tag)
+    }
+
+    fun ooccalendar(view: View) {
+        isExpanded = !isExpanded
+        binding.appBar.setExpanded(isExpanded, true)
+    }
+
+    fun gototop(view: View) {
+        val item = (binding.recentNotesList.layoutManager as StaggeredGridLayoutManager).findFirstCompletelyVisibleItemPositions(null)[0]
+        Timber.d("Item $item")
+        when (item) {
+            0 -> makeToast(requireContext(), "Already showing today's gratitude")
+            -1 -> makeToast(requireContext(), "Add a gratitude first !")
+            else -> binding.recentNotesList.smoothScrollToPosition(0)
+        }
     }
 }
