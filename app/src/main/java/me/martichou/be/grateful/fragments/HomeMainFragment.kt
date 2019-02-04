@@ -148,10 +148,12 @@ class HomeMainFragment : Fragment() {
     }
 
     fun gototop(view: View) {
-        if(0 == (binding.recentNotesList.layoutManager as StaggeredGridLayoutManager).findFirstCompletelyVisibleItemPositions(null)[0]){
-            makeToast(requireContext(), "Already showing today's gratitude")
-        }else {
-            binding.recentNotesList.smoothScrollToPosition(0)
+        val item = (binding.recentNotesList.layoutManager as StaggeredGridLayoutManager).findFirstCompletelyVisibleItemPositions(null)[0]
+        Timber.d("Item $item")
+        when (item) {
+            0 -> makeToast(requireContext(), "Already showing today's gratitude")
+            -1 -> makeToast(requireContext(), "Add a gratitude first !")
+            else -> binding.recentNotesList.smoothScrollToPosition(0)
         }
     }
 
