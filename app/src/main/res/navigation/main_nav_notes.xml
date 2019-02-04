@@ -41,6 +41,14 @@
 			android:name="noteId"
 			app:argType="long"/>
 
+        <action
+            android:id="@+id/action_edit_fragment_to_main_fragment"
+            app:destination="@id/main_fragment"
+            app:exitAnim="@anim/activity_fade_out"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/main_fragment"
+            app:popUpToInclusive="false" />
+
 	</fragment>
 
 </navigation>

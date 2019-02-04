@@ -72,7 +72,7 @@ class ShowMainFragment : Fragment(), MotionLayout.TransitionListener {
         ): Boolean {
             startPostponedEnterTransition()
             // Set translucent status bar
-            statusBarTrans(requireActivity())
+            statusBarTrans(activity)
             return false
         }
 
@@ -84,7 +84,7 @@ class ShowMainFragment : Fragment(), MotionLayout.TransitionListener {
         ): Boolean {
             startPostponedEnterTransition()
             // Set translucent status bar
-            statusBarTrans(requireActivity())
+            statusBarTrans(activity)
             return false
         }
     }

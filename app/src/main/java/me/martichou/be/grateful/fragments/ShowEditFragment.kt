@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import me.martichou.be.grateful.R
 import me.martichou.be.grateful.R.id.main_fragment
 import me.martichou.be.grateful.databinding.FragmentShoweditBinding
 import me.martichou.be.grateful.utilities.getNotesRepository
@@ -29,14 +31,14 @@ class ShowEditFragment : Fragment() {
             hdl = this@ShowEditFragment
         }
 
-        statusBarWhite(requireActivity())
+        statusBarWhite(activity)
 
         return binding.root
     }
 
     fun deletethisnote(view: View) {
         viewModel.deleteNote()
-        findNavController().popBackStack(main_fragment, false)
+        findNavController().navigate(ShowEditFragmentDirections.actionEditFragmentToMainFragment())
     }
 
     fun editthisnote(view: View) {

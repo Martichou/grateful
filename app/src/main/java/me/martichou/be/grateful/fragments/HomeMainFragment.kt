@@ -51,9 +51,6 @@ class HomeMainFragment : Fragment() {
             startPostponedEnterTransition()
         }
 
-        // Set back statusbar to white and dark icon
-        statusBarWhite(requireActivity())
-
         // Setup exit animation with a fadeout
         setupTransition()
 
@@ -104,6 +101,8 @@ class HomeMainFragment : Fragment() {
     // Temp workaround
     override fun onResume() {
         super.onResume()
+        // Set back statusbar to white and dark icon
+        statusBarWhite(activity)
         if (liststate != null) {
             Timber.d("Called onResume")
             // TODO - Fix sharedelement transition due to something idk

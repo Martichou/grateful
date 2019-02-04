@@ -88,23 +88,23 @@ fun imageCropper(context: Context, fragment: Fragment) {
 /**
  * Set status bar to translucent
  */
-fun statusBarTrans(activity: FragmentActivity) {
-    val window = activity.window
-    window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+fun statusBarTrans(activity: FragmentActivity?) {
+    val window = activity?.window
+    window?.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-        window.decorView.systemUiVisibility = 0
+        window?.decorView?.systemUiVisibility = 0
     }
-    window.clearFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+    window?.clearFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
 }
 
 /**
  * Set status bar to white
  */
-fun statusBarWhite(activity: FragmentActivity) {
-    val window: Window = activity.window
-    window.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+fun statusBarWhite(activity: FragmentActivity?) {
+    val window = activity?.window
+    window?.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        window?.decorView?.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
     }
-    window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+    window?.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
 }
