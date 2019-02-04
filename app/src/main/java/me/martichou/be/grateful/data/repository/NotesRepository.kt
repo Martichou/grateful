@@ -1,11 +1,16 @@
 package me.martichou.be.grateful.data.repository
 
-import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import me.martichou.be.grateful.data.Notes
 import me.martichou.be.grateful.data.NotesDao
+import kotlin.coroutines.CoroutineContext
 
-class NotesRepository private constructor(private val notesDao: NotesDao) {
+class NotesRepository private constructor(private val notesDao: NotesDao): CoroutineScope {
+
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.IO
 
     companion object {
         @Volatile
@@ -30,27 +35,21 @@ class NotesRepository private constructor(private val notesDao: NotesDao) {
     /**
      * Insert a note using Notes
      */
-    suspend fun insert(notes: Notes) {
-        withContext(IO) {
-            notesDao.insertNote(notes)
-        }
+    fun insert(notes: Notes) {
+        launch(Dispatchers.IO) { notesDao.insertNote(notes) }
     }
 
     /**
      * Update a note using Notes
      */
-    suspend fun update(notes: Notes) {
-        withContext(IO) {
-            notesDao.updateNote(notes)
-        }
+    fun update(notes: Notes) {
+        launch(Dispatchers.IO) { notesDao.updateNote(notes) }
     }
 
     /**
      * Delete a note using Id
      */
-    suspend fun deleteById(noteId: Long) {
-        withContext(IO) {
-            notesDao.deleteNoteById(noteId)
-        }
+    fun deleteById(noteId: Long) {
+        launch(Dispatchers.IO) { notesDao.deleteNoteById(noteId) }
     }
 }

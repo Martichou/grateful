@@ -3,38 +3,19 @@ package me.martichou.be.grateful.viewmodels
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers.Main
-import kotlinx.coroutines.Job
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import me.martichou.be.grateful.data.Notes
 import me.martichou.be.grateful.data.repository.NotesRepository
+import kotlin.coroutines.CoroutineContext
 
 class EditViewModel internal constructor(private val notesRepository: NotesRepository, private val id: Long) :
-    ViewModel() {
+    ViewModel(), CoroutineScope {
+
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.IO
 
     var note = MediatorLiveData<Notes>()
-
-    /**
-     * This is the job for all coroutines started by this ViewModel.
-     *
-     * Cancelling this job will cancel all coroutines started by this ViewModel.
-     */
-    private val viewModelJob = Job()
-    /**
-     * This is the scope for all coroutines launched by [ShowViewModel].
-     *
-     * Since we pass [viewModelJob], you can cancel all coroutines launched by [viewModelScope] by calling
-     * viewModelJob.cancel().  This is called in [onCleared].
-     */
-    private val viewModelScope = CoroutineScope(Main + viewModelJob)
-
-    /**
-     * Cancel all coroutines when the ViewModel is cleared.
-     */
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
-    }
 
     /**
      * Fill in the note var
@@ -43,7 +24,7 @@ class EditViewModel internal constructor(private val notesRepository: NotesRepos
         note.addSource(notesRepository.getThisNote(id), note::setValue)
     }
 
-    fun updateNote(title: String, content: String) = viewModelScope.launch {
+    fun updateNote(title: String, content: String) {
         val n = Notes(
             title = title,
             content = content,
@@ -51,10 +32,10 @@ class EditViewModel internal constructor(private val notesRepository: NotesRepos
             date = note.value!!.date,
             dateToSearch = note.value!!.dateToSearch,
             location = note.value!!.location
-        )
-        n.id = note.value!!.id
-        notesRepository.update(n)
+        ); n.id = note.value!!.id
+        launch { notesRepository.update(n) }
     }
-
-    fun deleteNote() = viewModelScope.launch { notesRepository.deleteById(id) }
+    fun deleteNote() {
+        launch { notesRepository.deleteById(id) }
+    }
 }
