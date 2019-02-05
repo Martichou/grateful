@@ -78,6 +78,7 @@
                             android:ellipsize="end"
                             android:maxLines="1"
                             android:onClick="@{hdl::ooccalendar}"
+                            android:foreground="@drawable/ripple_circle"
                             android:text="@string/app_name"
                             android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
                             android:textColor="@color/black"
@@ -88,6 +89,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/title"
+                            android:foreground="@drawable/ripple_circle"
                             android:onClick="@{hdl::ooccalendar}"
                             android:text="@string/unknown" />
 
@@ -108,6 +110,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
+                            android:foreground="@drawable/ripple_circle"
                             android:contentDescription="Go to today's date"
                             android:onClick="@{hdl::gototop}"
                             app:srcCompat="@drawable/ic_today" />
@@ -124,17 +127,15 @@
             android:id="@+id/linear_main"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recentNotesList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:clipToPadding="false"
                 android:nestedScrollingEnabled="false"
-                android:paddingBottom="20dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
                 app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -155,39 +156,29 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/nonethinking"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/thinking"
-                android:visibility="gone" />
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <View
-            android:id="@+id/shadow"
-            android:layout_width="match_parent"
-            android:layout_height="8dp"
-            android:background="@drawable/bottomappbarshadown"
-            app:layout_anchor="@id/bottom_app_bar" />
-
-        <com.google.android.material.bottomappbar.BottomAppBar
-            android:id="@+id/bottom_app_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            app:backgroundTint="@color/white"
-            app:fabAlignmentMode="center"
-            app:fabCradleMargin="0dp"
-            app:fabCradleRoundedCornerRadius="0dp"
-            app:navigationIcon="@drawable/ic_menu_black" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="@{hdl::btnNewAction}"
+            android:layout_margin="16dp"
             android:src="@drawable/ic_add_white"
-            app:layout_anchor="@id/bottom_app_bar" />
+            app:layout_anchorGravity="bottom|end"
+            app:layout_anchor="@id/linear_main" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

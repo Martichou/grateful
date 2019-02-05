@@ -8,8 +8,11 @@ import android.view.ViewGroup
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
+import androidx.interpolator.view.animation.FastOutLinearInInterpolator
+import androidx.interpolator.view.animation.LinearOutSlowInInterpolator
 import androidx.navigation.fragment.findNavController
 import androidx.transition.Fade
+import androidx.transition.Slide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
@@ -91,22 +94,22 @@ class ShowMainFragment : Fragment(), MotionLayout.TransitionListener {
     private fun setupTransition() {
         // Animations when List entering Detail
         sharedElementEnterTransition = MoveViews().apply {
-            interpolator = AnimUtils.getFastOutSlowInInterpolator()
-            duration = resources.getInteger(R.integer.config_duration_area_large_expand).toLong()
+            interpolator = LinearOutSlowInInterpolator()
+            duration = 300.toLong()
         }
-        enterTransition = Fade().apply {
-            interpolator = AnimUtils.getLinearOutSlowInInterpolator()
-            startDelay = resources.getInteger(R.integer.config_duration_area_large_expand).toLong()
+        enterTransition = Slide().apply {
+            startDelay = 250.toLong()
         }
 
         // Animations when Detail retuning to List
         sharedElementReturnTransition = MoveViews().apply {
-            interpolator = AnimUtils.getFastOutSlowInInterpolator()
-            duration = resources.getInteger(R.integer.config_duration_area_large_collapse).toLong()
+            interpolator = FastOutLinearInInterpolator()
+            duration = 250.toLong()
         }
-        returnTransition = Fade().apply {
+        returnTransition = Slide().apply {
             interpolator = AnimUtils.getFastOutLinearInInterpolator()
             duration = resources.getInteger(R.integer.config_duration_area_small).toLong()
         }
     }
 }
+

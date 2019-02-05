@@ -10,6 +10,7 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestListener
+import timber.log.Timber
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -67,6 +68,19 @@ fun bindIsGone(view: View, isGone: Boolean) {
     }
 }
 
+@BindingAdapter("textIsEmpty")
+fun textIsEmpty(v: TextView, content: String?){
+    if (content != null && content.isEmpty()){
+        val arr: Array<String> = arrayOf(
+                "\"One day I will find the right words, and they will be simple.\" \n - Jack Kerouac",
+                "\"Words can be like X-rays if you use them properly -- they'll go through anything. You read and you're pierced.\" \n - Aldous Huxley",
+                "\"Let me live, love, and say it well in good sentences.\" \n - Sylvia Plath",
+                "\"I kept always two books in my pocket, one to read, one to write in.\" \n - Robert Louis Stevenson"
+        )
+        v.text = arr[randomNumber(0, arr.size-1).toInt()]
+    }
+}
+
 /**
  * Set 07 if it was 07/02/2019
  */
@@ -82,13 +96,4 @@ fun getNumberFromDate(v: TextView, content: String?) {
 fun getNameOfDay(v: TextView, content: String?) {
     val sdf = SimpleDateFormat("EE", Locale.getDefault())
     v.text = sdf.format(stringToDate(content)).removeSuffix(".")
-}
-
-@BindingAdapter("thinkingvisible")
-fun thinkingvisible(v: AppCompatImageView, content: String?) {
-    if (content.isNullOrEmpty()) {
-        v.visibility = View.VISIBLE
-    } else {
-        v.visibility = View.GONE
-    }
 }

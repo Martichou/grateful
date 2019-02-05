@@ -1,7 +1,6 @@
 package me.martichou.be.grateful.fragments
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.LayoutInflater
@@ -13,7 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import androidx.transition.Fade
+import androidx.transition.Explode
 import com.google.android.material.appbar.AppBarLayout
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.databinding.FragmentHomemainBinding
@@ -54,11 +53,8 @@ class HomeMainFragment : Fragment() {
         // Setup exit animation with a fadeout
         setupTransition()
 
-        // Hide fab on scroll and bottomappbar too
+        // Hide fab on scroll
         setupScrollListener()
-
-        // Listen for bottomappbar's menu click
-        setupBottomAppBarMenuListener()
 
         // Arrow rotation on offset change
         setupOffsetListener()
@@ -99,16 +95,20 @@ class HomeMainFragment : Fragment() {
                 binding.nonethinking.visibility = View.VISIBLE
             } else {
                 adapter.submitList(notes)
-                binding.recentNotesList.visibility = View.VISIBLE
-                binding.nonethinking.visibility = View.GONE
+                binding.recentNotesList.smoothScrollToPosition(0)
+                if(binding.recentNotesList.visibility == View.GONE) {
+                    binding.recentNotesList.visibility = View.VISIBLE
+                    binding.nonethinking.visibility = View.GONE
+                }
             }
         })
     }
 
+    @SuppressLint("WrongConstant")
     private fun setupTransition() {
-        exitTransition = Fade().apply {
-            interpolator = AnimUtils.getFastOutSlowInInterpolator()
-            duration = resources.getInteger(R.integer.config_duration_area_small).toLong()
+        exitTransition = Explode().apply {
+            excludeTarget(binding.appBar, true)
+            duration = 200.toLong()
         }
     }
 
@@ -118,39 +118,11 @@ class HomeMainFragment : Fragment() {
                 super.onScrolled(recyclerView, dx, dy)
                 if (dy > 0 && binding.fab.visibility == View.VISIBLE) {
                     binding.fab.hide()
-                    binding.bottomAppBar.animate().alpha(0.0f).setListener(object : AnimatorListenerAdapter() {
-                        override fun onAnimationEnd(animation: Animator?) {
-                            super.onAnimationEnd(animation)
-                            binding.bottomAppBar.visibility = View.GONE
-                        }
-
-                        override fun onAnimationStart(animation: Animator?) {
-                            super.onAnimationStart(animation)
-                            binding.shadow.visibility = View.GONE
-                        }
-                    }).duration = 200
                 } else if (dy < 0 && binding.fab.visibility != View.VISIBLE) {
-                    binding.bottomAppBar.animate().alpha(1.0f).setListener(object : AnimatorListenerAdapter() {
-                        override fun onAnimationStart(animation: Animator?) {
-                            super.onAnimationStart(animation)
-                            binding.bottomAppBar.visibility = View.VISIBLE
-                        }
-
-                        override fun onAnimationEnd(animation: Animator?) {
-                            super.onAnimationEnd(animation)
-                            binding.shadow.visibility = View.VISIBLE
-                        }
-                    }).duration = 200
                     binding.fab.show()
                 }
             }
         })
-    }
-
-    private fun setupBottomAppBarMenuListener() {
-        binding.bottomAppBar.setNavigationOnClickListener {
-            makeToast(requireContext(), "Not yet implemented")
-        }
     }
 
     private fun setupOffsetListener() {

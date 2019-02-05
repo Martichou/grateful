@@ -61,6 +61,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:background="@null"
+                        android:foreground="@drawable/ripple_circle"
                         android:inputType="text"
                         android:maxLines="1"
                         android:text="@{editModel.note.title}"
@@ -74,6 +75,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:background="@null"
+                        android:foreground="@drawable/ripple_circle"
                         android:hint="Write here the message you want for this note."
                         android:inputType="textMultiLine"
                         android:text="@{editModel.note.content}"
@@ -83,16 +85,15 @@
                     <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
                         android:clickable="true"
                         android:focusable="true"
-                        android:foreground="@drawable/ripple_circle"
-                        android:onClick="@{hdl::launchpickimage}"
-                        android:paddingBottom="16dp">
+                        android:onClick="@{hdl::launchpickimage}">
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
                             android:scaleType="centerCrop"
                             app:imageFromFile="@{editModel.note.image}"
                             app:srcCompat="@drawable/pool" />

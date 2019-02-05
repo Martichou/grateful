@@ -4,10 +4,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import androidx.transition.Explode
 import me.martichou.be.grateful.data.Notes
 import me.martichou.be.grateful.databinding.RecyclerviewHomeitemBinding
 import me.martichou.be.grateful.fragments.HomeMainFragmentDirections
