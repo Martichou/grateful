@@ -6,7 +6,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import me.martichou.be.grateful.data.Notes
 import me.martichou.be.grateful.data.repository.NotesRepository
-import me.martichou.be.grateful.utilities.randomNumber
+import me.martichou.be.grateful.utilities.HashUtils
+import me.martichou.be.grateful.utilities.currentTime
 import kotlin.coroutines.CoroutineContext
 
 class AddViewModel internal constructor(private val notesRepository: NotesRepository) : ViewModel(), CoroutineScope {
@@ -15,7 +16,9 @@ class AddViewModel internal constructor(private val notesRepository: NotesReposi
         get() = Dispatchers.IO
 
     var hasPhoto: Boolean = false
-    val randomImageName: String = randomNumber(100000000, 999999999)
+
+    val randomImageName: String = HashUtils.sha1(currentTime())
+
     var isWorking: Boolean = false
     var placeCity: String? = null
 

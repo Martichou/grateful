@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.interpolator.view.animation.FastOutLinearInInterpolator
 import androidx.interpolator.view.animation.LinearOutSlowInInterpolator
 import androidx.navigation.fragment.findNavController
-import androidx.transition.Fade
 import androidx.transition.Slide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
