@@ -8,6 +8,7 @@ import me.martichou.be.grateful.data.Notes
 import me.martichou.be.grateful.data.repository.NotesRepository
 import me.martichou.be.grateful.utilities.HashUtils
 import me.martichou.be.grateful.utilities.currentTime
+import java.util.*
 import kotlin.coroutines.CoroutineContext
 
 class AddViewModel internal constructor(private val notesRepository: NotesRepository) : ViewModel(), CoroutineScope {
@@ -17,7 +18,7 @@ class AddViewModel internal constructor(private val notesRepository: NotesReposi
 
     var hasPhoto: Boolean = false
 
-    val randomImageName: String = HashUtils.sha1(currentTime())
+    val randomImageName: String = HashUtils.sha1(Date().toString())
 
     var isWorking: Boolean = false
     var placeCity: String? = null
