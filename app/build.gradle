@@ -12,8 +12,8 @@ android {
         enabled = true
     }
     defaultConfig {
-        versionCode 17
-        versionName "R-internal"
+        versionCode 18
+        versionName "S-internal"
         applicationId "me.martichou.be.grateful"
         vectorDrawables.useSupportLibrary true
         minSdkVersion rootProject.minSdkVersion
