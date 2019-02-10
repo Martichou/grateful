@@ -16,7 +16,13 @@ import com.theartofdev.edmodo.cropper.CropImage
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.data.Notes
 import me.martichou.be.grateful.databinding.FragmentAddmainBinding
-import me.martichou.be.grateful.utilities.*
+import me.martichou.be.grateful.utilities.CompressImage
+import me.martichou.be.grateful.utilities.currentTime
+import me.martichou.be.grateful.utilities.dateToSearch
+import me.martichou.be.grateful.utilities.getNotesRepository
+import me.martichou.be.grateful.utilities.getViewModel
+import me.martichou.be.grateful.utilities.imageCropper
+import me.martichou.be.grateful.utilities.makeToast
 import me.martichou.be.grateful.viewmodels.AddViewModel
 import timber.log.Timber
 import java.io.File

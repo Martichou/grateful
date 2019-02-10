@@ -17,7 +17,13 @@ import com.google.android.material.appbar.AppBarLayout
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.databinding.FragmentHomemainBinding
 import me.martichou.be.grateful.recyclerView.NotesAdapter
-import me.martichou.be.grateful.utilities.*
+import me.martichou.be.grateful.utilities.DividerRV
+import me.martichou.be.grateful.utilities.formatDate
+import me.martichou.be.grateful.utilities.getNotesRepository
+import me.martichou.be.grateful.utilities.getViewModel
+import me.martichou.be.grateful.utilities.makeToast
+import me.martichou.be.grateful.utilities.statusBarWhite
+import me.martichou.be.grateful.utilities.stringToDate
 import me.martichou.be.grateful.viewmodels.MainViewModel
 import timber.log.Timber
 
@@ -96,7 +102,7 @@ class HomeMainFragment : Fragment() {
             } else {
                 adapter.submitList(notes)
                 binding.recentNotesList.smoothScrollToPosition(0)
-                if(binding.recentNotesList.visibility == View.GONE) {
+                if (binding.recentNotesList.visibility == View.GONE) {
                     binding.recentNotesList.visibility = View.VISIBLE
                     binding.nonethinking.visibility = View.GONE
                 }
