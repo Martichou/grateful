@@ -108,6 +108,7 @@ class HomeMainFragment : Fragment() {
     private fun setupTransition() {
         exitTransition = Explode().apply {
             excludeTarget(binding.appBar, true)
+            excludeTarget(binding.nonethinking, true)
             duration = 200.toLong()
         }
     }
