@@ -23,7 +23,7 @@ class ShowEditFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         noteId = ShowMainFragmentArgs.fromBundle(arguments!!).noteId
         binding = FragmentShoweditBinding.inflate(inflater, container, false).apply {
-            setLifecycleOwner(this@ShowEditFragment)
+            lifecycleOwner = this@ShowEditFragment
             editModel = viewModel
             hdl = this@ShowEditFragment
         }

@@ -39,7 +39,7 @@ class HomeMainFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentHomemainBinding.inflate(inflater, container, false).apply {
-            setLifecycleOwner(this@HomeMainFragment)
+            lifecycleOwner = this@HomeMainFragment
             thisVm = viewModel
             hdl = this@HomeMainFragment
         }

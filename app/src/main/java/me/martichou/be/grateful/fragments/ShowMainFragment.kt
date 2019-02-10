@@ -43,7 +43,7 @@ class ShowMainFragment : Fragment(), MotionLayout.TransitionListener {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         noteId = ShowMainFragmentArgs.fromBundle(arguments!!).noteId
         binding = FragmentShowmainBinding.inflate(inflater, container, false).apply {
-            setLifecycleOwner(this@ShowMainFragment)
+            lifecycleOwner = this@ShowMainFragment
             showModel = viewModel
             requestListener = imageListener
             hdl = this@ShowMainFragment
