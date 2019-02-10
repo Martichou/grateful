@@ -59,6 +59,10 @@ dependencies {
     implementation "android.arch.navigation:navigation-fragment-ktx:$rootProject.navigationVersion"
     implementation "android.arch.navigation:navigation-ui-ktx:$rootProject.navigationVersion"
 
+    // Needed to fix build for a mysterious reason
+    // https://issuetracker.google.com/issues/116154359
+    implementation "com.google.guava:guava:27.0.1-android"
+
     // Androidx components
     implementation "androidx.core:core-ktx:$rootProject.ktxVersion"
     implementation "androidx.room:room-runtime:$rootProject.roomVersion"
