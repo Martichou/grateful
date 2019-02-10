@@ -12,8 +12,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import androidx.transition.Explode
-import com.google.android.material.appbar.AppBarLayout
+import androidx.transition.Fade
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.databinding.FragmentHomemainBinding
 import me.martichou.be.grateful.recyclerView.NotesAdapter
@@ -23,17 +27,20 @@ import me.martichou.be.grateful.utilities.getNotesRepository
 import me.martichou.be.grateful.utilities.getViewModel
 import me.martichou.be.grateful.utilities.makeToast
 import me.martichou.be.grateful.utilities.statusBarWhite
-import me.martichou.be.grateful.utilities.stringToDate
 import me.martichou.be.grateful.viewmodels.MainViewModel
 import timber.log.Timber
+import kotlin.coroutines.CoroutineContext
 
-class HomeMainFragment : Fragment() {
+@ExperimentalCoroutinesApi
+class HomeMainFragment : Fragment(), CoroutineScope {
+
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.IO
 
     private val viewModel by lazy {
         getViewModel { MainViewModel(getNotesRepository(requireContext())) }
     }
     private lateinit var binding: FragmentHomemainBinding
-    private var isExpanded = false
     private var liststate: Parcelable? = null
     private val adapter = NotesAdapter()
 
@@ -59,22 +66,14 @@ class HomeMainFragment : Fragment() {
         // Setup exit animation with a fadeout
         setupTransition()
 
-        // Hide fab on scroll
-        setupScrollListener()
-
-        // Arrow rotation on offset change
-        setupOffsetListener()
-
         // Update subtitle while scrolling
         setupScrollRvListener()
 
         return binding.root
     }
 
-    // Temp workaround
     override fun onResume() {
         super.onResume()
-        // Set back statusbar to white and dark icon
         statusBarWhite(activity)
         if (liststate != null) {
             Timber.d("Called onResume")
@@ -85,7 +84,6 @@ class HomeMainFragment : Fragment() {
         }
     }
 
-    // Temp workaround
     override fun onPause() {
         super.onPause()
         liststate = binding.recentNotesList.layoutManager?.onSaveInstanceState()
@@ -101,7 +99,6 @@ class HomeMainFragment : Fragment() {
                 binding.nonethinking.visibility = View.VISIBLE
             } else {
                 adapter.submitList(notes)
-                binding.recentNotesList.smoothScrollToPosition(0)
                 if (binding.recentNotesList.visibility == View.GONE) {
                     binding.recentNotesList.visibility = View.VISIBLE
                     binding.nonethinking.visibility = View.GONE
@@ -112,61 +109,70 @@ class HomeMainFragment : Fragment() {
 
     @SuppressLint("WrongConstant")
     private fun setupTransition() {
-        exitTransition = Explode().apply {
+        exitTransition = Fade().apply {
             excludeTarget(binding.appBar, true)
-            excludeTarget(binding.nonethinking, true)
-            duration = 200.toLong()
+            duration = 200
         }
     }
 
-    private fun setupScrollListener() {
-        binding.recentNotesList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                if (dy > 0 && binding.fab.visibility == View.VISIBLE) {
-                    binding.fab.hide()
-                } else if (dy < 0 && binding.fab.visibility != View.VISIBLE) {
-                    binding.fab.show()
-                }
-            }
-        })
-    }
-
-    private fun setupOffsetListener() {
-        binding.appBar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, i ->
-            val totalScrollRange = appBarLayout.totalScrollRange
-            val progress = (-i).toFloat() / totalScrollRange
-            binding.datePickerArrow.rotation = 180 + progress * 180
-            isExpanded = i == 0
-        })
-    }
-
+    /**
+     * Change date in the toolbar
+     * But also hide fab when scrolled
+     */
     private fun setupScrollRvListener() {
         binding.recentNotesList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
 
+                if (dy > 0 && binding.fab.visibility == View.VISIBLE) {
+                    binding.fab.hide()
+                } else if (dy < 0 && binding.fab.visibility != View.VISIBLE) {
+                    binding.fab.show()
+                }
+
                 val itemPosition = (binding.recentNotesList.layoutManager as StaggeredGridLayoutManager).findFirstCompletelyVisibleItemPositions(null)
 
-                try {
-                    if (binding.dateselected.text != formatDate(viewModel.getNotes().value!![itemPosition[0]].dateToSearch)) {
-
-                        val inAnim = AnimationUtils.loadAnimation(context, R.anim.slide_up)
-                        val outAnim = AnimationUtils.loadAnimation(context, R.anim.slide_down)
-
-                        binding.dateselected.startAnimation(outAnim)
-
-                        binding.dateselected.text = formatDate(viewModel.getNotes().value!![itemPosition[0]].dateToSearch)
-
-                        binding.dateselected.startAnimation(inAnim)
-
-                        binding.compactcalendarView.date = stringToDate(viewModel.getNotes().value!![itemPosition[0]].dateToSearch)!!.time
-                    }
-                } catch (e: IndexOutOfBoundsException) {
-                    Timber.d("FATAL ERROR, INDEX OUT OF BOUND $e")
-                }
+                getDateFromItem(itemPosition[0])
             }
         })
+    }
+
+    /**
+     * Get date string async and call next fun
+     */
+    private fun getDateFromItem(itemPos: Int){
+        val job = async {
+            try {
+                formatDate(viewModel.getNotes().value!![itemPos].dateToSearch)
+            } catch (e: IndexOutOfBoundsException) {
+                Timber.e(e)
+                null
+            }
+        }
+        launch(Dispatchers.Main) {
+            updateTextAfterAsync(job.await().toString(), job.getCompletionExceptionOrNull())
+        }
+    }
+
+    /**
+     * Update toolbar date text after async task above
+     */
+    private fun updateTextAfterAsync(date: String?, e: Throwable?){
+        if (e != null){
+            makeToast(requireContext(), "We're sorry, something went wrong")
+            Timber.e(e)
+        } else {
+            if (date.isNullOrEmpty()){
+                binding.dateselected.text = resources.getString(R.string.unknown)
+            } else if (date != binding.dateselected.text) {
+                val inAnim = AnimationUtils.loadAnimation(context, R.anim.slide_up)
+                val outAnim = AnimationUtils.loadAnimation(context, R.anim.slide_down)
+
+                binding.dateselected.startAnimation(outAnim)
+                binding.dateselected.text = date
+                binding.dateselected.startAnimation(inAnim)
+            }
+        }
     }
 
     /**
@@ -177,11 +183,9 @@ class HomeMainFragment : Fragment() {
         bottomsheetFragment.show(fragmentManager, bottomsheetFragment.tag)
     }
 
-    fun ooccalendar(view: View) {
-        isExpanded = !isExpanded
-        binding.appBar.setExpanded(isExpanded, true)
-    }
-
+    /**
+     * Scroll to top of the list (today)
+     */
     fun gototop(view: View) {
         val item = (binding.recentNotesList.layoutManager as StaggeredGridLayoutManager).findFirstCompletelyVisibleItemPositions(null)[0]
         Timber.d("Item $item")

@@ -98,16 +98,16 @@ class ShowMainFragment : Fragment(), MotionLayout.TransitionListener {
         // Animations when List entering Detail
         sharedElementEnterTransition = MoveViews().apply {
             interpolator = LinearOutSlowInInterpolator()
-            duration = 300.toLong()
+            duration = 300
         }
         enterTransition = Slide().apply {
-            startDelay = 250.toLong()
+            startDelay = 250
         }
 
         // Animations when Detail retuning to List
         sharedElementReturnTransition = MoveViews().apply {
             interpolator = FastOutLinearInInterpolator()
-            duration = 250.toLong()
+            duration = 250
         }
         returnTransition = Slide().apply {
             interpolator = AnimUtils.getFastOutLinearInInterpolator()
