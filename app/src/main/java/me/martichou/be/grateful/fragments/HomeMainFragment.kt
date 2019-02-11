@@ -19,7 +19,7 @@ import kotlinx.coroutines.launch
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.databinding.FragmentHomemainBinding
 import me.martichou.be.grateful.recyclerView.NotesAdapter
-import me.martichou.be.grateful.utilities.DividerRV
+import me.martichou.be.grateful.recyclerView.DividerRV
 import me.martichou.be.grateful.utilities.formatDate
 import me.martichou.be.grateful.utilities.getNotesRepository
 import me.martichou.be.grateful.utilities.getViewModel

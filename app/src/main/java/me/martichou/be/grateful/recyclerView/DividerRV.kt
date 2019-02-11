@@ -1,4 +1,4 @@
-package me.martichou.be.grateful.utilities
+package me.martichou.be.grateful.recyclerView
 
 import android.graphics.Rect
 import android.view.View
