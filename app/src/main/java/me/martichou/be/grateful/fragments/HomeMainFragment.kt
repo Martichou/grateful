@@ -60,6 +60,11 @@ class HomeMainFragment : Fragment(), CoroutineScope {
         binding.recentNotesList.addItemDecoration(DividerRV())
         binding.recentNotesList.adapter = viewModel.adapter
 
+        // Fix weird handling in gap life all photo on the same column for no reason
+        val lm = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        lm.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE
+        binding.recentNotesList.layoutManager = lm
+
         // Update subtitle while scrolling
         setupScrollRvListener()
 
