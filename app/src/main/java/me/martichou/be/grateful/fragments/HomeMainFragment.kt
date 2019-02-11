@@ -1,18 +1,16 @@
 package me.martichou.be.grateful.fragments
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import androidx.core.view.doOnLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.transition.Fade
+import androidx.transition.TransitionInflater
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -38,63 +36,60 @@ class HomeMainFragment : Fragment(), CoroutineScope {
         get() = Dispatchers.IO
 
     private val viewModel by lazy {
-        getViewModel { MainViewModel(getNotesRepository(requireContext())) }
+        requireActivity().getViewModel { MainViewModel(getNotesRepository(requireContext())) }
     }
     private lateinit var binding: FragmentHomemainBinding
-    private var liststate: Parcelable? = null
-    private val adapter = NotesAdapter()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = FragmentHomemainBinding.inflate(inflater, container, false).apply {
-            lifecycleOwner = this@HomeMainFragment
-            thisVm = viewModel
-            hdl = this@HomeMainFragment
-        }
+        binding = FragmentHomemainBinding.inflate(inflater, container, false)
 
-        // Prepare recyclerview and bind
-        binding.recentNotesList.setHasFixedSize(true)
-        binding.recentNotesList.addItemDecoration(DividerRV())
-        binding.recentNotesList.adapter = adapter
-        subscribeUirecentNotesList(adapter)
-
-        // Wait RecyclerView layout for detail to list image return animation
-        postponeEnterTransition()
-        binding.recentNotesList.doOnLayout {
-            startPostponedEnterTransition()
-        }
-
-        // Setup exit animation with a fadeout
+        // Set animation transition w/ sharedelement
         setupTransition()
-
-        // Update subtitle while scrolling
-        setupScrollRvListener()
 
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        // Bind databinding val
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.thisVm = viewModel
+        binding.hdl = this
+
+        // Prepare recyclerview and bind
+        binding.recentNotesList.setHasFixedSize(true)
+        binding.recentNotesList.addItemDecoration(DividerRV())
+        binding.recentNotesList.adapter = viewModel.adapter
+
+        // Update subtitle while scrolling
+        setupScrollRvListener()
+
+        // Wait for recyclerview
+        postponeEnterTransition()
+
+        // Wait RecyclerView layout for detail to list image return animation
+        binding.recentNotesList.viewTreeObserver.addOnPreDrawListener {
+            startPostponedEnterTransition()
+            true
+        }
+
+        subscribeUirecentNotesList(viewModel.adapter)
+    }
+
+    /**
+     * Set the status bar as white
+     */
     override fun onResume() {
         super.onResume()
         statusBarWhite(activity)
-        if (liststate != null) {
-            Timber.d("Called onResume")
-            // TODO - Fix sharedelement transition due to something idk
-            // TODO - If the note wasn't showed in the first screen (when user hasn't scrolled yet)
-            // TODO - then the sharedelementanimation is glitched.
-            binding.recentNotesList.layoutManager?.onRestoreInstanceState(liststate)
-        }
-    }
-
-    override fun onPause() {
-        super.onPause()
-        liststate = binding.recentNotesList.layoutManager?.onSaveInstanceState()
     }
 
     /**
      * Observe recentNotesList for and update adapter
      */
     private fun subscribeUirecentNotesList(adapter: NotesAdapter) {
-        viewModel.getNotes().observe(viewLifecycleOwner, Observer { notes ->
+        viewModel.recentNotesList.observe(viewLifecycleOwner, Observer { notes ->
             if (notes.isNullOrEmpty()) {
+                adapter.submitList(emptyList())
                 binding.recentNotesList.visibility = View.GONE
                 binding.nonethinking.visibility = View.VISIBLE
             } else {
@@ -107,11 +102,14 @@ class HomeMainFragment : Fragment(), CoroutineScope {
         })
     }
 
-    @SuppressLint("WrongConstant")
+    /**
+     * Setup fade out transition and sharedelementransition
+     */
     private fun setupTransition() {
+        sharedElementReturnTransition = TransitionInflater.from(context).inflateTransition(R.transition.move)
         exitTransition = Fade().apply {
             excludeTarget(binding.appBar, true)
-            duration = 200
+            duration = 150
         }
     }
 
@@ -143,7 +141,7 @@ class HomeMainFragment : Fragment(), CoroutineScope {
     private fun getDateFromItem(itemPos: Int){
         val job = async {
             try {
-                formatDate(viewModel.getNotes().value!![itemPos].dateToSearch)
+                formatDate(viewModel.recentNotesList.value!![itemPos].dateToSearch)
             } catch (e: IndexOutOfBoundsException) {
                 Timber.e(e)
                 null

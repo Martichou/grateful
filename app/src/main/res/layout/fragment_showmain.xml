@@ -13,8 +13,14 @@
             type="me.martichou.be.grateful.viewmodels.ShowViewModel" />
 
         <variable
+            name="args"
+            type="me.martichou.be.grateful.fragments.ShowMainFragmentArgs" />
+
+        <variable
             name="requestListener"
             type="com.bumptech.glide.request.RequestListener&lt;android.graphics.drawable.Drawable&gt;" />
+
+        <import type="java.lang.String" />
     </data>
 
     <androidx.constraintlayout.motion.widget.MotionLayout
@@ -29,13 +35,13 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:scaleType="centerCrop"
+            android:transitionName="@{String.valueOf(args.noteId)}"
             app:imageFromFile="@{showModel.note.image}"
             app:layout_constraintBottom_toTopOf="@id/guideline1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:requestListener="@{requestListener}"
-            app:srcCompat="@drawable/pool" />
+            app:requestListener="@{requestListener}" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline1"

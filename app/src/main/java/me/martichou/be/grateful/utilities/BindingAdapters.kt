@@ -23,7 +23,6 @@ fun imageFromFile(view: ImageView, imageUrl: String?, listener: RequestListener<
                 .load(File(view.context.getDir("imgForNotes", Context.MODE_PRIVATE), imageUrl))
                 .override(view.measuredWidth, view.measuredHeight)
                 .diskCacheStrategy(DiskCacheStrategy.DATA)
-                .thumbnail(0.2f)
                 .listener(listener)
                 .into(view)
     }

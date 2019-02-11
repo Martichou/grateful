@@ -31,6 +31,7 @@
                 android:layout_height="?attr/actionBarSize"
                 app:contentInsetLeft="0dp"
                 app:contentInsetStart="0dp"
+                app:layout_scrollFlags="scroll|enterAlways"
                 app:popupTheme="@style/AppTheme.PopupOverlay">
 
                 <RelativeLayout
@@ -49,7 +50,6 @@
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:maxLines="1"
-                        android:foreground="@drawable/ripple_circle"
                         android:text="@string/app_name"
                         android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
                         android:textColor="@color/black"
@@ -60,7 +60,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/title"
-                        android:foreground="@drawable/ripple_circle"
                         android:text="@string/unknown" />
 
                     <androidx.appcompat.widget.AppCompatImageView
@@ -69,8 +68,8 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:foreground="@drawable/ripple_circle"
                         android:contentDescription="Go to today's date"
+                        android:foreground="@drawable/ripple_circle"
                         android:onClick="@{hdl::gototop}"
                         app:srcCompat="@drawable/ic_today" />
 
@@ -90,7 +89,6 @@
                 android:id="@+id/recentNotesList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:nestedScrollingEnabled="false"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
                 app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
@@ -98,8 +96,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:spanCount="2"
-                tools:listitem="@layout/recyclerview_homeitem" />
+                app:spanCount="2"/>
 
             <ProgressBar
                 android:id="@+id/loading_ui"
@@ -120,10 +117,10 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/thinking"
                 android:visibility="gone"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -131,11 +128,11 @@
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="@{hdl::btnNewAction}"
             android:layout_margin="16dp"
+            android:onClick="@{hdl::btnNewAction}"
             android:src="@drawable/ic_add_white"
-            app:layout_anchorGravity="bottom|end"
-            app:layout_anchor="@id/linear_main" />
+            app:layout_anchor="@id/linear_main"
+            app:layout_anchorGravity="bottom|end" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

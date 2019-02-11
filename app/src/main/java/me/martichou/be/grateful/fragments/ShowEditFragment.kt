@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import me.martichou.be.grateful.databinding.FragmentShoweditBinding
 import me.martichou.be.grateful.utilities.getNotesRepository
 import me.martichou.be.grateful.utilities.getViewModel
@@ -14,35 +15,52 @@ import me.martichou.be.grateful.viewmodels.EditViewModel
 
 class ShowEditFragment : Fragment() {
 
-    private var noteId: Long = 0
+    private val params by navArgs<ShowEditFragmentArgs>()
     private val viewModel by lazy {
-        getViewModel { EditViewModel(getNotesRepository(requireContext()), noteId) }
+        getViewModel { EditViewModel(getNotesRepository(requireContext()), params.noteId) }
     }
     private lateinit var binding: FragmentShoweditBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        noteId = ShowMainFragmentArgs.fromBundle(arguments!!).noteId
-        binding = FragmentShoweditBinding.inflate(inflater, container, false).apply {
-            lifecycleOwner = this@ShowEditFragment
-            editModel = viewModel
-            hdl = this@ShowEditFragment
-        }
-
-        statusBarWhite(activity)
+        binding = FragmentShoweditBinding.inflate(inflater, container, false)
 
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        // Bind databinding val
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.editModel = viewModel
+        binding.hdl = this
+    }
+
+    /**
+     * Set the status bar as white
+     */
+    override fun onResume() {
+        super.onResume()
+        statusBarWhite(activity)
+    }
+
+    /**
+     * Delete the note button handler
+     */
     fun deletethisnote(view: View) {
         viewModel.deleteNote()
         findNavController().navigate(ShowEditFragmentDirections.actionEditFragmentToMainFragment())
     }
 
+    /**
+     * Save the note edited button handler
+     */
     fun editthisnote(view: View) {
         viewModel.updateNote(binding.editnoteTitle.text.toString(), binding.editnoteContent.text.toString())
         findNavController().popBackStack()
     }
 
+    /**
+     * Update image button handler
+     */
     fun launchpickimage(view: View) {
         // TODO
     }
