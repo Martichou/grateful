@@ -1,4 +1,4 @@
-package me.martichou.be.grateful.utilities
+package me.martichou.be.grateful.viewmodels
 
 import android.content.Context
 import androidx.fragment.app.Fragment
@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
 import me.martichou.be.grateful.data.AppDatabase
 import me.martichou.be.grateful.data.repository.NotesRepository
-import me.martichou.be.grateful.viewmodels.BaseViewModelFactory
 
 /**
  * Return the repository

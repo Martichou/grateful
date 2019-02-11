@@ -19,8 +19,8 @@ import me.martichou.be.grateful.databinding.FragmentAddmainBinding
 import me.martichou.be.grateful.utilities.CompressImage
 import me.martichou.be.grateful.utilities.currentTime
 import me.martichou.be.grateful.utilities.dateToSearch
-import me.martichou.be.grateful.utilities.getNotesRepository
-import me.martichou.be.grateful.utilities.getViewModel
+import me.martichou.be.grateful.viewmodels.getNotesRepository
+import me.martichou.be.grateful.viewmodels.getViewModel
 import me.martichou.be.grateful.utilities.imageCropper
 import me.martichou.be.grateful.utilities.makeToast
 import me.martichou.be.grateful.viewmodels.AddViewModel

@@ -21,8 +21,8 @@ import me.martichou.be.grateful.databinding.FragmentHomemainBinding
 import me.martichou.be.grateful.recyclerView.NotesAdapter
 import me.martichou.be.grateful.recyclerView.DividerRV
 import me.martichou.be.grateful.utilities.formatDate
-import me.martichou.be.grateful.utilities.getNotesRepository
-import me.martichou.be.grateful.utilities.getViewModel
+import me.martichou.be.grateful.viewmodels.getNotesRepository
+import me.martichou.be.grateful.viewmodels.getViewModel
 import me.martichou.be.grateful.utilities.makeToast
 import me.martichou.be.grateful.utilities.statusBarWhite
 import me.martichou.be.grateful.viewmodels.MainViewModel
