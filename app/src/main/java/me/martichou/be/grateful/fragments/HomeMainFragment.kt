@@ -33,6 +33,8 @@ import kotlin.coroutines.CoroutineContext
 @ExperimentalCoroutinesApi
 class HomeMainFragment : Fragment(), CoroutineScope {
 
+    // TODO: FIX THAT FUCKING SHIT OF RECYCLERVIEW RETURN ANIMATION
+
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.IO
 
