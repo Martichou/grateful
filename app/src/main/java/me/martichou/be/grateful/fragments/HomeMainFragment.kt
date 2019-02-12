@@ -18,16 +18,17 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.databinding.FragmentHomemainBinding
-import me.martichou.be.grateful.recyclerView.NotesAdapter
 import me.martichou.be.grateful.recyclerView.DividerRV
+import me.martichou.be.grateful.recyclerView.NotesAdapter
 import me.martichou.be.grateful.utilities.formatDate
-import me.martichou.be.grateful.viewmodels.getNotesRepository
-import me.martichou.be.grateful.viewmodels.getViewModel
 import me.martichou.be.grateful.utilities.makeToast
 import me.martichou.be.grateful.utilities.statusBarWhite
 import me.martichou.be.grateful.viewmodels.MainViewModel
+import me.martichou.be.grateful.viewmodels.getNotesRepository
+import me.martichou.be.grateful.viewmodels.getViewModel
 import timber.log.Timber
 import kotlin.coroutines.CoroutineContext
+
 
 @ExperimentalCoroutinesApi
 class HomeMainFragment : Fragment(), CoroutineScope {
@@ -42,6 +43,9 @@ class HomeMainFragment : Fragment(), CoroutineScope {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentHomemainBinding.inflate(inflater, container, false)
+
+        // Wait for recyclerview
+        postponeEnterTransition()
 
         // Set animation transition w/ sharedelement
         setupTransition()
@@ -67,9 +71,6 @@ class HomeMainFragment : Fragment(), CoroutineScope {
 
         // Update subtitle while scrolling
         setupScrollRvListener()
-
-        // Wait for recyclerview
-        postponeEnterTransition()
 
         // Wait RecyclerView layout for detail to list image return animation
         binding.recentNotesList.viewTreeObserver.addOnPreDrawListener {
