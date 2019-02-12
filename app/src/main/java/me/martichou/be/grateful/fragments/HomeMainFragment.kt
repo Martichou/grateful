@@ -1,6 +1,7 @@
 package me.martichou.be.grateful.fragments
 
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,6 +43,7 @@ class HomeMainFragment : Fragment(), CoroutineScope {
         requireActivity().getViewModel { MainViewModel(getNotesRepository(requireContext())) }
     }
     private lateinit var binding: FragmentHomemainBinding
+    private var liststate: Parcelable? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentHomemainBinding.inflate(inflater, container, false)
@@ -89,6 +91,18 @@ class HomeMainFragment : Fragment(), CoroutineScope {
     override fun onResume() {
         super.onResume()
         statusBarWhite(activity)
+        if (liststate != null) {
+            binding.recentNotesList.layoutManager?.onRestoreInstanceState(liststate)
+        }
+    }
+
+
+    /**
+     * Save scrolled position
+     */
+    override fun onPause() {
+        super.onPause()
+        liststate = binding.recentNotesList.layoutManager?.onSaveInstanceState()
     }
 
     /**
