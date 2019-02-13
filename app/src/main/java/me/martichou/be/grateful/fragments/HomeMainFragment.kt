@@ -30,11 +30,13 @@ import me.martichou.be.grateful.viewmodels.getViewModel
 import timber.log.Timber
 import kotlin.coroutines.CoroutineContext
 
-
 @ExperimentalCoroutinesApi
 class HomeMainFragment : Fragment(), CoroutineScope {
 
     // TODO: FIX THAT FUCKING SHIT OF RECYCLERVIEW RETURN ANIMATION
+    // --> Only happen on last two childrens
+
+    // TODO: IF NO IMAGE ADD A COLOR - SECOND TYPE OF RV ITEM
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.IO
