@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import androidx.core.view.doOnLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
@@ -32,9 +33,6 @@ import kotlin.coroutines.CoroutineContext
 
 @ExperimentalCoroutinesApi
 class HomeMainFragment : Fragment(), CoroutineScope {
-
-    // TODO: FIX THAT FUCKING SHIT OF RECYCLERVIEW RETURN ANIMATION
-    // --> Only happen on last two childrens
 
     // TODO: IF NO IMAGE ADD A COLOR - SECOND TYPE OF RV ITEM
 
@@ -68,23 +66,18 @@ class HomeMainFragment : Fragment(), CoroutineScope {
         // Prepare recyclerview and bind
         binding.recentNotesList.setHasFixedSize(true)
         binding.recentNotesList.addItemDecoration(DividerRV())
+
+        // Set adapter to the recyclerview once other things are set
+        subscribeUirecentNotesList(viewModel.adapter)
         binding.recentNotesList.adapter = viewModel.adapter
 
-        // Fix weird handling in gap life all photo on the same column for no reason
-        val lm = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-        lm.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE
-        binding.recentNotesList.layoutManager = lm
+        // Wait RecyclerView layout for detail to list image return animation
+        binding.recentNotesList.doOnLayout {
+            startPostponedEnterTransition()
+        }
 
         // Update subtitle while scrolling
         setupScrollRvListener()
-
-        // Wait RecyclerView layout for detail to list image return animation
-        binding.recentNotesList.viewTreeObserver.addOnPreDrawListener {
-            startPostponedEnterTransition()
-            true
-        }
-
-        subscribeUirecentNotesList(viewModel.adapter)
     }
 
     /**
@@ -112,17 +105,7 @@ class HomeMainFragment : Fragment(), CoroutineScope {
      */
     private fun subscribeUirecentNotesList(adapter: NotesAdapter) {
         viewModel.recentNotesList.observe(viewLifecycleOwner, Observer { notes ->
-            if (notes.isNullOrEmpty()) {
-                adapter.submitList(emptyList())
-                binding.recentNotesList.visibility = View.GONE
-                binding.nonethinking.visibility = View.VISIBLE
-            } else {
-                adapter.submitList(notes)
-                if (binding.recentNotesList.visibility == View.GONE) {
-                    binding.recentNotesList.visibility = View.VISIBLE
-                    binding.nonethinking.visibility = View.GONE
-                }
-            }
+            adapter.submitList(notes)
         })
     }
 

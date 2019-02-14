@@ -12,13 +12,9 @@ class DividerRV internal constructor() : RecyclerView.ItemDecoration() {
             parent: RecyclerView,
             state: RecyclerView.State
     ) {
-        val itemCount = state.itemCount
         val itemPosition = parent.getChildAdapterPosition(view)
-        if (itemPosition != 0 && itemCount > 0 && itemPosition == itemCount - 1) {
+        if (itemPosition == 0 || itemPosition == 1)
             outRect.top = 45
-        } else {
-            outRect.top = 45
-        }
         view.clipToOutline = true
     }
 }

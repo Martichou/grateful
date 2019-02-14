@@ -90,10 +90,13 @@
                 android:layout_height="match_parent"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
+                app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent"
+                app:spanCount="2"
+                tools:listitem="@layout/recyclerview_homeitem"/>
 
             <ProgressBar
                 android:id="@+id/loading_ui"
