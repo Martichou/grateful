@@ -34,6 +34,7 @@ import kotlin.coroutines.CoroutineContext
 @ExperimentalCoroutinesApi
 class HomeMainFragment : Fragment(), CoroutineScope {
 
+    // TODO: FIX STAGGERED GRID LAYOUT CHANGE WHILE SCROLLING
     // TODO: IF NO IMAGE ADD A COLOR - SECOND TYPE OF RV ITEM
 
     override val coroutineContext: CoroutineContext
