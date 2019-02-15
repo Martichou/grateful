@@ -63,7 +63,6 @@ class NotesAdapter : ListAdapter<Notes, NotesAdapter.ViewHolder>(NotesDiffCallba
                 .load(File(itemView.context.getDir("imgForNotes", Context.MODE_PRIVATE), item.image))
                 .into(object : SimpleTarget<Size2>() {
                     override fun onResourceReady(resource: Size2, transition: com.bumptech.glide.request.transition.Transition<in Size2>?) {
-                        Timber.i("Size: $resource")
                         with(set) {
                             val posterRatio = String.format("%d:%d", resource.width, resource.height)
                             clone(binding.parentContsraint)
