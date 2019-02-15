@@ -69,13 +69,15 @@ class HomeMainFragment : Fragment(), CoroutineScope {
         binding.recentNotesList.addItemDecoration(DividerRV())
 
         // Set adapter to the recyclerview once other things are set
-        subscribeUirecentNotesList(viewModel.adapter)
         binding.recentNotesList.adapter = viewModel.adapter
 
         // Wait RecyclerView layout for detail to list image return animation
         binding.recentNotesList.doOnLayout {
             startPostponedEnterTransition()
         }
+
+        // Subscribe adapter
+        subscribeUirecentNotesList(viewModel.adapter)
 
         // Update subtitle while scrolling
         setupScrollRvListener()
