@@ -1,6 +1,5 @@
 package me.martichou.be.grateful.fragments
 
-import android.content.Context
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.LayoutInflater
@@ -14,19 +13,15 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.transition.Fade
 import androidx.transition.TransitionInflater
-import com.bumptech.glide.ListPreloader.PreloadModelProvider
-import com.bumptech.glide.RequestBuilder
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import me.martichou.be.grateful.R
-import me.martichou.be.grateful.data.Notes
 import me.martichou.be.grateful.databinding.FragmentHomemainBinding
 import me.martichou.be.grateful.recyclerView.DividerRV
 import me.martichou.be.grateful.recyclerView.NotesAdapter
-import me.martichou.be.grateful.utilities.GlideApp
 import me.martichou.be.grateful.utilities.formatDate
 import me.martichou.be.grateful.utilities.makeToast
 import me.martichou.be.grateful.utilities.statusBarWhite
@@ -34,13 +29,7 @@ import me.martichou.be.grateful.viewmodels.MainViewModel
 import me.martichou.be.grateful.viewmodels.getNotesRepository
 import me.martichou.be.grateful.viewmodels.getViewModel
 import timber.log.Timber
-import java.util.Collections
 import kotlin.coroutines.CoroutineContext
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.util.FixedPreloadSizeProvider
-import me.martichou.be.grateful.recyclerView.RecyclerViewPreloader
-import java.io.File
 
 @ExperimentalCoroutinesApi
 class HomeMainFragment : Fragment(), CoroutineScope {
@@ -56,8 +45,6 @@ class HomeMainFragment : Fragment(), CoroutineScope {
     }
     private lateinit var binding: FragmentHomemainBinding
     private var liststate: Parcelable? = null
-    private val imageWidthPixels = 1024
-    private val imageHeightPixels = 768
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentHomemainBinding.inflate(inflater, container, false)
@@ -80,14 +67,6 @@ class HomeMainFragment : Fragment(), CoroutineScope {
         // Prepare recyclerview and bind
         binding.recentNotesList.setHasFixedSize(true)
         binding.recentNotesList.addItemDecoration(DividerRV())
-
-        // Preload
-        val sizeProvider = FixedPreloadSizeProvider<Any>(imageWidthPixels, imageHeightPixels)
-        val modelProvider = MyPreloadModelProvider()
-        val preloader = RecyclerViewPreloader(Glide.with(this), modelProvider, sizeProvider, 8 /*maxPreload*/)
-
-        // Add the preloader listener
-        binding.recentNotesList.addOnScrollListener(preloader)
 
         // Set adapter to the recyclerview once other things are set
         subscribeUirecentNotesList(viewModel.adapter)
@@ -221,27 +200,5 @@ class HomeMainFragment : Fragment(), CoroutineScope {
             -1 -> makeToast(requireContext(), "Add a gratitude first !")
             else -> binding.recentNotesList.smoothScrollToPosition(0)
         }
-    }
-
-    private inner class MyPreloadModelProvider : PreloadModelProvider<Any> {
-
-        override fun getPreloadItems(position: Int): MutableList<Any> {
-            val url = viewModel.recentNotesList.value!![position].image
-
-            return if(url.isEmpty()){
-                Collections.emptyList()
-            } else {
-                Collections.singletonList(url)
-            }
-        }
-
-        override fun getPreloadRequestBuilder(item: Any): RequestBuilder<*>? {
-            return GlideApp.with(this@HomeMainFragment)
-                    .load(File(requireContext().getDir("imgForNotes", Context.MODE_PRIVATE), item as String))
-                    .override(imageWidthPixels, imageHeightPixels)
-                    .centerCrop()
-        }
-
-
     }
 }

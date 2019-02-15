@@ -57,7 +57,9 @@ class NotesAdapter : ListAdapter<Notes, NotesAdapter.ViewHolder>(NotesDiffCallba
         fun bind(listener: OnNoteItemClickListener, item: Notes) {
             Glide.with(itemView.context)
                 .`as`(Size2::class.java)
-                .apply(sizeOptions)
+                .apply(RequestOptions()
+                        .skipMemoryCache(true)
+                        .diskCacheStrategy(DiskCacheStrategy.NONE))
                 .load(File(itemView.context.getDir("imgForNotes", Context.MODE_PRIVATE), item.image))
                 .into(object : SimpleTarget<Size2>() {
                     override fun onResourceReady(resource: Size2, transition: com.bumptech.glide.request.transition.Transition<in Size2>?) {
@@ -76,12 +78,6 @@ class NotesAdapter : ListAdapter<Notes, NotesAdapter.ViewHolder>(NotesDiffCallba
                 note = item
                 executePendingBindings()
             }
-        }
-
-        private val sizeOptions by lazy {
-            RequestOptions()
-                .skipMemoryCache(true)
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
         }
     }
 

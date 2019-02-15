@@ -24,7 +24,8 @@ fun imageFromFile(view: AppCompatImageView, imageUrl: String?, listener: Request
     if (!imageUrl.isNullOrEmpty()) {
         GlideApp.with(view.context)
                 .load(File(view.context.getDir("imgForNotes", Context.MODE_PRIVATE), imageUrl))
-                .override(1024, 768)
+                .override(view.measuredWidth, view.measuredHeight)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .listener(listener)
                 .centerCrop()
                 .into(view)
