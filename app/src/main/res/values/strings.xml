@@ -18,4 +18,6 @@
 		penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce consectetur convallis mi ut tristique.
 		Aliquam laoreet, sem id accumsan fringilla, sem tortor efficitur nunc, sed mattis risus odio vel mi.
 	</string>
+    <string name="write_here_the_message_you_want_for_this_note">Write here the message you want for this note.</string>
+    <string name="go_to_today_s_date">Go to today\'s date</string>
 </resources>

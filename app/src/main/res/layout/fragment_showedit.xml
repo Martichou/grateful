@@ -19,17 +19,19 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
             <com.google.android.material.appbar.AppBarLayout
                 android:id="@+id/app_bar"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:theme="@style/AppTheme.AppBarOverlay"
-                app:elevation="4dp">
+                android:elevation="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/detail_toolbar"
@@ -37,17 +39,18 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="3dp"
                     android:layout_marginEnd="20dp"
-                    android:theme="@style/AppTheme.PopupOverlay" />
+                    android:theme="@style/AppTheme.PopupOverlay"/>
 
             </com.google.android.material.appbar.AppBarLayout>
 
-
             <androidx.core.widget.NestedScrollView
                 android:id="@+id/scrolledit"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp">
+                android:paddingBottom="32dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/app_bar">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -57,11 +60,12 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/editnote_title"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
                         android:background="@null"
-                        android:foreground="@drawable/ripple_circle"
                         android:inputType="text"
                         android:maxLines="1"
                         android:text="@{editModel.note.title}"
@@ -71,54 +75,44 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/editnote_content"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
                         android:background="@null"
-                        android:foreground="@drawable/ripple_circle"
-                        android:hint="Write here the message you want for this note."
+                        android:hint="@string/write_here_the_message_you_want_for_this_note"
                         android:inputType="textMultiLine"
                         android:text="@{editModel.note.content}"
                         android:textColor="@color/grey_show"
                         android:textSize="16sp" />
 
-                    <FrameLayout
+                    <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:onClick="@{hdl::launchpickimage}">
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="12dp"
+                        app:cardElevation="4dp"
+                        app:cardUseCompatPadding="true"
+                        android:clipToPadding="false">
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
                             android:scaleType="centerCrop"
                             app:imageFromFile="@{editModel.note.image}"
-                            app:srcCompat="@drawable/pool" />
+                            app:srcCompat="@drawable/pool"/>
 
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_gravity="center"
-                            app:srcCompat="@drawable/ic_image_white" />
-
-                    </FrameLayout>
+                    </androidx.cardview.widget.CardView>
 
                 </LinearLayout>
 
             </androidx.core.widget.NestedScrollView>
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <View
-            android:id="@+id/shadow"
-            android:layout_width="match_parent"
-            android:layout_height="8dp"
-            android:background="@drawable/bottomappbarshaup"
-            app:layout_anchor="@id/app_bar"
-            app:layout_anchorGravity="bottom" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
@@ -157,9 +151,7 @@
             android:layout_margin="16dp"
             android:onClick="@{hdl::deletethisnote}"
             android:src="@drawable/ic_delete"
-            app:fabSize="auto"
-            app:layout_anchor="@id/scrolledit"
-            app:layout_anchorGravity="bottom|end" />
+            app:fabSize="auto" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

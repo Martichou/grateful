@@ -58,10 +58,4 @@ class ShowEditFragment : Fragment() {
         findNavController().popBackStack()
     }
 
-    /**
-     * Update image button handler
-     */
-    fun launchpickimage(view: View) {
-        // TODO
-    }
 }

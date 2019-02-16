@@ -67,7 +67,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:contentDescription="Go to today's date"
+                        android:contentDescription="@string/go_to_today_s_date"
                         android:foreground="@drawable/ripple_circle"
                         android:onClick="@{hdl::gototop}"
                         app:srcCompat="@drawable/ic_today" />
