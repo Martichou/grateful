@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.transition.Explode
 import androidx.transition.Fade
 import androidx.transition.Slide
 import androidx.transition.TransitionInflater
@@ -70,6 +71,7 @@ class ShowMainFragment : Fragment() {
             interpolator = AnimUtils.getFastOutLinearInInterpolator()
             duration = 75
         }
+        exitTransition = Explode().apply { duration = 150 }
     }
 
     /**
