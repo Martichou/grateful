@@ -84,10 +84,6 @@ dependencies {
 
     // Custom libs
     implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
-    implementation ("com.github.bumptech.glide:recyclerview-integration:4.9.0") {
-        // Excludes the support library because it's already included by Glide.
-        transitive = false
-    }
     implementation "com.theartofdev.edmodo:android-image-cropper:$rootProject.imgcropper"
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjava"
     implementation "com.jakewharton.timber:timber:$rootProject.timber"

@@ -9,9 +9,10 @@ import android.view.animation.AnimationUtils
 import androidx.core.view.doOnLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import androidx.transition.Fade
+import androidx.transition.Explode
 import androidx.transition.TransitionInflater
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -20,7 +21,6 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.databinding.FragmentHomemainBinding
-import me.martichou.be.grateful.recyclerView.DividerRV
 import me.martichou.be.grateful.recyclerView.NotesAdapter
 import me.martichou.be.grateful.utilities.formatDate
 import me.martichou.be.grateful.utilities.makeToast
@@ -33,9 +33,6 @@ import kotlin.coroutines.CoroutineContext
 
 @ExperimentalCoroutinesApi
 class HomeMainFragment : Fragment(), CoroutineScope {
-
-    // TODO: FIX STAGGERED GRID LAYOUT CHANGE WHILE SCROLLING
-    // TODO: IF NO IMAGE ADD A COLOR - SECOND TYPE OF RV ITEM
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.IO
@@ -66,7 +63,6 @@ class HomeMainFragment : Fragment(), CoroutineScope {
 
         // Prepare recyclerview and bind
         binding.recentNotesList.setHasFixedSize(true)
-        binding.recentNotesList.addItemDecoration(DividerRV())
 
         // Set adapter to the recyclerview once other things are set
         binding.recentNotesList.adapter = viewModel.adapter
@@ -117,7 +113,7 @@ class HomeMainFragment : Fragment(), CoroutineScope {
      */
     private fun setupTransition() {
         sharedElementReturnTransition = TransitionInflater.from(context).inflateTransition(R.transition.move)
-        exitTransition = Fade().apply {
+        exitTransition = Explode().apply {
             excludeTarget(binding.appBar, true)
             duration = 150
         }
@@ -138,9 +134,9 @@ class HomeMainFragment : Fragment(), CoroutineScope {
                     binding.fab.show()
                 }
 
-                val itemPosition = (binding.recentNotesList.layoutManager as StaggeredGridLayoutManager).findFirstCompletelyVisibleItemPositions(null)
+                val itemPosition = (binding.recentNotesList.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
 
-                getDateFromItem(itemPosition[0])
+                getDateFromItem(itemPosition)
             }
         })
     }

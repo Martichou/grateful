@@ -15,67 +15,60 @@
         <import type="java.lang.String" />
     </data>
 
-    <androidx.cardview.widget.CardView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:foreground="@drawable/ripple_circle"
-        android:onClick="@{v -> clickListener.onNoteItemClick(v, note)}"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="5dp"
-        app:cardUseCompatPadding="true">
+        android:onClick="@{v -> clickListener.onNoteItemClick(v, note)}">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/parentContsraint"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/show_image_note"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/image_of_your_dedicated_note"
+            android:transitionName="@{String.valueOf(note.id)}"
+            app:imageFromFile="@{note.image}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/show_image_note"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:scaleType="centerCrop"
-                android:contentDescription="@string/image_of_your_dedicated_note"
-                android:transitionName="@{String.valueOf(note.id)}"
-                app:imageFromFile="@{note.image}"
-                app:srcCompat="@drawable/pool"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/titlervnote"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
                 android:text="@{note.title}"
-                android:textAlignment="textStart"
                 android:textColor="@color/white"
-                android:textSize="@dimen/note_title"
+                android:textSize="20sp"
                 android:textStyle="bold"
+                android:textAlignment="center"
+                android:textAllCaps="true"
                 android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintBottom_toTopOf="@id/datervnote"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:layout_marginEnd="16dp"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/datervnote"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@{note.date}"
-                android:textAlignment="textStart"
                 android:textColor="@color/white"
                 android:textSize="@dimen/note_timestamp"
+                android:textAlignment="center"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
+                android:layout_marginBottom="16dp"/>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
+    </RelativeLayout>
 
 </layout>

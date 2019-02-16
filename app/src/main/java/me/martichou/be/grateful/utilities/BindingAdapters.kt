@@ -3,15 +3,11 @@ package me.martichou.be.grateful.utilities
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.view.View
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.databinding.BindingAdapter
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DecodeFormat
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.RequestOptions
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -25,7 +21,8 @@ fun imageFromFile(view: AppCompatImageView, imageUrl: String?, listener: Request
         GlideApp.with(view.context)
                 .load(File(view.context.getDir("imgForNotes", Context.MODE_PRIVATE), imageUrl))
                 .override(view.measuredWidth, view.measuredHeight)
-                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .thumbnail(0.1f)
                 .listener(listener)
                 .centerCrop()
                 .into(view)
