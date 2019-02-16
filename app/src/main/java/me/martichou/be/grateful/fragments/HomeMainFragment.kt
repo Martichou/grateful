@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.transition.Explode
 import androidx.transition.TransitionInflater
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -21,6 +20,7 @@ import kotlinx.coroutines.launch
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.databinding.FragmentHomemainBinding
 import me.martichou.be.grateful.recyclerView.NotesAdapter
+import me.martichou.be.grateful.utilities.ExplodeFadeOut
 import me.martichou.be.grateful.utilities.formatDate
 import me.martichou.be.grateful.utilities.makeToast
 import me.martichou.be.grateful.utilities.statusBarWhite
@@ -111,10 +111,11 @@ class HomeMainFragment : Fragment(), CoroutineScope {
      * Setup fade out transition and sharedelementransition
      */
     private fun setupTransition() {
-        sharedElementReturnTransition = TransitionInflater.from(context).inflateTransition(R.transition.move)
-        exitTransition = Explode().apply {
+        sharedElementReturnTransition = TransitionInflater.from(context).inflateTransition(R.transition.move).apply { duration = 250 }
+        exitTransition = ExplodeFadeOut().apply {
+            propagation = null
             excludeTarget(binding.appBar, true)
-            duration = 150
+            duration = 200
         }
     }
 
