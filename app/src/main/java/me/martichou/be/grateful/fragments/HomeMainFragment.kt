@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.transition.Explode
 import androidx.transition.TransitionInflater
 import kotlinx.coroutines.CoroutineScope
@@ -191,7 +190,7 @@ class HomeMainFragment : Fragment(), CoroutineScope {
      * Scroll to top of the list (today)
      */
     fun gototop(view: View) {
-        val item = (binding.recentNotesList.layoutManager as StaggeredGridLayoutManager).findFirstCompletelyVisibleItemPositions(null)[0]
+        val item = (binding.recentNotesList.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
         Timber.d("Item $item")
         when (item) {
             0 -> makeToast(requireContext(), "Already showing today's gratitude")
