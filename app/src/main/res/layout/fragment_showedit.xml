@@ -102,8 +102,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:scaleType="centerCrop"
-                            app:imageFromFile="@{editModel.note.image}"
-                            app:srcCompat="@drawable/pool"/>
+                            app:imageFromFile="@{editModel.note.image}"/>
 
                     </androidx.cardview.widget.CardView>
 
