@@ -103,7 +103,13 @@ class HomeMainFragment : Fragment(), CoroutineScope {
      */
     private fun subscribeUirecentNotesList(adapter: NotesAdapter) {
         viewModel.recentNotesList.observe(viewLifecycleOwner, Observer { notes ->
-            adapter.submitList(notes)
+            if(notes.isNullOrEmpty()){
+                adapter.submitList(emptyList())
+                binding.nonethinking.visibility = View.VISIBLE
+            } else {
+                adapter.submitList(notes)
+                binding.nonethinking.visibility = View.GONE
+            }
         })
     }
 
@@ -136,7 +142,8 @@ class HomeMainFragment : Fragment(), CoroutineScope {
 
                 val itemPosition = (binding.recentNotesList.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
 
-                getDateFromItem(itemPosition)
+                if(itemPosition != -1)
+                    getDateFromItem(itemPosition)
             }
         })
     }
@@ -150,7 +157,7 @@ class HomeMainFragment : Fragment(), CoroutineScope {
                 formatDate(viewModel.recentNotesList.value!![itemPos].dateToSearch)
             } catch (e: IndexOutOfBoundsException) {
                 Timber.e(e)
-                null
+                "14 avril 2000"
             }
         }
         launch(Dispatchers.Main) {
