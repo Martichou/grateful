@@ -24,6 +24,7 @@ fun imageFromFile(view: AppCompatImageView, imageUrl: String?, listener: Request
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .thumbnail(0.1f)
                 .listener(listener)
+                .dontTransform()
                 .into(view)
     }
 }
