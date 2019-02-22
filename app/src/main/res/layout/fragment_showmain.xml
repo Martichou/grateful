@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layoutDescription="@xml/motion_scene_collapsing_toolbar_with_cover">
+        app:layoutDescription="@xml/details_motionlayout">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/coverImage"
