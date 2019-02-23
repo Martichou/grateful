@@ -8,12 +8,6 @@ import me.martichou.be.grateful.data.repository.NotesRepository
 class ShowViewModel internal constructor(notesRepository: NotesRepository, id: Long) :
         ViewModel() {
 
-    var note = MediatorLiveData<Notes>()
+    var note = MediatorLiveData<Notes>().apply { addSource(notesRepository.getThisNote(id), this::setValue) }
 
-    /**
-     * Fill in the note var
-     */
-    init {
-        note.addSource(notesRepository.getThisNote(id), note::setValue)
-    }
 }

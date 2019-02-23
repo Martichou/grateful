@@ -15,14 +15,7 @@ class EditViewModel internal constructor(private val notesRepository: NotesRepos
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.IO
 
-    var note = MediatorLiveData<Notes>()
-
-    /**
-     * Fill in the note var
-     */
-    init {
-        note.addSource(notesRepository.getThisNote(id), note::setValue)
-    }
+    var note = MediatorLiveData<Notes>().apply { addSource(notesRepository.getThisNote(id), this::setValue) }
 
     fun updateNote(title: String, content: String) {
         val n = Notes(
@@ -39,4 +32,5 @@ class EditViewModel internal constructor(private val notesRepository: NotesRepos
     fun deleteNote() {
         launch { notesRepository.deleteById(id) }
     }
+
 }

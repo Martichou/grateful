@@ -9,17 +9,11 @@ import me.martichou.be.grateful.recyclerView.NotesAdapter
 
 class MainViewModel internal constructor(notesRepository: NotesRepository) : ViewModel() {
 
-    val recentNotesList = MediatorLiveData<List<Notes>>()
+    val recentNotesList = MediatorLiveData<List<Notes>>().apply {
+        addSource(notesRepository.getAllNote(), this::setValue)
+        hasNotes.set(true)
+    }
     val adapter = NotesAdapter()
     val hasNotes = ObservableBoolean(false)
 
-    /**
-     * Fill in the notesList & adapter
-     */
-    init {
-        recentNotesList.addSource(notesRepository.getAllNote()) {
-            recentNotesList.value = it
-            hasNotes.set(true)
-        }
-    }
 }
