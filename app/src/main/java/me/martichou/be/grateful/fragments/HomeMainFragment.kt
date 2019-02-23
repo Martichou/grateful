@@ -104,7 +104,6 @@ class HomeMainFragment : Fragment(), CoroutineScope {
     private fun subscribeUirecentNotesList(adapter: NotesAdapter) {
         viewModel.recentNotesList.observe(viewLifecycleOwner, Observer { notes ->
             if(notes.isNullOrEmpty()){
-                adapter.submitList(emptyList())
                 binding.nonethinking.visibility = View.VISIBLE
             } else {
                 adapter.submitList(notes)
