@@ -3,7 +3,6 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'androidx.navigation.safeargs'
-apply plugin: 'com.google.firebase.firebase-perf'
 //apply plugin: 'io.fabric'
 
 android {
@@ -46,13 +45,6 @@ kapt {
     correctErrorTypes = true
     javacOptions {
         option("-Xmaxerrs", 1000)
-    }
-}
-
-android.applicationVariants.all {
-    // Set this to false to disable Firebase Performance Monitoring at compile time
-    FirebasePerformance {
-        instrumentationEnabled true
     }
 }
 
@@ -108,7 +100,6 @@ dependencies {
     // Firebase needed
     implementation "com.google.firebase:firebase-core:$firebase"
     //implementation "com.crashlytics.sdk.android:crashlytics:$rootProject.crashlytics"
-    implementation 'com.google.firebase:firebase-perf:16.2.3'
 
     // Maps
     implementation 'com.google.android.libraries.places:places-compat:1.0.0'
