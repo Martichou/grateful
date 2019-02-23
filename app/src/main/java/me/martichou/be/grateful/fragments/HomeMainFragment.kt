@@ -191,7 +191,7 @@ class HomeMainFragment : Fragment(), CoroutineScope {
      */
     fun btnNewAction(view: View) {
         val bottomsheetFragment = AddMainFragment()
-        bottomsheetFragment.show(fragmentManager, bottomsheetFragment.tag)
+        bottomsheetFragment.show(requireFragmentManager(), bottomsheetFragment.tag)
     }
 
     /**
