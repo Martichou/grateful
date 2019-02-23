@@ -83,6 +83,10 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$constraintLyt"
     implementation "androidx.constraintlayout:constraintlayout-solver:$constraintLyt"
 
+    // Needed to fix build for a mysterious reason
+    // https://issuetracker.google.com/issues/116154359
+    implementation "com.google.guava:guava:27.0.1-android"
+
     // Architecture components
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle"
