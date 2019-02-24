@@ -1,6 +1,5 @@
 package me.martichou.be.grateful.viewmodels
 
-import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModel
 import me.martichou.be.grateful.data.Notes
@@ -11,9 +10,7 @@ class MainViewModel internal constructor(notesRepository: NotesRepository) : Vie
 
     val recentNotesList = MediatorLiveData<List<Notes>>().apply {
         addSource(notesRepository.getAllNote(), this::setValue)
-        hasNotes.set(true)
     }
     val adapter = NotesAdapter()
-    val hasNotes = ObservableBoolean(false)
 
 }
