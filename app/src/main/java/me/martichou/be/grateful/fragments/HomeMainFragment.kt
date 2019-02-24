@@ -7,8 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.core.view.doOnLayout
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.TransitionInflater
@@ -19,6 +23,8 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.databinding.FragmentHomemainBinding
+import me.martichou.be.grateful.databinding.RecyclerviewHomeitemBinding
+import me.martichou.be.grateful.recyclerView.EventObserver
 import me.martichou.be.grateful.recyclerView.NotesAdapter
 import me.martichou.be.grateful.utilities.ExplodeFadeOut
 import me.martichou.be.grateful.utilities.formatDate
@@ -110,6 +116,17 @@ class HomeMainFragment : Fragment(), CoroutineScope {
                 adapter.submitList(notes)
                 binding.loadingUi.visibility = View.GONE
                 binding.nonethinking.visibility = View.GONE
+            }
+        })
+
+        adapter.openNote.observe(viewLifecycleOwner, EventObserver {pair ->
+            val direction = HomeMainFragmentDirections.actionNoteListFragmentToNoteDetailFragment(pair.first.id)
+
+            DataBindingUtil.getBinding<RecyclerviewHomeitemBinding>(pair.second)?.let {
+                val navigatorExtras = FragmentNavigatorExtras(it.showImageNote to pair.first.id.toString())
+                findNavController().navigate(direction, navigatorExtras)
+            } ?: run {
+                findNavController().navigate(direction)
             }
         })
     }

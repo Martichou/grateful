@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.ListAdapter
@@ -13,6 +15,9 @@ import me.martichou.be.grateful.databinding.RecyclerviewHomeitemBinding
 import me.martichou.be.grateful.fragments.HomeMainFragmentDirections
 
 class NotesAdapter : ListAdapter<Notes, NotesAdapter.ViewHolder>(NotesDiffCallback()) {
+
+    private val _openNote = MutableLiveData<Event<Pair<Notes, View>>>()
+    internal val openNote: LiveData<Event<Pair<Notes, View>>> = _openNote
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val note = getItem(position)
@@ -28,15 +33,7 @@ class NotesAdapter : ListAdapter<Notes, NotesAdapter.ViewHolder>(NotesDiffCallba
     private fun createOnClickListener(): OnNoteItemClickListener {
         return object : OnNoteItemClickListener {
             override fun onNoteItemClick(rootView: View, notes: Notes) {
-                val direction = HomeMainFragmentDirections.actionNoteListFragmentToNoteDetailFragment(notes.id)
-
-                DataBindingUtil.getBinding<RecyclerviewHomeitemBinding>(rootView)?.let {
-                    val navigatorExtras = FragmentNavigatorExtras(it.showImageNote to notes.id.toString())
-                    rootView.findNavController().navigate(direction, navigatorExtras)
-                } ?: run {
-                    // fail to getBinding for transition anim. we still proceed to navigate
-                    rootView.findNavController().navigate(direction)
-                }
+                _openNote.value = Event(Pair(notes, rootView))
             }
         }
     }
