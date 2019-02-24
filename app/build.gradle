@@ -105,6 +105,9 @@ dependencies {
     // Maps
     implementation 'com.google.android.libraries.places:places-compat:1.0.0'
 
+    // Toast
+    implementation 'com.github.GrenderG:Toasty:1.4.0'
+
     // Image cropper
     implementation "com.theartofdev.edmodo:android-image-cropper:$imgcropper"
 }

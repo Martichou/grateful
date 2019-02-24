@@ -6,21 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import android.widget.Toast
 import androidx.core.view.doOnLayout
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.TransitionInflater
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
+import es.dmoral.toasty.Toasty
+import kotlinx.coroutines.*
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.databinding.FragmentHomemainBinding
 import me.martichou.be.grateful.databinding.RecyclerviewHomeitemBinding
@@ -28,7 +25,6 @@ import me.martichou.be.grateful.recyclerView.EventObserver
 import me.martichou.be.grateful.recyclerView.NotesAdapter
 import me.martichou.be.grateful.utilities.ExplodeFadeOut
 import me.martichou.be.grateful.utilities.formatDate
-import me.martichou.be.grateful.utilities.makeToast
 import me.martichou.be.grateful.utilities.statusBarWhite
 import me.martichou.be.grateful.viewmodels.MainViewModel
 import me.martichou.be.grateful.viewmodels.getNotesRepository
@@ -188,7 +184,6 @@ class HomeMainFragment : Fragment(), CoroutineScope {
      */
     private fun updateTextAfterAsync(date: String?, e: Throwable?){
         if (e != null){
-            makeToast(requireContext(), "We're sorry, something went wrong")
             Timber.e(e)
         } else {
             if (date.isNullOrEmpty()){
@@ -219,8 +214,8 @@ class HomeMainFragment : Fragment(), CoroutineScope {
         val item = (binding.recentNotesList.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
         Timber.d("Item $item")
         when (item) {
-            0 -> makeToast(requireContext(), "Already showing today's gratitude")
-            -1 -> makeToast(requireContext(), "Add a gratitude first !")
+            0 -> Toasty.info(requireContext(), "Already showing today's gratitude", Toast.LENGTH_SHORT, true).show()
+            -1 -> Toasty.info(requireContext(), "Add a gratitude first", Toast.LENGTH_SHORT, true).show()
             else -> binding.recentNotesList.smoothScrollToPosition(0)
         }
     }

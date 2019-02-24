@@ -69,13 +69,6 @@ fun randomNumber(min: Int, max: Int): String {
 }
 
 /**
- * Little fun to show off a Toast
- */
-fun makeToast(c: Context, s: String) {
-    Toast.makeText(c, s, Toast.LENGTH_SHORT).show()
-}
-
-/**
  * Open the image cropper view
  */
 fun imageCropper(context: Context, fragment: Fragment) {
