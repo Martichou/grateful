@@ -110,6 +110,13 @@ dependencies {
 
     // Image cropper
     implementation "com.theartofdev.edmodo:android-image-cropper:$imgcropper"
+
+    // Testing unit
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$rootProject.espressoVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:$rootProject.espressoVersion"
+    androidTestImplementation "androidx.test.uiautomator:uiautomator:$rootProject.uiAutomatorVersion"
+    testImplementation "junit:junit:$rootProject.junitVersion"
 }
 
 apply plugin: 'com.google.gms.google-services'
