@@ -11,7 +11,14 @@
 
         <action
             android:id="@+id/action_note_list_fragment_to_note_detail_fragment"
-            app:destination="@id/show_fragment" />
+            app:destination="@id/show_fragment"
+            app:exitAnim="@anim/activity_fade_out"
+            app:popEnterAnim="@anim/activity_fade_in" />
+        <action
+            android:id="@+id/action_main_fragment_to_settings_fragment"
+            app:destination="@id/settings_fragment"
+            app:enterAnim="@anim/slide_up"
+            app:popExitAnim="@anim/slide_down" />
 
     </fragment>
 
@@ -52,5 +59,10 @@
             app:popUpToInclusive="false" />
 
     </fragment>
+
+    <fragment
+        android:id="@+id/settings_fragment"
+        android:name="me.martichou.be.grateful.fragments.SettingsFragment"
+        android:label=" " />
 
 </navigation>

@@ -59,6 +59,7 @@ ext {
     supportLibraryVersion = '1.1.0-alpha02'
     constraintLyt = '2.0.0-alpha3'
     roomVersion = '2.1.0-alpha04'
+    preference = '1.1.0-alpha03'
 }
 
 dependencies {
@@ -75,6 +76,7 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:$supportLibraryVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLyt"
     implementation "androidx.constraintlayout:constraintlayout-solver:$constraintLyt"
+    implementation "androidx.preference:preference:$preference"
 
     // Needed to fix build for a mysterious reason
     // https://issuetracker.google.com/issues/116154359

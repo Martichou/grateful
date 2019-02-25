@@ -219,4 +219,11 @@ class HomeMainFragment : Fragment(), CoroutineScope {
             else -> binding.recentNotesList.smoothScrollToPosition(0)
         }
     }
+
+    /**
+     * Open settings
+     */
+    fun openSettings(view: View) {
+        findNavController().navigate(HomeMainFragmentDirections.actionMainFragmentToSettingsFragment())
+    }
 }

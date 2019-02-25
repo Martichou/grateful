@@ -66,12 +66,23 @@
                         android:id="@+id/gotoday"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="16dp"
+                        android:layout_toStartOf="@id/settingsbutton"
                         android:layout_centerVertical="true"
                         android:contentDescription="@string/go_to_today_s_date"
                         android:foreground="@drawable/ripple_circle"
                         android:onClick="@{hdl::gototop}"
                         app:srcCompat="@drawable/ic_today" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/settingsbutton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:foreground="@drawable/ripple_circle"
+                        android:onClick="@{hdl::openSettings}"
+                        app:srcCompat="@drawable/ic_settings_black_24dp"/>
 
                 </RelativeLayout>
 
