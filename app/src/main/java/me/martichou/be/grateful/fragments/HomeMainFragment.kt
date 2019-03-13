@@ -15,6 +15,7 @@ import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.transition.Fade
 import androidx.transition.TransitionInflater
 import es.dmoral.toasty.Toasty
 import kotlinx.coroutines.*
@@ -23,7 +24,6 @@ import me.martichou.be.grateful.databinding.FragmentHomemainBinding
 import me.martichou.be.grateful.databinding.RecyclerviewHomeitemBinding
 import me.martichou.be.grateful.recyclerView.EventObserver
 import me.martichou.be.grateful.recyclerView.NotesAdapter
-import me.martichou.be.grateful.utilities.ExplodeFadeOut
 import me.martichou.be.grateful.utilities.formatDate
 import me.martichou.be.grateful.utilities.statusBarWhite
 import me.martichou.be.grateful.viewmodels.MainViewModel
@@ -132,8 +132,7 @@ class HomeMainFragment : Fragment(), CoroutineScope {
      */
     private fun setupTransition() {
         sharedElementReturnTransition = TransitionInflater.from(context).inflateTransition(R.transition.move).apply { duration = 250 }
-        exitTransition = ExplodeFadeOut().apply {
-            propagation = null
+        exitTransition = Fade().apply {
             excludeTarget(binding.appBar, true)
             duration = 200
         }

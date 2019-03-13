@@ -16,7 +16,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         setPreferencesFromResource(R.xml.settings_fragment, rootKey)
 
         val feedbackButton = findPreference<Preference>("feedback")
-        feedbackButton.setOnPreferenceClickListener {
+        feedbackButton?.setOnPreferenceClickListener {
             val emailIntent = Intent(Intent.ACTION_SENDTO)
             emailIntent.data = Uri.parse("mailto:martichou.andre@gmail.com")
             emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Grateful Feedback")
