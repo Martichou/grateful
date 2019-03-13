@@ -222,6 +222,6 @@ class HomeMainFragment : Fragment(), CoroutineScope {
      * Open settings
      */
     fun openSettings(view: View) {
-        findNavController().navigate(HomeMainFragmentDirections.actionMainFragmentToSettingsFragment())
+        // TODO
     }
 }
