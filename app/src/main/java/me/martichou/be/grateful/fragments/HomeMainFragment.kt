@@ -133,7 +133,6 @@ class HomeMainFragment : Fragment(), CoroutineScope {
     private fun setupTransition() {
         sharedElementReturnTransition = TransitionInflater.from(context).inflateTransition(R.transition.move).apply { duration = 250 }
         exitTransition = ExplodeFadeOut().apply {
-            propagation = null
             duration = 200
         }
     }
