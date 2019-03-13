@@ -16,16 +16,16 @@ import java.util.Locale
  * Bind the app:imageFromFile="imgName" from xml
  */
 @BindingAdapter("imageFromFile", "requestListener", requireAll = false)
-fun imageFromFile(view: AppCompatImageView, imageUrl: String?, listener: RequestListener<Drawable>?) {
+fun AppCompatImageView.imageFromFile(imageUrl: String?, listener: RequestListener<Drawable>?) {
     if (!imageUrl.isNullOrEmpty()) {
-        GlideApp.with(view.context)
-                .load(File(view.context.getDir("imgForNotes", Context.MODE_PRIVATE), imageUrl))
-                .override(view.measuredWidth, view.measuredHeight)
+        GlideApp.with(context)
+                .load(File(context.getDir("imgForNotes", Context.MODE_PRIVATE), imageUrl))
+                .override(this.measuredWidth, this.measuredHeight)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .thumbnail(0.1f)
                 .listener(listener)
                 .dontTransform()
-                .into(view)
+                .into(this)
     }
 }
 
@@ -33,25 +33,16 @@ fun imageFromFile(view: AppCompatImageView, imageUrl: String?, listener: Request
  * Will hide the textview if the string is empty
  */
 @BindingAdapter("isGone")
-fun isGone(v: TextView, content: String?) {
+fun View.isGone(content: String?) {
     if (content.isNullOrEmpty()) {
-        v.visibility = View.GONE
+        this.visibility = View.GONE
     } else {
-        v.visibility = View.VISIBLE
-    }
-}
-
-@BindingAdapter("bindIsGone")
-fun bindIsGone(view: View, isGone: Boolean) {
-    view.visibility = if (isGone) {
-        View.GONE
-    } else {
-        View.VISIBLE
+        this.visibility = View.VISIBLE
     }
 }
 
 @BindingAdapter("textIsEmpty")
-fun textIsEmpty(v: TextView, content: String?) {
+fun TextView.textIsEmpty(content: String?) {
     if (content != null && content.isEmpty()) {
         val arr: Array<String> = arrayOf(
                 "\"One day I will find the right words, and they will be simple.\" \n - Jack Kerouac",
@@ -59,23 +50,6 @@ fun textIsEmpty(v: TextView, content: String?) {
                 "\"Let me live, love, and say it well in good sentences.\" \n - Sylvia Plath",
                 "\"I kept always two books in my pocket, one to read, one to write in.\" \n - Robert Louis Stevenson"
         )
-        v.text = arr[randomNumber(0, arr.size - 1).toInt()]
+        this.text = arr[randomNumber(0, arr.size - 1).toInt()]
     }
-}
-
-/**
- * Set 07 if it was 07/02/2019
- */
-@BindingAdapter("getNumberFromDate")
-fun getNumberFromDate(v: TextView, content: String?) {
-    v.text = content!!.split("/")[0]
-}
-
-/**
- * Set lun/mon/...
- */
-@BindingAdapter("getNameOfDay")
-fun getNameOfDay(v: TextView, content: String?) {
-    val sdf = SimpleDateFormat("EE", Locale.getDefault())
-    v.text = sdf.format(stringToDate(content)).removeSuffix(".")
 }

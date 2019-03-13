@@ -14,6 +14,7 @@
             app:destination="@id/show_fragment"
             app:exitAnim="@anim/activity_fade_out"
             app:popEnterAnim="@anim/activity_fade_in" />
+
         <action
             android:id="@+id/action_main_fragment_to_settings_fragment"
             app:destination="@id/settings_fragment"
