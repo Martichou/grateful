@@ -56,10 +56,10 @@ ext {
     firebase = '16.0.7'
     imgcropper = '2.7.0'
     timber = '4.7.1'
-    supportLibraryVersion = '1.1.0-alpha02'
+    supportLibraryVersion = '1.1.0-alpha03'
     constraintLyt = '2.0.0-alpha3'
-    roomVersion = '2.1.0-alpha04'
-    preference = '1.1.0-alpha03'
+    roomVersion = '2.1.0-alpha05'
+    preference = '1.1.0-alpha04'
 }
 
 dependencies {
