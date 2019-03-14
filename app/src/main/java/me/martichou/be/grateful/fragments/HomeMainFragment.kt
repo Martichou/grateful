@@ -23,9 +23,7 @@ import me.martichou.be.grateful.databinding.FragmentHomemainBinding
 import me.martichou.be.grateful.databinding.RecyclerviewHomeitemBinding
 import me.martichou.be.grateful.recyclerView.EventObserver
 import me.martichou.be.grateful.recyclerView.NotesAdapter
-import me.martichou.be.grateful.utilities.ExplodeFadeOut
 import me.martichou.be.grateful.utilities.formatDate
-import me.martichou.be.grateful.utilities.statusBarWhite
 import me.martichou.be.grateful.viewmodels.MainViewModel
 import me.martichou.be.grateful.viewmodels.getNotesRepository
 import me.martichou.be.grateful.viewmodels.getViewModel
@@ -85,7 +83,6 @@ class HomeMainFragment : Fragment(), CoroutineScope {
      */
     override fun onResume() {
         super.onResume()
-        statusBarWhite(activity)
         if (liststate != null) {
             binding.recentNotesList.layoutManager?.onRestoreInstanceState(liststate)
         }
@@ -132,9 +129,6 @@ class HomeMainFragment : Fragment(), CoroutineScope {
      */
     private fun setupTransition() {
         sharedElementReturnTransition = TransitionInflater.from(context).inflateTransition(R.transition.move).apply { duration = 250 }
-        exitTransition = ExplodeFadeOut().apply {
-            duration = 200
-        }
     }
 
     /**
