@@ -1,6 +1,5 @@
 package me.martichou.be.grateful.fragments
 
-import android.app.Dialog
 import android.content.Intent
 import android.location.Geocoder
 import android.os.Bundle
@@ -14,7 +13,6 @@ import com.google.android.gms.location.places.ui.PlacePicker
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.theartofdev.edmodo.cropper.CropImage
-import es.dmoral.toasty.Toasty
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.data.Notes
 import me.martichou.be.grateful.databinding.FragmentAddmainBinding
@@ -47,7 +45,7 @@ open class AddMainFragment : BottomSheetDialogFragment() {
         return binding.root
     }
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog = BottomSheetDialog(requireContext(), theme)
+    override fun onCreateDialog(savedInstanceState: Bundle?): BottomSheetDialog = BottomSheetDialog(requireContext(), theme)
 
     /**
      * Open the image selector
@@ -73,7 +71,7 @@ open class AddMainFragment : BottomSheetDialogFragment() {
                 if(resultCode == AppCompatActivity.RESULT_OK)
                     CompressImage(requireContext(), viewModel, null, File(CropImage.getActivityResult(data).uri.path), binding.addPhotoBtnBs)
                 else {
-                    Toasty.error(requireContext(), "Error, please try again", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Error, please try again", Toast.LENGTH_SHORT).show()
                     return
                 }
             }
@@ -84,7 +82,7 @@ open class AddMainFragment : BottomSheetDialogFragment() {
                     if(!namePlace.isNullOrEmpty())
                         viewModel.placeCity = namePlace[0].locality
                     else {
-                        Toasty.error(requireContext(), "Can't get place name", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Can't get place name", Toast.LENGTH_SHORT).show()
                         return
                     }
 
@@ -113,10 +111,10 @@ open class AddMainFragment : BottomSheetDialogFragment() {
                 )
                 dismiss()
             } else {
-                Toasty.info(context!!, "Enter at least a title", Toast.LENGTH_SHORT, true).show()
+                Toast.makeText(context, "Enter at least a title", Toast.LENGTH_SHORT).show()
             }
         } else {
-            Toasty.info(context!!, "You have to set an image", Toast.LENGTH_SHORT, true).show()
+            Toast.makeText(context, "You have to set an image", Toast.LENGTH_SHORT).show()
         }
     }
 }
