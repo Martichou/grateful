@@ -2,10 +2,10 @@ package me.martichou.be.grateful.fragments
 
 import android.os.Bundle
 import android.os.Parcelable
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.view.animation.AnimationUtils
+import android.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.doOnLayout
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -30,7 +30,7 @@ import timber.log.Timber
 import kotlin.coroutines.CoroutineContext
 
 @ExperimentalCoroutinesApi
-class HomeMainFragment : Fragment(), CoroutineScope {
+class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.Toolbar.OnMenuItemClickListener {
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.IO
@@ -75,6 +75,11 @@ class HomeMainFragment : Fragment(), CoroutineScope {
 
         // Update subtitle while scrolling
         setupScrollRvListener()
+
+        // Setup toolbar menu item click listener
+        // Don't know why setHasOptionMenu don't work
+        binding.toolbar.setOnMenuItemClickListener(this)
+
     }
 
     /**
@@ -94,6 +99,18 @@ class HomeMainFragment : Fragment(), CoroutineScope {
     override fun onPause() {
         super.onPause()
         liststate = binding.recentNotesList.layoutManager?.onSaveInstanceState()
+    }
+
+    /**
+     * Handle click on menu item
+     */
+    override fun onMenuItemClick(it: MenuItem): Boolean {
+        Timber.d("Clicked")
+        when(it.itemId){
+            R.id.menu_main_today -> gototop()
+            R.id.menu_main_setting -> openSettings()
+        }
+        return true
     }
 
     /**
@@ -201,7 +218,7 @@ class HomeMainFragment : Fragment(), CoroutineScope {
     /**
      * Scroll to top of the list (today)
      */
-    fun gototop(view: View) {
+    fun gototop() {
         val item = (binding.recentNotesList.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
         Timber.d("Item $item")
         when (item) {
@@ -214,7 +231,7 @@ class HomeMainFragment : Fragment(), CoroutineScope {
     /**
      * Open settings
      */
-    fun openSettings(view: View) {
+    fun openSettings() {
         // TODO
     }
 }

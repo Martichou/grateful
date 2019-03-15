@@ -32,17 +32,15 @@
                 android:layout_height="?attr/actionBarSize"
                 app:contentInsetLeft="0dp"
                 app:contentInsetStart="0dp"
-                app:popupTheme="@style/AppTheme.PopupOverlay">
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                app:menu="@menu/homemenu">
 
                 <RelativeLayout
                     android:id="@+id/date_picker_button"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:clickable="true"
-                    android:focusable="true"
                     android:gravity="center_vertical"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp">
+                    android:paddingStart="16dp">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/title"
@@ -61,28 +59,6 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/title"
                         android:text="@string/unknown" />
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/gotoday"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="16dp"
-                        android:layout_toStartOf="@id/settingsbutton"
-                        android:layout_centerVertical="true"
-                        android:contentDescription="@string/go_to_today_s_date"
-                        android:foreground="@drawable/ripple_circle"
-                        android:onClick="@{hdl::gototop}"
-                        app:srcCompat="@drawable/ic_today" />
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/settingsbutton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:foreground="@drawable/ripple_circle"
-                        android:onClick="@{hdl::openSettings}"
-                        app:srcCompat="@drawable/ic_settings_black_24dp"/>
 
                 </RelativeLayout>
 
