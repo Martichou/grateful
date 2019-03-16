@@ -218,7 +218,7 @@ class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.T
     /**
      * Scroll to top of the list (today)
      */
-    fun gototop() {
+    private fun gototop() {
         val item = (binding.recentNotesList.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
         Timber.d("Item $item")
         when (item) {
@@ -231,7 +231,7 @@ class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.T
     /**
      * Open settings
      */
-    fun openSettings() {
+    private fun openSettings() {
         // TODO
     }
 }
