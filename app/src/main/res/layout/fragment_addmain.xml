@@ -55,11 +55,11 @@
             android:background="@android:color/transparent"
             android:gravity="top"
             android:hint="@string/add_details"
-            android:textColorHint="?android:textColorSecondary"
+            android:textColorHint="@color/grey_extraPlusLight"
             android:inputType="textMultiLine"
             android:maxLines="5"
             android:textSize="15sp"
-            android:textColor="?android:textColorSecondary"
+            android:textColor="@color/grey_extraPlusLight"
             app:layout_constraintTop_toBottomOf="@id/add_title_note_bs" />
 
         <RelativeLayout

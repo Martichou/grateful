@@ -35,6 +35,7 @@ class MainActivity : AestheticActivity() {
                 isDark(false)
                 textColorPrimary(res = R.color.black)
                 textColorSecondary(res = R.color.grey_light)
+                textColorSecondaryInverse(res = R.color.grey_lightlight)
                 colorPrimary(res = R.color.white)
                 colorAccent(res = R.color.red)
                 colorWindowBackground(res = R.color.white)

@@ -37,8 +37,6 @@
                     android:id="@+id/detail_toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="3dp"
-                    android:layout_marginEnd="20dp"
                     android:theme="@style/AppTheme.PopupOverlay"/>
 
             </com.google.android.material.appbar.AppBarLayout>
@@ -58,22 +56,22 @@
                     android:orientation="vertical"
                     android:paddingTop="16dp">
 
-                    <com.google.android.material.textfield.TextInputEditText
+                    <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/editnote_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:paddingStart="16dp"
                         android:paddingEnd="16dp"
-                        android:background="@null"
+                        android:background="@android:color/transparent"
                         android:inputType="text"
                         android:maxLines="1"
                         android:text="@{editModel.note.title}"
-                        android:textColor="@color/dark"
+                        android:textColor="?android:textColorPrimary"
                         android:textSize="@dimen/main_title"
                         android:textStyle="bold" />
 
-                    <com.google.android.material.textfield.TextInputEditText
+                    <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/editnote_content"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -81,11 +79,12 @@
                         android:layout_marginBottom="16dp"
                         android:paddingStart="16dp"
                         android:paddingEnd="16dp"
-                        android:background="@null"
+                        android:background="@android:color/transparent"
                         android:hint="@string/write_here_the_message_you_want_for_this_note"
+                        android:textColorHint="?android:textColorSecondaryInverse"
                         android:inputType="textMultiLine"
                         android:text="@{editModel.note.content}"
-                        android:textColor="@color/grey_show"
+                        android:textColor="?android:textColorSecondaryInverse"
                         android:textSize="16sp" />
 
                     <androidx.cardview.widget.CardView

@@ -1,19 +1,17 @@
 package me.martichou.be.grateful.fragments
 
 import android.annotation.SuppressLint
-import android.os.Bundle
-import androidx.preference.*
-import androidx.recyclerview.widget.RecyclerView
-import me.martichou.be.grateful.R
-import android.widget.Toast
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
+import android.os.Bundle
+import android.widget.Toast
+import androidx.preference.*
+import androidx.recyclerview.widget.RecyclerView
 import com.afollestad.aesthetic.Aesthetic
 import com.afollestad.aesthetic.BottomNavBgMode
 import com.afollestad.aesthetic.BottomNavIconTextMode
-import timber.log.Timber
-
+import me.martichou.be.grateful.R
 
 class SettingsFragment : PreferenceFragmentCompat() {
 
@@ -24,9 +22,11 @@ class SettingsFragment : PreferenceFragmentCompat() {
         darkSwitch?.setOnPreferenceChangeListener { _, newValue ->
             if ((newValue as Boolean)) {
                 Aesthetic.config {
+                    this.activityTheme(R.style.BaseAppThemeDark)
                     isDark(true)
                     textColorPrimary(res = R.color.white)
-                    textColorSecondary(res = R.color.grey_light)
+                    textColorSecondary(res = R.color.grey_lightlight)
+                    textColorSecondaryInverse(res = R.color.grey_extraPlusLight)
                     colorPrimary(res = R.color.black)
                     colorAccent(res = R.color.red)
                     colorWindowBackground(res = R.color.black)
@@ -41,9 +41,11 @@ class SettingsFragment : PreferenceFragmentCompat() {
                 }
             } else {
                 Aesthetic.config {
+                    this.activityTheme(R.style.BaseAppTheme)
                     isDark(false)
                     textColorPrimary(res = R.color.black)
                     textColorSecondary(res = R.color.grey_light)
+                    textColorSecondaryInverse(res = R.color.grey_lightlight)
                     colorPrimary(res = R.color.white)
                     colorAccent(res = R.color.red)
                     colorWindowBackground(res = R.color.white)

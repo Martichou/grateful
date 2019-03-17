@@ -59,7 +59,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/title"
                         android:text="@string/unknown"
-                        android:textColor="?android:textColorSecondary"/>
+                        android:textColor="?android:textColorSecondaryInverse"/>
 
                 </RelativeLayout>
 
