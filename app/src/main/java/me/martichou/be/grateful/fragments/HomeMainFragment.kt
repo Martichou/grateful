@@ -120,6 +120,7 @@ class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.T
     private fun subscribeUirecentNotesList(adapter: NotesAdapter) {
         viewModel.recentNotesList.observe(viewLifecycleOwner, Observer { notes ->
             if (notes.isNullOrEmpty()) {
+                adapter.submitList(emptyList())
                 binding.loadingUi.visibility = View.GONE
                 binding.nonethinking.visibility = View.VISIBLE
             } else {
