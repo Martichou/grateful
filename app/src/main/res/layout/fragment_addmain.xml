@@ -37,8 +37,10 @@
             android:background="@android:color/transparent"
             android:gravity="top"
             android:hint="@string/new_grateful_card"
+            android:textColorHint="@color/white"
             android:inputType="text"
             android:textSize="17sp"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="@id/header_bottom"
             app:layout_constraintStart_toEndOf="@id/third_keyline"
             app:layout_constraintTop_toTopOf="@+id/add_content_note_bs" />
@@ -53,9 +55,11 @@
             android:background="@android:color/transparent"
             android:gravity="top"
             android:hint="@string/add_details"
+            android:textColorHint="?android:textColorSecondary"
             android:inputType="textMultiLine"
             android:maxLines="5"
             android:textSize="15sp"
+            android:textColor="?android:textColorSecondary"
             app:layout_constraintTop_toBottomOf="@id/add_title_note_bs" />
 
         <RelativeLayout

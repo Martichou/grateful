@@ -50,7 +50,7 @@
                         android:maxLines="1"
                         android:text="@string/app_name"
                         android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
-                        android:textColor="@color/black"
+                        android:textColor="?android:textColorPrimary"
                         tools:ignore="RelativeOverlap" />
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -58,7 +58,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/title"
-                        android:text="@string/unknown" />
+                        android:text="@string/unknown"
+                        android:textColor="?android:textColorSecondary"/>
 
                 </RelativeLayout>
 

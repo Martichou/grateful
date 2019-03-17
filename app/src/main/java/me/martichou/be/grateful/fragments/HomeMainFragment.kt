@@ -2,10 +2,11 @@ package me.martichou.be.grateful.fragments
 
 import android.os.Bundle
 import android.os.Parcelable
-import android.view.*
+import android.view.LayoutInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import android.widget.Toolbar
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.doOnLayout
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -231,7 +232,8 @@ class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.T
     /**
      * Open settings
      */
+
     private fun openSettings() {
-        // TODO
+        findNavController().navigate(HomeMainFragmentDirections.actionMainFragmentToSettingsFragment())
     }
 }

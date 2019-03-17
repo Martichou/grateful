@@ -1,13 +1,24 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
-    <style name="BaseAppTheme" parent="Theme.MaterialComponents.Light">
+    <style name="BaseAppTheme" parent="Theme.MaterialComponents.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/red</item>
+        <item name="bgBottom_color">@color/white</item>
 
-        <item name="android:windowBackground">@color/primary</item>
         <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowBackground">@color/white</item>
+    </style>
+
+    <style name="BaseAppThemeDark" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/red</item>
+        <item name="bgBottom_color">@color/dark</item>
+
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowBackground">@color/white</item>
     </style>
 
     <style name="AppTheme" parent="BaseAppTheme" />
