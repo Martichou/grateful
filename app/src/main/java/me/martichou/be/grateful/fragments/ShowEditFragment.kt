@@ -8,9 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import me.martichou.be.grateful.databinding.FragmentShoweditBinding
+import me.martichou.be.grateful.viewmodels.EditViewModel
 import me.martichou.be.grateful.viewmodels.getNotesRepository
 import me.martichou.be.grateful.viewmodels.getViewModel
-import me.martichou.be.grateful.viewmodels.EditViewModel
 
 class ShowEditFragment : Fragment() {
 

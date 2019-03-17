@@ -32,8 +32,8 @@
                 android:layout_height="?attr/actionBarSize"
                 app:contentInsetLeft="0dp"
                 app:contentInsetStart="0dp"
-                app:popupTheme="@style/AppTheme.PopupOverlay"
-                app:menu="@menu/homemenu">
+                app:menu="@menu/homemenu"
+                app:popupTheme="@style/AppTheme.PopupOverlay">
 
                 <RelativeLayout
                     android:id="@+id/date_picker_button"
@@ -59,7 +59,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/title"
                         android:text="@string/unknown"
-                        android:textColor="?android:textColorSecondaryInverse"/>
+                        android:textColor="?android:textColorSecondaryInverse" />
 
                 </RelativeLayout>
 
@@ -82,7 +82,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:listitem="@layout/recyclerview_homeitem"/>
+                tools:listitem="@layout/recyclerview_homeitem" />
 
             <ProgressBar
                 android:id="@+id/loading_ui"

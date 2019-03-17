@@ -9,8 +9,6 @@ import androidx.databinding.BindingAdapter
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestListener
 import java.io.File
-import java.text.SimpleDateFormat
-import java.util.Locale
 
 /**
  * Bind the app:imageFromFile="imgName" from xml

@@ -3,16 +3,12 @@ package me.martichou.be.grateful.recyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import me.martichou.be.grateful.data.Notes
 import me.martichou.be.grateful.databinding.RecyclerviewHomeitemBinding
-import me.martichou.be.grateful.fragments.HomeMainFragmentDirections
 
 class NotesAdapter : ListAdapter<Notes, NotesAdapter.ViewHolder>(NotesDiffCallback()) {
 

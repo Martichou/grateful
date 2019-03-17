@@ -7,7 +7,7 @@
 
         <SwitchPreferenceCompat
             app:key="themedark"
-            app:title="Enable dark theme"/>
+            app:title="Enable dark theme" />
 
     </PreferenceCategory>
 
@@ -18,17 +18,17 @@
         <Preference
             app:key="feedback"
             app:summary="Report technical issues or suggest new features"
-            app:title="Send feedback"/>
+            app:title="Send feedback" />
 
         <Preference
             app:key="about"
             app:summary="Licenses, descriptions and more!"
-            app:title="About the app"/>
+            app:title="About the app" />
 
         <Preference
             app:key="version"
             app:summary="1.1.4"
-            app:title="App Version"/>
+            app:title="App Version" />
 
     </PreferenceCategory>
 

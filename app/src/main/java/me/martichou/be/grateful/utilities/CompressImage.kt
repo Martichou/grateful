@@ -23,11 +23,11 @@ import kotlin.coroutines.CoroutineContext
 import kotlin.system.exitProcess
 
 class CompressImage(
-    val context: Context,
-    private val viewModel: AddViewModel?,
-    private val edittest: ShowViewModel?,
-    val file: File,
-    private val add_btn: AppCompatImageButton?
+        val context: Context,
+        private val viewModel: AddViewModel?,
+        private val edittest: ShowViewModel?,
+        val file: File,
+        private val add_btn: AppCompatImageButton?
 ) : CoroutineScope {
 
     override val coroutineContext: CoroutineContext

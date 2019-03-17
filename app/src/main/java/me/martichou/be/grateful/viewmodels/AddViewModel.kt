@@ -7,7 +7,7 @@ import kotlinx.coroutines.launch
 import me.martichou.be.grateful.data.Notes
 import me.martichou.be.grateful.data.repository.NotesRepository
 import me.martichou.be.grateful.utilities.HashUtils
-import java.util.Date
+import java.util.*
 import kotlin.coroutines.CoroutineContext
 
 class AddViewModel internal constructor(private val notesRepository: NotesRepository) : ViewModel(), CoroutineScope {

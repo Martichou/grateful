@@ -107,7 +107,7 @@ class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.T
      */
     override fun onMenuItemClick(it: MenuItem): Boolean {
         Timber.d("Clicked")
-        when(it.itemId){
+        when (it.itemId) {
             R.id.menu_main_today -> gototop()
             R.id.menu_main_setting -> openSettings()
         }
@@ -119,7 +119,7 @@ class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.T
      */
     private fun subscribeUirecentNotesList(adapter: NotesAdapter) {
         viewModel.recentNotesList.observe(viewLifecycleOwner, Observer { notes ->
-            if(notes.isNullOrEmpty()){
+            if (notes.isNullOrEmpty()) {
                 binding.loadingUi.visibility = View.GONE
                 binding.nonethinking.visibility = View.VISIBLE
             } else {
@@ -129,7 +129,7 @@ class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.T
             }
         })
 
-        adapter.openNote.observe(viewLifecycleOwner, EventObserver {pair ->
+        adapter.openNote.observe(viewLifecycleOwner, EventObserver { pair ->
             val direction = HomeMainFragmentDirections.actionNoteListFragmentToNoteDetailFragment(pair.first.id)
 
             DataBindingUtil.getBinding<RecyclerviewHomeitemBinding>(pair.second)?.let {
@@ -165,7 +165,7 @@ class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.T
 
                 val itemPosition = (binding.recentNotesList.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
 
-                if(itemPosition != -1)
+                if (itemPosition != -1)
                     getDateFromItem(itemPosition)
             }
         })
@@ -174,7 +174,7 @@ class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.T
     /**
      * Get date string async and call next fun
      */
-    private fun getDateFromItem(itemPos: Int){
+    private fun getDateFromItem(itemPos: Int) {
         val job = async {
             try {
                 formatDate(viewModel.recentNotesList.value!![itemPos].dateToSearch)
@@ -191,11 +191,11 @@ class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.T
     /**
      * Update toolbar date text after async task above
      */
-    private fun updateTextAfterAsync(date: String?, e: Throwable?){
-        if (e != null){
+    private fun updateTextAfterAsync(date: String?, e: Throwable?) {
+        if (e != null) {
             Timber.e(e)
         } else {
-            if (date.isNullOrEmpty()){
+            if (date.isNullOrEmpty()) {
                 binding.dateselected.text = resources.getString(R.string.unknown)
             } else if (date != binding.dateselected.text) {
                 val inAnim = AnimationUtils.loadAnimation(context, R.anim.slide_up)

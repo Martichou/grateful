@@ -19,10 +19,10 @@ import me.martichou.be.grateful.databinding.FragmentAddmainBinding
 import me.martichou.be.grateful.utilities.CompressImage
 import me.martichou.be.grateful.utilities.currentTime
 import me.martichou.be.grateful.utilities.dateToSearch
-import me.martichou.be.grateful.viewmodels.getNotesRepository
-import me.martichou.be.grateful.viewmodels.getViewModel
 import me.martichou.be.grateful.utilities.imageCropper
 import me.martichou.be.grateful.viewmodels.AddViewModel
+import me.martichou.be.grateful.viewmodels.getNotesRepository
+import me.martichou.be.grateful.viewmodels.getViewModel
 import java.io.File
 
 open class AddMainFragment : BottomSheetDialogFragment() {
@@ -68,7 +68,7 @@ open class AddMainFragment : BottomSheetDialogFragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         when (requestCode) {
             CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE -> {
-                if(resultCode == AppCompatActivity.RESULT_OK)
+                if (resultCode == AppCompatActivity.RESULT_OK)
                     CompressImage(requireContext(), viewModel, null, File(CropImage.getActivityResult(data).uri.path), binding.addPhotoBtnBs)
                 else {
                     Toast.makeText(context, "Error, please try again", Toast.LENGTH_SHORT).show()
@@ -76,10 +76,10 @@ open class AddMainFragment : BottomSheetDialogFragment() {
                 }
             }
             placePicker -> {
-                if(resultCode == AppCompatActivity.RESULT_OK) {
+                if (resultCode == AppCompatActivity.RESULT_OK) {
                     val place = PlacePicker.getPlace(context, data)
                     val namePlace = Geocoder(context).getFromLocation(place.latLng.latitude, place.latLng.longitude, 1)
-                    if(!namePlace.isNullOrEmpty())
+                    if (!namePlace.isNullOrEmpty())
                         viewModel.placeCity = namePlace[0].locality
                     else {
                         Toast.makeText(context, "Can't get place name", Toast.LENGTH_SHORT).show()
@@ -100,14 +100,14 @@ open class AddMainFragment : BottomSheetDialogFragment() {
             val titleOfTheNote: String = binding.addTitleNoteBs.text.toString()
             if (!titleOfTheNote.isEmpty()) run {
                 viewModel.insertNote(
-                    Notes(
-                        titleOfTheNote,
-                        binding.addContentNoteBs.text.toString(),
-                        viewModel.randomImageName,
-                        currentTime(),
-                        dateToSearch(),
-                        viewModel.locOrNot()
-                    )
+                        Notes(
+                                titleOfTheNote,
+                                binding.addContentNoteBs.text.toString(),
+                                viewModel.randomImageName,
+                                currentTime(),
+                                dateToSearch(),
+                                viewModel.locOrNot()
+                        )
                 )
                 dismiss()
             } else {

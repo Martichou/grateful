@@ -34,8 +34,8 @@
             android:id="@+id/coverImage"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:transitionName="@{String.valueOf(args.noteId)}"
             android:scaleType="centerCrop"
+            android:transitionName="@{String.valueOf(args.noteId)}"
             app:imageFromFile="@{showModel.note.image}"
             app:layout_constraintBottom_toTopOf="@id/guideline1"
             app:layout_constraintEnd_toEndOf="parent"
@@ -157,13 +157,13 @@
             android:nestedScrollingEnabled="false"
             android:padding="14dp"
             android:text="@{showModel.note.content}"
+            android:textColor="?android:textColorSecondaryInverse"
             android:textSize="17sp"
             android:textStyle="italic"
-            android:textColor="?android:textColorSecondaryInverse"
-            app:textIsEmpty="@{showModel.note.content}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/divider2" />
+            app:layout_constraintTop_toBottomOf="@id/divider2"
+            app:textIsEmpty="@{showModel.note.content}" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"

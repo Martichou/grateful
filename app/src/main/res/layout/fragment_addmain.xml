@@ -37,10 +37,10 @@
             android:background="@android:color/transparent"
             android:gravity="top"
             android:hint="@string/new_grateful_card"
-            android:textColorHint="@color/white"
             android:inputType="text"
-            android:textSize="17sp"
             android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="17sp"
             app:layout_constraintBottom_toBottomOf="@id/header_bottom"
             app:layout_constraintStart_toEndOf="@id/third_keyline"
             app:layout_constraintTop_toTopOf="@+id/add_content_note_bs" />
@@ -55,11 +55,11 @@
             android:background="@android:color/transparent"
             android:gravity="top"
             android:hint="@string/add_details"
-            android:textColorHint="@color/grey_extraPlusLight"
             android:inputType="textMultiLine"
             android:maxLines="5"
-            android:textSize="15sp"
             android:textColor="@color/grey_extraPlusLight"
+            android:textColorHint="@color/grey_extraPlusLight"
+            android:textSize="15sp"
             app:layout_constraintTop_toBottomOf="@id/add_title_note_bs" />
 
         <RelativeLayout
@@ -76,10 +76,10 @@
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="20dp"
-                android:padding="5dp"
                 android:background="@drawable/bg_roundgrey"
                 android:foreground="@drawable/ripple_circle"
                 android:onClick="@{hdl::openImageSelector}"
+                android:padding="5dp"
                 android:scaleType="centerInside"
                 android:src="@drawable/ic_image_white" />
 
@@ -89,11 +89,11 @@
                 android:layout_height="27dp"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="10dp"
-                android:padding="5dp"
                 android:layout_toEndOf="@+id/add_photo_btn_bs"
                 android:background="@drawable/bg_roundgrey"
                 android:foreground="@drawable/ripple_circle"
                 android:onClick="@{hdl::openMapsSelector}"
+                android:padding="5dp"
                 android:scaleType="centerInside"
                 android:src="@drawable/ic_location_white" />
 
