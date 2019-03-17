@@ -11,7 +11,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.afollestad.aesthetic.Aesthetic
 import com.afollestad.aesthetic.BottomNavBgMode
 import com.afollestad.aesthetic.BottomNavIconTextMode
+import com.mikepenz.aboutlibraries.LibsBuilder
 import me.martichou.be.grateful.R
+import com.mikepenz.aboutlibraries.Libs
 
 class SettingsFragment : PreferenceFragmentCompat() {
 
@@ -75,6 +77,20 @@ class SettingsFragment : PreferenceFragmentCompat() {
             } catch (ex: android.content.ActivityNotFoundException) {
                 Toast.makeText(context, "No email clients installed.", Toast.LENGTH_SHORT).show()
             }
+            true
+        }
+
+        val aboutButton = findPreference<Preference>("about")
+        aboutButton?.setOnPreferenceClickListener {
+            LibsBuilder()
+                .withActivityTitle("Open source")
+                .withAboutIconShown(true)
+                .withAutoDetect(true)
+                .withLicenseShown(false)
+                .withVersionShown(true)
+                .withActivityStyle(Libs.ActivityStyle.DARK)
+                .start(requireContext())
+
             true
         }
     }

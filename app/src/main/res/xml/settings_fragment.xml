@@ -22,8 +22,8 @@
 
         <Preference
             app:key="about"
-            app:summary="Licenses, descriptions and more!"
-            app:title="About the app" />
+            app:summary="Licenses and descriptions"
+            app:title="Open source projects used" />
 
         <Preference
             app:key="version"
