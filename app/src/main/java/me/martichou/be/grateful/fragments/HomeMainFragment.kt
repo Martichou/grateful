@@ -30,6 +30,7 @@ import me.martichou.be.grateful.viewmodels.getViewModel
 import timber.log.Timber
 import kotlin.coroutines.CoroutineContext
 
+
 @ExperimentalCoroutinesApi
 class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.Toolbar.OnMenuItemClickListener {
 

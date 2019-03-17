@@ -20,4 +20,5 @@
 	</string>
     <string name="write_here_the_message_you_want_for_this_note">Write here the message you want for this note.</string>
     <string name="go_to_today_s_date">Go to today\'s date</string>
+    <string name="todo">TODO</string>
 </resources>
