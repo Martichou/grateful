@@ -25,9 +25,18 @@ class AlarmReceiver : BroadcastReceiver() {
         return NotificationCompat.Builder(context, "upload_channel_id").apply {
             setContentTitle("It's the perfect time to be grateful !")
             setContentIntent(pendingIntent)
-            setSmallIcon(R.mipmap.ic_launcher_round)
+            setSmallIcon(R.drawable.splashimage)
             setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
             setVibrate(null)
         }
+    }
+
+    fun test(context: Context){
+        val intentToRepeat = Intent(context, SplashScreen::class.java)
+        intentToRepeat.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+
+        val pendingIntent = PendingIntent.getActivity(context, 0, intentToRepeat, PendingIntent.FLAG_UPDATE_CURRENT)
+
+        NotificationHelper().getNotificationManager(context).notify(0, buildLocalNotification(context, pendingIntent).build())
     }
 }
