@@ -2,22 +2,18 @@ package me.martichou.be.grateful.utilities.notifications
 
 import android.app.AlarmManager
 import android.app.NotificationChannel
-import android.app.PendingIntent
-import android.content.Context
-import android.content.Intent
-import java.util.*
-import android.content.Context.ALARM_SERVICE
 import android.app.NotificationManager
-import android.content.pm.PackageManager
+import android.app.PendingIntent
 import android.content.ComponentName
+import android.content.Context
+import android.content.Context.ALARM_SERVICE
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Build
 import timber.log.Timber
+import java.util.*
 
 class NotificationHelper {
-
-    object ALARM {
-        var ALARM_TYPE_RTC = 100
-    }
 
     private var alarmManagerRTC: AlarmManager? = null
     private var alarmIntentRTC: PendingIntent? = null
@@ -27,26 +23,17 @@ class NotificationHelper {
      * @param context
      */
     fun scheduleRepeatingRTCNotification(context: Context, hour: String, min: String) {
-        // Get calendar instance to be able to select what time notification should be scheduled
+        Timber.d("scheduleRepeatingRTCNotification true")
         val calendar = Calendar.getInstance()
-        // Setting time of the day (8am here) when notification will be sent every day (default)
-        calendar.set(Calendar.HOUR_OF_DAY, hour.toInt(), min.toInt())
+        calendar.timeInMillis = System.currentTimeMillis()
+        calendar.set(Calendar.HOUR_OF_DAY, hour.toInt())
+        calendar.set(Calendar.MINUTE, min.toInt())
 
-        // Setting intent to class where Alarm broadcast message will be handled
         val intent = Intent(context, AlarmReceiver::class.java)
-        // Setting alarm pending intent
-        alarmIntentRTC = PendingIntent.getBroadcast(context, ALARM.ALARM_TYPE_RTC, intent, PendingIntent.FLAG_UPDATE_CURRENT)
-
-        // Getting instance of AlarmManager service
+        alarmIntentRTC = PendingIntent.getBroadcast(context,0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
         alarmManagerRTC = context.getSystemService(ALARM_SERVICE) as AlarmManager
 
-        // Setting alarm to wake up device every day for clock time.
-        // AlarmManager.RTC_WAKEUP is responsible to wake up device for sure, which may not be good practice all the time.
-        when {
-            Build.VERSION.SDK_INT >= Build.VERSION_CODES.M -> alarmManagerRTC!!.setAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP, AlarmManager.INTERVAL_DAY, alarmIntentRTC)
-            Build.VERSION.SDK_INT in 19..22 -> alarmManagerRTC!!.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), AlarmManager.INTERVAL_DAY, alarmIntentRTC)
-            else -> alarmManagerRTC!!.setRepeating(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, AlarmManager.INTERVAL_DAY, alarmIntentRTC)
-        }
+        alarmManagerRTC!!.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, AlarmManager.INTERVAL_DAY, alarmIntentRTC)
     }
 
     fun cancelAlarmRTC() {

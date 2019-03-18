@@ -39,10 +39,15 @@ class ShowEditFragment : Fragment() {
      * Delete the note button handler
      */
     fun deletethisnote(view: View) {
-        AlertDialog.Builder(requireContext()).setMessage("Do you really want to delete it?").setPositiveButton("Yes") { _, _ ->
-            viewModel.deleteNote()
-            findNavController().navigate(ShowEditFragmentDirections.actionEditFragmentToMainFragment())
-        }.setNegativeButton("No") { dialog, _ -> dialog.dismiss() }.show()
+        AlertDialog.Builder(requireContext())
+                .setTitle("Delete this gratitude?")
+                .setMessage("This action can't be undone, think twice before hitting 'Yes'")
+                .setPositiveButton("Yes") { _, _ ->
+                    viewModel.deleteNote()
+                    findNavController().navigate(ShowEditFragmentDirections.actionEditFragmentToMainFragment())
+                }.setNegativeButton("No") {
+                    dialog, _ -> dialog.dismiss()
+                }.show()
     }
 
     /**

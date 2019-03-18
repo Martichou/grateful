@@ -11,6 +11,7 @@ import com.afollestad.aesthetic.BottomNavBgMode
 import com.afollestad.aesthetic.BottomNavIconTextMode
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.databinding.ActivityMainBinding
+import me.martichou.be.grateful.utilities.notifications.NotificationHelper
 import me.martichou.be.grateful.utilities.setupPermissions
 
 class MainActivity : AestheticActivity() {
@@ -49,5 +50,7 @@ class MainActivity : AestheticActivity() {
                 snackbarTextColorDefault()
             }
         }
+
+        NotificationHelper().enableBootReceiver(this)
     }
 }

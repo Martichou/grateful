@@ -11,7 +11,7 @@ class AlarmBootReceiver : BroadcastReceiver() {
         if (intent.action == "android.intent.action.BOOT_COMPLETED") {
             Timber.d("Boot Message Received")
             // TODO CHANGE HOUR
-            NotificationHelper().scheduleRepeatingRTCNotification(context, "22", "42")
+            NotificationHelper().scheduleRepeatingRTCNotification(context, "19", "45")
         }
     }
 }

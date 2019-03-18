@@ -7,25 +7,18 @@ import android.content.Intent
 import androidx.core.app.NotificationCompat
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.activities.SplashScreen
+import timber.log.Timber
 
 class AlarmReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
-        //Get notification manager to manage/send notifications
-        //Intent to invoke app when click on notification.
-        //In this sample, we want to start/launch this sample app when user clicks on notification
+        Timber.d("onReceive true")
         val intentToRepeat = Intent(context, SplashScreen::class.java)
-        //set flag to restart/relaunch the app
         intentToRepeat.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
 
-        //Pending intent to handle launch of Activity in intent above
-        val pendingIntent = PendingIntent.getActivity(context, NotificationHelper.ALARM.ALARM_TYPE_RTC, intentToRepeat, PendingIntent.FLAG_UPDATE_CURRENT)
+        val pendingIntent = PendingIntent.getActivity(context, 0, intentToRepeat, PendingIntent.FLAG_UPDATE_CURRENT)
 
-        //Build notification
-        val repeatedNotification = buildLocalNotification(context, pendingIntent).build()
-
-        //Send local notification
-        NotificationHelper().getNotificationManager(context).notify(NotificationHelper.ALARM.ALARM_TYPE_RTC, repeatedNotification)
+        NotificationHelper().getNotificationManager(context).notify(0, buildLocalNotification(context, pendingIntent).build())
     }
 
     private fun buildLocalNotification(context: Context, pendingIntent: PendingIntent): NotificationCompat.Builder {
@@ -35,7 +28,6 @@ class AlarmReceiver : BroadcastReceiver() {
             setSmallIcon(R.mipmap.ic_launcher_round)
             setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
             setVibrate(null)
-            priority = NotificationCompat.PRIORITY_DEFAULT
         }
     }
 }
