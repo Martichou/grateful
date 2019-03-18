@@ -26,13 +26,13 @@
 
         <Preference
             app:key="about"
-            app:summary="Licenses and descriptions"
-            app:title="Open source projects used" />
+            app:summary="Discover how I handle your data"
+            app:title="Privacy Policy" />
 
         <Preference
             app:key="version"
             app:summary="1.1.7"
-            app:title="App Version" />
+            app:title="App version" />
 
     </PreferenceCategory>
 

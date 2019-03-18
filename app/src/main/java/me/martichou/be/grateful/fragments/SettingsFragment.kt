@@ -102,7 +102,8 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
         val aboutButton = findPreference<Preference>("about")
         aboutButton?.setOnPreferenceClickListener {
-           // TODO
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://sites.google.com/view/grateful-policy/accueil"))
+            startActivity(browserIntent)
             true
         }
     }
