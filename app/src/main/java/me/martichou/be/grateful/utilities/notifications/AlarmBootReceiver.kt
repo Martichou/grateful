@@ -1,17 +1,19 @@
 package me.martichou.be.grateful.utilities.notifications
 
-import android.content.Intent
 import android.content.BroadcastReceiver
 import android.content.Context
-import timber.log.Timber
+import android.content.Intent
+import androidx.preference.PreferenceManager
 
 class AlarmBootReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
         if (intent.action == "android.intent.action.BOOT_COMPLETED") {
-            Timber.d("Boot Message Received")
-            // TODO CHANGE HOUR
-            NotificationHelper().scheduleRepeatingRTCNotification(context, "19", "45")
+            if(PreferenceManager.getDefaultSharedPreferences(context).getBoolean("dailynotification", false)) {
+                NotificationHelper().scheduleRepeatingRTCNotification(context,
+                        PreferenceManager.getDefaultSharedPreferences(context).getInt("dn_hour", 20),
+                        PreferenceManager.getDefaultSharedPreferences(context).getInt("dn_min", 0))
+            }
         }
     }
 }

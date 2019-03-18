@@ -1,6 +1,7 @@
 package me.martichou.be.grateful.fragments
 
 import android.annotation.SuppressLint
+import android.app.TimePickerDialog
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
@@ -12,6 +13,7 @@ import com.afollestad.aesthetic.Aesthetic
 import com.afollestad.aesthetic.BottomNavBgMode
 import com.afollestad.aesthetic.BottomNavIconTextMode
 import me.martichou.be.grateful.R
+import me.martichou.be.grateful.utilities.notifications.NotificationHelper
 
 class SettingsFragment : PreferenceFragmentCompat() {
 
@@ -20,7 +22,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
         val darkSwitch = findPreference<SwitchPreferenceCompat>("themedark")
         darkSwitch?.setOnPreferenceChangeListener { _, newValue ->
-            if ((newValue as Boolean)) {
+            if (newValue as Boolean) {
                 Aesthetic.config {
                     this.activityTheme(R.style.BaseAppThemeDark)
                     isDark(true)
@@ -59,6 +61,26 @@ class SettingsFragment : PreferenceFragmentCompat() {
                     snackbarBackgroundColorDefault()
                     snackbarTextColorDefault()
                 }
+            }
+            true
+        }
+
+        val dailyReminder = findPreference<SwitchPreferenceCompat>("dailynotification")
+        dailyReminder?.setOnPreferenceChangeListener { _, newValue ->
+            if (newValue as Boolean){
+                val tpd = TimePickerDialog(requireContext(), TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
+                    preferenceManager.sharedPreferences.edit().putInt("dn_hour", hourOfDay).putInt("dn_min", minute).apply()
+
+                    NotificationHelper().scheduleRepeatingRTCNotification(requireContext(), hourOfDay, minute)
+                    NotificationHelper().enableBootReceiver(requireContext())
+                }, 0,0,true)
+                tpd.setOnCancelListener {
+                    dailyReminder.isChecked = false
+                }
+                tpd.show()
+            } else {
+                NotificationHelper().cancelAlarmRTC()
+                NotificationHelper().disableBootReceiver(requireContext())
             }
             true
         }

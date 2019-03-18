@@ -9,6 +9,10 @@
             app:key="themedark"
             app:title="Enable dark theme" />
 
+        <SwitchPreferenceCompat
+            app:key="dailynotification"
+            app:title="Enable daily reminder" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -27,7 +31,7 @@
 
         <Preference
             app:key="version"
-            app:summary="1.1.4"
+            app:summary="1.1.7"
             app:title="App Version" />
 
     </PreferenceCategory>

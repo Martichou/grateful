@@ -22,12 +22,12 @@ class NotificationHelper {
      * This is the real time /wall clock time
      * @param context
      */
-    fun scheduleRepeatingRTCNotification(context: Context, hour: String, min: String) {
+    fun scheduleRepeatingRTCNotification(context: Context, hour: Int, min: Int) {
         Timber.d("scheduleRepeatingRTCNotification true")
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = System.currentTimeMillis()
-        calendar.set(Calendar.HOUR_OF_DAY, hour.toInt())
-        calendar.set(Calendar.MINUTE, min.toInt())
+        calendar.set(Calendar.HOUR_OF_DAY, hour)
+        calendar.set(Calendar.MINUTE, min)
 
         val intent = Intent(context, AlarmReceiver::class.java)
         alarmIntentRTC = PendingIntent.getBroadcast(context,0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
