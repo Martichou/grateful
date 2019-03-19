@@ -28,6 +28,7 @@ class AlarmReceiver : BroadcastReceiver() {
             setSmallIcon(R.drawable.splashimage)
             setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
             setVibrate(null)
+            setAutoCancel(true)
         }
     }
 
