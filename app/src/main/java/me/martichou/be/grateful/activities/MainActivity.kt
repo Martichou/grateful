@@ -32,6 +32,7 @@ class MainActivity : AestheticActivity() {
 
         if (Aesthetic.isFirstTime) {
             Aesthetic.config {
+                this.activityTheme(R.style.BaseAppTheme)
                 isDark(false)
                 textColorPrimary(res = R.color.black)
                 textColorSecondary(res = R.color.grey_light)
@@ -39,7 +40,7 @@ class MainActivity : AestheticActivity() {
                 colorPrimary(res = R.color.white)
                 colorAccent(res = R.color.red)
                 colorWindowBackground(res = R.color.white)
-                colorStatusBarAuto()
+                colorStatusBar(res = R.color.white)
                 colorNavigationBarAuto()
                 textColorPrimary(Color.BLACK)
                 bottomNavigationBackgroundMode(BottomNavBgMode.PRIMARY)

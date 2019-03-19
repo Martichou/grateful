@@ -20,7 +20,12 @@ class SettingsFragment : PreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.settings_fragment, rootKey)
 
+        val dailynotification = findPreference<SwitchPreferenceCompat>("dailynotification")
+        val defineTime = findPreference<Preference>("defineTime")
+        val feedbackButton = findPreference<Preference>("feedback")
         val darkSwitch = findPreference<SwitchPreferenceCompat>("themedark")
+        val aboutButton = findPreference<Preference>("about")
+
         darkSwitch?.setOnPreferenceChangeListener { _, newValue ->
             if (newValue as Boolean) {
                 Aesthetic.config {
@@ -65,27 +70,40 @@ class SettingsFragment : PreferenceFragmentCompat() {
             true
         }
 
-        val dailyReminder = findPreference<SwitchPreferenceCompat>("dailynotification")
-        dailyReminder?.setOnPreferenceChangeListener { _, newValue ->
-            if (newValue as Boolean){
-                val tpd = TimePickerDialog(requireContext(), TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
-                    preferenceManager.sharedPreferences.edit().putInt("dn_hour", hourOfDay).putInt("dn_min", minute).apply()
+        if (dailynotification!!.isChecked) {
 
-                    NotificationHelper().scheduleRepeatingRTCNotification(requireContext(), hourOfDay, minute)
-                    NotificationHelper().enableBootReceiver(requireContext())
-                }, 0,0,true)
-                tpd.setOnCancelListener {
-                    dailyReminder.isChecked = false
-                }
-                tpd.show()
+            var minute: String = preferenceManager.sharedPreferences.getInt("dn_min", 0).toString()
+            if(minute.toInt() <= 9)
+                minute = "0$minute"
+
+            defineTime?.summary = "Scheduled at ${preferenceManager.sharedPreferences.getInt("dn_hour", 20)}:$minute"
+        } else {
+            defineTime?.summary = "Daily reminder is currently disabled"
+        }
+
+        dailynotification.setOnPreferenceChangeListener { _, newValue ->
+            if (newValue as Boolean){
+                NotificationHelper().enableBootReceiver(requireContext())
+                defineTime?.summary = "Scheduled at 20:00"
             } else {
+                preferenceManager.sharedPreferences.edit().remove("dn_hour").remove("dn_min").apply()
                 NotificationHelper().cancelAlarmRTC()
                 NotificationHelper().disableBootReceiver(requireContext())
+                defineTime?.summary = "Daily reminder is currently disabled"
             }
             true
         }
 
-        val feedbackButton = findPreference<Preference>("feedback")
+        defineTime?.setOnPreferenceClickListener {
+            TimePickerDialog(requireContext(), TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
+                preferenceManager.sharedPreferences.edit().putInt("dn_hour", hourOfDay).putInt("dn_min", minute).apply()
+
+                NotificationHelper().scheduleRepeatingRTCNotification(requireContext(), hourOfDay, minute)
+                defineTime.summary = "Scheduled at $hourOfDay:$minute"
+            }, 0,0,true).show()
+            true
+        }
+
         feedbackButton?.setOnPreferenceClickListener {
             val emailIntent = Intent(Intent.ACTION_SENDTO)
             emailIntent.data = Uri.parse("mailto:martichou.andre@gmail.com")
@@ -100,7 +118,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
             true
         }
 
-        val aboutButton = findPreference<Preference>("about")
         aboutButton?.setOnPreferenceClickListener {
             val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://sites.google.com/view/grateful-policy/accueil"))
             startActivity(browserIntent)
