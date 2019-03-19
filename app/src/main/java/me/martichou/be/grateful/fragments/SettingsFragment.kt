@@ -14,6 +14,7 @@ import com.afollestad.aesthetic.BottomNavBgMode
 import com.afollestad.aesthetic.BottomNavIconTextMode
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.utilities.notifications.NotificationHelper
+import java.util.*
 
 class SettingsFragment : PreferenceFragmentCompat() {
 
@@ -95,12 +96,14 @@ class SettingsFragment : PreferenceFragmentCompat() {
         }
 
         defineTime?.setOnPreferenceClickListener {
+            val calendar = Calendar.getInstance()
             TimePickerDialog(requireContext(), TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
                 preferenceManager.sharedPreferences.edit().putInt("dn_hour", hourOfDay).putInt("dn_min", minute).apply()
 
+                NotificationHelper().cancelAlarmRTC()
                 NotificationHelper().scheduleRepeatingRTCNotification(requireContext(), hourOfDay, minute)
                 defineTime.summary = "Scheduled at $hourOfDay:$minute"
-            }, 0,0,true).show()
+            }, calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE),true).show()
             true
         }
 
