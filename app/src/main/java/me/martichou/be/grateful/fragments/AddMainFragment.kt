@@ -69,7 +69,7 @@ open class AddMainFragment : BottomSheetDialogFragment() {
         when (requestCode) {
             CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE -> {
                 if (resultCode == AppCompatActivity.RESULT_OK)
-                    CompressImage(requireContext(), viewModel, null, File(CropImage.getActivityResult(data).uri.path), binding.addPhotoBtnBs)
+                    CompressImage(requireContext(), viewModel, File(CropImage.getActivityResult(data).uri.path), binding.addPhotoBtnBs)
                 else {
                     Toast.makeText(context, "Error, please try again", Toast.LENGTH_SHORT).show()
                     return

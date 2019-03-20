@@ -110,6 +110,9 @@ dependencies {
 
     // Aesthetic
     implementation 'com.afollestad:aesthetic:1.0.0-beta05'
+    
+    // Image Viewer
+    implementation 'com.github.stfalcon:stfalcon-imageviewer:0.1.0'
 
     // Testing unit
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$rootProject.espressoVersion"

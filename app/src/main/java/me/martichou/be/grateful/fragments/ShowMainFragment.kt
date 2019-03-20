@@ -1,10 +1,13 @@
 package me.martichou.be.grateful.fragments
 
+import android.content.Context
 import android.graphics.drawable.Drawable
+import android.media.Image
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -15,12 +18,16 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import com.stfalcon.imageviewer.StfalconImageViewer
 import me.martichou.be.grateful.R
+import me.martichou.be.grateful.data.Notes
 import me.martichou.be.grateful.databinding.FragmentShowmainBinding
 import me.martichou.be.grateful.utilities.AnimUtils
+import me.martichou.be.grateful.utilities.GlideApp
 import me.martichou.be.grateful.viewmodels.ShowViewModel
 import me.martichou.be.grateful.viewmodels.getNotesRepository
 import me.martichou.be.grateful.viewmodels.getViewModel
+import java.io.File
 
 class ShowMainFragment : Fragment() {
 
@@ -96,4 +103,13 @@ class ShowMainFragment : Fragment() {
             return false
         }
     }
+
+    fun openImageOfNote(view: View) {
+        StfalconImageViewer.Builder<Notes>(context, mutableListOf(viewModel.note.value!!)) { vieww, image ->
+            GlideApp.with(requireContext())
+                .load(File(context?.getDir("imgForNotes", Context.MODE_PRIVATE), image.image))
+                .into(vieww)
+        }.withTransitionFrom(binding.coverImage).show()
+    }
+
 }

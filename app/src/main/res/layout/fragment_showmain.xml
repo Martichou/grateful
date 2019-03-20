@@ -36,6 +36,7 @@
             android:layout_height="0dp"
             android:scaleType="centerCrop"
             android:transitionName="@{String.valueOf(args.noteId)}"
+            android:onClick="@{hdl::openImageOfNote}"
             app:imageFromFile="@{showModel.note.image}"
             app:layout_constraintBottom_toTopOf="@id/guideline1"
             app:layout_constraintEnd_toEndOf="parent"

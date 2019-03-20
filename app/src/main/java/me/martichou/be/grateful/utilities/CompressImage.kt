@@ -14,7 +14,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.viewmodels.AddViewModel
-import me.martichou.be.grateful.viewmodels.ShowViewModel
 import timber.log.Timber
 import java.io.File
 import java.io.FileOutputStream
@@ -25,7 +24,6 @@ import kotlin.system.exitProcess
 class CompressImage(
         val context: Context,
         private val viewModel: AddViewModel?,
-        private val edittest: ShowViewModel?,
         val file: File,
         private val add_btn: AppCompatImageButton?
 ) : CoroutineScope {
@@ -54,8 +52,6 @@ class CompressImage(
     private fun setup() {
         if (viewModel != null) {
             imageFile = File(storageDir, viewModel.randomImageName)
-        } else if (edittest != null) {
-            // imageFile = File(storageDir, edittest.randomImageName)
         }
 
         if (imageFile.exists()) {
@@ -79,20 +75,6 @@ class CompressImage(
         } finally {
             try {
                 withContext(Default) { fos.close() }
-
-                // edittest?.updateImage()
-
-                if (edittest != null) {
-                    val file2 = File(storageDir, edittest.note.value!!.image)
-                    if (file2.exists()) {
-                        val deleted = file2.delete()
-                        Timber.d("Deleting 2")
-                        if (!deleted) {
-                            Timber.e("Cannot delete the file..")
-                            exitProcess(-1)
-                        }
-                    }
-                }
 
                 viewModel?.changeHasPhoto(true)
                 viewModel?.changeIsWorking(false)
