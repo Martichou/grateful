@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <!-- Base application theme. -->
     <style name="BaseAppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
@@ -33,8 +33,7 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light">
-        <item name="colorControlNormal">@color/black</item>
-        <item name="android:colorControlNormal" tools:ignore="NewApi">@color/black</item>
+        <item name="android:colorControlNormal">@color/black</item>
     </style>
 
     <style name="BottomSheet" parent="@style/Widget.Design.BottomSheet.Modal">
@@ -52,7 +51,7 @@
     <style name="BottomSheetEntryDivider">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1dp</item>
-        <item name="android:background">#EEE</item>
+        <item name="android:background">@color/beige</item>
     </style>
 
 </resources>
