@@ -69,5 +69,6 @@ fun imageCropper(context: Context, fragment: Fragment) {
     CropImage.activity()
             .setGuidelines(CropImageView.Guidelines.ON)
             .setAspectRatio(4, 4)
+            .setAllowRotation(true)
             .start(context, fragment)
 }
