@@ -52,7 +52,7 @@ ext {
     koin = "1.0.2"
     glide = "4.8.0"
     coroutines = '1.0.0'
-    firebase = '16.0.7'
+    firebase = '16.0.8'
     imgcropper = '2.7.0'
     timber = '4.7.1'
     supportLibraryVersion = '1.1.0-alpha03'
