@@ -54,4 +54,12 @@
         <item name="android:background">@color/beige</item>
     </style>
 
+    <style name="HomeRvItemText">
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">0.5</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
 </resources>
