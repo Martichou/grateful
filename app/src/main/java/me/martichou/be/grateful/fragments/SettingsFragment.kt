@@ -72,7 +72,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
         }
 
         if (dailynotification!!.isChecked) {
-
             var minute: String = preferenceManager.sharedPreferences.getInt("dn_min", 0).toString()
             if(minute.toInt() <= 9)
                 minute = "0$minute"
@@ -102,7 +101,11 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
                 NotificationHelper().cancelAlarmRTC()
                 NotificationHelper().scheduleRepeatingRTCNotification(requireContext(), hourOfDay, minute)
-                defineTime.summary = "Scheduled at $hourOfDay:$minute"
+                var min = minute.toString()
+                if(minute <= 9)
+                    min = "0$minute"
+
+                defineTime.summary = "Scheduled at $hourOfDay:$min"
             }, calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE),true).show()
             true
         }
