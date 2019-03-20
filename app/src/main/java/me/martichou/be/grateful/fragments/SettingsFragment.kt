@@ -6,6 +6,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.text.format.DateFormat
 import android.widget.Toast
 import androidx.preference.*
 import androidx.recyclerview.widget.RecyclerView
@@ -106,7 +107,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
                     min = "0$minute"
 
                 defineTime.summary = "Scheduled at $hourOfDay:$min"
-            }, calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE),true).show()
+            }, calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE),DateFormat.is24HourFormat(context)).show()
             true
         }
 
