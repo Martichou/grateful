@@ -71,7 +71,7 @@ open class AddMainFragment : BottomSheetDialogFragment() {
                 if (resultCode == AppCompatActivity.RESULT_OK)
                     CompressImage(requireContext(), viewModel, File(CropImage.getActivityResult(data).uri.path), binding.addPhotoBtnBs)
                 else {
-                    Toast.makeText(context, "Error, please try again", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Please select an image", Toast.LENGTH_SHORT).show()
                     return
                 }
             }
