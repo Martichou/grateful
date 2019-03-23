@@ -109,7 +109,8 @@ class ShowMainFragment : Fragment() {
             GlideApp.with(requireContext())
                 .load(File(context?.getDir("imgForNotes", Context.MODE_PRIVATE), image.image))
                 .into(vieww)
-        }.withTransitionFrom(binding.coverImage).show()
+        }.withHiddenStatusBar(false)
+        .show()
     }
 
 }
