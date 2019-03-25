@@ -1,4 +1,4 @@
-package me.martichou.be.grateful.recyclerView
+package me.martichou.be.grateful.recyclerview
 
 import android.view.LayoutInflater
 import android.view.View

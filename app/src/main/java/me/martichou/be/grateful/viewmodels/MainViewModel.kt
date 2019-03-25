@@ -4,7 +4,7 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModel
 import me.martichou.be.grateful.data.Notes
 import me.martichou.be.grateful.data.repository.NotesRepository
-import me.martichou.be.grateful.recyclerView.NotesAdapter
+import me.martichou.be.grateful.recyclerview.NotesAdapter
 
 class MainViewModel internal constructor(notesRepository: NotesRepository) : ViewModel() {
 

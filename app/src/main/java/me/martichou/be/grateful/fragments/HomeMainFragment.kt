@@ -21,8 +21,8 @@ import kotlinx.coroutines.*
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.databinding.FragmentHomemainBinding
 import me.martichou.be.grateful.databinding.RecyclerviewHomeitemBinding
-import me.martichou.be.grateful.recyclerView.EventObserver
-import me.martichou.be.grateful.recyclerView.NotesAdapter
+import me.martichou.be.grateful.recyclerview.EventObserver
+import me.martichou.be.grateful.recyclerview.NotesAdapter
 import me.martichou.be.grateful.utilities.formatDate
 import me.martichou.be.grateful.viewmodels.MainViewModel
 import me.martichou.be.grateful.viewmodels.getNotesRepository

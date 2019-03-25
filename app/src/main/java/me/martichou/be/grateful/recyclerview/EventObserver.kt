@@ -1,4 +1,4 @@
-package me.martichou.be.grateful.recyclerView
+package me.martichou.be.grateful.recyclerview
 
 /*
 This conversation was marked as resolved by XinyueZ

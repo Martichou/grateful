@@ -81,7 +81,8 @@
                 android:onClick="@{hdl::openImageSelector}"
                 android:padding="5dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/ic_image_white" />
+                android:src="@drawable/ic_image_white"
+                tools:targetApi="m"/>
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/add_loc_btn_bs"

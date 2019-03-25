@@ -1,4 +1,4 @@
-package me.martichou.be.grateful.recyclerView
+package me.martichou.be.grateful.recyclerview
 
 /*
  * Copyright 2018 Google LLC

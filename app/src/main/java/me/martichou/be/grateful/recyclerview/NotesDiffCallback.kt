@@ -1,4 +1,4 @@
-package me.martichou.be.grateful.recyclerView
+package me.martichou.be.grateful.recyclerview
 
 import androidx.recyclerview.widget.DiffUtil
 import me.martichou.be.grateful.data.Notes

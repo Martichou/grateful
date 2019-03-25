@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
             name="clickListener"
-            type="me.martichou.be.grateful.recyclerView.NotesAdapter.OnNoteItemClickListener" />
+            type="me.martichou.be.grateful.recyclerview.NotesAdapter.OnNoteItemClickListener" />
 
         <variable
             name="note"
@@ -19,7 +20,8 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:foreground="@drawable/ripple_circle"
-        android:onClick="@{v -> clickListener.onNoteItemClick(v, note)}">
+        android:onClick="@{v -> clickListener.onNoteItemClick(v, note)}"
+        tools:targetApi="m">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/show_image_note"

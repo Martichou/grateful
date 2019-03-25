@@ -31,13 +31,4 @@ class AlarmReceiver : BroadcastReceiver() {
             setAutoCancel(true)
         }
     }
-
-    fun test(context: Context){
-        val intentToRepeat = Intent(context, SplashScreen::class.java)
-        intentToRepeat.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-
-        val pendingIntent = PendingIntent.getActivity(context, 0, intentToRepeat, PendingIntent.FLAG_UPDATE_CURRENT)
-
-        NotificationHelper().getNotificationManager(context).notify(0, buildLocalNotification(context, pendingIntent).build())
-    }
 }
