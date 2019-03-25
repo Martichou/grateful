@@ -71,7 +71,7 @@ open class AddMainFragment : BottomSheetDialogFragment() {
                 if (resultCode == AppCompatActivity.RESULT_OK)
                     CompressImage(requireContext(), viewModel, File(CropImage.getActivityResult(data).uri.path), binding.addPhotoBtnBs)
                 else {
-                    Toast.makeText(context, "Please select an image", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, resources.getString(R.string.set_image), Toast.LENGTH_SHORT).show()
                     return
                 }
             }
@@ -82,7 +82,7 @@ open class AddMainFragment : BottomSheetDialogFragment() {
                     if (!namePlace.isNullOrEmpty())
                         viewModel.placeCity = namePlace[0].locality
                     else {
-                        Toast.makeText(context, "Can't get place name", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, resources.getString(R.string.cant_get_place), Toast.LENGTH_SHORT).show()
                         return
                     }
 
@@ -111,10 +111,10 @@ open class AddMainFragment : BottomSheetDialogFragment() {
                 )
                 dismiss()
             } else {
-                Toast.makeText(context, "Enter at least a title", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, resources.getString(R.string.enter_title), Toast.LENGTH_SHORT).show()
             }
         } else {
-            Toast.makeText(context, "You have to set an image", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, resources.getString(R.string.set_image), Toast.LENGTH_SHORT).show()
         }
     }
 }

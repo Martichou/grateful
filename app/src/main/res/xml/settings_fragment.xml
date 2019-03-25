@@ -3,47 +3,47 @@
 
     <PreferenceCategory
         app:key="main_category"
-        app:title="General">
+        app:title="@string/general">
 
         <SwitchPreferenceCompat
             app:key="themedark"
-            app:title="Enable dark theme" />
+            app:title="@string/enable_dark_theme" />
 
     </PreferenceCategory>
 
     <PreferenceCategory
         app:key="notification_category"
-        app:title="Notification">
+        app:title="@string/notification">
 
         <SwitchPreferenceCompat
             app:key="dailynotification"
-            app:title="Enable daily reminder"/>
+            app:title="@string/daily_reminder"/>
 
         <Preference
             app:key="defineTime"
-            app:title="When do you want to receive it?"
+            app:title="@string/when_do_you_want_to"
             app:dependency="dailynotification"/>
 
     </PreferenceCategory>
 
     <PreferenceCategory
         app:key="help_category"
-        app:title="Help">
+        app:title="@string/help">
 
         <Preference
             app:key="feedback"
-            app:summary="Report technical issues or suggest new features"
-            app:title="Send feedback" />
+            app:summary="@string/report_technical"
+            app:title="@string/send_feedback" />
 
         <Preference
             app:key="about"
-            app:summary="Discover how I handle your data"
-            app:title="Privacy Policy" />
+            app:summary="@string/discover"
+            app:title="@string/privacy_policy" />
 
         <Preference
             app:key="version"
-            app:summary="1.1.9"
-            app:title="App version" />
+            app:summary="1.2.0"
+            app:title="@string/app_version" />
 
     </PreferenceCategory>
 

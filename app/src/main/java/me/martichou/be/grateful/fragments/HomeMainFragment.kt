@@ -182,7 +182,7 @@ class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.T
                 formatDate(viewModel.recentNotesList.value!![itemPos].dateToSearch)
             } catch (e: IndexOutOfBoundsException) {
                 Timber.e(e)
-                "14 avril 2000"
+                resources.getString(R.string.unknown)
             }
         }
         launch(Dispatchers.Main) {
@@ -225,8 +225,8 @@ class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.T
         val item = (binding.recentNotesList.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
         Timber.d("Item $item")
         when (item) {
-            0 -> Snackbar.make(binding.root, "Already showing today's gratitude", Snackbar.LENGTH_SHORT).show()
-            -1 -> Snackbar.make(binding.root, "Add a gratitude first", Snackbar.LENGTH_SHORT).show()
+            0 -> Snackbar.make(binding.root, resources.getString(R.string.already_today), Snackbar.LENGTH_SHORT).show()
+            -1 -> Snackbar.make(binding.root, resources.getString(R.string.add_first), Snackbar.LENGTH_SHORT).show()
             else -> binding.recentNotesList.smoothScrollToPosition(0)
         }
     }

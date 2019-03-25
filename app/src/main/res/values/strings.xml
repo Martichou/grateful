@@ -1,24 +1,45 @@
 <resources>
     <string name="app_name" translatable="false">Grateful</string>
-    <string name="image_of_your_dedicated_note">Image of your dedicated note.</string>
-    <string name="edit_your_note_button">Edit your note button</string>
-    <string name="delete_the_note_button">Delete the note button</string>
-    <string name="add_details">Add details</string>
     <string name="new_grateful_card">New grateful card title</string>
-    <string name="save">Save</string>
-    <string name="edit">Edit Pic</string>
-    <string name="delte">Delete</string>
-    <string name="share">Share</string>
-    <string name="unknown" translatable="false">14 Avr 2000</string>
-    <string name="lorem_ipsum" translatable="false">
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet metus nec tellus mollis volutpat. Quisque
-		semper consequat bibendum. Integer semper enim in rhoncus commodo. Ut vitae porttitor nibh, eget posuere velit.
-		Sed sed urna nunc. Sed tempor fringilla iaculis. Morbi faucibus odio sapien, vel rutrum libero pretium ut. Donec
-		quis faucibus leo. Suspendisse consequat ex vel diam maximus, vel vehicula risus suscipit. Orci varius natoque
-		penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce consectetur convallis mi ut tristique.
-		Aliquam laoreet, sem id accumsan fringilla, sem tortor efficitur nunc, sed mattis risus odio vel mi.
-	</string>
-    <string name="write_here_the_message_you_want_for_this_note">Write here the message you want for this note.</string>
-    <string name="go_to_today_s_date">Go to today\'s date</string>
-    <string name="todo">TODO</string>
+    <string name="new_grateful_card_message">Add details</string>
+    <string name="create">Create</string>
+
+    <string name="unknown">14 april 2000</string>
+
+	<string name="write_here_the_message_you_want_for_this_note">Write down the message you want for this gratitude</string>
+	<string name="save">Save</string>
+
+	<string name="image_of_your_dedicated_note">Image for your gratitude reminder</string>
+
+	<string name="settings">Settings</string>
+	<string name="today">Today</string>
+
+	<string name="general">General</string>
+	<string name="notification">Notification</string>
+	<string name="help">Help</string>
+	<string name="enable_dark_theme">Enable black theme</string>
+	<string name="daily_reminder">Enable daily reminders</string>
+	<string name="when_do_you_want_to">When do you want to receive it ?</string>
+	<string name="report_technical">Report technical issues or suggest new features</string>
+	<string name="discover">Discover how I handle your data</string>
+	<string name="send_feedback">Send feedback</string>
+	<string name="privacy_policy">Privacy Policy</string>
+	<string name="app_version">App version</string>
+	<string name="scheduled_at">Scheduled at %1$s:%2$s</string>
+	<string name="daily_disabled">Daily reminder is currently disabled</string>
+	<string name="what_do_you_think">What do you think about the app ?</string>
+	<string name="no_email_client">No email clients installed.</string>
+	<string name="send_with">Send email using…</string>
+
+	<string name="enter_title">Enter at least a title</string>
+	<string name="set_image">Please select an image</string>
+	<string name="cant_get_place">Can\'t get place name</string>
+
+	<string name="already_today">Already showing today\'s gratitude</string>
+	<string name="add_first">Add a gratitude first</string>
+
+	<string name="delete_this">Delete this gratitude ?</string>
+	<string name="cant_be_undone">This action can\'t be undone, think twice before hitting \'Yes\'</string>
+	<string name="yes">Yes</string>
+	<string name="no">No</string>
 </resources>

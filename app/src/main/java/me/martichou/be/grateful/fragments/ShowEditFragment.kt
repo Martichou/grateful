@@ -9,10 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
+import me.martichou.be.grateful.R
 import me.martichou.be.grateful.databinding.FragmentShoweditBinding
 import me.martichou.be.grateful.viewmodels.EditViewModel
 import me.martichou.be.grateful.viewmodels.getNotesRepository
 import me.martichou.be.grateful.viewmodels.getViewModel
+import timber.log.Timber
 
 class ShowEditFragment : Fragment() {
 
@@ -40,12 +42,12 @@ class ShowEditFragment : Fragment() {
      */
     fun deletethisnote(view: View) {
         AlertDialog.Builder(requireContext())
-                .setTitle("Delete this gratitude?")
-                .setMessage("This action can't be undone, think twice before hitting 'Yes'")
-                .setPositiveButton("Yes") { _, _ ->
+                .setTitle(resources.getString(R.string.delete_this))
+                .setMessage(resources.getString(R.string.cant_be_undone))
+                .setPositiveButton(resources.getString(R.string.yes)) { _, _ ->
                     viewModel.deleteNote()
                     findNavController().navigate(ShowEditFragmentDirections.actionEditFragmentToMainFragment())
-                }.setNegativeButton("No") {
+                }.setNegativeButton( resources.getString(R.string.no)) {
                     dialog, _ -> dialog.dismiss()
                 }.show()
     }
@@ -58,7 +60,8 @@ class ShowEditFragment : Fragment() {
             viewModel.updateNote(binding.editnoteTitle.text.toString(), binding.editnoteContent.text.toString())
             findNavController().popBackStack()
         } else {
-            Snackbar.make(binding.root, "The title can't be null", Snackbar.LENGTH_SHORT)
+            Timber.d("Happen")
+            Snackbar.make(binding.root, resources.getString(R.string.enter_title), Snackbar.LENGTH_SHORT).show()
         }
     }
 

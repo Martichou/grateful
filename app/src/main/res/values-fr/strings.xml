@@ -1,0 +1,44 @@
+<resources>
+	<string name="new_grateful_card">Titre de cette nouvelle gratitude</string>
+	<string name="new_grateful_card_message">Ajouter des détails</string>
+	<string name="create">Créer</string>
+
+	<string name="unknown">14 avril 2000</string>
+
+	<string name="write_here_the_message_you_want_for_this_note">Ecrivez le message que vous voulez pour cette gratitude</string>
+	<string name="save">Sauvegarder</string>
+
+	<string name="image_of_your_dedicated_note">Image pour votre gratitude</string>
+
+	<string name="settings">Paramètres</string>
+	<string name="today">Aujourd\'hui</string>
+
+	<string name="general">Général</string>
+	<string name="notification">Notification</string>
+	<string name="help">Aide</string>
+	<string name="enable_dark_theme">Activer le thème noir</string>
+	<string name="daily_reminder">Activer les rappels quotidiens</string>
+	<string name="when_do_you_want_to">Quand voulez-vous la recevoir ?</string>
+	<string name="report_technical">Signaler des problèmes techniques ou suggérer de nouvelles fonctionnalités</string>
+	<string name="discover">Découvrez comment je traite vos données</string>
+	<string name="send_feedback">Envoyer un commentaire</string>
+	<string name="privacy_policy">Politique de confidentialité</string>
+	<string name="app_version">Version de l\'application</string>
+	<string name="scheduled_at">Programmé à %1$s:%2$s</string>
+	<string name="daily_disabled">Le rappel quotidien est actuellement désactivé</string>
+	<string name="what_do_you_think">Que pensez-vous de l\'application ?</string>
+	<string name="no_email_client">Aucun client de messagerie n\'est installé.</string>
+	<string name="send_with">Envoyer un e-mail en utilisant…</string>
+
+	<string name="enter_title">Entrer au moins un titre</string>
+	<string name="set_image">Veuillez sélectionner une image</string>
+	<string name="cant_get_place">Impossible d\'obtenir le nom du lieu</string>
+
+	<string name="already_today">La gratitude d\'aujourd\'hui est déjà en première position</string>
+	<string name="add_first">Ajoutez d\'abord une gratitude</string>
+
+	<string name="delete_this">Supprimer cette gratitude ?</string>
+	<string name="cant_be_undone">Cette action ne peut pas être annulée, réfléchissez à deux fois avant d\'appuyer sur \'Oui\'</string>
+	<string name="yes">Oui</string>
+	<string name="no">Non</string>
+</resources>

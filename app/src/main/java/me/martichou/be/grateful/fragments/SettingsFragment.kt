@@ -77,20 +77,20 @@ class SettingsFragment : PreferenceFragmentCompat() {
             if(minute.toInt() <= 9)
                 minute = "0$minute"
 
-            defineTime?.summary = "Scheduled at ${preferenceManager.sharedPreferences.getInt("dn_hour", 20)}:$minute"
+            defineTime?.summary = resources.getString(R.string.scheduled_at, preferenceManager.sharedPreferences.getInt("dn_hour", 20).toString(), minute)
         } else {
-            defineTime?.summary = "Daily reminder is currently disabled"
+            defineTime?.summary = resources.getString(R.string.daily_disabled)
         }
 
         dailynotification.setOnPreferenceChangeListener { _, newValue ->
             if (newValue as Boolean){
                 NotificationHelper().enableBootReceiver(requireContext())
-                defineTime?.summary = "Scheduled at 20:00"
+                defineTime?.summary = resources.getString(R.string.scheduled_at, "20", "00")
             } else {
                 preferenceManager.sharedPreferences.edit().remove("dn_hour").remove("dn_min").apply()
                 NotificationHelper().cancelAlarmRTC()
                 NotificationHelper().disableBootReceiver(requireContext())
-                defineTime?.summary = "Daily reminder is currently disabled"
+                defineTime?.summary = resources.getString(R.string.daily_disabled)
             }
             true
         }
@@ -106,7 +106,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
                 if(minute <= 9)
                     min = "0$minute"
 
-                defineTime.summary = "Scheduled at $hourOfDay:$min"
+                defineTime.summary = resources.getString(R.string.scheduled_at, hourOfDay.toString(), min)
             }, calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE),DateFormat.is24HourFormat(context)).show()
             true
         }
@@ -115,12 +115,12 @@ class SettingsFragment : PreferenceFragmentCompat() {
             val emailIntent = Intent(Intent.ACTION_SENDTO)
             emailIntent.data = Uri.parse("mailto:martichou.andre@gmail.com")
             emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Grateful Feedback")
-            emailIntent.putExtra(Intent.EXTRA_TEXT, "What do you think about the app?")
+            emailIntent.putExtra(Intent.EXTRA_TEXT, resources.getString(R.string.what_do_you_think))
 
             try {
-                startActivity(Intent.createChooser(emailIntent, "Send email using..."))
+                startActivity(Intent.createChooser(emailIntent, resources.getString(R.string.send_with)))
             } catch (ex: android.content.ActivityNotFoundException) {
-                Toast.makeText(context, "No email clients installed.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, resources.getString(R.string.no_email_client), Toast.LENGTH_SHORT).show()
             }
             true
         }
