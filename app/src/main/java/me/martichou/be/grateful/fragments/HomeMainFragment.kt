@@ -134,6 +134,7 @@ class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.T
         adapter.openNote.observe(viewLifecycleOwner, EventObserver { pair ->
             val direction = HomeMainFragmentDirections.actionNoteListFragmentToNoteDetailFragment(pair.first.id)
 
+
             DataBindingUtil.getBinding<RecyclerviewHomeitemBinding>(pair.second)?.let {
                 val navigatorExtras = FragmentNavigatorExtras(it.showImageNote to pair.first.id.toString())
                 findNavController().navigate(direction, navigatorExtras)

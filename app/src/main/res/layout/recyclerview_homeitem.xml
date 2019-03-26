@@ -12,8 +12,6 @@
         <variable
             name="note"
             type="me.martichou.be.grateful.data.Notes" />
-
-        <import type="java.lang.String" />
     </data>
 
     <RelativeLayout

@@ -19,8 +19,6 @@
         <variable
             name="requestListener"
             type="com.bumptech.glide.request.RequestListener&lt;android.graphics.drawable.Drawable&gt;" />
-
-        <import type="java.lang.String" />
     </data>
 
     <androidx.constraintlayout.motion.widget.MotionLayout
