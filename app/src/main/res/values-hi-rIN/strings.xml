@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name" translatable="false">ग्रेटफुल</string>
+    <string name="new_grateful_card">नए आभार कार्ड का शीर्षक</string>
+    <string name="new_grateful_card_message">जानकारी जोड़ें</string>
+    <string name="create">बनाएं</string>
+
+    <string name="unknown">14 अप्रैल 2000</string>
+
+	<string name="write_here_the_message_you_want_for_this_note">इस आभार के लिए यहां संदेश लिखिए</string>
+	<string name="save">सेव करें</string>
+
+	<string name="image_of_your_dedicated_note">आभार याद दिलाने के लिए छवि</string>
+
+	<string name="settings">सेटिंग्स</string>
+	<string name="today">आज</string>
+
+	<string name="general">साधारण</string>
+	<string name="notification">नोटिफिकेशन</string>
+	<string name="help">सहायता</string>
+	<string name="enable_dark_theme">डार्क थीम चालू करें</string>
+	<string name="daily_reminder">डेली रिमाइंडर चालू करें</string>
+	<string name="when_do_you_want_to">आप इसे कब प्राप्त करना चाहते हैं ?</string>
+	<string name="report_technical">किसी समस्या और सुझाव के बारे में बताएं</string>
+	<string name="discover">जानिए मैं आपका डाटा कैसे संभालता हूं </string>
+	<string name="send_feedback">प्रतिक्रिया भेजें</string>
+	<string name="privacy_policy">गोपनीयता नीति</string>
+	<string name="app_version">एप वर्जन</string>
+	<string name="scheduled_at">%1$s:%2$s पर निर्धारित</string>
+	<string name="daily_disabled">डेली रिमाइंडर अभी बंद है</string>
+	<string name="what_do_you_think">आप इस एप के बारे में क्या सोचते हैं ?</string>
+	<string name="no_email_client">कोई ईमेल क्लाइंट इंस्टॉल नहीं है</string>
+	<string name="send_with">इसका उपयोग कर ईमेल भेजें…</string>
+
+	<string name="enter_title">कम से कम एक शीर्षक लिखें</string>
+	<string name="set_image">कृपया एक इमेज चयनित करें</string>
+	<string name="cant_get_place">जगह का नाम नही मिला</string>
+
+	<string name="already_today">पहले से ही आज का आभार दिख रहा है</string>
+	<string name="add_first">पहले एक आभार कार्ड लिखें</string>
+
+	<string name="delete_this">इस आभार कार्ड को मिटाएं ?</string>
+	<string name="cant_be_undone">यह आभार कार्ड हमेशा के लिए मिट जाएगा, इसे पुनः प्राप्त नहीं किया जा सकेगा</string>
+	<string name="yes">हां</string>
+	<string name="no">नहीं</string>
+</resources>
+
