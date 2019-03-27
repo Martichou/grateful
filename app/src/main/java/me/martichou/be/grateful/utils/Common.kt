@@ -21,10 +21,26 @@ fun setupPermissions(activity: AppCompatActivity, context: Context) {
 }
 
 /**
- * @return the current time
+ * @return the current time time in millis
  */
 fun dateDefault(): String {
     return Date().time.toString()
+}
+
+/**
+ * @return the current dd/MM/yyyy
+ */
+fun dateToSearch(): String {
+    val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+    return sdf.format(Date())
+}
+
+/**
+ * @return dd/MM/yyyy from a date object
+ */
+fun formatTodateToSearch(calendar: Calendar): String {
+    val sdf = SimpleDateFormat("dd/MM/YYYY", Locale.getDefault())
+    return sdf.format(calendar.time)
 }
 
 /**

@@ -98,6 +98,20 @@
                 android:scaleType="centerInside"
                 android:src="@drawable/ic_location_white" />
 
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/add_date_btn_bs"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/add_loc_btn_bs"
+                android:background="@drawable/bg_roundgrey"
+                android:foreground="@drawable/ripple_circle"
+                android:onClick="@{hdl::openDateSelector}"
+                android:padding="5dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_today_white" />
+
             <com.google.android.material.button.MaterialButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

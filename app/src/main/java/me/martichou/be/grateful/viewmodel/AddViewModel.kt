@@ -7,6 +7,9 @@ import kotlinx.coroutines.launch
 import me.martichou.be.grateful.data.model.Notes
 import me.martichou.be.grateful.data.repository.NotesRepository
 import me.martichou.be.grateful.utils.HashUtils
+import me.martichou.be.grateful.utils.dateDefault
+import me.martichou.be.grateful.utils.dateToSearch
+import me.martichou.be.grateful.utils.formatTodateToSearch
 import java.util.*
 import kotlin.coroutines.CoroutineContext
 
@@ -21,6 +24,7 @@ class AddViewModel internal constructor(private val notesRepository: NotesReposi
 
     var isWorking: Boolean = false
     var placeCity: String? = null
+    var dateSelected: Calendar? = null
 
     /**
      * Insert a new note in the db
@@ -42,13 +46,35 @@ class AddViewModel internal constructor(private val notesRepository: NotesReposi
     }
 
     /**
-     * Return the photo name if there is one else, blank
+     * Return the loc name if there is one else, blank
      */
     fun locOrNot(): String {
         return if (placeCity.isNullOrBlank()) {
             ""
         } else {
             placeCity.toString()
+        }
+    }
+
+    /**
+     * Return the timeInMillis
+     */
+    fun dateDefaultOrNot(): String {
+        return if (dateSelected == null) {
+            dateDefault()
+        } else {
+            dateSelected?.timeInMillis.toString()
+        }
+    }
+
+    /**
+     * Return the date chosen by the user or the current date if blank
+     */
+    fun dateOrNot(): String {
+        return if (dateSelected == null) {
+            dateToSearch()
+        } else {
+            formatTodateToSearch(dateSelected!!)
         }
     }
 }

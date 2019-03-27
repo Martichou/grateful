@@ -1,5 +1,6 @@
 package me.martichou.be.grateful.view.ui
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.location.Geocoder
 import android.os.Bundle
@@ -17,11 +18,13 @@ import com.theartofdev.edmodo.cropper.CropImageView
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.data.model.Notes
 import me.martichou.be.grateful.databinding.FragmentAddmainBinding
-import me.martichou.be.grateful.utils.*
+import me.martichou.be.grateful.utils.CompressImage
 import me.martichou.be.grateful.viewmodel.AddViewModel
 import me.martichou.be.grateful.viewmodel.getNotesRepository
 import me.martichou.be.grateful.viewmodel.getViewModel
 import java.io.File
+import java.util.*
+
 
 open class AddMainFragment : BottomSheetDialogFragment() {
 
@@ -65,6 +68,19 @@ open class AddMainFragment : BottomSheetDialogFragment() {
     }
 
     /**
+     * Open the place selector
+     */
+    fun openDateSelector(v: View) {
+        val calendar = Calendar.getInstance()
+        DatePickerDialog(requireContext(), DatePickerDialog.OnDateSetListener { _, year, month, day ->
+            val cal = Calendar.getInstance()
+            cal.set(year, month, day)
+            viewModel.dateSelected = cal
+            binding.addDateBtnBs.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_roundaccent)
+        }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show()
+    }
+
+    /**
      * Callback for the Matisse call
      */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -102,14 +118,14 @@ open class AddMainFragment : BottomSheetDialogFragment() {
             val titleOfTheNote: String = binding.addTitleNoteBs.text.toString()
             if (!titleOfTheNote.isEmpty()) run {
                 viewModel.insertNote(
-                        Notes(
-                                titleOfTheNote,
-                                binding.addContentNoteBs.text.toString(),
-                                viewModel.randomImageName,
-                                dateDefault(), // TODO CONDITIONAL
-                                dateDefault(), // TODO SAVE DATE AS A DD/MM/YYYY
-                                viewModel.locOrNot()
-                        )
+                    Notes(
+                        titleOfTheNote,
+                        binding.addContentNoteBs.text.toString(),
+                        viewModel.randomImageName,
+                        viewModel.dateDefaultOrNot(),
+                        viewModel.dateOrNot(),
+                        viewModel.locOrNot()
+                    )
                 )
                 dismiss()
             } else {
