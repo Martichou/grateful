@@ -13,13 +13,11 @@ import com.google.android.gms.location.places.ui.PlacePicker
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.theartofdev.edmodo.cropper.CropImage
+import com.theartofdev.edmodo.cropper.CropImageView
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.data.model.Notes
 import me.martichou.be.grateful.databinding.FragmentAddmainBinding
-import me.martichou.be.grateful.utils.CompressImage
-import me.martichou.be.grateful.utils.currentTime
-import me.martichou.be.grateful.utils.dateToSearch
-import me.martichou.be.grateful.utils.imageCropper
+import me.martichou.be.grateful.utils.*
 import me.martichou.be.grateful.viewmodel.AddViewModel
 import me.martichou.be.grateful.viewmodel.getNotesRepository
 import me.martichou.be.grateful.viewmodel.getViewModel
@@ -51,7 +49,11 @@ open class AddMainFragment : BottomSheetDialogFragment() {
      * Open the image selector
      */
     fun openImageSelector(v: View) {
-        imageCropper(context!!, this)
+        CropImage.activity()
+                .setGuidelines(CropImageView.Guidelines.ON)
+                .setAspectRatio(4, 4)
+                .setAllowRotation(true)
+                .start(requireContext(), this)
     }
 
     /**
@@ -104,8 +106,8 @@ open class AddMainFragment : BottomSheetDialogFragment() {
                                 titleOfTheNote,
                                 binding.addContentNoteBs.text.toString(),
                                 viewModel.randomImageName,
-                                currentTime(),
-                                dateToSearch(),
+                                dateDefault(), // TODO CONDITIONAL
+                                dateDefault(), // TODO SAVE DATE AS A DD/MM/YYYY
                                 viewModel.locOrNot()
                         )
                 )

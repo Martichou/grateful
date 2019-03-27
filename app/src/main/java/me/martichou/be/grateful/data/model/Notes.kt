@@ -18,7 +18,7 @@ data class Notes(
         @ColumnInfo(name = "date")
         val date: String,
 
-        @ColumnInfo(name = "dateToSearch")
+        @ColumnInfo(name = "dateToSearch") // Equals to dateSimplified
         val dateToSearch: String,
 
         @ColumnInfo(name = "location")

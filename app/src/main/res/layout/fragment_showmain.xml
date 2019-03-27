@@ -115,7 +115,7 @@
                 android:drawableStart="@drawable/ic_clock"
                 android:drawablePadding="5dp"
                 android:gravity="center"
-                android:text="@{showModel.note.date}"
+                android:text="@{showModel.note.dateToSearch}"
                 android:textColor="?android:textColorPrimary"
                 android:textSize="14sp"
                 android:textStyle="bold" />

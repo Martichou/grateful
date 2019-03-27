@@ -6,9 +6,6 @@ import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
-import com.theartofdev.edmodo.cropper.CropImage
-import com.theartofdev.edmodo.cropper.CropImageView
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.random.Random
@@ -24,26 +21,10 @@ fun setupPermissions(activity: AppCompatActivity, context: Context) {
 }
 
 /**
- * @return the time with DAY MONTH N° YEARS
+ * @return the current time
  */
-fun currentTime(): String {
-    return SimpleDateFormat("EE ha", Locale.getDefault()).format(Date()).toLowerCase().capitalize().replace(".", ",")
-}
-
-/**
- * @return the current month
- */
-fun dateToSearch(): String {
-    val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-    return sdf.format(Date())
-}
-
-/**
- * From 02/02/2019 -> 2 Feb 2019
- */
-fun formatDate(aDate: String?): String? {
-    if (aDate == null) return null
-    return SimpleDateFormat("d MMM y", Locale.getDefault()).format(stringToDate(aDate)).replace(". ", " ")
+fun dateDefault(): String {
+    return Date().time.toString()
 }
 
 /**
@@ -60,15 +41,4 @@ fun stringToDate(aDate: String?): Date? {
  */
 fun randomNumber(min: Int, max: Int): String {
     return Random.nextInt(max - min + 1 + min).toString()
-}
-
-/**
- * Open the image cropper view
- */
-fun imageCropper(context: Context, fragment: Fragment) {
-    CropImage.activity()
-            .setGuidelines(CropImageView.Guidelines.ON)
-            .setAspectRatio(4, 4)
-            .setAllowRotation(true)
-            .start(context, fragment)
 }

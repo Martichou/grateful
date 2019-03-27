@@ -23,13 +23,11 @@ import me.martichou.be.grateful.databinding.FragmentHomemainBinding
 import me.martichou.be.grateful.databinding.RecyclerviewHomeitemBinding
 import me.martichou.be.grateful.utils.EventObserver
 import me.martichou.be.grateful.view.adapter.NotesAdapter
-import me.martichou.be.grateful.utils.formatDate
 import me.martichou.be.grateful.viewmodel.MainViewModel
 import me.martichou.be.grateful.viewmodel.getNotesRepository
 import me.martichou.be.grateful.viewmodel.getViewModel
 import timber.log.Timber
 import kotlin.coroutines.CoroutineContext
-
 
 @ExperimentalCoroutinesApi
 class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.Toolbar.OnMenuItemClickListener {
@@ -180,7 +178,7 @@ class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.T
     private fun getDateFromItem(itemPos: Int) {
         val job = async {
             try {
-                formatDate(viewModel.recentNotesList.value!![itemPos].dateToSearch)
+                viewModel.recentNotesList.value!![itemPos].dateToSearch
             } catch (e: IndexOutOfBoundsException) {
                 Timber.e(e)
                 resources.getString(R.string.unknown)

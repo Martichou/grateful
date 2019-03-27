@@ -66,7 +66,7 @@
                 android:layout_marginBottom="8dp"
                 android:layout_gravity="center"
                 style="@style/HomeRvItemText"
-                android:text="@{note.date}"
+                android:text="@{note.dateToSearch}"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="@dimen/note_timestamp" />

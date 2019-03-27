@@ -13,7 +13,7 @@ interface NotesDao {
     /**
      * Return all note without exception
      */
-    @Query("SELECT * FROM notes ORDER BY id DESC")
+    @Query("SELECT * FROM notes ORDER BY date DESC")
     fun getAllNote(): LiveData<List<Notes>>
 
     /**
