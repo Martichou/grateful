@@ -42,7 +42,7 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name=".activities.SplashScreen"
+            android:name=".view.ui.SplashScreen"
             android:launchMode="singleInstance"
             android:theme="@style/SplashScreen">
             <intent-filter>
@@ -52,7 +52,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".view.ui.MainActivity"
             android:launchMode="singleInstance"
             android:windowSoftInputMode="adjustPan" />
         <activity
@@ -60,8 +60,8 @@
             android:launchMode="singleInstance"
             android:theme="@style/Base.Theme.AppCompat" />
 
-        <receiver android:name=".utilities.notifications.AlarmReceiver"/>
-        <receiver android:name=".utilities.notifications.AlarmBootReceiver" android:enabled="false">
+        <receiver android:name="me.martichou.be.grateful.utils.notifications.AlarmReceiver"/>
+        <receiver android:name="me.martichou.be.grateful.utils.notifications.AlarmBootReceiver" android:enabled="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>

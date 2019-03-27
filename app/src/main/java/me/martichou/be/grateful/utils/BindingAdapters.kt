@@ -1,0 +1,53 @@
+package me.martichou.be.grateful.utils
+
+import android.content.Context
+import android.graphics.drawable.Drawable
+import android.view.View
+import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.databinding.BindingAdapter
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestListener
+import java.io.File
+
+/**
+ * Bind the app:imageFromFile="imgName" from xml
+ */
+@BindingAdapter("imageFromFile", "requestListener", requireAll = false)
+fun AppCompatImageView.imageFromFile(imageUrl: String?, listener: RequestListener<Drawable>?) {
+    if (!imageUrl.isNullOrEmpty()) {
+        GlideApp.with(context)
+                .load(File(context.getDir("imgForNotes", Context.MODE_PRIVATE), imageUrl))
+                .override(this.measuredWidth, this.measuredHeight)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .thumbnail(0.1f)
+                .listener(listener)
+                .dontTransform()
+                .into(this)
+    }
+}
+
+/**
+ * Will hide the textview if the string is empty
+ */
+@BindingAdapter("isGone")
+fun View.isGone(content: String?) {
+    if (content.isNullOrEmpty()) {
+        this.visibility = View.GONE
+    } else {
+        this.visibility = View.VISIBLE
+    }
+}
+
+@BindingAdapter("textIsEmpty")
+fun TextView.textIsEmpty(content: String?) {
+    if (content != null && content.isEmpty()) {
+        val arr: Array<String> = arrayOf(
+                "\"One day I will find the right words, and they will be simple.\" \n - Jack Kerouac",
+                "\"Words can be like X-rays if you use them properly -- they'll go through anything. You read and you're pierced.\" \n - Aldous Huxley",
+                "\"Let me live, love, and say it well in good sentences.\" \n - Sylvia Plath",
+                "\"I kept always two books in my pocket, one to read, one to write in.\" \n - Robert Louis Stevenson"
+        )
+        this.text = arr[randomNumber(0, arr.size - 1).toInt()]
+    }
+}

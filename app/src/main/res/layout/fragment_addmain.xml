@@ -7,7 +7,7 @@
 
         <variable
             name="hdl"
-            type="me.martichou.be.grateful.fragments.AddMainFragment" />
+            type="me.martichou.be.grateful.view.ui.AddMainFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

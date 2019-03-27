@@ -3,8 +3,8 @@ package me.martichou.be.grateful.data.repository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import me.martichou.be.grateful.data.Notes
-import me.martichou.be.grateful.data.NotesDao
+import me.martichou.be.grateful.data.model.Notes
+import me.martichou.be.grateful.persistance.dao.NotesDao
 import kotlin.coroutines.CoroutineContext
 
 class NotesRepository private constructor(private val notesDao: NotesDao) : CoroutineScope {

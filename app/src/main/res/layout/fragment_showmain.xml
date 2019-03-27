@@ -6,15 +6,15 @@
 
         <variable
             name="hdl"
-            type="me.martichou.be.grateful.fragments.ShowMainFragment" />
+            type="me.martichou.be.grateful.view.ui.ShowMainFragment" />
 
         <variable
             name="showModel"
-            type="me.martichou.be.grateful.viewmodels.ShowViewModel" />
+            type="me.martichou.be.grateful.viewmodel.ShowViewModel" />
 
         <variable
             name="args"
-            type="me.martichou.be.grateful.fragments.ShowMainFragmentArgs" />
+            type="me.martichou.be.grateful.view.ui.ShowMainFragmentArgs" />
 
         <variable
             name="requestListener"

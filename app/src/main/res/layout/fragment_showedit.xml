@@ -7,11 +7,11 @@
 
         <variable
             name="hdl"
-            type="me.martichou.be.grateful.fragments.ShowEditFragment" />
+            type="me.martichou.be.grateful.view.ui.ShowEditFragment" />
 
         <variable
             name="editModel"
-            type="me.martichou.be.grateful.viewmodels.EditViewModel" />
+            type="me.martichou.be.grateful.viewmodel.EditViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

@@ -7,11 +7,11 @@
 
         <variable
             name="hdl"
-            type="me.martichou.be.grateful.fragments.HomeMainFragment" />
+            type="me.martichou.be.grateful.view.ui.HomeMainFragment" />
 
         <variable
             name="thisVm"
-            type="me.martichou.be.grateful.viewmodels.MainViewModel" />
+            type="me.martichou.be.grateful.viewmodel.MainViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
