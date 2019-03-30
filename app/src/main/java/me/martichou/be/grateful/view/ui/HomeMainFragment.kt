@@ -23,6 +23,7 @@ import me.martichou.be.grateful.databinding.FragmentHomemainBinding
 import me.martichou.be.grateful.databinding.RecyclerviewHomeitemBinding
 import me.martichou.be.grateful.utils.DividerRV
 import me.martichou.be.grateful.utils.EventObserver
+import me.martichou.be.grateful.utils.ToolbarElevationOffsetListener
 import me.martichou.be.grateful.view.adapter.NotesAdapter
 import me.martichou.be.grateful.viewmodel.MainViewModel
 import me.martichou.be.grateful.viewmodel.getNotesRepository
@@ -136,6 +137,8 @@ class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.T
      * Hide fab when scrolled
      */
     private fun setupScrollRvListener() {
+        binding.appBar.addOnOffsetChangedListener(ToolbarElevationOffsetListener(binding))
+
         binding.recentNotesList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)

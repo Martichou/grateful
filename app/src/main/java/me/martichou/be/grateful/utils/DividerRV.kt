@@ -15,7 +15,7 @@ class DividerRV internal constructor(val context: Context) : RecyclerView.ItemDe
     ) {
         val itemPosition = parent.getChildAdapterPosition(view)
         if (itemPosition == 0)
-            outRect.top = convertDpToPixel(16.0f, context).toInt()
+            outRect.top = convertDpToPixel(8.0f, context).toInt()
     }
 
 }
