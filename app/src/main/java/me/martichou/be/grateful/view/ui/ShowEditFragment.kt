@@ -20,7 +20,7 @@ class ShowEditFragment : Fragment() {
 
     private val params by navArgs<ShowEditFragmentArgs>()
     private val viewModel by lazy {
-        getViewModel { EditViewModel(getNotesRepository(requireContext()), params.noteId) }
+        getViewModel { EditViewModel(getNotesRepository(requireContext()), params.noteId, activity!!.applicationContext) }
     }
     private lateinit var binding: FragmentShoweditBinding
 

@@ -1,6 +1,7 @@
 package me.martichou.be.grateful.view.ui
 
 import android.app.DatePickerDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.location.Geocoder
 import android.os.Bundle
@@ -30,7 +31,7 @@ open class AddMainFragment : BottomSheetDialogFragment() {
     private val placePicker = 548
 
     private val viewModel by lazy {
-        getViewModel { AddViewModel(getNotesRepository(requireContext())) }
+        getViewModel { AddViewModel(getNotesRepository(requireContext()), activity!!.applicationContext) }
     }
     private lateinit var binding: FragmentAddmainBinding
 
@@ -43,6 +44,13 @@ open class AddMainFragment : BottomSheetDialogFragment() {
         }
 
         return binding.root
+    }
+
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        if(!viewModel.hasBeenSaved && viewModel.hasPhoto){
+            viewModel.deleteImage()
+        }
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): BottomSheetDialog = BottomSheetDialog(requireContext(), theme)
@@ -118,6 +126,7 @@ open class AddMainFragment : BottomSheetDialogFragment() {
         if (!viewModel.isWorking && viewModel.hasPhoto) {
             val titleOfTheNote: String = binding.addTitleNoteBs.text.toString()
             if (!titleOfTheNote.isEmpty()) run {
+                viewModel.hasBeenSaved = true
                 viewModel.insertNote(
                     Notes(
                         titleOfTheNote,

@@ -1,5 +1,6 @@
 package me.martichou.be.grateful.viewmodel
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -10,14 +11,18 @@ import me.martichou.be.grateful.utils.HashUtils
 import me.martichou.be.grateful.utils.dateDefault
 import me.martichou.be.grateful.utils.dateToSearch
 import me.martichou.be.grateful.utils.formatTodateToSearch
+import timber.log.Timber
+import java.io.File
 import java.util.*
 import kotlin.coroutines.CoroutineContext
 
-class AddViewModel internal constructor(private val notesRepository: NotesRepository) : ViewModel(), CoroutineScope {
+class AddViewModel internal constructor(private val notesRepository: NotesRepository, context: Context) : ViewModel(), CoroutineScope {
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.IO
 
+    private val storageDir = context.getDir("imgForNotes", Context.MODE_PRIVATE)
+    var hasBeenSaved: Boolean = false
     var hasPhoto: Boolean = false
 
     val randomImageName: String = HashUtils.sha1(Date().toString())
@@ -25,6 +30,24 @@ class AddViewModel internal constructor(private val notesRepository: NotesReposi
     var isWorking: Boolean = false
     var placeCity: String? = null
     var dateSelected: Calendar? = null
+
+    /**
+     * Delete image created in app's memory as it's not saved
+     */
+    fun deleteImage() {
+        launch {
+            val imageFile = File(storageDir, randomImageName)
+            if (imageFile.exists()) {
+                val deleted = imageFile.delete()
+                Timber.d("Deleting")
+                if (!deleted) {
+                    Timber.e("Cannot delete the file..")
+                } else {
+                    Timber.d("Succes. The file has been deleted")
+                }
+            }
+        }
+    }
 
     /**
      * Insert a new note in the db
