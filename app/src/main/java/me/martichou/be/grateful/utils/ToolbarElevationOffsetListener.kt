@@ -10,7 +10,7 @@ class ToolbarElevationOffsetListener(private val binding: FragmentHomemainBindin
     private var mTargetElevation: Float = 0.toFloat()
 
     init {
-        mTargetElevation = convertDpToPixel(16.0f, binding.root.context)
+        mTargetElevation = convertDpToPixel(8.0f, binding.root.context)
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
