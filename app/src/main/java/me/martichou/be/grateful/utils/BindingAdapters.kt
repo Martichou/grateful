@@ -1,14 +1,19 @@
 package me.martichou.be.grateful.utils
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestListener
+import timber.log.Timber
 import java.io.File
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * Bind the app:imageFromFile="imgName" from xml
@@ -50,4 +55,29 @@ fun TextView.textIsEmpty(content: String?) {
         )
         this.text = arr[randomNumber(0, arr.size - 1).toInt()]
     }
+}
+
+/**
+ * Transform dd/MM/yyyy to dd
+ */
+@BindingAdapter("showDayNbr")
+fun AppCompatTextView.showDayNbr(content: String) {
+    val parsed = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).parse(content)
+    val day_nbr = SimpleDateFormat("dd", Locale.getDefault()).format(parsed)
+
+    Timber.d("Day $day_nbr")
+    this.text = day_nbr.toString()
+}
+
+/**
+ * Convert dd/MM/yyyy to E which is day name like Wed
+ */
+@SuppressLint("SetTextI18n") // TODO
+@BindingAdapter("showDayName")
+fun AppCompatTextView.showDayName(content: String) {
+    val parsed = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).parse(content)
+    val day_name = SimpleDateFormat("E", Locale.getDefault()).format(parsed)
+
+    Timber.d("Day $day_name")
+    this.text = day_name.substring(0, 1).capitalize() + day_name.dropLast(1).substring(1)
 }

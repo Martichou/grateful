@@ -16,7 +16,8 @@
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context="me.martichou.be.grateful.view.ui.MainActivity">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar"
@@ -53,14 +54,6 @@
                         android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
                         android:textColor="?android:textColorPrimary"
                         tools:ignore="RelativeOverlap" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/dateselected"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/title"
-                        android:text="@string/unknown"
-                        android:textColor="?android:textColorSecondaryInverse" />
 
                 </RelativeLayout>
 

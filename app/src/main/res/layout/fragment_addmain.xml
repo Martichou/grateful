@@ -12,7 +12,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        tools:context="me.martichou.be.grateful.view.ui.MainActivity">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/header_bottom"

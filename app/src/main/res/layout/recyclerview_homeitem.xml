@@ -13,66 +13,106 @@
             name="note"
             type="me.martichou.be.grateful.data.model.Notes" />
     </data>
-
-    <RelativeLayout
+    
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:foreground="@drawable/ripple_circle"
+        android:paddingEnd="16dp"
+        android:paddingBottom="16dp"
         android:onClick="@{v -> clickListener.onNoteItemClick(v, note)}"
-        tools:targetApi="m">
+        tools:ignore="RtlSymmetry">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/show_image_note"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:contentDescription="@string/image_of_your_dedicated_note"
-            android:scaleType="centerCrop"
-            android:transitionName="@{String.valueOf(note.id)}"
-            app:imageFromFile="@{note.image}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <LinearLayout
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.20" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/show_image_note_cv"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:foreground="@drawable/ripple_circle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guideline1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:cardCornerRadius="8dp"
+            app:cardUseCompatPadding="true">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/show_image_note"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:foreground="@drawable/ripple_circle"
+                android:contentDescription="@string/image_of_your_dedicated_note"
+                android:scaleType="centerCrop"
+                android:transitionName="@{String.valueOf(note.id)}"
+                app:imageFromFile="@{note.image}"
+                tools:ignore="UnusedAttribute" />
+
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:elevation="6dp"
+            android:padding="16dp"
+            app:layout_constraintStart_toStartOf="@id/show_image_note_cv"
+            app:layout_constraintBottom_toBottomOf="@id/show_image_note_cv"
+            app:layout_constraintEnd_toEndOf="@id/show_image_note_cv">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/titlervnote"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_gravity="center"
                 style="@style/HomeRvItemText"
                 android:text="@{note.title}"
-                android:textAlignment="center"
-                android:textAllCaps="true"
                 android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:elevation="6dp"/>
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/datervnote"
+                android:id="@+id/locationrvnote"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="8dp"
-                android:layout_gravity="center"
                 style="@style/HomeRvItemText"
-                android:text="@{note.dateToSearch}"
-                android:textAlignment="center"
+                android:text="@{note.location}"
                 android:textColor="@color/white"
-                android:textSize="@dimen/note_timestamp" />
+                android:textSize="14sp"
+                app:isGone="@{note.location}"/>
 
         </LinearLayout>
 
-    </RelativeLayout>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/datervnote"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:textAlignment="center"
+            android:textColor="?android:textColorSecondary"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:showDayNbr="@{note.dateToSearch}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/show_image_note_cv"
+            app:layout_constraintEnd_toStartOf="@id/guideline1"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/datervnote2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textColor="?android:textColorSecondary"
+            android:textSize="16sp"
+            app:showDayName="@{note.dateToSearch}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/datervnote"
+            app:layout_constraintEnd_toStartOf="@id/guideline1"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

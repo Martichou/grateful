@@ -3,6 +3,7 @@ package me.martichou.be.grateful.utils
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
+import android.util.DisplayMetrics
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -57,4 +58,11 @@ fun stringToDate(aDate: String?): Date? {
  */
 fun randomNumber(min: Int, max: Int): String {
     return Random.nextInt(max - min + 1 + min).toString()
+}
+
+/**
+ * Convert float to dp
+ */
+fun convertDpToPixel(dp: Float, context: Context): Float {
+    return dp * (context.resources.displayMetrics.densityDpi.toFloat() / DisplayMetrics.DENSITY_DEFAULT)
 }
