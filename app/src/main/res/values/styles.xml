@@ -19,6 +19,16 @@
         <item name="android:windowBackground">@color/white</item>
     </style>
 
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorControlNormal">@color/white</item>
+        <item name="colorControlActivated">@color/red</item>
+        <item name="textColorAlertDialogListItem">@color/white</item>
+        <item name="colorAccent">@color/red</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:windowBackground">@drawable/background_dialog</item>
+        <item name="android:textColorSecondary">@color/white</item>
+    </style>
+
     <style name="AppTheme" parent="BaseAppTheme" />
 
     <style name="SplashScreen" parent="Theme.MaterialComponents.Light.NoActionBar">

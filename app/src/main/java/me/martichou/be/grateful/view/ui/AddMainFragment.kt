@@ -25,7 +25,6 @@ import me.martichou.be.grateful.viewmodel.getViewModel
 import java.io.File
 import java.util.*
 
-
 open class AddMainFragment : BottomSheetDialogFragment() {
 
     private val placePicker = 548
@@ -72,12 +71,14 @@ open class AddMainFragment : BottomSheetDialogFragment() {
      */
     fun openDateSelector(v: View) {
         val calendar = Calendar.getInstance()
-        DatePickerDialog(requireContext(), DatePickerDialog.OnDateSetListener { _, year, month, day ->
+        val c = DatePickerDialog(requireContext(), R.style.DialogTheme, DatePickerDialog.OnDateSetListener { _, year, month, day ->
             val cal = Calendar.getInstance()
             cal.set(year, month, day)
             viewModel.dateSelected = cal
             binding.addDateBtnBs.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_roundaccent)
-        }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show()
+        }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))
+        c.datePicker.maxDate = calendar.timeInMillis
+        c.show()
     }
 
     /**
