@@ -1,12 +1,10 @@
 package me.martichou.be.grateful.view.ui
 
 import android.os.Bundle
-import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import androidx.core.view.doOnLayout
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -17,10 +15,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.TransitionInflater
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.databinding.FragmentHomemainBinding
 import me.martichou.be.grateful.databinding.RecyclerviewHomeitemBinding
+import me.martichou.be.grateful.utils.DividerRV
 import me.martichou.be.grateful.utils.EventObserver
 import me.martichou.be.grateful.view.adapter.NotesAdapter
 import me.martichou.be.grateful.viewmodel.MainViewModel
@@ -39,7 +40,6 @@ class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.T
         requireActivity().getViewModel { MainViewModel(getNotesRepository(requireContext())) }
     }
     private lateinit var binding: FragmentHomemainBinding
-    private var liststate: Parcelable? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentHomemainBinding.inflate(inflater, container, false)
@@ -61,6 +61,7 @@ class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.T
 
         // Prepare recyclerview and bind
         binding.recentNotesList.setHasFixedSize(true)
+        binding.recentNotesList.addItemDecoration(DividerRV(requireContext()))
 
         // Set adapter to the recyclerview once other things are set
         binding.recentNotesList.adapter = viewModel.adapter
@@ -83,25 +84,6 @@ class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.T
     }
 
     /**
-     * Set the status bar as white
-     */
-    override fun onResume() {
-        super.onResume()
-        if (liststate != null) {
-            binding.recentNotesList.layoutManager?.onRestoreInstanceState(liststate)
-        }
-    }
-
-
-    /**
-     * Save scrolled position
-     */
-    override fun onPause() {
-        super.onPause()
-        liststate = binding.recentNotesList.layoutManager?.onSaveInstanceState()
-    }
-
-    /**
      * Handle click on menu item
      */
     override fun onMenuItemClick(it: MenuItem): Boolean {
@@ -117,6 +99,7 @@ class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.T
      * Observe recentNotesList for and update adapter
      */
     private fun subscribeUirecentNotesList(adapter: NotesAdapter) {
+        // Fill adapter item list
         viewModel.recentNotesList.observe(viewLifecycleOwner, Observer { notes ->
             if (notes.isNullOrEmpty()) {
                 adapter.submitList(null)
@@ -129,9 +112,9 @@ class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.T
             }
         })
 
+        // Handle click on item list
         adapter.openNote.observe(viewLifecycleOwner, EventObserver { pair ->
             val direction = HomeMainFragmentDirections.actionNoteListFragmentToNoteDetailFragment(pair.first.id)
-
 
             DataBindingUtil.getBinding<RecyclerviewHomeitemBinding>(pair.second)?.let {
                 val navigatorExtras = FragmentNavigatorExtras(it.showImageNote to pair.first.id.toString())
@@ -143,15 +126,14 @@ class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.T
     }
 
     /**
-     * Setup fade out transition and sharedelementransition
+     * Setup sharedelementransition
      */
     private fun setupTransition() {
         sharedElementReturnTransition = TransitionInflater.from(context).inflateTransition(R.transition.move).apply { duration = 250 }
     }
 
     /**
-     * Change date in the toolbar
-     * But also hide fab when scrolled
+     * Hide fab when scrolled
      */
     private fun setupScrollRvListener() {
         binding.recentNotesList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -163,50 +145,8 @@ class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.T
                 } else if (dy < 0 && binding.fab.visibility != View.VISIBLE) {
                     binding.fab.show()
                 }
-
-                val itemPosition = (binding.recentNotesList.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
-
-                if (itemPosition != -1)
-                    getDateFromItem(itemPosition)
             }
         })
-    }
-
-    /**
-     * Get date string async and call next fun
-     */
-    private fun getDateFromItem(itemPos: Int) {
-        val job = async {
-            try {
-                viewModel.recentNotesList.value!![itemPos].dateToSearch
-            } catch (e: IndexOutOfBoundsException) {
-                Timber.e(e)
-                resources.getString(R.string.unknown)
-            }
-        }
-        launch(Dispatchers.Main) {
-            updateTextAfterAsync(job.await().toString(), job.getCompletionExceptionOrNull())
-        }
-    }
-
-    /**
-     * Update toolbar date text after async task above
-     */
-    private fun updateTextAfterAsync(date: String?, e: Throwable?) {
-        if (e != null) {
-            Timber.e(e)
-        } else {
-            if (date.isNullOrEmpty()) {
-                binding.dateselected.text = resources.getString(R.string.unknown)
-            } else if (date != binding.dateselected.text) {
-                val inAnim = AnimationUtils.loadAnimation(context, R.anim.slide_up)
-                val outAnim = AnimationUtils.loadAnimation(context, R.anim.slide_down)
-
-                binding.dateselected.startAnimation(outAnim)
-                binding.dateselected.text = date
-                binding.dateselected.startAnimation(inAnim)
-            }
-        }
     }
 
     /**
@@ -233,7 +173,6 @@ class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.T
     /**
      * Open settings
      */
-
     private fun openSettings() {
         findNavController().navigate(HomeMainFragmentDirections.actionMainFragmentToSettingsFragment())
     }
