@@ -112,6 +112,8 @@ dependencies {
     // Image Viewer
     implementation 'com.github.stfalcon:stfalcon-imageviewer:0.1.0'
 
+    implementation 'com.github.wooplr:Spotlight:1.2.3'
+
     // Testing unit
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$rootProject.espressoVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"

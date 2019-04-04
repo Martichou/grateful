@@ -1,4 +1,7 @@
 <resources>
+	<string name="welcome">Bienvenue !</string>
+	<string name="noneyet">Pas encore de gratitude?\nCommencez par en créer une nouvelle.</string>
+
 	<string name="new_grateful_card">Titre de cette nouvelle gratitude</string>
 	<string name="new_grateful_card_message">Ajouter des détails</string>
 	<string name="create">Créer</string>

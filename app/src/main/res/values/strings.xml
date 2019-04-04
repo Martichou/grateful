@@ -2,6 +2,9 @@
     <string name="app_name" translatable="false">Grateful</string>
 	<string name="transition_name" translatable="false">%1$s</string>
 
+	<string name="welcome">Welcome !</string>
+	<string name="noneyet">No gratitude yet?\nStart by creating a new one.</string>
+
     <string name="new_grateful_card">New grateful card title</string>
     <string name="new_grateful_card_message">Add details</string>
     <string name="create">Create</string>

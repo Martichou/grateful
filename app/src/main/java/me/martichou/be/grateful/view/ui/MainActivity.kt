@@ -12,7 +12,6 @@ import com.afollestad.aesthetic.BottomNavIconTextMode
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.databinding.ActivityMainBinding
 import me.martichou.be.grateful.utils.notifications.NotificationHelper
-import me.martichou.be.grateful.utils.setupPermissions
 
 class MainActivity : AestheticActivity() {
 
@@ -27,8 +26,6 @@ class MainActivity : AestheticActivity() {
         DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
 
         navController = Navigation.findNavController(this, R.id.main_notes_nav_fragment)
-
-        setupPermissions(this, this)
 
         if (Aesthetic.isFirstTime) {
             Aesthetic.config {

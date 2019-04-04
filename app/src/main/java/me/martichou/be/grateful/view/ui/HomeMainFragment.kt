@@ -1,5 +1,6 @@
 package me.martichou.be.grateful.view.ui
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.TransitionInflater
 import com.google.android.material.snackbar.Snackbar
+import com.wooplr.spotlight.SpotlightView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -81,7 +83,6 @@ class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.T
         // Setup toolbar menu item click listener
         // Don't know why setHasOptionMenu don't work
         binding.toolbar.setOnMenuItemClickListener(this)
-
     }
 
     /**
@@ -106,6 +107,27 @@ class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.T
                 adapter.submitList(null)
                 binding.loadingUi.visibility = View.GONE
                 binding.nonethinking.visibility = View.VISIBLE
+
+                SpotlightView.Builder(requireActivity())
+                    .introAnimationDuration(400)
+                    .enableRevealAnimation(true)
+                    .performClick(true)
+                    .fadeinTextDuration(400)
+                    .headingTvColor(Color.parseColor("#FF6575"))
+                    .headingTvSize(32)
+                    .headingTvText(resources.getString(R.string.welcome))
+                    .subHeadingTvColor(Color.parseColor("#ffffff"))
+                    .subHeadingTvSize(16)
+                    .subHeadingTvText(resources.getString(R.string.noneyet))
+                    .maskColor(Color.parseColor("#dc000000"))
+                    .target(binding.fab)
+                    .lineAnimDuration(400)
+                    .lineAndArcColor(Color.parseColor("#FF6575"))
+                    .dismissOnTouch(true)
+                    .dismissOnBackPress(true)
+                    .enableDismissAfterShown(true)
+                    .usageId("sp_fab")
+                    .show()
             } else {
                 adapter.submitList(notes)
                 binding.loadingUi.visibility = View.GONE

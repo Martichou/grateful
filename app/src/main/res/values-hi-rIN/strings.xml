@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name" translatable="false">ग्रेटफुल</string>
+	<string name="welcome">स्वागत हे !</string>
+	<string name="noneyet">अभी तक कोई आभार नहीं?\nएक नई शुरुआत करके।</string>
+
     <string name="new_grateful_card">नए आभार कार्ड का शीर्षक</string>
     <string name="new_grateful_card_message">जानकारी जोड़ें</string>
     <string name="create">बनाएं</string>
