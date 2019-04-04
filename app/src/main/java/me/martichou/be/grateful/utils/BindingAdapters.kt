@@ -63,21 +63,21 @@ fun TextView.textIsEmpty(content: String?) {
 @BindingAdapter("showDayNbr")
 fun AppCompatTextView.showDayNbr(content: String) {
     val parsed = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).parse(content)
-    val day_nbr = SimpleDateFormat("dd", Locale.getDefault()).format(parsed)
+    val dayNbr = SimpleDateFormat("dd", Locale.getDefault()).format(parsed)
 
-    Timber.d("Day $day_nbr")
-    this.text = day_nbr.toString()
+    Timber.d("Day $dayNbr")
+    this.text = dayNbr.toString()
 }
 
 /**
  * Convert dd/MM/yyyy to E which is day name like Wed
  */
 @SuppressLint("SetTextI18n") // TODO
-@BindingAdapter("showDayName")
-fun AppCompatTextView.showDayName(content: String) {
+@BindingAdapter("showMonthName")
+fun AppCompatTextView.showMonthName(content: String) {
     val parsed = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).parse(content)
-    val day_name = SimpleDateFormat("E", Locale.getDefault()).format(parsed)
+    val montName = SimpleDateFormat("MMM", Locale.getDefault()).format(parsed)
 
-    Timber.d("Day $day_name")
-    this.text = day_name.substring(0, 1).capitalize() + day_name.dropLast(1).substring(1)
+    Timber.d("Month $montName")
+    this.text = montName.substring(0, 1).capitalize() + montName.dropLast(1).substring(1)
 }
