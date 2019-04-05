@@ -121,7 +121,7 @@ class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.T
                     .subHeadingTvText(resources.getString(R.string.noneyet))
                     .maskColor(Color.parseColor("#dc000000"))
                     .target(binding.fab)
-                    .lineAnimDuration(400)
+                    .lineAnimDuration(350)
                     .lineAndArcColor(Color.parseColor("#FF6575"))
                     .dismissOnTouch(true)
                     .dismissOnBackPress(true)

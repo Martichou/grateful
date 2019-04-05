@@ -7,7 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import me.martichou.be.grateful.data.model.Notes
 import me.martichou.be.grateful.data.repository.NotesRepository
-import me.martichou.be.grateful.utils.HashUtils
+import me.martichou.be.grateful.utils.encryption.HashUtils
 import me.martichou.be.grateful.utils.dateDefault
 import me.martichou.be.grateful.utils.dateToSearch
 import me.martichou.be.grateful.utils.formatTodateToSearch

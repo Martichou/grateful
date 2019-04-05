@@ -99,6 +99,7 @@ dependencies {
 
     // Firebase needed
     implementation "com.google.firebase:firebase-core:$firebase"
+    implementation 'com.google.firebase:firebase-auth:16.2.0'
 
     // Maps
     implementation 'com.google.android.libraries.places:places-compat:1.0.0'
@@ -112,7 +113,11 @@ dependencies {
     // Image Viewer
     implementation 'com.github.stfalcon:stfalcon-imageviewer:0.1.0'
 
+    // Spotlight
     implementation 'com.github.wooplr:Spotlight:1.2.3'
+
+    // Loading button
+    implementation 'br.com.simplepass:loading-button-android:2.1.0'
 
     // Testing unit
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$rootProject.espressoVersion"

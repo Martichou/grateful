@@ -62,8 +62,37 @@ abstract class AppDatabase : RoomDatabase() {
 }
 
 class UtilsDb {
-
     fun getResults(database: SupportSQLiteDatabase): JSONArray {
+        val queryString = "SELECT * FROM notes"
+        val cursor = database.query(queryString, null)
+        val resultSet = JSONArray()
+
+        cursor.moveToFirst()
+        while (!cursor.isAfterLast) {
+            val totalColumn = cursor.columnCount
+            val rowObject = JSONObject()
+            for (i in 0 until totalColumn) {
+                if (cursor.getColumnName(i) != null) {
+                    try {
+                        if (cursor.getString(i) != null) {
+                            rowObject.put(cursor.getColumnName(i), cursor.getString(i))
+                        } else {
+                            rowObject.put(cursor.getColumnName(i), "")
+                        }
+                    } catch (e: Exception) {
+                        Timber.d(e)
+                    }
+                }
+            }
+            resultSet.put(rowObject)
+            cursor.moveToNext()
+        }
+        cursor.close()
+        Timber.d(resultSet.toString())
+        return resultSet
+    }
+
+    fun getResults(database: AppDatabase): JSONArray {
         val queryString = "SELECT * FROM notes"
         val cursor = database.query(queryString, null)
         val resultSet = JSONArray()

@@ -8,11 +8,13 @@ import android.net.Uri
 import android.os.Bundle
 import android.text.format.DateFormat
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.preference.*
 import androidx.recyclerview.widget.RecyclerView
 import com.afollestad.aesthetic.Aesthetic
 import com.afollestad.aesthetic.BottomNavBgMode
 import com.afollestad.aesthetic.BottomNavIconTextMode
+import com.google.firebase.auth.FirebaseAuth
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.utils.notifications.NotificationHelper
 import java.util.*
@@ -27,6 +29,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         val feedbackButton = findPreference<Preference>("feedback")
         val darkSwitch = findPreference<SwitchPreferenceCompat>("themedark")
         val aboutButton = findPreference<Preference>("about")
+        val sync = findPreference<Preference>("sync")
 
         darkSwitch?.setOnPreferenceChangeListener { _, newValue ->
             if (newValue as Boolean) {
@@ -128,6 +131,15 @@ class SettingsFragment : PreferenceFragmentCompat() {
         aboutButton?.setOnPreferenceClickListener {
             val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://sites.google.com/view/grateful-policy/accueil"))
             startActivity(browserIntent)
+            true
+        }
+
+        sync?.setOnPreferenceClickListener {
+            if (FirebaseAuth.getInstance().currentUser != null) {
+                findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToSettingsSyncPhone())
+            } else {
+               findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToSettingsSyncDataReal())
+            }
             true
         }
     }

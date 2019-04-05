@@ -27,6 +27,17 @@
     </PreferenceCategory>
 
     <PreferenceCategory
+        app:key="sync_category"
+        app:title="Synchronization">
+
+        <Preference
+            app:key="sync"
+            app:title="Configure"
+            app:summary="Setup synchronization with the cloud"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
         app:key="help_category"
         app:title="@string/help">
 

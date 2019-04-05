@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="hdl"
+            type="me.martichou.be.grateful.view.ui.SettingsSyncDataReal" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linear_sync"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="me.martichou.be.grateful.view.ui.MainActivity">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/backBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:tint="?android:textColorPrimary"
+            app:srcCompat="@drawable/ic_arrow_back_black_24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/title_sync"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Synchronisation"
+            android:textSize="24sp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/buttonverif"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/summary_sync"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="You can porcess to a full backup right now"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:lines="2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_sync"/>
+
+        <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
+            android:id="@+id/buttonverif"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginRight="18dp"
+            android:background="@drawable/round"
+            android:paddingStart="32dp"
+            android:paddingEnd="32dp"
+            android:text="Start backup"
+            android:textColor="@color/white"
+            android:onClick="@{hdl::btnClick}"
+            android:tag="firststep"
+            app:finalCornerAngle="50dp"
+            app:initialCornerAngle="0dp"
+            app:spinning_bar_color="@color/white"
+            app:spinning_bar_padding="8dp"
+            app:spinning_bar_width="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/summary_sync"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

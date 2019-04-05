@@ -7,7 +7,8 @@
     <fragment
         android:id="@+id/main_fragment"
         android:name="me.martichou.be.grateful.view.ui.HomeMainFragment"
-        android:label="Grateful">
+        android:label="Grateful"
+        tools:layout="@layout/fragment_homemain">
 
         <action
             android:id="@+id/action_note_list_fragment_to_note_detail_fragment"
@@ -48,7 +49,6 @@
         android:name="me.martichou.be.grateful.view.ui.ShowEditFragment"
         android:label=" "
         tools:layout="@layout/fragment_showedit">
-
         <argument
             android:name="noteId"
             app:argType="long" />
@@ -66,6 +66,29 @@
     <fragment
         android:id="@+id/settings_fragment"
         android:name="me.martichou.be.grateful.view.ui.SettingsFragment"
-        android:label=" " />
+        android:label=" ">
+        <action
+            android:id="@+id/action_settings_fragment_to_settingsSyncPhone"
+            app:destination="@id/settingsSyncPhone" />
+        <action
+            android:id="@+id/action_settings_fragment_to_settingsSyncDataReal"
+            app:destination="@id/settingsSyncDataReal" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/settingsSyncPhone"
+        android:name="me.martichou.be.grateful.view.ui.SettingsSyncPhone"
+        android:label="SettingsSync"
+        tools:layout="@layout/fragment_syncdataphone" >
+        <action
+            android:id="@+id/action_settingsSyncPhone_to_settingsSyncDataReal"
+            app:destination="@id/settingsSyncDataReal"
+            app:popUpTo="@+id/settings_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsSyncDataReal"
+        android:name="me.martichou.be.grateful.view.ui.SettingsSyncDataReal"
+        android:label="SettingsSyncDataReal"
+        tools:layout="@layout/fragment_syncdatareal"/>
 
 </navigation>
