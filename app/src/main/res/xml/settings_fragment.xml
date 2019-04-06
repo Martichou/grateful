@@ -53,7 +53,7 @@
 
         <Preference
             app:key="version"
-            app:summary="1.2.3"
+            app:summary="1.2.4"
             app:title="@string/app_version" />
 
     </PreferenceCategory>

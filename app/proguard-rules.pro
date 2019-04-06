@@ -25,6 +25,7 @@
 -keepnames class kotlinx.coroutines.CoroutineExceptionHandler {}
 -keep class androidx.appcompat.widget.** { *; }
 -keep public class * extends androidx.preference. { *; }
+-keep class com.google.android.material.textfield.** { *; }
  # Most of volatile fields are updated with AFU and should not be mangled
 -keepclassmembernames class kotlinx.** {
     volatile <fields>;
