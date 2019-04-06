@@ -21,7 +21,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
+            android:background="?android:attr/selectableItemBackground"
             android:tint="?android:textColorPrimary"
+            android:onClick="@{hdl::back}"
             app:srcCompat="@drawable/ic_arrow_back_black_24dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
@@ -32,11 +34,11 @@
             android:layout_height="wrap_content"
             android:text="Synchronisation"
             android:textSize="24sp"
-            android:textColor="@color/black"
+            android:textColor="?android:textColorPrimary"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/buttonverif"/>
+            app:layout_constraintBottom_toTopOf="@id/buttonbackup"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/summary_sync"
@@ -44,15 +46,63 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="You can porcess to a full backup right now"
-            android:textColor="@color/black"
+            android:textColor="?android:textColorPrimary"
             android:textAlignment="center"
             android:lines="2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title_sync"/>
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/backupStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:textAlignment="center"
+            android:textColor="?android:textColorSecondary"
+            app:layout_constraintTop_toBottomOf="@id/summary_sync"
+            app:layout_constraintBottom_toTopOf="@id/buttonbackup"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieLoading"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_fileName="loading.json"
+            app:layout_constraintTop_toBottomOf="@id/summary_sync"
+            app:layout_constraintBottom_toTopOf="@id/buttonbackup"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
         <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
-            android:id="@+id/buttonverif"
+            android:id="@+id/buttonrestore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginRight="18dp"
+            android:background="@drawable/round_success"
+            android:paddingStart="32dp"
+            android:paddingEnd="32dp"
+            android:text="Restore data"
+            android:textColor="@color/white"
+            android:onClick="@{hdl::restoreData}"
+            android:tag="firststep"
+            android:visibility="gone"
+            app:finalCornerAngle="50dp"
+            app:initialCornerAngle="0dp"
+            app:spinning_bar_color="@color/white"
+            app:spinning_bar_padding="8dp"
+            app:spinning_bar_width="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/buttonbackup"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/summary_sync"/>
+
+        <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
+            android:id="@+id/buttonbackup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="18dp"
@@ -69,7 +119,7 @@
             app:spinning_bar_color="@color/white"
             app:spinning_bar_padding="8dp"
             app:spinning_bar_width="4dp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/buttonrestore"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/summary_sync"/>

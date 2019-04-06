@@ -118,7 +118,6 @@ class UtilsDb {
             cursor.moveToNext()
         }
         cursor.close()
-        Timber.d(resultSet.toString())
         return resultSet
     }
 }

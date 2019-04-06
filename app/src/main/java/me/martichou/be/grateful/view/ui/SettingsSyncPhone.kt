@@ -33,6 +33,7 @@ class SettingsSyncPhone : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentSyncdataphoneBinding.inflate(inflater, container, false)
         auth = FirebaseAuth.getInstance()
+        Timber.d("UID1: ${auth.uid}")
 
         return binding.root
     }
@@ -46,6 +47,10 @@ class SettingsSyncPhone : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         buttonVerif?.dispose()
+    }
+
+    fun back(v: View) {
+        findNavController().popBackStack()
     }
 
     fun btnClick(v: View) {
@@ -156,7 +161,6 @@ class SettingsSyncPhone : Fragment() {
                     Timber.d("signInWithCredential:success")
 
                     val user = task.result?.user
-                    // ...
                     Timber.d("User: $user")
                     buttonVerif?.revertAnimation {
                         buttonVerif?.background = resources.getDrawable(R.drawable.round_success)

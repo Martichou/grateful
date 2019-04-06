@@ -100,6 +100,7 @@ dependencies {
     // Firebase needed
     implementation "com.google.firebase:firebase-core:$firebase"
     implementation 'com.google.firebase:firebase-auth:16.2.0'
+    implementation 'com.google.firebase:firebase-firestore:18.2.0'
 
     // Maps
     implementation 'com.google.android.libraries.places:places-compat:1.0.0'
@@ -118,6 +119,9 @@ dependencies {
 
     // Loading button
     implementation 'br.com.simplepass:loading-button-android:2.1.0'
+
+    // Lottie
+    implementation 'com.airbnb.android:lottie:3.0.0'
 
     // Testing unit
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$rootProject.espressoVersion"

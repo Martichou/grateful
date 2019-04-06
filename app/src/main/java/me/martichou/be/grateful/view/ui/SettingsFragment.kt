@@ -15,14 +15,23 @@ import com.afollestad.aesthetic.Aesthetic
 import com.afollestad.aesthetic.BottomNavBgMode
 import com.afollestad.aesthetic.BottomNavIconTextMode
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.utils.notifications.NotificationHelper
+import timber.log.Timber
 import java.util.*
 
 class SettingsFragment : PreferenceFragmentCompat() {
 
+    private lateinit var mAuth: FirebaseAuth
+    private var user: FirebaseUser? = null
+
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.settings_fragment, rootKey)
+
+        mAuth = FirebaseAuth.getInstance()
+        user = mAuth.currentUser
+        Timber.d("UID: ${mAuth.uid}")
 
         val dailynotification = findPreference<SwitchPreferenceCompat>("dailynotification")
         val defineTime = findPreference<Preference>("defineTime")
@@ -135,7 +144,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         }
 
         sync?.setOnPreferenceClickListener {
-            if (FirebaseAuth.getInstance().currentUser != null) {
+            if (user == null) {
                 findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToSettingsSyncPhone())
             } else {
                findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToSettingsSyncDataReal())
