@@ -3,8 +3,8 @@ package me.martichou.be.grateful.data.model
 import java.util.*
 
 data class DatabaseObject(
-    val date: Date?,
-    val cryptedData: String?
+    public val date: Date?,
+    public val cryptedData: String?
 ){
     constructor() : this(null, null)
 }

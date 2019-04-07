@@ -166,10 +166,10 @@ class SettingsSyncDataReal : Fragment() {
     private fun encryptAndSend(pass: String){
         val users = db.collection("users")
         val date = Date()
-        users.document(auth.uid!!).set(DatabaseObject(
-                date,
-                EncryptUtils.encryptString(UtilsDb().getResults(AppDatabase.getInstance(requireContext())).toString(), pass))
-        ).addOnSuccessListener {
+        val data = HashMap<String, Any>()
+        data["date"] = Date()
+        data["cryptedData"] = EncryptUtils.encryptString(UtilsDb().getResults(AppDatabase.getInstance(requireContext())).toString(), pass)
+                users.document(auth.uid!!).set(data).addOnSuccessListener {
             buttonbackup?.revertAnimation {
                 buttonbackup?.background = resources.getDrawable(R.drawable.round_success)
                 buttonbackup?.text = "Success"
