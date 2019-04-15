@@ -21,9 +21,9 @@ android {
     buildTypes {
         debug {
             versionNameSuffix "-debug"
-            minifyEnabled true
-            shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            minifyEnabled false
+            shrinkResources false
+            useProguard false
         }
         release {
             minifyEnabled true
