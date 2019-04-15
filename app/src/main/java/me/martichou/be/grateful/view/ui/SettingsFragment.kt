@@ -29,10 +29,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.settings_fragment, rootKey)
 
-        mAuth = FirebaseAuth.getInstance()
-        user = mAuth.currentUser
-        Timber.d("UID: ${mAuth.uid}")
-
         val dailynotification = findPreference<SwitchPreferenceCompat>("dailynotification")
         val defineTime = findPreference<Preference>("defineTime")
         val feedbackButton = findPreference<Preference>("feedback")
@@ -151,6 +147,13 @@ class SettingsFragment : PreferenceFragmentCompat() {
             }
             true
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mAuth = FirebaseAuth.getInstance()
+        user = mAuth.currentUser
+        Timber.d("UID: ${mAuth.uid}")
     }
 
     private fun setAllPreferencesToAvoidHavingExtraSpace(preference: Preference) {
