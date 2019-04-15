@@ -48,15 +48,15 @@ kapt {
 }
 
 ext {
-    lifecycle = '2.0.0'
+    lifecycle = '2.1.0-alpha04'
     koin = "1.0.2"
     glide = "4.8.0"
     coroutines = '1.0.0'
     firebase = '16.0.8'
     imgcropper = '2.7.0'
     timber = '4.7.1'
-    supportLibraryVersion = '1.1.0-alpha03'
-    constraintLyt = '2.0.0-alpha3'
+    supportLibraryVersion = '1.1.0-alpha04'
+    constraintLyt = '2.0.0-alpha4'
     roomVersion = '2.1.0-alpha06'
     preference = '1.1.0-alpha04'
 }
@@ -76,12 +76,12 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.1.0-alpha05'
     implementation "androidx.room:room-runtime:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
-    implementation 'androidx.appcompat:appcompat:1.1.0-alpha03'
+    implementation 'androidx.appcompat:appcompat:1.1.0-alpha04'
     implementation "androidx.recyclerview:recyclerview:$supportLibraryVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLyt"
     implementation "androidx.constraintlayout:constraintlayout-solver:$constraintLyt"
     implementation "androidx.preference:preference-ktx:$preference"
-    implementation "androidx.fragment:fragment:1.1.0-alpha05"
+    implementation "androidx.fragment:fragment:1.1.0-alpha06"
     implementation "androidx.navigation:navigation-fragment-ktx:$rootProject.navigationVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$rootProject.navigationVersion"
 
@@ -99,11 +99,11 @@ dependencies {
 
     // Firebase needed
     implementation "com.google.firebase:firebase-core:$firebase"
-    implementation 'com.google.firebase:firebase-auth:16.2.0'
+    implementation 'com.google.firebase:firebase-auth:16.2.1'
     implementation 'com.google.firebase:firebase-firestore:18.2.0'
 
     // Maps
-    implementation 'com.google.android.libraries.places:places-compat:1.0.0'
+    implementation 'com.google.android.libraries.places:places-compat:1.1.0'
 
     // Image cropper
     implementation "com.theartofdev.edmodo:android-image-cropper:$imgcropper"
