@@ -10,6 +10,9 @@
 -keep class androidx.appcompat.widget.** { *; }
 -keep public class * extends androidx.preference. { *; }
 -keep class com.google.android.material.textfield.** { *; }
+-keep class com.wooplr.spotlight.** { *; }
+-keep interface com.wooplr.spotlight.**
+-keep enum com.wooplr.spotlight.**
 
 -keepclassmembers class me.martichou.be.grateful.data.model.** { *; }
 
