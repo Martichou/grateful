@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:visibility="gone"
             android:textAlignment="center"
-            android:textColor="?android:textColorSecondary"
+            android:textColor="?android:textColorPrimary"
             app:layout_constraintTop_toBottomOf="@id/summary_sync"
             app:layout_constraintBottom_toTopOf="@id/buttonbackup"
             app:layout_constraintStart_toStartOf="parent"
