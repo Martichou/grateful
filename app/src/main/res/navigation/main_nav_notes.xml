@@ -20,7 +20,7 @@
             android:id="@+id/action_main_fragment_to_settings_fragment"
             app:destination="@id/settings_fragment"
             app:enterAnim="@anim/activity_slide_up"
-            app:exitAnim="@anim/slide_down"
+            app:exitAnim="@anim/activity_fade_out"
             app:popEnterAnim="@anim/activity_fade_in"
             app:popExitAnim="@anim/activity_fade_out" />
 
@@ -69,10 +69,18 @@
         android:label=" ">
         <action
             android:id="@+id/action_settings_fragment_to_settingsSyncPhone"
-            app:destination="@id/settingsSyncPhone" />
+            app:destination="@id/settingsSyncPhone"
+            app:enterAnim="@anim/zoom_in"
+            app:exitAnim="@anim/activity_fade_out"
+            app:popEnterAnim="@anim/activity_fade_in"
+            app:popExitAnim="@anim/activity_fade_out" />
         <action
             android:id="@+id/action_settings_fragment_to_settingsSyncDataReal"
-            app:destination="@id/settingsSyncDataReal" />
+            app:destination="@id/settingsSyncDataReal"
+            app:enterAnim="@anim/zoom_in"
+            app:exitAnim="@anim/activity_fade_out"
+            app:popEnterAnim="@anim/activity_fade_in"
+            app:popExitAnim="@anim/activity_fade_out" />
     </fragment>
 
     <fragment
@@ -83,6 +91,8 @@
         <action
             android:id="@+id/action_settingsSyncPhone_to_settingsSyncDataReal"
             app:destination="@id/settingsSyncDataReal"
+            app:enterAnim="@anim/activity_slide_up"
+            app:exitAnim="@anim/activity_fade_out"
             app:popUpTo="@+id/settings_fragment" />
     </fragment>
     <fragment
