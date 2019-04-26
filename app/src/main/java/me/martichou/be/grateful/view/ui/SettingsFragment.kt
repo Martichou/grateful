@@ -3,7 +3,6 @@ package me.martichou.be.grateful.view.ui
 import android.annotation.SuppressLint
 import android.app.TimePickerDialog
 import android.content.Intent
-import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.text.format.DateFormat
@@ -60,7 +59,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
                 Aesthetic.config {
                     this.activityTheme(R.style.BaseAppTheme)
                     isDark(false)
-                    textColorPrimary(res = R.color.black)
+                    textColorPrimary(res = R.color.almostblack)
                     textColorSecondary(res = R.color.grey_light)
                     textColorSecondaryInverse(res = R.color.grey_lightlight)
                     colorPrimary(res = R.color.white)
@@ -68,7 +67,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
                     colorWindowBackground(res = R.color.white)
                     colorStatusBar(res = R.color.white)
                     colorNavigationBarAuto()
-                    textColorPrimary(Color.BLACK)
                     bottomNavigationBackgroundMode(BottomNavBgMode.PRIMARY)
                     bottomNavigationIconTextMode(BottomNavIconTextMode.SELECTED_ACCENT)
                     swipeRefreshLayoutColorsRes(R.color.red)

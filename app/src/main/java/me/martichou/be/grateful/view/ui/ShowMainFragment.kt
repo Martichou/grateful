@@ -94,7 +94,7 @@ class ShowMainFragment : Fragment() {
         override fun onLoadFailed(
                 e: GlideException?,
                 model: Any?,
-                target: com.bumptech.glide.request.target.Target<Drawable>?,
+                target: Target<Drawable>?,
                 isFirstResource: Boolean
         ): Boolean {
             startPostponedEnterTransition()

@@ -171,13 +171,13 @@ class SettingsSyncDataReal : Fragment() {
                 EncryptUtils.encryptString(UtilsDb().getResults(AppDatabase.getInstance(requireContext())).toString(), pass))
         ).addOnSuccessListener {
             buttonbackup?.revertAnimation {
-                buttonbackup?.background = resources.getDrawable(R.drawable.round_success)
+                buttonbackup?.background = resources.getDrawable(R.drawable.round_success, null)
                 buttonbackup?.text = "Success"
             }
             binding.backupStatus.text = "Last backup done:\n$date"
         }.addOnFailureListener {
             buttonbackup?.revertAnimation {
-                buttonbackup?.background = resources.getDrawable(R.drawable.round_error)
+                buttonbackup?.background = resources.getDrawable(R.drawable.round_error, null)
                 buttonbackup?.text = "Failed"
             }
         }

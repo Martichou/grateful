@@ -51,20 +51,6 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.75" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.98" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.99" />
-
         <View
             android:id="@+id/bgView"
             android:layout_width="0dp"
@@ -74,97 +60,57 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/guideline1" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/titleTextView"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:gravity="center"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:gravity="start|center_vertical"
+            android:textAlignment="viewStart"
             android:text="@{showModel.note.title}"
             android:textColor="?android:textColorPrimary"
             android:textSize="28sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@id/bgView"
             app:layout_constraintStart_toStartOf="@id/bgView"
-            app:layout_constraintTop_toBottomOf="@id/guideline1" />
+            app:layout_constraintTop_toBottomOf="@id/guideline1"
+            tools:text="Title goes here" />
 
-        <View
-            android:id="@+id/divider"
-            android:layout_width="0dp"
-            android:layout_height="0.7dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="24dp"
-            android:background="#2c2c2c"
-            app:layout_constraintEnd_toEndOf="@id/bgView"
-            app:layout_constraintStart_toStartOf="@id/bgView"
-            app:layout_constraintTop_toBottomOf="@id/titleTextView" />
-
-        <LinearLayout
-            android:id="@+id/descTextView"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/dateTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="@id/bgView"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="4dp"
+            android:gravity="start|center_vertical"
+            android:textAlignment="viewStart"
+            android:text="@{showModel.note.dateToSearch}"
+            android:textColor="?android:textColorSecondaryInverse"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@id/bgView"
-            app:layout_constraintTop_toBottomOf="@id/divider">
+            app:layout_constraintTop_toBottomOf="@id/titleTextView"
+            tools:text="On the 26 january 2019"
+            tools:textColor="#666"
+            tools:drawableTint="#666"
+            tools:targetApi="m" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_clock"
-                android:drawablePadding="5dp"
-                android:gravity="center"
-                android:text="@{showModel.note.dateToSearch}"
-                android:textColor="?android:textColorPrimary"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:drawableStart="@drawable/ic_location"
-                android:drawablePadding="5dp"
-                android:gravity="center"
-                android:text="@{showModel.note.location}"
-                android:textColor="?android:textColorPrimary"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:isGone="@{showModel.note.location}" />
-
-        </LinearLayout>
-
-        <View
-            android:id="@+id/divider2"
-            android:layout_width="0dp"
-            android:layout_height="0.7dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="24dp"
-            android:background="#2c2c2c"
-            app:layout_constraintEnd_toEndOf="@id/bgView"
-            app:layout_constraintStart_toStartOf="@id/bgView"
-            app:layout_constraintTop_toBottomOf="@id/descTextView" />
-
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/contentText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:nestedScrollingEnabled="false"
-            android:padding="14dp"
+            android:layout_marginTop="16dp"
             android:text="@{showModel.note.content}"
             android:textColor="?android:textColorSecondaryInverse"
-            android:textSize="17sp"
-            android:textStyle="italic"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/divider2"
-            app:textIsEmpty="@{showModel.note.content}" />
+            app:layout_constraintTop_toBottomOf="@id/dateTextView"
+            app:textIsEmpty="@{showModel.note.content}"
+            tools:text="Lorem ipsum ziqndqzidnqzunduqzud nqzuu dqbudb qudbquz bduzqdb dqzidjq zidqdn uiqz dniqndiqn zidqzndiqznid nqzid uiqzb duqzbduqzbdqzubdqzbdiuqbidu qizidbqzi"
+            tools:textColor="#666"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"

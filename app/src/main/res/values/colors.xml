@@ -6,12 +6,13 @@
     <color name="red">#FF6575</color>
     <color name="grey">#767676</color>
     <color name="grey_light">#2c2c2c</color>
-    <color name="grey_lightlight">#555555</color>
+    <color name="grey_lightlight">#666666</color>
     <color name="grey_lightlightlight">#818181</color>
     <color name="grey_extraLight">#b0b0b0</color>
     <color name="grey_extraPlusLight">#e2e2e2</color>
     <color name="white">#FFF</color>
     <color name="black">#000</color>
+    <color name="almostblack">#212121</color>
     <color name="dark">#232323</color>
     <color name="grey_show">#ACB6BB</color>
     <color name="tranquil">#D7E8E4</color>
