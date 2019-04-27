@@ -17,7 +17,8 @@
 
         <SwitchPreferenceCompat
             app:key="dailynotification"
-            app:title="@string/daily_reminder"/>
+            app:title="@string/daily_reminder"
+            app:defaultValue="true" />
 
         <Preference
             app:key="defineTime"

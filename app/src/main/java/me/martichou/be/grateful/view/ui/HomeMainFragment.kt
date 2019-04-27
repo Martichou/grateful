@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.TransitionInflater
@@ -26,6 +27,7 @@ import me.martichou.be.grateful.databinding.RecyclerviewHomeitemBinding
 import me.martichou.be.grateful.utils.DividerRV
 import me.martichou.be.grateful.utils.EventObserver
 import me.martichou.be.grateful.utils.ToolbarElevationOffsetListener
+import me.martichou.be.grateful.utils.notifications.NotificationHelper
 import me.martichou.be.grateful.view.adapter.NotesAdapter
 import me.martichou.be.grateful.viewmodel.MainViewModel
 import me.martichou.be.grateful.viewmodel.getNotesRepository
@@ -128,6 +130,16 @@ class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.T
                     .enableDismissAfterShown(true)
                     .usageId("sp_fab")
                     .show()
+
+                if(PreferenceManager.getDefaultSharedPreferences(context).getBoolean("dailynotification", true)) {
+                    NotificationHelper().cancelAlarmRTC()
+                    NotificationHelper().enableBootReceiver(requireContext())
+                    NotificationHelper().scheduleRepeatingRTCNotification(requireContext(),
+                            PreferenceManager.getDefaultSharedPreferences(context).getInt("dn_hour", 20),
+                            PreferenceManager.getDefaultSharedPreferences(context).getInt("dn_min", 0))
+
+                    Timber.d("Notification enabled")
+                }
             } else {
                 adapter.submitList(notes)
                 binding.loadingUi.visibility = View.GONE
