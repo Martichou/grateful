@@ -28,6 +28,7 @@ import me.martichou.be.grateful.utils.DividerRV
 import me.martichou.be.grateful.utils.EventObserver
 import me.martichou.be.grateful.utils.ToolbarElevationOffsetListener
 import me.martichou.be.grateful.utils.notifications.NotificationHelper
+import me.martichou.be.grateful.utils.statusBarWhite
 import me.martichou.be.grateful.view.adapter.NotesAdapter
 import me.martichou.be.grateful.viewmodel.MainViewModel
 import me.martichou.be.grateful.viewmodel.getNotesRepository
@@ -85,6 +86,14 @@ class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.T
         // Setup toolbar menu item click listener
         // Don't know why setHasOptionMenu don't work
         binding.toolbar.setOnMenuItemClickListener(this)
+    }
+
+    /**
+     * Set statusbar as white
+     */
+    override fun onResume() {
+        super.onResume()
+        statusBarWhite(activity)
     }
 
     /**

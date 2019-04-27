@@ -22,6 +22,7 @@ import me.martichou.be.grateful.R
 import me.martichou.be.grateful.data.model.Notes
 import me.martichou.be.grateful.databinding.FragmentShowmainBinding
 import me.martichou.be.grateful.utils.GlideApp
+import me.martichou.be.grateful.utils.statusBarTrans
 import me.martichou.be.grateful.viewmodel.ShowViewModel
 import me.martichou.be.grateful.viewmodel.getNotesRepository
 import me.martichou.be.grateful.viewmodel.getViewModel
@@ -54,6 +55,14 @@ class ShowMainFragment : Fragment() {
         binding.args = params
         binding.hdl = this
         binding.requestListener = imageListener
+    }
+
+    /**
+     * Set statusbar as translucent
+     */
+    override fun onResume() {
+        super.onResume()
+        statusBarTrans(activity)
     }
 
     /**

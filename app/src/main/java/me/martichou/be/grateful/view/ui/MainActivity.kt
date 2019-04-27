@@ -1,6 +1,5 @@
 package me.martichou.be.grateful.view.ui
 
-import android.graphics.Color
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
@@ -31,7 +30,7 @@ class MainActivity : AestheticActivity() {
             Aesthetic.config {
                 this.activityTheme(R.style.BaseAppTheme)
                 isDark(false)
-                textColorPrimary(res = R.color.black)
+                textColorPrimary(res = R.color.almostblack)
                 textColorSecondary(res = R.color.grey_light)
                 textColorSecondaryInverse(res = R.color.grey_lightlight)
                 colorPrimary(res = R.color.white)
@@ -39,7 +38,6 @@ class MainActivity : AestheticActivity() {
                 colorWindowBackground(res = R.color.white)
                 colorStatusBar(res = R.color.white)
                 colorNavigationBarAuto()
-                textColorPrimary(Color.BLACK)
                 bottomNavigationBackgroundMode(BottomNavBgMode.PRIMARY)
                 bottomNavigationIconTextMode(BottomNavIconTextMode.SELECTED_ACCENT)
                 swipeRefreshLayoutColorsRes(R.color.red)
