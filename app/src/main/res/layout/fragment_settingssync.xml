@@ -7,7 +7,7 @@
 
         <variable
             name="hdl"
-            type="me.martichou.be.grateful.view.ui.SettingsSyncDataReal" />
+            type="me.martichou.be.grateful.view.ui.SettingsSync" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,7 +32,7 @@
             android:id="@+id/title_sync"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Synchronisation"
+            android:text="@string/synchronization"
             android:textSize="24sp"
             android:textColor="?android:textColorPrimary"
             app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="You can porcess to a full backup right now"
+            android:text="@string/you_can_porcess_to_a_full_backup_right_now"
             android:textColor="?android:textColorPrimary"
             android:textAlignment="center"
             android:lines="2"
@@ -86,11 +86,10 @@
             android:background="@drawable/round_success"
             android:paddingStart="32dp"
             android:paddingEnd="32dp"
-            android:text="Restore data"
+            android:text="@string/restore_data"
             android:textColor="@color/white"
             android:onClick="@{hdl::restoreData}"
             android:tag="firststep"
-            android:visibility="gone"
             app:finalCornerAngle="50dp"
             app:initialCornerAngle="0dp"
             app:spinning_bar_color="@color/white"
@@ -110,7 +109,7 @@
             android:background="@drawable/round"
             android:paddingStart="32dp"
             android:paddingEnd="32dp"
-            android:text="Start backup"
+            android:text="@string/start_backup"
             android:textColor="@color/white"
             android:onClick="@{hdl::btnClick}"
             android:tag="firststep"

@@ -28,7 +28,6 @@ import me.martichou.be.grateful.utils.DividerRV
 import me.martichou.be.grateful.utils.EventObserver
 import me.martichou.be.grateful.utils.ToolbarElevationOffsetListener
 import me.martichou.be.grateful.utils.notifications.NotificationHelper
-import me.martichou.be.grateful.utils.statusBarWhite
 import me.martichou.be.grateful.view.adapter.NotesAdapter
 import me.martichou.be.grateful.viewmodel.MainViewModel
 import me.martichou.be.grateful.viewmodel.getNotesRepository
@@ -77,6 +76,9 @@ class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.T
             startPostponedEnterTransition()
         }
 
+        // Check notification
+        checkForNotification()
+
         // Subscribe adapter
         subscribeUirecentNotesList(viewModel.adapter)
 
@@ -89,14 +91,6 @@ class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.T
     }
 
     /**
-     * Set statusbar as white
-     */
-    override fun onResume() {
-        super.onResume()
-        statusBarWhite(activity)
-    }
-
-    /**
      * Handle click on menu item
      */
     override fun onMenuItemClick(it: MenuItem): Boolean {
@@ -106,6 +100,23 @@ class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.T
             R.id.menu_main_setting -> openSettings()
         }
         return true
+    }
+
+    /**
+     * Check if it's needed to enable notification
+     */
+    private fun checkForNotification() {
+        if(PreferenceManager.getDefaultSharedPreferences(context).getBoolean("dailynotification", true)) {
+            if(NotificationHelper().alarmIntentRTC != null) {
+                NotificationHelper().cancelAlarmRTC()
+            }
+            NotificationHelper().scheduleRepeatingRTCNotification(requireContext(),
+                    PreferenceManager.getDefaultSharedPreferences(context).getInt("dn_hour", 20),
+                    PreferenceManager.getDefaultSharedPreferences(context).getInt("dn_min", 0))
+            NotificationHelper().enableBootReceiver(requireContext())
+
+            Timber.d("Notification enabled")
+        }
     }
 
     /**
@@ -139,16 +150,6 @@ class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.T
                     .enableDismissAfterShown(true)
                     .usageId("sp_fab")
                     .show()
-
-                if(PreferenceManager.getDefaultSharedPreferences(context).getBoolean("dailynotification", true)) {
-                    NotificationHelper().cancelAlarmRTC()
-                    NotificationHelper().enableBootReceiver(requireContext())
-                    NotificationHelper().scheduleRepeatingRTCNotification(requireContext(),
-                            PreferenceManager.getDefaultSharedPreferences(context).getInt("dn_hour", 20),
-                            PreferenceManager.getDefaultSharedPreferences(context).getInt("dn_min", 0))
-
-                    Timber.d("Notification enabled")
-                }
             } else {
                 adapter.submitList(notes)
                 binding.loadingUi.visibility = View.GONE
@@ -220,6 +221,6 @@ class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.T
      * Open settings
      */
     private fun openSettings() {
-        findNavController().navigate(HomeMainFragmentDirections.actionMainFragmentToSettingsFragment())
+        findNavController().navigate(HomeMainFragmentDirections.actionMainFragmentToSettingsNewFragment())
     }
 }

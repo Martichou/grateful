@@ -23,6 +23,7 @@ import me.martichou.be.grateful.data.model.Notes
 import me.martichou.be.grateful.databinding.FragmentShowmainBinding
 import me.martichou.be.grateful.utils.GlideApp
 import me.martichou.be.grateful.utils.statusBarTrans
+import me.martichou.be.grateful.utils.statusBarWhite
 import me.martichou.be.grateful.viewmodel.ShowViewModel
 import me.martichou.be.grateful.viewmodel.getNotesRepository
 import me.martichou.be.grateful.viewmodel.getViewModel
@@ -61,8 +62,13 @@ class ShowMainFragment : Fragment() {
      * Set statusbar as translucent
      */
     override fun onResume() {
-        super.onResume()
         statusBarTrans(activity)
+        super.onResume()
+    }
+
+    override fun onDetach() {
+        statusBarWhite(activity)
+        super.onDetach()
     }
 
     /**

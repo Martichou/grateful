@@ -11,7 +11,6 @@ import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.databinding.FragmentShoweditBinding
-import me.martichou.be.grateful.utils.statusBarWhite
 import me.martichou.be.grateful.viewmodel.EditViewModel
 import me.martichou.be.grateful.viewmodel.getNotesRepository
 import me.martichou.be.grateful.viewmodel.getViewModel
@@ -36,14 +35,6 @@ class ShowEditFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.editModel = viewModel
         binding.hdl = this
-    }
-
-    /**
-     * Set statusbar as white
-     */
-    override fun onResume() {
-        super.onResume()
-        statusBarWhite(activity)
     }
 
     /**

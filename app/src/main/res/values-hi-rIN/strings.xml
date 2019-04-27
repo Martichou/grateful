@@ -22,16 +22,20 @@
 	<string name="enable_dark_theme">डार्क थीम चालू करें</string>
 	<string name="daily_reminder">डेली रिमाइंडर चालू करें</string>
 	<string name="when_do_you_want_to">आप इसे कब प्राप्त करना चाहते हैं ?</string>
-	<string name="report_technical">किसी समस्या और सुझाव के बारे में बताएं</string>
-	<string name="discover">जानिए मैं आपका डाटा कैसे संभालता हूं </string>
-	<string name="send_feedback">प्रतिक्रिया भेजें</string>
 	<string name="privacy_policy">गोपनीयता नीति</string>
-	<string name="app_version">एप वर्जन</string>
 	<string name="scheduled_at">%1$s:%2$s पर निर्धारित</string>
 	<string name="daily_disabled">डेली रिमाइंडर अभी बंद है</string>
-	<string name="what_do_you_think">आप इस एप के बारे में क्या सोचते हैं ?</string>
-	<string name="no_email_client">कोई ईमेल क्लाइंट इंस्टॉल नहीं है</string>
-	<string name="send_with">इसका उपयोग कर ईमेल भेजें…</string>
+	<string name="synchronization">तुल्यकालन</string>
+	<string name="feel_free_to_custom_the_app_as_you_need_it_to_be">जब भी आपको यह करने की आवश्यकता होती है, तब ऐप को कस्टमाइज़ करें</string>
+	<string name="setup_synchronization_with_the_cloud">क्लाउड के साथ सेटअप सिंक्रनाइज़ेशन</string>
+
+	<string name="you_need_to_be_authentified_before_n_backing_up_your_data">आपको पहले प्रमाणित होना चाहिए\nअपने डेटा का बैकअप लेना</string>
+	<string name="send_code">कोड भेजो</string>
+	<string name="phone_number">फ़ोन नंबर</string>
+	<string name="start_backup">शुरु</string>
+	<string name="restore_data">पुनर्स्थापित</string>
+	<string name="you_can_porcess_to_a_full_backup_right_now">आप अभी एक पूर्ण बैकअप के लिए प्रक्रिया कर सकते हैं</string>
+	<string name="password">पारण शब्द</string>
 
 	<string name="enter_title">कम से कम एक शीर्षक लिखें</string>
 	<string name="set_image">कृपया एक इमेज चयनित करें</string>
@@ -44,5 +48,15 @@
 	<string name="cant_be_undone">यह आभार कार्ड हमेशा के लिए मिट जाएगा, इसे पुनः प्राप्त नहीं किया जा सकेगा</string>
 	<string name="yes">हां</string>
 	<string name="no">नहीं</string>
+	<string name="wrong_number">गलत नंबर</string>
+	<string name="continu">जारी रहना</string>
+	<string name="success">सफलता !</string>
+	<string name="error">त्रुटि…</string>
+	<string name="provide_a_phone_number">जारी रखने के लिए आपको एक फ़ोन नंबर देना होगा</string>
+	<string name="code_sent_by_sms">एसएमएस द्वारा प्राप्त कोड दर्ज करें</string>
+	<string name="no_previous_backup">कोई पिछला बैकअप नहीं</string>
+	<string name="enter_password_to_encrypt">अपना डेटा एन्क्रिप्ट करने के लिए एक पासवर्ड दर्ज करें</string>
+	<string name="you_must_enter_password">आपको एक पासवर्ड दर्ज करना होगा</string>
+	<string name="last_backup_done">अंतिम बैकअप किया गया:\n%1$s </string>
 </resources>
 

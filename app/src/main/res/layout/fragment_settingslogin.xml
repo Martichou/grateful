@@ -7,7 +7,7 @@
 
         <variable
             name="hdl"
-            type="me.martichou.be.grateful.view.ui.SettingsSyncPhone" />
+            type="me.martichou.be.grateful.view.ui.SettingsLogin" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,7 +32,7 @@
             android:id="@+id/title_sync"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Synchronisation"
+            android:text="@string/synchronization"
             android:textSize="24sp"
             android:textColor="?android:textColorPrimary"
             app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="You need to be authentified before\n backing up your data"
+            android:text="@string/you_need_to_be_authentified_before_n_backing_up_your_data"
             android:textColor="?android:textColorPrimary"
             android:textAlignment="center"
             android:lines="2"
@@ -72,7 +72,7 @@
                 android:textColor="?android:textColorPrimary"
                 android:textSize="16sp"
                 android:inputType="phone"
-                android:hint="Phone number"/>
+                android:hint="@string/phone_number"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -85,7 +85,7 @@
             android:background="@drawable/round"
             android:paddingStart="32dp"
             android:paddingEnd="32dp"
-            android:text="Send code"
+            android:text="@string/send_code"
             android:textColor="@color/white"
             android:onClick="@{hdl::btnClick}"
             android:tag="firststep"

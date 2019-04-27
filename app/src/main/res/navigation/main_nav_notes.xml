@@ -15,21 +15,19 @@
             app:destination="@id/show_fragment"
             app:exitAnim="@anim/activity_fade_out"
             app:popEnterAnim="@anim/activity_fade_in" />
-
         <action
-            android:id="@+id/action_main_fragment_to_settings_fragment"
-            app:destination="@id/settings_fragment"
-            app:enterAnim="@anim/activity_slide_up"
+            android:id="@+id/action_main_fragment_to_settingsNewFragment"
+            app:destination="@id/settingsFragment"
+            app:enterAnim="@anim/slide_up"
             app:exitAnim="@anim/activity_fade_out"
             app:popEnterAnim="@anim/activity_fade_in"
-            app:popExitAnim="@anim/activity_fade_out" />
-
+            app:popExitAnim="@anim/slide_down" />
     </fragment>
 
     <fragment
         android:id="@+id/show_fragment"
         android:name="me.martichou.be.grateful.view.ui.ShowMainFragment"
-        android:label=" "
+        android:label="Details"
         tools:layout="@layout/fragment_showmain">
 
         <argument
@@ -41,13 +39,12 @@
             app:destination="@id/edit_fragment"
             app:enterAnim="@anim/activity_slide_up"
             app:popExitAnim="@anim/slide_down" />
-
     </fragment>
 
     <fragment
         android:id="@+id/edit_fragment"
         android:name="me.martichou.be.grateful.view.ui.ShowEditFragment"
-        android:label=" "
+        android:label="Edit"
         tools:layout="@layout/fragment_showedit">
         <argument
             android:name="noteId"
@@ -60,45 +57,45 @@
             app:launchSingleTop="true"
             app:popUpTo="@+id/main_fragment"
             app:popUpToInclusive="false" />
-
     </fragment>
-
     <fragment
-        android:id="@+id/settings_fragment"
+        android:id="@+id/settingsFragment"
         android:name="me.martichou.be.grateful.view.ui.SettingsFragment"
-        android:label=" ">
+        android:label="SettingsFragment"
+        tools:layout="@layout/fragment_settings">
         <action
-            android:id="@+id/action_settings_fragment_to_settingsSyncPhone"
-            app:destination="@id/settingsSyncPhone"
-            app:enterAnim="@anim/zoom_in"
+            android:id="@+id/action_settingsNewFragment_to_settingsLogin"
+            app:destination="@id/settingsLogin"
+            app:enterAnim="@anim/slide_up"
             app:exitAnim="@anim/activity_fade_out"
             app:popEnterAnim="@anim/activity_fade_in"
-            app:popExitAnim="@anim/activity_fade_out" />
+            app:popExitAnim="@anim/slide_down" />
         <action
-            android:id="@+id/action_settings_fragment_to_settingsSyncDataReal"
-            app:destination="@id/settingsSyncDataReal"
-            app:enterAnim="@anim/zoom_in"
+            android:id="@+id/action_settingsNewFragment_to_settingsSync"
+            app:destination="@id/settingsSync"
+            app:enterAnim="@anim/slide_up"
             app:exitAnim="@anim/activity_fade_out"
             app:popEnterAnim="@anim/activity_fade_in"
-            app:popExitAnim="@anim/activity_fade_out" />
+            app:popExitAnim="@anim/slide_down" />
     </fragment>
-
     <fragment
-        android:id="@+id/settingsSyncPhone"
-        android:name="me.martichou.be.grateful.view.ui.SettingsSyncPhone"
+        android:id="@+id/settingsLogin"
+        android:name="me.martichou.be.grateful.view.ui.SettingsLogin"
+        android:label="SettingsLogin"
+        tools:layout="@layout/fragment_settingslogin">
+        <action
+            android:id="@+id/action_settingsLogin_to_settingsSync"
+            app:destination="@id/settingsSync"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/activity_fade_out"
+            app:popEnterAnim="@anim/activity_fade_in"
+            app:popExitAnim="@anim/slide_down"
+            app:popUpTo="@+id/settingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsSync"
+        android:name="me.martichou.be.grateful.view.ui.SettingsSync"
         android:label="SettingsSync"
-        tools:layout="@layout/fragment_syncdataphone" >
-        <action
-            android:id="@+id/action_settingsSyncPhone_to_settingsSyncDataReal"
-            app:destination="@id/settingsSyncDataReal"
-            app:enterAnim="@anim/activity_slide_up"
-            app:exitAnim="@anim/activity_fade_out"
-            app:popUpTo="@+id/settings_fragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/settingsSyncDataReal"
-        android:name="me.martichou.be.grateful.view.ui.SettingsSyncDataReal"
-        android:label="SettingsSyncDataReal"
-        tools:layout="@layout/fragment_syncdatareal"/>
+        tools:layout="@layout/fragment_settingssync"/>
 
 </navigation>

@@ -38,6 +38,7 @@ class MainActivity : AestheticActivity() {
                 colorWindowBackground(res = R.color.white)
                 colorStatusBar(res = R.color.white)
                 colorNavigationBarAuto()
+                colorCardViewBackground(res = R.color.fcfc)
                 bottomNavigationBackgroundMode(BottomNavBgMode.PRIMARY)
                 bottomNavigationIconTextMode(BottomNavIconTextMode.SELECTED_ACCENT)
                 swipeRefreshLayoutColorsRes(R.color.red)
