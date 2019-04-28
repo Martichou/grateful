@@ -25,9 +25,10 @@ class NotificationHelper {
     fun scheduleRepeatingRTCNotification(context: Context, hour: Int, min: Int) {
         val calendar = Calendar.getInstance()
         val currHr = calendar.get(Calendar.HOUR_OF_DAY)
+        val currMin = calendar.get(Calendar.MINUTE)
         calendar.timeInMillis = System.currentTimeMillis()
         Timber.d("Current hour $currHr")
-        if(currHr > hour){
+        if(currHr >= hour && Math.abs(min-currMin) >= 30){
             Timber.d("Date added")
             calendar.add(Calendar.DATE, 1)
         }
