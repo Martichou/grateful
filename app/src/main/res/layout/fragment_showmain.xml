@@ -96,6 +96,26 @@
             tools:targetApi="m" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/locTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="4dp"
+            android:gravity="start|center_vertical"
+            android:textAlignment="viewStart"
+            android:text="@{showModel.note.location}"
+            android:textColor="?android:textColorSecondaryInverse"
+            android:textSize="14sp"
+            app:isGone="@{showModel.note.location}"
+            app:layout_constraintStart_toStartOf="@id/bgView"
+            app:layout_constraintTop_toBottomOf="@id/dateTextView"
+            tools:text="Namur, Belgique"
+            tools:textColor="#666"
+            tools:drawableTint="#666"
+            tools:targetApi="m" />
+
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/contentText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -107,7 +127,7 @@
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/dateTextView"
+            app:layout_constraintTop_toBottomOf="@id/locTextView"
             app:textIsEmpty="@{showModel.note.content}"
             tools:text="Lorem ipsum ziqndqzidnqzunduqzud nqzuu dqbudb qudbquz bduzqdb dqzidjq zidqdn uiqz dniqndiqn zidqzndiqznid nqzid uiqzb duqzbduqzbdqzubdqzbdiuqbidu qizidbqzi"
             tools:textColor="#666"/>

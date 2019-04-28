@@ -3,7 +3,6 @@ package me.martichou.be.grateful.view.ui
 import android.app.DatePickerDialog
 import android.content.DialogInterface
 import android.content.Intent
-import android.location.Geocoder
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,18 +10,20 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import com.google.android.gms.location.places.ui.PlacePicker
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.mapbox.mapboxsdk.Mapbox
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.data.model.Notes
 import me.martichou.be.grateful.databinding.FragmentAddmainBinding
 import me.martichou.be.grateful.utils.CompressImage
+import me.martichou.be.grateful.utils.PlacePicker
 import me.martichou.be.grateful.viewmodel.AddViewModel
 import me.martichou.be.grateful.viewmodel.getNotesRepository
 import me.martichou.be.grateful.viewmodel.getViewModel
+import timber.log.Timber
 import java.io.File
 import java.util.*
 
@@ -70,8 +71,12 @@ open class AddMainFragment : BottomSheetDialogFragment() {
      * Open the place selector
      */
     fun openMapsSelector(v: View) {
-        val builder = PlacePicker.IntentBuilder()
-        startActivityForResult(builder.build(activity), placePicker)
+        Mapbox.getAccessToken()?.let {
+            startActivityForResult(
+                PlacePicker.IntentBuilder()
+                    .accessToken(it)
+                .build(requireActivity()), placePicker)
+        }
     }
 
     /**
@@ -104,16 +109,23 @@ open class AddMainFragment : BottomSheetDialogFragment() {
             }
             placePicker -> {
                 if (resultCode == AppCompatActivity.RESULT_OK) {
-                    val place = PlacePicker.getPlace(context, data)
-                    val namePlace = Geocoder(context).getFromLocation(place.latLng.latitude, place.latLng.longitude, 1)
-                    if (!namePlace.isNullOrEmpty())
-                        viewModel.placeCity = namePlace[0].locality
-                    else {
-                        Toast.makeText(context, resources.getString(R.string.cant_get_place), Toast.LENGTH_SHORT).show()
-                        return
-                    }
+                    val carmenFeature = PlacePicker.getPlace(data)
+                    if(carmenFeature?.context() == null) {
+                        Toast.makeText(context, "Cannot retreive place name, try again", Toast.LENGTH_LONG).show()
+                    } else {
+                        val city = carmenFeature.context()!![1].text()
+                        val country = carmenFeature.context()!!.last().text()
 
-                    binding.addLocBtnBs.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_roundaccent)
+                        Timber.d("Carmen: ${carmenFeature.context()}")
+
+                        if(city != null && country != null){
+                            viewModel.placeCity = "$city, $country"
+                            Toast.makeText(context, "$city, $country", Toast.LENGTH_LONG).show()
+                            binding.addLocBtnBs.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_roundaccent)
+                        } else {
+                            Toast.makeText(context, "Cannot retreive place name, try again", Toast.LENGTH_LONG).show()
+                        }
+                    }
                 }
             }
         }

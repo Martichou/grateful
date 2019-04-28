@@ -102,7 +102,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore:18.2.0'
 
     // Maps
-    implementation 'com.google.android.libraries.places:places-compat:1.1.0'
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:7.3.2'
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-places-v7:0.8.0'
 
     // Image cropper
     implementation "com.theartofdev.edmodo:android-image-cropper:$imgcropper"

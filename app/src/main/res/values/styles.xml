@@ -10,6 +10,16 @@
         <item name="android:windowBackground">@color/white</item>
     </style>
 
+    <style name="BaseAppThemeScd" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="colorAccent">@color/red</item>
+        <item name="bgBottom_color">@color/white</item>
+
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
     <style name="BaseAppThemeDark" parent="Theme.MaterialComponents.NoActionBar">
         <item name="colorPrimaryDark">@color/black</item>
         <item name="colorAccent">@color/red</item>
@@ -60,12 +70,6 @@
     </style>
 
     <style name="BottomSheetDialogTheme" parent="BaseBottomSheetDialog" />
-
-    <style name="BottomSheetEntryDivider">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">1dp</item>
-        <item name="android:background">@color/beige</item>
-    </style>
 
     <style name="HomeRvItemText">
         <item name="android:shadowColor">#000000</item>

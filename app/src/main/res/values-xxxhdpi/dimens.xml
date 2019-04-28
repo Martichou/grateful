@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="main_title">32sp</dimen>
-    <dimen name="main_subtitle">22sp</dimen>
-    <dimen name="note_title">18sp</dimen>
-    <dimen name="note_content">15sp</dimen>
-    <dimen name="note_timestamp">13sp</dimen>
 
     <dimen name="bottom_sheet_corner_radius">4dp</dimen>
     <dimen name="bottom_sheet_top_padding">2dp</dimen>

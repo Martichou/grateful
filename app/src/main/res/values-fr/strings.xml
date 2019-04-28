@@ -6,8 +6,6 @@
 	<string name="new_grateful_card_message">Ajouter des détails</string>
 	<string name="create">Créer</string>
 
-	<string name="unknown">14 avril 2000</string>
-
 	<string name="write_here_the_message_you_want_for_this_note">Ecrivez le message que vous voulez pour cette gratitude</string>
 	<string name="save">Sauvegarder</string>
 
@@ -16,12 +14,8 @@
 	<string name="settings">Paramètres</string>
 	<string name="today">Aujourd\'hui</string>
 
-	<string name="general">Général</string>
-	<string name="notification">Notification</string>
-	<string name="help">Aide</string>
 	<string name="enable_dark_theme">Activer le thème noir</string>
 	<string name="daily_reminder">Activer les rappels quotidiens</string>
-	<string name="when_do_you_want_to">Quand voulez-vous la recevoir ?</string>
 	<string name="privacy_policy">Politique de confidentialité</string>
 	<string name="scheduled_at">Programmé à %1$s:%2$s</string>
 	<string name="daily_disabled">Le rappel quotidien est actuellement désactivé</string>
