@@ -137,7 +137,7 @@ open class AddMainFragment : BottomSheetDialogFragment() {
     fun btnSaveAction(v: View) {
         if (!viewModel.isWorking && viewModel.hasPhoto) {
             val titleOfTheNote: String = binding.addTitleNoteBs.text.toString()
-            if (!titleOfTheNote.isEmpty()) run {
+            if (titleOfTheNote.isNotEmpty()) run {
                 viewModel.hasBeenSaved = true
                 viewModel.insertNote(
                     Notes(

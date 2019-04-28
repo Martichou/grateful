@@ -52,4 +52,11 @@ class NotesRepository private constructor(private val notesDao: NotesDao) : Coro
     fun deleteById(noteId: Long) {
         launch(Dispatchers.IO) { notesDao.deleteNoteById(noteId) }
     }
+
+    /**
+     * Delete all
+     */
+    fun nukeIt() {
+        launch(Dispatchers.IO) { notesDao.nukeTable() }
+    }
 }

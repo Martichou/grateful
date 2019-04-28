@@ -63,7 +63,8 @@
             app:layout_constraintTop_toBottomOf="@id/summary_sync"
             app:layout_constraintBottom_toTopOf="@id/buttonbackup"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Currently uploading\n7%"/>
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottieLoading"
@@ -83,7 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="18dp"
             android:layout_marginRight="18dp"
-            android:background="@drawable/round_success"
+            android:background="@drawable/round_disabled"
             android:paddingStart="32dp"
             android:paddingEnd="32dp"
             android:text="@string/restore_data"

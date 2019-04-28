@@ -39,4 +39,10 @@ interface NotesDao {
      */
     @Query("DELETE FROM notes WHERE id =:noteId")
     fun deleteNoteById(noteId: Long)
+
+    /**
+     * Delete all
+     */
+    @Query("DELETE FROM notes")
+    fun nukeTable()
 }

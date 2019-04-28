@@ -11,6 +11,7 @@ import me.martichou.be.grateful.data.model.Notes
 import me.martichou.be.grateful.databinding.RecyclerviewHomeitemBinding
 import me.martichou.be.grateful.utils.Event
 import me.martichou.be.grateful.view.callback.NotesDiffCallback
+import timber.log.Timber
 
 class NotesAdapter : ListAdapter<Notes, NotesAdapter.ViewHolder>(NotesDiffCallback()) {
 
@@ -44,6 +45,7 @@ class NotesAdapter : ListAdapter<Notes, NotesAdapter.ViewHolder>(NotesDiffCallba
                 note = item
                 executePendingBindings()
             }
+            Timber.d("Notes ID: ${item.id}")
         }
     }
 
