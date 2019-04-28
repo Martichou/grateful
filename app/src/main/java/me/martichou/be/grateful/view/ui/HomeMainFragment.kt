@@ -107,15 +107,12 @@ class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.T
      */
     private fun checkForNotification() {
         if(PreferenceManager.getDefaultSharedPreferences(context).getBoolean("dailynotification", true)) {
-            if(NotificationHelper().alarmIntentRTC != null) {
-                NotificationHelper().cancelAlarmRTC()
+            if(!NotificationHelper().checkIfExist(requireContext())) {
+                NotificationHelper().scheduleRepeatingRTCNotification(requireContext(),
+                        PreferenceManager.getDefaultSharedPreferences(context).getInt("dn_hour", 20),
+                        PreferenceManager.getDefaultSharedPreferences(context).getInt("dn_min", 0))
+                NotificationHelper().enableBootReceiver(requireContext())
             }
-            NotificationHelper().scheduleRepeatingRTCNotification(requireContext(),
-                    PreferenceManager.getDefaultSharedPreferences(context).getInt("dn_hour", 20),
-                    PreferenceManager.getDefaultSharedPreferences(context).getInt("dn_min", 0))
-            NotificationHelper().enableBootReceiver(requireContext())
-
-            Timber.d("Notification enabled")
         }
     }
 

@@ -1,10 +1,12 @@
 package me.martichou.be.grateful.view.ui
 
+import android.app.TimePickerDialog
 import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +22,7 @@ import me.martichou.be.grateful.R
 import me.martichou.be.grateful.databinding.FragmentSettingsBinding
 import me.martichou.be.grateful.utils.notifications.NotificationHelper
 import timber.log.Timber
+import java.util.*
 
 class SettingsFragment : Fragment() {
 
@@ -60,16 +63,21 @@ class SettingsFragment : Fragment() {
 
     private fun setupCheck(){
         if (binding.dailynotification!!.isChecked) {
+            binding.configureDaily.visibility = View.VISIBLE
+            Timber.d("setupCheck Called")
             var minute: String = sharedPreferences.getInt("dn_min", 0).toString()
             if(minute.toInt() <= 9)
                 minute = "0$minute"
 
-            if(NotificationHelper().alarmIntentRTC == null){
+            if(!NotificationHelper().checkIfExist(requireContext())){
                 NotificationHelper().scheduleRepeatingRTCNotification(requireContext(), sharedPreferences.getInt("dn_hour", 20), minute.toInt())
                 NotificationHelper().enableBootReceiver(requireContext())
+            } else {
+                Timber.d("ZDZUQDBNQZBDIA")
             }
             binding.enableDailyStatus.text = resources.getString(R.string.scheduled_at, sharedPreferences.getInt("dn_hour", 20).toString(), minute)
         } else {
+            binding.configureDaily.visibility = View.GONE
             binding.enableDailyStatus.text = resources.getString(R.string.daily_disabled)
         }
     }
@@ -127,22 +135,35 @@ class SettingsFragment : Fragment() {
             sharedPreferences.edit().putBoolean("dailynotification", isChecked).apply()
             if(isChecked) {
                 // Enable notification
-                setupCheck()
-                if(NotificationHelper().alarmIntentRTC != null) {
-                    NotificationHelper().cancelAlarmRTC()
+                if(NotificationHelper().checkIfExist(requireContext())) {
+                    NotificationHelper().cancelAlarmRTC(requireContext())
                 }
                 NotificationHelper().scheduleRepeatingRTCNotification(requireContext(), 20, 0)
                 NotificationHelper().enableBootReceiver(requireContext())
+                setupCheck()
             } else {
                 // Disable notification
-                setupCheck()
                 sharedPreferences.edit().remove("dn_hour").remove("dn_min").apply()
-                if(NotificationHelper().alarmIntentRTC != null) {
-                    NotificationHelper().cancelAlarmRTC()
+                if(NotificationHelper().checkIfExist(requireContext())) {
+                    NotificationHelper().cancelAlarmRTC(requireContext())
                 }
                 NotificationHelper().disableBootReceiver(requireContext())
+                setupCheck()
             }
         }
+    }
+
+    fun openDialog(v: View){
+        val calendar = Calendar.getInstance()
+        TimePickerDialog(requireContext(), TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
+            sharedPreferences.edit().putInt("dn_hour", hourOfDay).putInt("dn_min", minute).apply()
+
+            if(NotificationHelper().checkIfExist(requireContext())) {
+                NotificationHelper().cancelAlarmRTC(requireContext())
+            }
+
+            setupCheck()
+        }, calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE), DateFormat.is24HourFormat(context)).show()
     }
 
     fun back(v: View) {

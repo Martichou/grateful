@@ -38,6 +38,8 @@
             android:id="@+id/action_show_fragment_to_edit_fragment"
             app:destination="@id/edit_fragment"
             app:enterAnim="@anim/activity_slide_up"
+            app:exitAnim="@anim/activity_fade_out"
+            app:popEnterAnim="@anim/activity_fade_in"
             app:popExitAnim="@anim/slide_down" />
     </fragment>
 

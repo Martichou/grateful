@@ -15,7 +15,7 @@ import java.util.*
 
 class NotificationHelper {
 
-    private var alarmManagerRTC: AlarmManager? = null
+    var alarmManagerRTC: AlarmManager? = null
     var alarmIntentRTC: PendingIntent? = null
 
     /**
@@ -23,24 +23,43 @@ class NotificationHelper {
      * @param context
      */
     fun scheduleRepeatingRTCNotification(context: Context, hour: Int, min: Int) {
-        Timber.d("scheduleRepeatingRTCNotification true")
         val calendar = Calendar.getInstance()
         val currHr = calendar.get(Calendar.HOUR_OF_DAY)
         calendar.timeInMillis = System.currentTimeMillis()
-        if(currHr >= hour){
+        Timber.d("Current hour $currHr")
+        if(currHr > hour){
+            Timber.d("Date added")
             calendar.add(Calendar.DATE, 1)
         }
         calendar.set(Calendar.HOUR_OF_DAY, hour)
         calendar.set(Calendar.MINUTE, min)
+        calendar.set(Calendar.SECOND, 0)
 
         val intent = Intent(context, AlarmReceiver::class.java)
         alarmIntentRTC = PendingIntent.getBroadcast(context,0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
         alarmManagerRTC = context.getSystemService(ALARM_SERVICE) as AlarmManager
         alarmManagerRTC!!.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, AlarmManager.INTERVAL_DAY, alarmIntentRTC)
+        Timber.d("scheduleRepeatingRTCNotification enabled")
     }
 
-    fun cancelAlarmRTC() {
+    fun cancelAlarmRTC(context: Context) {
+        alarmIntentRTC?.cancel()
         alarmManagerRTC?.cancel(alarmIntentRTC)
+        Timber.d("Checking if disabled correctly...")
+        val alarmUp = PendingIntent.getBroadcast(context, 0, Intent(context, AlarmReceiver::class.java), PendingIntent.FLAG_NO_CREATE)
+        Timber.d("Is it still up? ${alarmUp != null}")
+    }
+
+    fun checkIfExist(context: Context): Boolean {
+        val alarmUp = PendingIntent.getBroadcast(context, 0, Intent(context, AlarmReceiver::class.java), PendingIntent.FLAG_NO_CREATE)
+
+        return if (alarmUp != null) {
+            alarmUp.cancel()
+            Timber.d("Alarm is already active")
+            true
+        } else {
+            false
+        }
     }
 
     fun getNotificationManager(context: Context): NotificationManager {

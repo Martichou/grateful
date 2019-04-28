@@ -106,7 +106,7 @@
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
                     android:paddingTop="16dp"
-                    android:paddingBottom="16dp"
+                    android:paddingBottom="4dp"
                     android:text="@string/daily_reminder"
                     android:textColor="?android:textColorPrimary"
                     app:layout_constraintStart_toStartOf="parent"
@@ -119,23 +119,42 @@
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
                     android:paddingTop="16dp"
-                    android:paddingBottom="16dp"
+                    android:paddingBottom="4dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/enableDailyStatus"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingStart="16dp"
-                    android:paddingBottom="16dp"
                     android:paddingEnd="16dp"
+                    android:paddingBottom="16dp"
+                    android:paddingTop="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/enableDailyText"
                     android:textSize="12sp"
                     android:textColor="?android:textColorSecondaryInverse"
-                    app:layout_constraintTop_toBottomOf="@id/enableDailyText"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_alignParentStart="true"
                     tools:text="@string/daily_disabled"
                     tools:textColor="#111"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/configureDaily"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:background="@drawable/round_error"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="6dp"
+                    android:text="Define"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:onClick="@{hdl::openDialog}"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/enableDailyStatus"
+                    app:layout_constraintBottom_toBottomOf="@id/enableDailyStatus"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
