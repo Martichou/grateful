@@ -122,6 +122,9 @@ dependencies {
     // Lottie
     implementation 'com.airbnb.android:lottie:3.0.0'
 
+    // Keyboard visibility
+    implementation 'net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:2.3.0'
+
     // Testing unit
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$rootProject.espressoVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"

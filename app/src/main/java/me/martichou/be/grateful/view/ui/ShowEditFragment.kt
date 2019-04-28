@@ -1,10 +1,12 @@
 package me.martichou.be.grateful.view.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -14,6 +16,8 @@ import me.martichou.be.grateful.databinding.FragmentShoweditBinding
 import me.martichou.be.grateful.viewmodel.EditViewModel
 import me.martichou.be.grateful.viewmodel.getNotesRepository
 import me.martichou.be.grateful.viewmodel.getViewModel
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
+import net.yslibrary.android.keyboardvisibilityevent.Unregistrar
 import timber.log.Timber
 
 class ShowEditFragment : Fragment() {
@@ -23,6 +27,7 @@ class ShowEditFragment : Fragment() {
         getViewModel { EditViewModel(getNotesRepository(requireContext()), params.noteId, activity!!.applicationContext) }
     }
     private lateinit var binding: FragmentShoweditBinding
+    private lateinit var unregistrar: Unregistrar
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentShoweditBinding.inflate(inflater, container, false)
@@ -35,6 +40,51 @@ class ShowEditFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.editModel = viewModel
         binding.hdl = this
+
+        setupListener()
+    }
+
+    override fun onPause() {
+        unregistrar.unregister()
+        super.onPause()
+    }
+
+    @SuppressLint("RestrictedApi")
+    private fun setupListener() {
+        binding.editnoteTitle.addTextChangedListener {
+            Timber.d("Edittitle changed")
+            if(binding.cvSaving.visibility == View.INVISIBLE
+                    && binding.editnoteTitle.text.toString() != viewModel.note.value?.title) {
+                binding.cvSaving.visibility = View.VISIBLE
+            } else if(binding.cvSaving.visibility == View.VISIBLE
+                    && binding.editnoteTitle.text.toString() == viewModel.note.value?.title
+                    && binding.editnoteContent.text.toString() == viewModel.note.value?.content) {
+                binding.cvSaving.visibility = View.INVISIBLE
+            }
+        }
+        binding.editnoteContent.addTextChangedListener {
+            Timber.d("Editcontent changed")
+            if(binding.cvSaving.visibility == View.INVISIBLE
+                    && binding.editnoteContent.text.toString() != viewModel.note.value?.content) {
+                binding.cvSaving.visibility = View.VISIBLE
+            } else if(binding.cvSaving.visibility == View.VISIBLE
+                    && binding.editnoteContent.text.toString() == viewModel.note.value?.content
+                    && binding.editnoteTitle.text.toString() == viewModel.note.value?.title) {
+                binding.cvSaving.visibility = View.INVISIBLE
+            }
+        }
+        unregistrar = KeyboardVisibilityEvent.registerEventListener(activity) {
+            Timber.d("IsKeyboardOpened $it")
+            if(it) {
+                binding.editDelete.visibility = View.GONE
+            } else {
+                binding.editDelete.visibility = View.VISIBLE
+            }
+        }
+    }
+
+    fun back(v: View) {
+        findNavController().popBackStack()
     }
 
     /**

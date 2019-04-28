@@ -27,6 +27,7 @@ import me.martichou.be.grateful.utils.statusBarWhite
 import me.martichou.be.grateful.viewmodel.ShowViewModel
 import me.martichou.be.grateful.viewmodel.getNotesRepository
 import me.martichou.be.grateful.viewmodel.getViewModel
+import timber.log.Timber
 import java.io.File
 
 class ShowMainFragment : Fragment() {
@@ -62,13 +63,15 @@ class ShowMainFragment : Fragment() {
      * Set statusbar as translucent
      */
     override fun onResume() {
+        Timber.d("onResume called")
         statusBarTrans(activity)
         super.onResume()
     }
 
-    override fun onDetach() {
+    override fun onPause() {
+        Timber.d("onPause called")
         statusBarWhite(activity)
-        super.onDetach()
+        super.onPause()
     }
 
     /**
