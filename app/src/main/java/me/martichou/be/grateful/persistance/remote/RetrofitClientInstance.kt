@@ -9,7 +9,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 object RetrofitClientInstance {
 
     private var retrofit: Retrofit? = null
-    private const val BASE_URL = "http://192.168.1.56:8080"
+    private const val BASE_URL = "https://grateful-restful.herokuapp.com/"
 
     val retrofitInstance: Retrofit?
         get() {
