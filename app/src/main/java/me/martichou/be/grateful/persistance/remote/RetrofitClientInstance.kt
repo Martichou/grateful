@@ -3,6 +3,7 @@ package me.martichou.be.grateful.persistance.remote
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 
 object RetrofitClientInstance {
@@ -17,6 +18,7 @@ object RetrofitClientInstance {
                         .client(OkHttpClient().newBuilder().build())
                         .baseUrl("$BASE_URL/")
                         .addConverterFactory(ScalarsConverterFactory.create())
+                        .addConverterFactory(GsonConverterFactory.create())
                         .addCallAdapterFactory(CoroutineCallAdapterFactory())
                         .build()
             }

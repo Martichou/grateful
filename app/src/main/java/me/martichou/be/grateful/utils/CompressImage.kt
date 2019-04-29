@@ -6,7 +6,6 @@ import android.graphics.BitmapFactory
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.content.ContextCompat
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.Default
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
@@ -29,7 +28,7 @@ class CompressImage(
 ) : CoroutineScope {
 
     override val coroutineContext: CoroutineContext
-        get() = Dispatchers.Default
+        get() = Default
 
     private val storageDir = context.getDir("imgForNotes", Context.MODE_PRIVATE)
 
