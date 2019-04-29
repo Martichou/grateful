@@ -39,10 +39,13 @@
 	<string name="add_first">पहले एक आभार कार्ड लिखें</string>
 
 	<string name="delete_this">इस आभार कार्ड को मिटाएं ?</string>
+	<string name="delete">Delete</string>
 	<string name="cant_be_undone">यह आभार कार्ड हमेशा के लिए मिट जाएगा, इसे पुनः प्राप्त नहीं किया जा सकेगा</string>
 	<string name="yes">हां</string>
 	<string name="no">नहीं</string>
 	<string name="wrong_number">गलत नंबर</string>
+	<string name="wrong_password">You\'ve used an incorrect password</string>
+	<string name="retry">Retry</string>
 	<string name="continu">जारी रहना</string>
 	<string name="success">सफलता !</string>
 	<string name="error">त्रुटि…</string>

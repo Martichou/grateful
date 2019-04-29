@@ -41,10 +41,13 @@
 	<string name="add_first">Add a gratitude first</string>
 
 	<string name="delete_this">Delete this gratitude ?</string>
+	<string name="delete">Delete</string>
 	<string name="cant_be_undone">This action can\'t be undone, think twice before hitting \'Yes\'</string>
 	<string name="yes">Yes</string>
 	<string name="no">No</string>
 	<string name="wrong_number">Wrong number</string>
+	<string name="wrong_password">You\'ve used an incorrect password</string>
+	<string name="retry">Retry</string>
 	<string name="continu">Continue</string>
 	<string name="success">Success !</string>
 	<string name="error">Error…</string>

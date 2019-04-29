@@ -39,10 +39,13 @@
 	<string name="add_first">Ajoutez d\'abord une gratitude</string>
 
 	<string name="delete_this">Supprimer cette gratitude ?</string>
+	<string name="delete">Supprimer</string>
 	<string name="cant_be_undone">Cette action ne peut pas être annulée, réfléchissez à deux fois avant d\'appuyer sur \'Oui\'</string>
 	<string name="yes">Oui</string>
 	<string name="no">Non</string>
 	<string name="wrong_number">Mauvais numéro</string>
+	<string name="wrong_password">Vous avez utiliser un mauvais mot de passe</string>
+	<string name="retry">Réessayer</string>
 	<string name="continu">Continuer</string>
 	<string name="success">Succès !</string>
 	<string name="error">Erreur…</string>
