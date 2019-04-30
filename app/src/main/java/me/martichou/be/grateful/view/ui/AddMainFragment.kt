@@ -60,9 +60,10 @@ open class AddMainFragment : BottomSheetDialogFragment() {
      * Open the image selector
      */
     fun openImageSelector(v: View) {
+        val metrics = requireContext().resources!!.displayMetrics
         CropImage.activity()
                 .setGuidelines(CropImageView.Guidelines.ON)
-                .setAspectRatio(4, 4)
+                .setAspectRatio(metrics.widthPixels,  metrics.heightPixels/2)
                 .setAllowRotation(true)
                 .start(requireContext(), this)
     }
