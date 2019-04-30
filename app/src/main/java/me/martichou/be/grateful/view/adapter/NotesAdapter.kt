@@ -45,7 +45,7 @@ class NotesAdapter : ListAdapter<Notes, NotesAdapter.ViewHolder>(NotesDiffCallba
                 note = item
                 executePendingBindings()
             }
-            Timber.d("Notes ID: ${item.id}")
+            Timber.d("Notes ID: ${item.id   }")
         }
     }
 

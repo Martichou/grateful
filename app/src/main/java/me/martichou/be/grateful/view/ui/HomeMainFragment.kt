@@ -15,7 +15,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.transition.TransitionInflater
 import com.google.android.material.snackbar.Snackbar
 import com.wooplr.spotlight.SpotlightView
 import kotlinx.coroutines.CoroutineScope
@@ -51,9 +50,6 @@ class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.T
 
         // Wait for recyclerview
         postponeEnterTransition()
-
-        // Set animation transition w/ sharedelement
-        setupTransition()
 
         return binding.root
     }
@@ -157,7 +153,6 @@ class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.T
         // Handle click on item list
         adapter.openNote.observe(viewLifecycleOwner, EventObserver { pair ->
             val direction = HomeMainFragmentDirections.actionNoteListFragmentToNoteDetailFragment(pair.first.id)
-
             DataBindingUtil.getBinding<RecyclerviewHomeitemBinding>(pair.second)?.let {
                 val navigatorExtras = FragmentNavigatorExtras(it.showImageNote to pair.first.id.toString())
                 findNavController().navigate(direction, navigatorExtras)
@@ -165,13 +160,6 @@ class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.T
                 findNavController().navigate(direction)
             }
         })
-    }
-
-    /**
-     * Setup sharedelementransition
-     */
-    private fun setupTransition() {
-        sharedElementReturnTransition = TransitionInflater.from(context).inflateTransition(R.transition.move).apply { duration = 250 }
     }
 
     /**

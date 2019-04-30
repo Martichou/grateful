@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.interpolator.view.animation.FastOutLinearInInterpolator
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.transition.Fade
@@ -78,8 +79,15 @@ class ShowMainFragment : Fragment() {
      * Setup fade out transition and sharedelementransition
      */
     private fun setupTransition() {
-        sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(R.transition.move).apply { duration = 250 }
-        enterTransition = Slide().apply { startDelay = 250 }
+        sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(R.transition.move).apply {
+            duration = 400
+            interpolator = FastOutSlowInInterpolator()
+        }
+        sharedElementReturnTransition = TransitionInflater.from(context).inflateTransition(R.transition.move).apply {
+            duration = 400
+            interpolator = FastOutSlowInInterpolator()
+        }
+        enterTransition = Slide().apply { startDelay = 300 }
         returnTransition = Fade().apply {
             interpolator = FastOutLinearInInterpolator()
             duration = 75

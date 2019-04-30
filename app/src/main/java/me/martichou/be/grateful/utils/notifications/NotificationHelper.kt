@@ -28,7 +28,10 @@ class NotificationHelper {
         val currMin = calendar.get(Calendar.MINUTE)
         calendar.timeInMillis = System.currentTimeMillis()
         Timber.d("Current hour $currHr")
-        if(currHr >= hour && Math.abs(min-currMin) >= 30){
+        if(currHr > hour){
+            Timber.d("Date added")
+            calendar.add(Calendar.DATE, 1)
+        } else if (currHr == hour && Math.abs(min-currMin) >= 30) {
             Timber.d("Date added")
             calendar.add(Calendar.DATE, 1)
         }
