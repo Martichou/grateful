@@ -6,14 +6,15 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
-import me.martichou.be.grateful.vo.Notes
 import me.martichou.be.grateful.util.stringToDate
+import me.martichou.be.grateful.vo.Notes
 import org.json.JSONArray
 import org.json.JSONObject
 import timber.log.Timber
 
 @Database(entities = [Notes::class], version = 2, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
+
     abstract fun notesDao(): NotesDao
 
     companion object {
@@ -39,7 +40,7 @@ abstract class AppDatabase : RoomDatabase() {
                     .addMigrations(MIGRATION_1_2).build()
         }
 
-        private val MIGRATION_1_2 = object : Migration(1, 2) {
+        val MIGRATION_1_2 = object : Migration(1, 2) {
             override fun migrate(database: SupportSQLiteDatabase) {
                 val r = UtilsDb().getResults(database)
 

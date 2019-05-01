@@ -16,12 +16,12 @@ import com.mapbox.mapboxsdk.Mapbox
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import me.martichou.be.grateful.R
-import me.martichou.be.grateful.vo.Notes
 import me.martichou.be.grateful.databinding.FragmentAddmainBinding
 import me.martichou.be.grateful.util.CompressImage
 import me.martichou.be.grateful.util.PlacePicker
 import me.martichou.be.grateful.viewmodel.getNotesRepository
 import me.martichou.be.grateful.viewmodel.getViewModel
+import me.martichou.be.grateful.vo.Notes
 import timber.log.Timber
 import java.io.File
 import java.util.*
@@ -38,12 +38,14 @@ open class AddMainFragment : BottomSheetDialogFragment() {
     override fun getTheme(): Int = R.style.BottomSheetDialogTheme
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = FragmentAddmainBinding.inflate(inflater, container, false).apply {
-            lifecycleOwner = this@AddMainFragment
-            hdl = this@AddMainFragment
-        }
+        binding = FragmentAddmainBinding.inflate(inflater, container, false)
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.hdl = this
     }
 
     override fun onDismiss(dialog: DialogInterface) {

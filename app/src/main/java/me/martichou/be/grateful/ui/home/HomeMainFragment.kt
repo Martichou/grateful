@@ -10,6 +10,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceManager
@@ -24,25 +26,25 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.databinding.FragmentHomemainBinding
 import me.martichou.be.grateful.databinding.RecyclerviewHomeitemBinding
+import me.martichou.be.grateful.di.Injectable
 import me.martichou.be.grateful.ui.add.AddMainFragment
 import me.martichou.be.grateful.util.DividerRV
 import me.martichou.be.grateful.util.EventObserver
 import me.martichou.be.grateful.util.ToolbarElevationOffsetListener
 import me.martichou.be.grateful.util.notifications.NotificationHelper
-import me.martichou.be.grateful.viewmodel.getNotesRepository
-import me.martichou.be.grateful.viewmodel.getViewModel
 import timber.log.Timber
+import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
 @ExperimentalCoroutinesApi
-class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.Toolbar.OnMenuItemClickListener {
+class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.Toolbar.OnMenuItemClickListener, Injectable {
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.IO
 
-    private val viewModel by lazy {
-        requireActivity().getViewModel { MainViewModel(getNotesRepository(requireContext())) }
-    }
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    private lateinit var mainViewModel: MainViewModel
     private lateinit var binding: FragmentHomemainBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -57,9 +59,10 @@ class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.T
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        mainViewModel = ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
         // Bind databinding val
         binding.lifecycleOwner = viewLifecycleOwner
-        binding.thisVm = viewModel
+        binding.thisVm = mainViewModel
         binding.hdl = this
 
         // Prepare recyclerview and bind
@@ -67,8 +70,8 @@ class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.T
         binding.recentNotesList.addItemDecoration(DividerRV(requireContext()))
 
         // Set adapter to the recyclerview once other things are set
-        val adapter = viewModel.adapter
-        binding.recentNotesList.adapter = viewModel.adapter
+        val adapter = mainViewModel.adapter
+        binding.recentNotesList.adapter = mainViewModel.adapter
 
         // Wait RecyclerView layout for detail to list image return animation
         postponeEnterTransition()
@@ -122,7 +125,7 @@ class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.T
      */
     private fun subscribeUirecentNotesList(adapter: NotesAdapter) {
         // Fill adapter item list
-        viewModel.recentNotesList.observe(viewLifecycleOwner, Observer { notes ->
+        mainViewModel.recentNotesList.observe(viewLifecycleOwner, Observer { notes ->
             if (notes.isNullOrEmpty()) {
                 adapter.submitList(null)
                 binding.loadingUi.visibility = View.GONE

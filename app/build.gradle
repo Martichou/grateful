@@ -61,6 +61,7 @@ ext {
     preference = '1.1.0-alpha04'
     retrofit2_version = "2.5.0"
     okhttp3_version = "3.12.0"
+    daggerVer = "2.22.1"
 }
 
 
@@ -106,6 +107,14 @@ dependencies {
 
     // Timber
     implementation "com.jakewharton.timber:timber:$timber"
+
+    // Dagger 2
+    implementation "com.google.dagger:dagger:$daggerVer"
+    kapt "com.google.dagger:dagger-compiler:$daggerVer"
+    implementation "com.google.dagger:dagger-android:$daggerVer"
+    kapt "com.google.dagger:dagger-android-processor:$daggerVer"
+    implementation "com.google.dagger:dagger-android-support:$daggerVer"
+    kapt "com.google.dagger:dagger-android-support:$daggerVer"
 
     // Firebase needed
     implementation "com.google.firebase:firebase-core:$firebase"

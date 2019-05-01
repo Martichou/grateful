@@ -5,9 +5,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import me.martichou.be.grateful.db.NotesDao
 import me.martichou.be.grateful.vo.Notes
+import javax.inject.Inject
+import javax.inject.Singleton
 import kotlin.coroutines.CoroutineContext
 
-class NotesRepository private constructor(private val notesDao: NotesDao) : CoroutineScope {
+@Singleton
+class NotesRepository
+@Inject constructor(private val notesDao: NotesDao) : CoroutineScope {
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.IO

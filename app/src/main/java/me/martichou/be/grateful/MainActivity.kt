@@ -2,17 +2,23 @@ package me.martichou.be.grateful
 
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.afollestad.aesthetic.Aesthetic
 import com.afollestad.aesthetic.AestheticActivity
 import com.afollestad.aesthetic.BottomNavBgMode
 import com.afollestad.aesthetic.BottomNavIconTextMode
-import me.martichou.be.grateful.R
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.support.HasSupportFragmentInjector
 import me.martichou.be.grateful.databinding.ActivityMainBinding
 import me.martichou.be.grateful.util.notifications.NotificationHelper
+import javax.inject.Inject
 
-class MainActivity : AestheticActivity() {
+class MainActivity : AestheticActivity(), HasSupportFragmentInjector {
+
+    @Inject
+    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
 
     private lateinit var navController: NavController
 
@@ -50,4 +56,6 @@ class MainActivity : AestheticActivity() {
 
         NotificationHelper().enableBootReceiver(this)
     }
+
+    override fun supportFragmentInjector() = dispatchingAndroidInjector
 }
