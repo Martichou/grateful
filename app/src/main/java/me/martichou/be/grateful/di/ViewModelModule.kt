@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
+import me.martichou.be.grateful.ui.add.AddViewModel
 
 import me.martichou.be.grateful.ui.home.MainViewModel
 import me.martichou.be.grateful.viewmodel.GratefulViewModelFactory
@@ -16,6 +17,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(MainViewModel::class)
     abstract fun bindMainViewModel(mainViewModel: MainViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(AddViewModel::class)
+    abstract fun bindAddViewModel(addViewModel: AddViewModel): ViewModel
 
     @Binds
     abstract fun bindGratefulViewModelFactory(factory: GratefulViewModelFactory): ViewModelProvider.Factory

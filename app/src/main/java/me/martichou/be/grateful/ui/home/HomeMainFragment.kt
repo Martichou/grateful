@@ -20,8 +20,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.TransitionInflater
 import com.google.android.material.snackbar.Snackbar
 import com.wooplr.spotlight.SpotlightView
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.databinding.FragmentHomemainBinding
@@ -34,13 +32,9 @@ import me.martichou.be.grateful.util.ToolbarElevationOffsetListener
 import me.martichou.be.grateful.util.notifications.NotificationHelper
 import timber.log.Timber
 import javax.inject.Inject
-import kotlin.coroutines.CoroutineContext
 
 @ExperimentalCoroutinesApi
-class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.Toolbar.OnMenuItemClickListener, Injectable {
-
-    override val coroutineContext: CoroutineContext
-        get() = Dispatchers.IO
+class HomeMainFragment : Fragment(), androidx.appcompat.widget.Toolbar.OnMenuItemClickListener, Injectable {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory

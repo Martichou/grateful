@@ -1,6 +1,7 @@
 package me.martichou.be.grateful.ui.add
 
 import android.app.DatePickerDialog
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
@@ -10,32 +11,42 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.mapbox.mapboxsdk.Mapbox
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
+import dagger.android.support.AndroidSupportInjection
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.databinding.FragmentAddmainBinding
 import me.martichou.be.grateful.util.CompressImage
 import me.martichou.be.grateful.util.PlacePicker
-import me.martichou.be.grateful.viewmodel.getNotesRepository
-import me.martichou.be.grateful.viewmodel.getViewModel
 import me.martichou.be.grateful.vo.Notes
 import timber.log.Timber
 import java.io.File
 import java.util.*
+import javax.inject.Inject
 
 open class AddMainFragment : BottomSheetDialogFragment() {
 
-    private val placePicker = 548
-
-    private val viewModel by lazy {
-        getViewModel { AddViewModel(getNotesRepository(requireContext()), activity!!.applicationContext) }
-    }
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    private lateinit var addViewModel: AddViewModel
     private lateinit var binding: FragmentAddmainBinding
 
-    override fun getTheme(): Int = R.style.BottomSheetDialogTheme
+    private lateinit var c: Context
+    private lateinit var storageDir: File
+    private val placePicker = 548
+
+    override fun onAttach(context: Context) {
+        AndroidSupportInjection.inject(this)
+        c = context
+        super.onAttach(context)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentAddmainBinding.inflate(inflater, container, false)
@@ -44,15 +55,38 @@ open class AddMainFragment : BottomSheetDialogFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        addViewModel = ViewModelProviders.of(this, viewModelFactory).get(AddViewModel::class.java)
+        // Bind databinding val
         binding.lifecycleOwner = viewLifecycleOwner
         binding.hdl = this
+        // Storage dir
+        storageDir = c.getDir("imgForNotes", Context.MODE_PRIVATE)
     }
 
+    override fun getTheme(): Int = R.style.BottomSheetDialogTheme
+
     override fun onDismiss(dialog: DialogInterface) {
-        super.onDismiss(dialog)
-        if(!viewModel.hasBeenSaved && viewModel.hasPhoto){
-            viewModel.deleteImage()
+        Timber.d("Called")
+        Timber.d("Idk ${addViewModel.hasBeenSaved}")
+        Timber.d("Idk2 ${addViewModel.hasPhoto}")
+        if(!addViewModel.hasBeenSaved && addViewModel.hasPhoto){
+            Timber.d("Passed into")
+            GlobalScope.launch {
+                val imageFile = File(storageDir, addViewModel.randomImageName)
+                Timber.d("Into into ${imageFile.absolutePath}")
+                if (imageFile.exists()) {
+                    Timber.d("Second into")
+                    val deleted = imageFile.delete()
+                    Timber.d("Deleting")
+                    if (!deleted) {
+                        Timber.e("Cannot delete the file..")
+                    } else {
+                        Timber.d("Succes. The file has been deleted")
+                    }
+                }
+            }
         }
+        super.onDismiss(dialog)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): BottomSheetDialog = BottomSheetDialog(requireContext(), theme)
@@ -89,7 +123,7 @@ open class AddMainFragment : BottomSheetDialogFragment() {
         val c = DatePickerDialog(requireContext(), R.style.DialogTheme, DatePickerDialog.OnDateSetListener { _, year, month, day ->
             val cal = Calendar.getInstance()
             cal.set(year, month, day)
-            viewModel.dateSelected = cal
+            addViewModel.dateSelected = cal
             binding.addDateBtnBs.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_roundaccent)
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))
         c.datePicker.maxDate = calendar.timeInMillis
@@ -103,7 +137,7 @@ open class AddMainFragment : BottomSheetDialogFragment() {
         when (requestCode) {
             CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE -> {
                 if (resultCode == AppCompatActivity.RESULT_OK)
-                    CompressImage(requireContext(), viewModel, File(CropImage.getActivityResult(data).uri.path), binding.addPhotoBtnBs)
+                    CompressImage(requireContext(), addViewModel, File(CropImage.getActivityResult(data).uri.path), binding.addPhotoBtnBs)
                 else {
                     Toast.makeText(context, resources.getString(R.string.set_image), Toast.LENGTH_SHORT).show()
                     return
@@ -121,7 +155,7 @@ open class AddMainFragment : BottomSheetDialogFragment() {
                         Timber.d("Carmen: ${carmenFeature.context()}")
 
                         if(city != null && country != null){
-                            viewModel.placeCity = "$city, $country"
+                            addViewModel.placeCity = "$city, $country"
                             Toast.makeText(context, "$city, $country", Toast.LENGTH_LONG).show()
                             binding.addLocBtnBs.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_roundaccent)
                         } else {
@@ -137,19 +171,19 @@ open class AddMainFragment : BottomSheetDialogFragment() {
      * Close this fragment and save info
      */
     fun btnSaveAction(v: View) {
-        if (!viewModel.isWorking && viewModel.hasPhoto) {
+        if (!addViewModel.isWorking && addViewModel.hasPhoto) {
             val titleOfTheNote: String = binding.addTitleNoteBs.text.toString()
             if (titleOfTheNote.isNotEmpty()) run {
-                viewModel.hasBeenSaved = true
-                viewModel.insertNote(
-                        Notes(
-                                titleOfTheNote,
-                                binding.addContentNoteBs.text.toString(),
-                                viewModel.randomImageName,
-                                viewModel.dateDefaultOrNot(),
-                                viewModel.dateOrNot(),
-                                viewModel.locOrNot()
-                        )
+                addViewModel.hasBeenSaved = true
+                addViewModel.insertNote(
+                    Notes(
+                        titleOfTheNote,
+                        binding.addContentNoteBs.text.toString(),
+                        addViewModel.randomImageName,
+                        addViewModel.dateDefaultOrNot(),
+                        addViewModel.dateOrNot(),
+                        addViewModel.locOrNot()
+                    )
                 )
                 dismiss()
             } else {
