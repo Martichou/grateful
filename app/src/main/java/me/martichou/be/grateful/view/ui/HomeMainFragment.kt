@@ -6,15 +6,16 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.doOnLayout
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.transition.TransitionInflater
 import com.google.android.material.snackbar.Snackbar
 import com.wooplr.spotlight.SpotlightView
 import kotlinx.coroutines.CoroutineScope
@@ -48,8 +49,10 @@ class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.T
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentHomemainBinding.inflate(inflater, container, false)
 
-        // Wait for recyclerview
-        postponeEnterTransition()
+        sharedElementReturnTransition = TransitionInflater.from(context).inflateTransition(R.transition.move).apply {
+            duration = 400
+            interpolator = FastOutSlowInInterpolator()
+        }
 
         return binding.root
     }
@@ -65,25 +68,28 @@ class HomeMainFragment : Fragment(), CoroutineScope, androidx.appcompat.widget.T
         binding.recentNotesList.addItemDecoration(DividerRV(requireContext()))
 
         // Set adapter to the recyclerview once other things are set
+        val adapter = viewModel.adapter
         binding.recentNotesList.adapter = viewModel.adapter
 
         // Wait RecyclerView layout for detail to list image return animation
-        binding.recentNotesList.doOnLayout {
+        postponeEnterTransition()
+        binding.recentNotesList.viewTreeObserver.addOnPreDrawListener {
             startPostponedEnterTransition()
+            true
         }
-
-        // Check notification
-        checkForNotification()
-
-        // Subscribe adapter
-        subscribeUirecentNotesList(viewModel.adapter)
-
-        // Update subtitle while scrolling
-        setupScrollRvListener()
 
         // Setup toolbar menu item click listener
         // Don't know why setHasOptionMenu don't work
         binding.toolbar.setOnMenuItemClickListener(this)
+
+        // Check notification
+        checkForNotification()
+
+        // Update
+        setupScrollRvListener()
+
+        // Subscribe adapter
+        subscribeUirecentNotesList(adapter)
     }
 
     /**

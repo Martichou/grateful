@@ -18,7 +18,7 @@ import java.util.*
 /**
  * Bind the app:imageFromFile="imgName" from xml
  */
-@BindingAdapter("imageFromFile", "requestListener", requireAll = false)
+@BindingAdapter("imageFromFile", "imageRequestListener", requireAll = false)
 fun AppCompatImageView.imageFromFile(imageUrl: String?, listener: RequestListener<Drawable>?) {
     if (!imageUrl.isNullOrEmpty()) {
         GlideApp.with(context)
@@ -33,20 +33,19 @@ fun AppCompatImageView.imageFromFile(imageUrl: String?, listener: RequestListene
 }
 
 /**
- * Will hide the textview if the string is empty
+ * Hide any view using app:visibleGone="@{data != null}"
  */
-@BindingAdapter("isGone")
-fun View.isGone(content: String?) {
-    if (content.isNullOrEmpty()) {
-        this.visibility = View.GONE
-    } else {
-        this.visibility = View.VISIBLE
-    }
+@BindingAdapter("visibleGone")
+fun showHide(view: View, show: Boolean) {
+    view.visibility = if (show) View.VISIBLE else View.GONE
 }
 
+/**
+ * Display random quote if no description on the note
+ */
 @BindingAdapter("textIsEmpty")
-fun TextView.textIsEmpty(content: String?) {
-    if (content != null && content.isEmpty()) {
+fun TextView.textIsEmpty(show: Boolean) {
+    if (!show) {
         val arr: Array<String> = arrayOf(
                 "\"One day I will find the right words, and they will be simple.\" \n - Jack Kerouac",
                 "\"Words can be like X-rays if you use them properly -- they'll go through anything. You read and you're pierced.\" \n - Aldous Huxley",
@@ -70,9 +69,9 @@ fun AppCompatTextView.showDayNbr(content: String) {
 }
 
 /**
- * Convert dd/MM/yyyy to E which is day name like Wed
+ * Transform dd/MM/yyyy to E which is day name like Wed
  */
-@SuppressLint("SetTextI18n") // TODO
+@SuppressLint("SetTextI18n")
 @BindingAdapter("showMonthName")
 fun AppCompatTextView.showMonthName(content: String) {
     val parsed = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).parse(content)

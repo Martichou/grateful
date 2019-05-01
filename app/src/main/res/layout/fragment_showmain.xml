@@ -38,11 +38,11 @@
             android:transitionName="@{String.valueOf(args.noteId)}"
             android:onClick="@{hdl::openImageOfNote}"
             app:imageFromFile="@{showModel.note.image}"
+            app:imageRequestListener="@{requestListener}"
             app:layout_constraintBottom_toTopOf="@id/guideline1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:requestListener="@{requestListener}" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline1"
@@ -107,7 +107,7 @@
             android:text="@{showModel.note.location}"
             android:textColor="?android:textColorSecondaryInverse"
             android:textSize="14sp"
-            app:isGone="@{showModel.note.location}"
+            app:visibleGone="@{showModel.note.location != null}"
             app:layout_constraintStart_toStartOf="@id/bgView"
             app:layout_constraintTop_toBottomOf="@id/dateTextView"
             tools:text="Namur, Belgique"
@@ -128,7 +128,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/locTextView"
-            app:textIsEmpty="@{showModel.note.content}"
+            app:textIsEmpty="@{showModel.note.content != null}"
             tools:text="Lorem ipsum ziqndqzidnqzunduqzud nqzuu dqbudb qudbquz bduzqdb dqzidjq zidqdn uiqz dniqndiqn zidqzndiqznid nqzid uiqzb duqzbduqzbdqzubdqzbdiuqbidu qizidbqzi"
             tools:textColor="#666"/>
 

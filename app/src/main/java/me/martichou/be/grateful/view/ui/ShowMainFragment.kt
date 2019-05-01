@@ -3,9 +3,12 @@ package me.martichou.be.grateful.view.ui
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.postDelayed
 import androidx.fragment.app.Fragment
 import androidx.interpolator.view.animation.FastOutLinearInInterpolator
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
@@ -38,14 +41,25 @@ class ShowMainFragment : Fragment() {
         getViewModel { ShowViewModel(getNotesRepository(requireContext()), params.noteId) }
     }
     private lateinit var binding: FragmentShowmainBinding
+    private var handler = Handler(Looper.getMainLooper())
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentShowmainBinding.inflate(inflater, container, false)
 
-        // Set animation transition w/ sharedelement
+        sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(R.transition.move).apply {
+            duration = 400
+            interpolator = FastOutSlowInInterpolator()
+        }
+
+        binding.requestListener = imageListener
+
+        // Set animation transition
         setupTransition()
 
-        // Wait for glide callback
+        // Animation Watchdog - Make sure we don't wait longer than a second for the Glide image
+        handler.postDelayed(1000) {
+            startPostponedEnterTransition()
+        }
         postponeEnterTransition()
 
         return binding.root
@@ -57,7 +71,6 @@ class ShowMainFragment : Fragment() {
         binding.showModel = viewModel
         binding.args = params
         binding.hdl = this
-        binding.requestListener = imageListener
     }
 
     /**
@@ -79,14 +92,6 @@ class ShowMainFragment : Fragment() {
      * Setup fade out transition and sharedelementransition
      */
     private fun setupTransition() {
-        sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(R.transition.move).apply {
-            duration = 400
-            interpolator = FastOutSlowInInterpolator()
-        }
-        sharedElementReturnTransition = TransitionInflater.from(context).inflateTransition(R.transition.move).apply {
-            duration = 400
-            interpolator = FastOutSlowInInterpolator()
-        }
         enterTransition = Slide().apply { startDelay = 300 }
         returnTransition = Fade().apply {
             interpolator = FastOutLinearInInterpolator()
