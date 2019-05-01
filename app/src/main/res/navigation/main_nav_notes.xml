@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/main_fragment"
-        android:name="me.martichou.be.grateful.view.ui.HomeMainFragment"
+        android:name="me.martichou.be.grateful.ui.home.HomeMainFragment"
         android:label="Grateful"
         tools:layout="@layout/fragment_homemain">
 
@@ -26,7 +26,7 @@
 
     <fragment
         android:id="@+id/show_fragment"
-        android:name="me.martichou.be.grateful.view.ui.ShowMainFragment"
+        android:name="me.martichou.be.grateful.ui.details.ShowMainFragment"
         android:label="Details"
         tools:layout="@layout/fragment_showmain">
 
@@ -43,7 +43,7 @@
 
     <fragment
         android:id="@+id/edit_fragment"
-        android:name="me.martichou.be.grateful.view.ui.ShowEditFragment"
+        android:name="me.martichou.be.grateful.ui.edit.ShowEditFragment"
         android:label="Edit"
         tools:layout="@layout/fragment_showedit">
         <argument
@@ -63,7 +63,7 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="me.martichou.be.grateful.view.ui.SettingsFragment"
+        android:name="me.martichou.be.grateful.ui.settings.SettingsFragment"
         android:label="SettingsFragment"
         tools:layout="@layout/fragment_settings">
         <action
@@ -83,7 +83,7 @@
     </fragment>
     <fragment
         android:id="@+id/settingsLogin"
-        android:name="me.martichou.be.grateful.view.ui.SettingsLogin"
+        android:name="me.martichou.be.grateful.ui.settings.sync.SettingsLogin"
         android:label="SettingsLogin"
         tools:layout="@layout/fragment_settingslogin">
         <action
@@ -97,7 +97,7 @@
     </fragment>
     <fragment
         android:id="@+id/settingsSync"
-        android:name="me.martichou.be.grateful.view.ui.SettingsSync"
+        android:name="me.martichou.be.grateful.ui.settings.sync.SettingsSync"
         android:label="SettingsSync"
         tools:layout="@layout/fragment_settingssync"/>
 

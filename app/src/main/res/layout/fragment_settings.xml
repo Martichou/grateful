@@ -7,14 +7,14 @@
 
         <variable
             name="hdl"
-            type="me.martichou.be.grateful.view.ui.SettingsFragment" />
+            type="me.martichou.be.grateful.ui.settings.SettingsFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linear_sync"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="me.martichou.be.grateful.view.ui.MainActivity">
+        tools:context="me.martichou.be.grateful.MainActivity">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/backBtn"

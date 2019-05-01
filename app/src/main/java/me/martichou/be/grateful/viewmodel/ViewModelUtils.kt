@@ -5,8 +5,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
-import me.martichou.be.grateful.persistance.local.AppDatabase
-import me.martichou.be.grateful.data.repository.NotesRepository
+import me.martichou.be.grateful.db.AppDatabase
+import me.martichou.be.grateful.repository.NotesRepository
 
 /**
  * Return the repository

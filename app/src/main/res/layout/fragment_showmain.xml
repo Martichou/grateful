@@ -7,15 +7,15 @@
 
         <variable
             name="hdl"
-            type="me.martichou.be.grateful.view.ui.ShowMainFragment" />
+            type="me.martichou.be.grateful.ui.details.ShowMainFragment" />
 
         <variable
             name="showModel"
-            type="me.martichou.be.grateful.viewmodel.ShowViewModel" />
+            type="me.martichou.be.grateful.ui.details.ShowViewModel" />
 
         <variable
             name="args"
-            type="me.martichou.be.grateful.view.ui.ShowMainFragmentArgs" />
+            type="me.martichou.be.grateful.ui.details.ShowMainFragmentArgs" />
 
         <variable
             name="requestListener"
@@ -28,7 +28,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         app:layoutDescription="@xml/details_motionlayout"
-        tools:context="me.martichou.be.grateful.view.ui.MainActivity">
+        tools:context="me.martichou.be.grateful.MainActivity">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/coverImage"

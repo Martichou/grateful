@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     app:layoutDescription="@xml/details_motionlayout"
-    tools:context="me.martichou.be.grateful.view.ui.MainActivity">
+    tools:context="me.martichou.be.grateful.MainActivity">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/coverImage"

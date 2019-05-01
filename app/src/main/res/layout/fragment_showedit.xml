@@ -7,11 +7,11 @@
 
         <variable
             name="hdl"
-            type="me.martichou.be.grateful.view.ui.ShowEditFragment" />
+            type="me.martichou.be.grateful.ui.edit.ShowEditFragment" />
 
         <variable
             name="editModel"
-            type="me.martichou.be.grateful.viewmodel.EditViewModel" />
+            type="me.martichou.be.grateful.ui.edit.EditViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -19,7 +19,7 @@
         android:layout_height="match_parent"
         android:animateLayoutChanges="true"
         android:fitsSystemWindows="true"
-        tools:context="me.martichou.be.grateful.view.ui.MainActivity">
+        tools:context="me.martichou.be.grateful.MainActivity">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar"

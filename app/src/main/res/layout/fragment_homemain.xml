@@ -7,18 +7,18 @@
 
         <variable
             name="hdl"
-            type="me.martichou.be.grateful.view.ui.HomeMainFragment" />
+            type="me.martichou.be.grateful.ui.home.HomeMainFragment" />
 
         <variable
             name="thisVm"
-            type="me.martichou.be.grateful.viewmodel.MainViewModel" />
+            type="me.martichou.be.grateful.ui.home.MainViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context="me.martichou.be.grateful.view.ui.MainActivity">
+        tools:context="me.martichou.be.grateful.MainActivity">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar"

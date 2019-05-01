@@ -7,13 +7,13 @@
 
         <variable
             name="hdl"
-            type="me.martichou.be.grateful.view.ui.AddMainFragment" />
+            type="me.martichou.be.grateful.ui.add.AddMainFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context="me.martichou.be.grateful.view.ui.MainActivity">
+        tools:context="me.martichou.be.grateful.MainActivity">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/header_bottom"

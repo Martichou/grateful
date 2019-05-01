@@ -7,11 +7,11 @@
 
         <variable
             name="clickListener"
-            type="me.martichou.be.grateful.view.adapter.NotesAdapter.OnNoteItemClickListener" />
+            type="me.martichou.be.grateful.ui.home.NotesAdapter.OnNoteItemClickListener" />
 
         <variable
             name="note"
-            type="me.martichou.be.grateful.data.model.Notes" />
+            type="me.martichou.be.grateful.vo.Notes" />
     </data>
     
     <androidx.constraintlayout.widget.ConstraintLayout
