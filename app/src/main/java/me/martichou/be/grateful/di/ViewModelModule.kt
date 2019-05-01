@@ -8,6 +8,7 @@ import dagger.Module
 import dagger.multibindings.IntoMap
 import me.martichou.be.grateful.ui.add.AddViewModel
 import me.martichou.be.grateful.ui.details.ShowViewModel
+import me.martichou.be.grateful.ui.edit.EditViewModel
 
 import me.martichou.be.grateful.ui.home.MainViewModel
 import me.martichou.be.grateful.viewmodel.GratefulViewModelFactory
@@ -23,6 +24,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ShowViewModel::class)
     abstract fun bindShowViewModel(showViewModel: ShowViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(EditViewModel::class)
+    abstract fun bindEditViewModel(editViewModel: EditViewModel): ViewModel
 
     @Binds
     @IntoMap

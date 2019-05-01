@@ -47,13 +47,13 @@ fun View.isGone(content: String?){
  * Display random quote if no description on the note
  */
 @BindingAdapter("textIsEmpty")
-fun TextView.textIsEmpty(show: Boolean) {
-    if (show) {
+fun TextView.textIsEmpty(content: String?) {
+    if(content.isNullOrEmpty()) {
         val arr: Array<String> = arrayOf(
-                "\"One day I will find the right words, and they will be simple.\" \n - Jack Kerouac",
-                "\"Words can be like X-rays if you use them properly -- they'll go through anything. You read and you're pierced.\" \n - Aldous Huxley",
-                "\"Let me live, love, and say it well in good sentences.\" \n - Sylvia Plath",
-                "\"I kept always two books in my pocket, one to read, one to write in.\" \n - Robert Louis Stevenson"
+                "\"One day I will find the right words, and they will be simple.\" \n- Jack Kerouac",
+                "\"Words can be like X-rays if you use them properly -- they'll go through anything. You read and you're pierced.\" \n- Aldous Huxley",
+                "\"Let me live, love, and say it well in good sentences.\" \n- Sylvia Plath",
+                "\"I kept always two books in my pocket, one to read, one to write in.\" \n- Robert Louis Stevenson"
         )
         this.text = arr[randomNumber(0, arr.size - 1).toInt()]
     }
