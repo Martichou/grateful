@@ -4,9 +4,11 @@ import android.app.Application
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import me.martichou.be.grateful.ApplicationController
 import javax.inject.Singleton
 
+@ExperimentalCoroutinesApi
 @Singleton
 @Component(
     modules = [

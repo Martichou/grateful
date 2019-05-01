@@ -18,11 +18,11 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.mapbox.mapboxsdk.Mapbox
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
-import dagger.android.support.AndroidSupportInjection
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.databinding.FragmentAddmainBinding
+import me.martichou.be.grateful.di.Injectable
 import me.martichou.be.grateful.util.CompressImage
 import me.martichou.be.grateful.util.PlacePicker
 import me.martichou.be.grateful.vo.Notes
@@ -31,7 +31,7 @@ import java.io.File
 import java.util.*
 import javax.inject.Inject
 
-open class AddMainFragment : BottomSheetDialogFragment() {
+open class AddMainFragment : BottomSheetDialogFragment(), Injectable {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -43,7 +43,6 @@ open class AddMainFragment : BottomSheetDialogFragment() {
     private val placePicker = 548
 
     override fun onAttach(context: Context) {
-        AndroidSupportInjection.inject(this)
         c = context
         super.onAttach(context)
     }

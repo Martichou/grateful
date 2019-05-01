@@ -9,11 +9,13 @@ import androidx.fragment.app.FragmentManager
 import dagger.android.AndroidInjection
 import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.HasSupportFragmentInjector
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import me.martichou.be.grateful.ApplicationController
 
 /**
  * Helper class to automatically inject fragments if they implement [Injectable].
  */
+@ExperimentalCoroutinesApi
 object AppInjector {
     fun init(app: ApplicationController) {
         DaggerAppComponent.builder().application(app)

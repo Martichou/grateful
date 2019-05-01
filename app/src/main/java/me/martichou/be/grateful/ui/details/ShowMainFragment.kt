@@ -12,6 +12,8 @@ import androidx.core.os.postDelayed
 import androidx.fragment.app.Fragment
 import androidx.interpolator.view.animation.FastOutLinearInInterpolator
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.transition.Fade
@@ -23,22 +25,22 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.stfalcon.imageviewer.StfalconImageViewer
 import me.martichou.be.grateful.R
-import me.martichou.be.grateful.vo.Notes
 import me.martichou.be.grateful.databinding.FragmentShowmainBinding
+import me.martichou.be.grateful.di.Injectable
 import me.martichou.be.grateful.util.GlideApp
 import me.martichou.be.grateful.util.statusBarTrans
 import me.martichou.be.grateful.util.statusBarWhite
-import me.martichou.be.grateful.viewmodel.getNotesRepository
-import me.martichou.be.grateful.viewmodel.getViewModel
+import me.martichou.be.grateful.vo.Notes
 import timber.log.Timber
 import java.io.File
+import javax.inject.Inject
 
-class ShowMainFragment : Fragment() {
+class ShowMainFragment : Fragment(), Injectable {
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    private lateinit var showViewModel: ShowViewModel
     private val params by navArgs<ShowMainFragmentArgs>()
-    private val viewModel by lazy {
-        getViewModel { ShowViewModel(getNotesRepository(requireContext()), params.noteId) }
-    }
     private lateinit var binding: FragmentShowmainBinding
     private var handler = Handler(Looper.getMainLooper())
 
@@ -65,9 +67,12 @@ class ShowMainFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        showViewModel = ViewModelProviders.of(this, viewModelFactory).get(ShowViewModel::class.java).also {
+            it.setNote(params.noteId)
+        }
         // Bind databinding val
         binding.lifecycleOwner = viewLifecycleOwner
-        binding.showModel = viewModel
+        binding.showModel = showViewModel
         binding.args = params
         binding.hdl = this
     }
@@ -133,7 +138,7 @@ class ShowMainFragment : Fragment() {
     }
 
     fun openImageOfNote(view: View) {
-        StfalconImageViewer.Builder<Notes>(context, mutableListOf(viewModel.note.value!!)) { vieww, image ->
+        StfalconImageViewer.Builder<Notes>(context, mutableListOf(showViewModel.note.value!!)) { vieww, image ->
             GlideApp.with(requireContext())
                 .load(File(context?.getDir("imgForNotes", Context.MODE_PRIVATE), image.image))
                 .into(vieww)
