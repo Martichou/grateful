@@ -3,5 +3,4 @@
     <changeBounds/>
     <changeTransform/>
     <changeClipBounds/>
-    <changeImageTransform/>
 </transitionSet>

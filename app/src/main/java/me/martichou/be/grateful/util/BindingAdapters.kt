@@ -33,11 +33,14 @@ fun AppCompatImageView.imageFromFile(imageUrl: String?, listener: RequestListene
 }
 
 /**
- * Hide any view using app:visibleGone="@{data != null}"
+ * Hide textView if empty
  */
-@BindingAdapter("visibleGone")
-fun showHide(view: View, show: Boolean) {
-    view.visibility = if (show) View.VISIBLE else View.GONE
+@BindingAdapter("isGone")
+fun View.isGone(content: String?){
+    if(content.isNullOrEmpty())
+        this.visibility = View.GONE
+    else
+        this.visibility = View.VISIBLE
 }
 
 /**
@@ -45,7 +48,7 @@ fun showHide(view: View, show: Boolean) {
  */
 @BindingAdapter("textIsEmpty")
 fun TextView.textIsEmpty(show: Boolean) {
-    if (!show) {
+    if (show) {
         val arr: Array<String> = arrayOf(
                 "\"One day I will find the right words, and they will be simple.\" \n - Jack Kerouac",
                 "\"Words can be like X-rays if you use them properly -- they'll go through anything. You read and you're pierced.\" \n - Aldous Huxley",
