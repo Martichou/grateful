@@ -81,9 +81,6 @@ class HomeMainFragment : Fragment(), androidx.appcompat.widget.Toolbar.OnMenuIte
         // Check notification
         checkForNotification()
 
-        // Update
-        setupScrollRvListener()
-
         // Subscribe adapter
         subscribeUirecentNotesList(adapter)
     }
@@ -160,25 +157,6 @@ class HomeMainFragment : Fragment(), androidx.appcompat.widget.Toolbar.OnMenuIte
                 findNavController().navigate(direction, navigatorExtras)
             } ?: run {
                 findNavController().navigate(direction)
-            }
-        })
-    }
-
-    /**
-     * Hide fab when scrolled
-     */
-    private fun setupScrollRvListener() {
-        binding.appBar.addOnOffsetChangedListener(ToolbarElevationOffsetListener(binding))
-
-        binding.recentNotesList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-
-                if (dy > 0 && binding.fab.visibility == View.VISIBLE) {
-                    binding.fab.hide()
-                } else if (dy < 0 && binding.fab.visibility != View.VISIBLE) {
-                    binding.fab.show()
-                }
             }
         })
     }
