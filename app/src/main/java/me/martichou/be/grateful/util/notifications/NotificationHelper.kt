@@ -68,8 +68,8 @@ class NotificationHelper {
 
     fun getNotificationManager(context: Context): NotificationManager {
         val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        val channelId = "upload_channel_id"
-        val channelName = "Upload"
+        val channelId = "reminder"
+        val channelName = "Reminder"
         var importance = 0
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             importance = NotificationManager.IMPORTANCE_DEFAULT

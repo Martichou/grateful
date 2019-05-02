@@ -54,6 +54,9 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+
+        <service android:name=".util.service.UploadPhotoService"
+            android:exported="false" />
     </application>
 
 </manifest>

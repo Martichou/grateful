@@ -6,6 +6,7 @@ import dagger.Module
 import dagger.Provides
 import me.martichou.be.grateful.db.AppDatabase
 import me.martichou.be.grateful.db.NotesDao
+import me.martichou.be.grateful.util.AndroidBus
 import javax.inject.Singleton
 
 @Module(includes = [ViewModelModule::class])
@@ -23,5 +24,11 @@ class AppModule {
     @Provides
     fun provideNotesDao(db: AppDatabase): NotesDao {
         return db.notesDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideBus(): AndroidBus {
+        return AndroidBus()
     }
 }
