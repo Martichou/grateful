@@ -20,7 +20,7 @@
             android:id="@+id/backBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:padding="16dp"
             android:background="?android:attr/selectableItemBackground"
             android:tint="?android:textColorPrimary"
             android:onClick="@{hdl::back}"
