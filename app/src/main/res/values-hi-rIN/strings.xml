@@ -44,7 +44,7 @@
 	<string name="yes">हां</string>
 	<string name="no">नहीं</string>
 	<string name="wrong_number">गलत नंबर</string>
-	<string name="wrong_password">You\'ve used an incorrect password</string>
+	<string name="wrong_password">आपने गलत पासवर्ड का उपयोग किया है</string>
 	<string name="retry">Retry</string>
 	<string name="continu">जारी रहना</string>
 	<string name="success">सफलता !</string>
@@ -53,6 +53,7 @@
 	<string name="code_sent_by_sms">एसएमएस द्वारा प्राप्त कोड दर्ज करें</string>
 	<string name="no_previous_backup">कोई पिछला बैकअप नहीं</string>
 	<string name="enter_password_to_encrypt">अपना डेटा एन्क्रिप्ट करने के लिए एक पासवर्ड दर्ज करें</string>
+	<string name="enter_password_to_decrypt">अपना डेटा डिक्रिप्ट करने के लिए अपना पासवर्ड डालें</string>
 	<string name="you_must_enter_password">आपको एक पासवर्ड दर्ज करना होगा</string>
 	<string name="last_backup_done">अंतिम बैकअप किया गया:\n%1$s </string>
 	<string name="edit">परिवर्तन</string>

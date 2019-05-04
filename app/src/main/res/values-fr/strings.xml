@@ -53,6 +53,7 @@
 	<string name="code_sent_by_sms">Entrez le code envoyé reçu par SMS</string>
 	<string name="no_previous_backup">Aucune sauvegarde précédente</string>
 	<string name="enter_password_to_encrypt">Entrez un mot de passe pour chiffrer vos données</string>
+	<string name="enter_password_to_decrypt">Entrez votre mot de passe pour déchiffrer vos données</string>
 	<string name="you_must_enter_password">Vous devez entrer un mot de passe</string>
 	<string name="last_backup_done">Dernière sauvegarde effectuée:\n%1$s</string>
 	<string name="edit">Modifier</string>
