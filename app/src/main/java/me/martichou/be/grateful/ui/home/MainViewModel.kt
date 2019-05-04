@@ -12,6 +12,5 @@ class MainViewModel
     val recentNotesList = MediatorLiveData<List<Notes>>().apply {
         addSource(notesRepository.getAllNote(), this::setValue)
     }
-    val adapter = NotesAdapter()
 
 }

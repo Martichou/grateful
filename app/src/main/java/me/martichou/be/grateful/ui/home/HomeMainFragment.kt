@@ -27,6 +27,7 @@ import me.martichou.be.grateful.di.Injectable
 import me.martichou.be.grateful.ui.add.AddMainFragment
 import me.martichou.be.grateful.util.DividerRV
 import me.martichou.be.grateful.util.EventObserver
+import me.martichou.be.grateful.util.autoCleared
 import me.martichou.be.grateful.util.notifications.NotificationHelper
 import timber.log.Timber
 import javax.inject.Inject
@@ -37,7 +38,8 @@ class HomeMainFragment : Fragment(), androidx.appcompat.widget.Toolbar.OnMenuIte
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var mainViewModel: MainViewModel
-    private lateinit var binding: FragmentHomemainBinding
+    private var binding by autoCleared<FragmentHomemainBinding>()
+    private var adapter by autoCleared<NotesAdapter>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentHomemainBinding.inflate(inflater, container, false)
@@ -62,7 +64,8 @@ class HomeMainFragment : Fragment(), androidx.appcompat.widget.Toolbar.OnMenuIte
         binding.recentNotesList.addItemDecoration(DividerRV(requireContext()))
 
         // Set adapter to the recyclerview once other things are set
-        binding.recentNotesList.adapter = mainViewModel.adapter
+        this.adapter = NotesAdapter()
+        binding.recentNotesList.adapter = adapter
 
         // Wait RecyclerView layout for detail to list image return animation
         postponeEnterTransition()
@@ -79,7 +82,7 @@ class HomeMainFragment : Fragment(), androidx.appcompat.widget.Toolbar.OnMenuIte
         checkForNotification()
 
         // Subscribe adapter
-        subscribeUirecentNotesList(mainViewModel.adapter)
+        subscribeUirecentNotesList(this.adapter)
     }
 
     /**
@@ -120,25 +123,25 @@ class HomeMainFragment : Fragment(), androidx.appcompat.widget.Toolbar.OnMenuIte
                 binding.nonethinking.visibility = View.VISIBLE
 
                 SpotlightView.Builder(requireActivity())
-                    .introAnimationDuration(400)
-                    .enableRevealAnimation(true)
-                    .performClick(true)
-                    .fadeinTextDuration(400)
-                    .headingTvColor(Color.parseColor("#FF6575"))
-                    .headingTvSize(32)
-                    .headingTvText(resources.getString(R.string.welcome))
-                    .subHeadingTvColor(Color.parseColor("#ffffff"))
-                    .subHeadingTvSize(16)
-                    .subHeadingTvText(resources.getString(R.string.noneyet))
-                    .maskColor(Color.parseColor("#dc000000"))
-                    .target(binding.fab)
-                    .lineAnimDuration(350)
-                    .lineAndArcColor(Color.parseColor("#FF6575"))
-                    .dismissOnTouch(true)
-                    .dismissOnBackPress(true)
-                    .enableDismissAfterShown(true)
-                    .usageId("sp_fab")
-                    .show()
+                        .introAnimationDuration(400)
+                        .enableRevealAnimation(true)
+                        .performClick(true)
+                        .fadeinTextDuration(400)
+                        .headingTvColor(Color.parseColor("#FF6575"))
+                        .headingTvSize(32)
+                        .headingTvText(resources.getString(R.string.welcome))
+                        .subHeadingTvColor(Color.parseColor("#ffffff"))
+                        .subHeadingTvSize(16)
+                        .subHeadingTvText(resources.getString(R.string.noneyet))
+                        .maskColor(Color.parseColor("#dc000000"))
+                        .target(binding.fab)
+                        .lineAnimDuration(350)
+                        .lineAndArcColor(Color.parseColor("#FF6575"))
+                        .dismissOnTouch(true)
+                        .dismissOnBackPress(true)
+                        .enableDismissAfterShown(true)
+                        .usageId("sp_fab")
+                        .show()
             } else {
                 adapter.submitList(notes)
                 binding.loadingUi.visibility = View.GONE
