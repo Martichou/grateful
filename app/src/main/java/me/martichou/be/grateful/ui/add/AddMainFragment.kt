@@ -18,7 +18,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.mapbox.mapboxsdk.Mapbox
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.databinding.FragmentAddmainBinding
@@ -70,7 +71,7 @@ open class AddMainFragment : BottomSheetDialogFragment(), Injectable {
         Timber.d("Idk2 ${addViewModel.hasPhoto}")
         if(!addViewModel.hasBeenSaved && addViewModel.hasPhoto){
             Timber.d("Passed into")
-            GlobalScope.launch {
+            CoroutineScope(Dispatchers.IO).launch {
                 val imageFile = File(storageDir, addViewModel.randomImageName)
                 Timber.d("Into into ${imageFile.absolutePath}")
                 if (imageFile.exists()) {

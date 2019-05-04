@@ -14,7 +14,8 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.databinding.FragmentShoweditBinding
@@ -103,7 +104,7 @@ class ShowEditFragment : Fragment(), Injectable {
                 .setTitle(resources.getString(R.string.delete_this))
                 .setMessage(resources.getString(R.string.cant_be_undone))
                 .setPositiveButton(resources.getString(R.string.yes)) { _, _ ->
-                    GlobalScope.launch {
+                    CoroutineScope(Dispatchers.IO).launch {
                         val imageFile = File(context!!.getDir("imgForNotes", Context.MODE_PRIVATE), editViewModel.note.value!!.image)
                         if (imageFile.exists()) {
                             val deleted = imageFile.delete()

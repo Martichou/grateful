@@ -2,7 +2,8 @@ package me.martichou.be.grateful.ui.edit
 
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModel
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import me.martichou.be.grateful.repository.NotesRepository
 import me.martichou.be.grateful.vo.Notes
@@ -18,7 +19,7 @@ class EditViewModel
     }
 
     fun updateNote(title: String, content: String) {
-        GlobalScope.launch {
+        CoroutineScope(Dispatchers.IO).launch {
             val n = Notes(
                     title = title,
                     content = content,

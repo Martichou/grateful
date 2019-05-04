@@ -1,7 +1,7 @@
 package me.martichou.be.grateful.repository
 
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import me.martichou.be.grateful.db.NotesDao
 import me.martichou.be.grateful.vo.Notes
@@ -27,27 +27,27 @@ class NotesRepository
      * Insert a note using Notes
      */
     fun insert(notes: Notes) {
-        GlobalScope.launch(Dispatchers.IO) { notesDao.insertNote(notes) }
+        CoroutineScope(Dispatchers.IO).launch { notesDao.insertNote(notes) }
     }
 
     /**
      * Update a note using Notes
      */
     fun update(notes: Notes) {
-        GlobalScope.launch(Dispatchers.IO) { notesDao.updateNote(notes) }
+        CoroutineScope(Dispatchers.IO).launch { notesDao.updateNote(notes) }
     }
 
     /**
      * Delete a note using Id
      */
     fun deleteById(noteId: Long) {
-        GlobalScope.launch(Dispatchers.IO) { notesDao.deleteNoteById(noteId) }
+        CoroutineScope(Dispatchers.IO).launch { notesDao.deleteNoteById(noteId) }
     }
 
     /**
      * Delete all
      */
     fun nukeIt() {
-        GlobalScope.launch(Dispatchers.IO) { notesDao.nukeTable() }
+        CoroutineScope(Dispatchers.IO).launch { notesDao.nukeTable() }
     }
 }

@@ -17,7 +17,6 @@ import timber.log.Timber
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
-import kotlin.coroutines.CoroutineContext
 import kotlin.system.exitProcess
 
 class CompressImage(
@@ -25,17 +24,14 @@ class CompressImage(
         private val viewModel: AddViewModel?,
         val file: File,
         private val add_btn: AppCompatImageButton?
-) : CoroutineScope {
-
-    override val coroutineContext: CoroutineContext
-        get() = Default
+) {
 
     private val storageDir = context.getDir("imgForNotes", Context.MODE_PRIVATE)
 
     private lateinit var imageFile: File
 
     init {
-        launch {
+        CoroutineScope(IO).launch {
             if (if (!storageDir.exists()) {
                         storageDir.mkdirs()
                     } else {
@@ -64,16 +60,14 @@ class CompressImage(
     }
 
     private suspend fun handling() {
-        val fos: FileOutputStream = withContext(Default) { FileOutputStream(imageFile) }
+        val fos = FileOutputStream(imageFile)
         try {
-            withContext(Default) {
-                BitmapFactory.decodeFile(file.absolutePath).compress(Bitmap.CompressFormat.JPEG, 75, fos)
-            }
+            BitmapFactory.decodeFile(file.absolutePath).compress(Bitmap.CompressFormat.JPEG, 75, fos)
         } catch (e: Exception) {
             e.printStackTrace()
         } finally {
             try {
-                withContext(Default) { fos.close() }
+                fos.close()
 
                 viewModel?.changeHasPhoto(true)
                 viewModel?.changeIsWorking(false)
