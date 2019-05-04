@@ -43,7 +43,7 @@ class HomeMainFragment : Fragment(), androidx.appcompat.widget.Toolbar.OnMenuIte
         binding = FragmentHomemainBinding.inflate(inflater, container, false)
 
         sharedElementReturnTransition = TransitionInflater.from(context).inflateTransition(R.transition.move).apply {
-            duration = 400
+            duration = 300
             interpolator = FastOutSlowInInterpolator()
         }
 

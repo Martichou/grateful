@@ -48,7 +48,7 @@ class ShowMainFragment : Fragment(), Injectable {
         binding = FragmentShowmainBinding.inflate(inflater, container, false)
 
         sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(R.transition.move).apply {
-            duration = 400
+            duration = 300
             interpolator = FastOutSlowInInterpolator()
         }
 
@@ -96,7 +96,7 @@ class ShowMainFragment : Fragment(), Injectable {
      * Setup fade out transition and sharedelementransition
      */
     private fun setupTransition() {
-        enterTransition = Slide().apply { startDelay = 300 }
+        enterTransition = Slide().apply { startDelay = 250 }
         returnTransition = Fade().apply {
             interpolator = FastOutLinearInInterpolator()
             duration = 75
