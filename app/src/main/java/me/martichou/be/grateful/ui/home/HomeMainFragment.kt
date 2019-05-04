@@ -62,7 +62,6 @@ class HomeMainFragment : Fragment(), androidx.appcompat.widget.Toolbar.OnMenuIte
         binding.recentNotesList.addItemDecoration(DividerRV(requireContext()))
 
         // Set adapter to the recyclerview once other things are set
-        val adapter = mainViewModel.adapter
         binding.recentNotesList.adapter = mainViewModel.adapter
 
         // Wait RecyclerView layout for detail to list image return animation
@@ -80,7 +79,7 @@ class HomeMainFragment : Fragment(), androidx.appcompat.widget.Toolbar.OnMenuIte
         checkForNotification()
 
         // Subscribe adapter
-        subscribeUirecentNotesList(adapter)
+        subscribeUirecentNotesList(mainViewModel.adapter)
     }
 
     /**
