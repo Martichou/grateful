@@ -149,14 +149,24 @@ open class AddMainFragment : BottomSheetDialogFragment(), Injectable {
                     if(carmenFeature?.context() == null) {
                         Toast.makeText(context, "Cannot retreive place name, try again", Toast.LENGTH_LONG).show()
                     } else {
-                        val city = carmenFeature.context()!![1].text()
+                        var city: String? = null
+                        try {
+                            city = carmenFeature.context()!![1].text()
+                        } catch (e: IndexOutOfBoundsException) {
+                            Timber.e("No city, indexOutOfBounds")
+                        }
                         val country = carmenFeature.context()!!.last().text()
 
                         Timber.d("Carmen: ${carmenFeature.context()}")
 
-                        if(city != null && country != null){
-                            addViewModel.placeCity = "$city, $country"
-                            Toast.makeText(context, "$city, $country", Toast.LENGTH_LONG).show()
+                        if(country != null){
+                            if(city == null){
+                                addViewModel.placeCity = "$country"
+                                Toast.makeText(context, "$country", Toast.LENGTH_LONG).show()
+                            } else {
+                                addViewModel.placeCity = "$city, $country"
+                                Toast.makeText(context, "$city, $country", Toast.LENGTH_LONG).show()
+                            }
                             binding.addLocBtnBs.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_roundaccent)
                         } else {
                             Toast.makeText(context, "Cannot retreive place name, try again", Toast.LENGTH_LONG).show()
