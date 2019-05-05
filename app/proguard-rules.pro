@@ -14,9 +14,8 @@
 -keep interface com.wooplr.spotlight.**
 -keep enum com.wooplr.spotlight.**
 
--keepclassmembers class me.martichou.be.grateful.data.model.** { *; }
+-keepclassmembers class me.martichou.be.grateful.vo.** { *; }
 
 -keepclassmembernames class kotlinx.** {
     volatile <fields>;
 }
-

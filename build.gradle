@@ -22,8 +22,12 @@ buildscript {
         google()
         jcenter()
         mavenCentral()
+        maven {
+            url "http://storage.googleapis.com/r8-releases/raw/master"
+        }
     }
     dependencies {
+        classpath 'com.android.tools:r8:522bd9fc1d398753fed5134b6c4fe32cdae482be'
         classpath 'com.android.tools.build:gradle:3.5.0-alpha13'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigationVersion"
