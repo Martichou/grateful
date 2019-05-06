@@ -22,7 +22,7 @@ class AlarmReceiver : BroadcastReceiver() {
     }
 
     private fun buildLocalNotification(context: Context, pendingIntent: PendingIntent): NotificationCompat.Builder {
-        return NotificationCompat.Builder(context, "upload_channel_id").apply {
+        return NotificationCompat.Builder(context, "reminder").apply {
             setContentTitle("It's the perfect time to be grateful !")
             setContentIntent(pendingIntent)
             setSmallIcon(R.drawable.splashimage)
