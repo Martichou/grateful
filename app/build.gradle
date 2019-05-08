@@ -54,7 +54,7 @@ ext {
     imgcropper = '2.7.0'
     timber = '4.7.1'
     supportLibraryVersion = '1.1.0-alpha05'
-    constraintLyt = '2.0.0-alpha3'
+    constraintLyt = '2.0.0-alpha5'
     roomVersion = '2.1.0-beta01'
     preference = '1.1.0-alpha05'
     retrofit2_version = "2.5.0"
