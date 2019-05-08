@@ -55,7 +55,7 @@ ext {
     timber = '4.7.1'
     supportLibraryVersion = '1.1.0-alpha04'
     constraintLyt = '2.0.0-alpha3'
-    roomVersion = '2.1.0-alpha06'
+    roomVersion = '2.1.0-beta01'
     preference = '1.1.0-alpha04'
     retrofit2_version = "2.5.0"
     okhttp3_version = "3.12.0"
