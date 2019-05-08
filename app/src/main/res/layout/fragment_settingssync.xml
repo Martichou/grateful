@@ -22,9 +22,9 @@
             android:layout_height="wrap_content"
             android:padding="16dp"
             android:background="?android:attr/selectableItemBackground"
-            android:tint="?android:textColorPrimary"
             android:onClick="@{hdl::back}"
             app:srcCompat="@drawable/ic_arrow_back_black_24dp"
+            app:tint="?android:textColorPrimary"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
