@@ -82,7 +82,7 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$constraintLyt"
     implementation "androidx.constraintlayout:constraintlayout-solver:$constraintLyt"
     implementation "androidx.preference:preference-ktx:$preference"
-    implementation "androidx.fragment:fragment:1.1.0-alpha07"
+    implementation "androidx.fragment:fragment:1.1.0-alpha08"
     implementation "androidx.navigation:navigation-fragment-ktx:$rootProject.navigationVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$rootProject.navigationVersion"
 
