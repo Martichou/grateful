@@ -34,7 +34,6 @@ class MainActivity : AestheticActivity(), HasSupportFragmentInjector {
 
         if (Aesthetic.isFirstTime) {
             Aesthetic.config {
-                this.activityTheme(R.style.BaseAppTheme)
                 isDark(false)
                 textColorPrimary(res = R.color.almostblack)
                 textColorSecondary(res = R.color.grey_light)

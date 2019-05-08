@@ -89,7 +89,6 @@ class SettingsFragment : Fragment() {
             if(isChecked) {
                 // Enable black theme
                 Aesthetic.config {
-                    this.activityTheme(R.style.BaseAppThemeDark)
                     isDark(true)
                     textColorPrimary(res = R.color.white)
                     textColorSecondary(res = R.color.grey_lightlight)
@@ -99,6 +98,7 @@ class SettingsFragment : Fragment() {
                     colorWindowBackground(res = R.color.black)
                     colorStatusBar(res = R.color.black)
                     colorNavigationBarAuto()
+                    colorCardViewBackground(res = R.color.dark)
                     bottomNavigationBackgroundMode(BottomNavBgMode.PRIMARY_DARK)
                     bottomNavigationIconTextMode(BottomNavIconTextMode.BLACK_WHITE_AUTO)
                     swipeRefreshLayoutColorsRes(R.color.red)
@@ -109,7 +109,6 @@ class SettingsFragment : Fragment() {
             } else {
                 // Disable black theme
                 Aesthetic.config {
-                    this.activityTheme(R.style.BaseAppTheme)
                     isDark(false)
                     textColorPrimary(res = R.color.almostblack)
                     textColorSecondary(res = R.color.grey_light)

@@ -53,7 +53,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title_sync"/>
 
-        <androidx.cardview.widget.CardView
+        <com.afollestad.aesthetic.views.AestheticCardView
             android:id="@+id/blackThemeSwitch"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -81,9 +81,9 @@
                 android:padding="16dp"
                 android:layout_gravity="end"/>
 
-        </androidx.cardview.widget.CardView>
+        </com.afollestad.aesthetic.views.AestheticCardView>
 
-        <androidx.cardview.widget.CardView
+        <com.afollestad.aesthetic.views.AestheticCardView
             android:id="@+id/notificationSwitch"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -158,9 +158,9 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.cardview.widget.CardView>
+        </com.afollestad.aesthetic.views.AestheticCardView>
 
-        <androidx.cardview.widget.CardView
+        <com.afollestad.aesthetic.views.AestheticCardView
             android:id="@+id/synchronizationButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -198,13 +198,15 @@
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
                     android:paddingBottom="16dp"
+                    android:layout_marginTop="4dp"
                     android:text="@string/setup_synchronization_with_the_cloud"
+                    android:textColor="?android:textColorSecondaryInverse"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/syncronizationText"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.cardview.widget.CardView>
+        </com.afollestad.aesthetic.views.AestheticCardView>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/versionOfApp"

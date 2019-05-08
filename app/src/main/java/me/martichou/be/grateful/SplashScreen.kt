@@ -9,14 +9,14 @@ class SplashScreen : AppCompatActivity() {
 
     private lateinit var mDelayHandler: Handler
 
-    private val mRunnable: Runnable = Runnable {
+    private val mRunnable = {
         if (!isFinishing) {
             val intent = Intent(applicationContext, MainActivity::class.java)
             startActivity(intent)
 
             overridePendingTransition(R.anim.activity_fade_in, R.anim.activity_fade_out)
 
-            finish()
+            mDelayHandler.postDelayed({ finish() }, 150)
         }
     }
 
