@@ -27,6 +27,8 @@ import me.martichou.be.grateful.di.Injectable
 import me.martichou.be.grateful.util.CompressImage
 import me.martichou.be.grateful.util.PlacePicker
 import me.martichou.be.grateful.vo.Notes
+import org.json.JSONObject
+import org.json.JSONStringer
 import timber.log.Timber
 import java.io.File
 import java.util.*
@@ -150,14 +152,16 @@ open class AddMainFragment : BottomSheetDialogFragment(), Injectable {
                         Toast.makeText(context, "Cannot retreive place name, try again", Toast.LENGTH_LONG).show()
                     } else {
                         var city: String? = null
-                        try {
-                            city = carmenFeature.context()!![1].text()
-                        } catch (e: IndexOutOfBoundsException) {
-                            Timber.e("No city, indexOutOfBounds")
+                        var country: String? = null
+                        Timber.d("Localisation is ${carmenFeature.toJson()}")
+                        carmenFeature.context()!!.forEach {
+                            Timber.d("Carmen Localisation $it")
+                            when {
+                                it.id()!!.contains("locality", false) -> city = it.text()
+                                it.id()!!.contains("place", false) && city == null -> city = it.text()
+                                it.id()!!.contains("country", false) -> country = it.text()
+                            }
                         }
-                        val country = carmenFeature.context()!!.last().text()
-
-                        Timber.d("Carmen: ${carmenFeature.context()}")
 
                         if(country != null){
                             if(city == null){
