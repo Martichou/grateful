@@ -14,8 +14,6 @@ class SplashScreen : AppCompatActivity() {
             val intent = Intent(applicationContext, MainActivity::class.java)
             startActivity(intent)
 
-            overridePendingTransition(R.anim.activity_fade_in, R.anim.activity_fade_out)
-
             mDelayHandler.postDelayed({ finish() }, 150)
         }
     }
@@ -24,8 +22,6 @@ class SplashScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         mDelayHandler = Handler()
-
-        mDelayHandler.post(mRunnable)
     }
 
     override fun onPause() {

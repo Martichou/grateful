@@ -85,37 +85,40 @@ class ShowMainFragment : Fragment(), Injectable, OnMapReadyCallback {
     override fun onMapReady(mapboxMap: MapboxMap) {
         mapboxMap.setStyle(Style.DARK) {
 
-            Timber.d("Searching for ${showViewModel.note.value!!.location}")
+            if (!showViewModel.note.value!!.location.isEmpty()) {
 
-            val mapboxGeocoding = MapboxGeocoding.builder()
-                    .accessToken(Mapbox.getAccessToken()!!)
-                    .query(showViewModel.note.value!!.location)
-                    .build()
+                Timber.d("Searching for ${showViewModel.note.value!!.location}")
 
-            mapboxGeocoding.enqueueCall(object : Callback<GeocodingResponse> {
-                override fun onResponse(call: Call<GeocodingResponse>, response: Response<GeocodingResponse>) {
-                    val results = response.body()!!.features()
-                    if (results.size > 0) {
-                        // Log the first results Point.
-                        val firstResultPoint = results[0].center()!!.coordinates()
-                        Timber.d("onResponse: $firstResultPoint")
+                val mapboxGeocoding = MapboxGeocoding.builder()
+                        .accessToken(Mapbox.getAccessToken()!!)
+                        .query(showViewModel.note.value!!.location)
+                        .build()
 
-                        val position = CameraPosition.Builder()
-                                .target(LatLng(firstResultPoint[1], firstResultPoint[0]))
-                                .zoom(13.0)
-                                .build()
+                mapboxGeocoding.enqueueCall(object : Callback<GeocodingResponse> {
+                    override fun onResponse(call: Call<GeocodingResponse>, response: Response<GeocodingResponse>) {
+                        val results = response.body()!!.features()
+                        if (results.size > 0) {
+                            // Log the first results Point.
+                            val firstResultPoint = results[0].center()!!.coordinates()
+                            Timber.d("onResponse: $firstResultPoint")
 
-                        mapboxMap.animateCamera(CameraUpdateFactory
-                                .newCameraPosition(position), 7000)
-                    } else {
-                        Timber.d("onResponse: No result found")
+                            val position = CameraPosition.Builder()
+                                    .target(LatLng(firstResultPoint[1], firstResultPoint[0]))
+                                    .zoom(13.0)
+                                    .build()
+
+                            mapboxMap.animateCamera(CameraUpdateFactory
+                                    .newCameraPosition(position), 7000)
+                        } else {
+                            Timber.d("onResponse: No result found")
+                        }
                     }
-                }
 
-                override fun onFailure(call: Call<GeocodingResponse>, throwable: Throwable) {
-                    throwable.printStackTrace()
-                }
-            })
+                    override fun onFailure(call: Call<GeocodingResponse>, throwable: Throwable) {
+                        throwable.printStackTrace()
+                    }
+                })
+            }
         }
     }
 
