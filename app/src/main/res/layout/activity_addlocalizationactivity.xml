@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     tools:context="me.martichou.be.grateful.ui.add.AddLocalizationActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -12,59 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/place_picker_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/mapbox_plugins_extended_toolbar_height"
-            android:background="@color/white">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/place_picker_toolbar_primary_text_view"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/mapbox_plugins_text_left_margin"
-                android:layout_marginLeft="@dimen/mapbox_plugins_text_left_margin"
-                android:text="@string/mapbox_plugins_place_picker_toolbar_primary_text"
-                android:textColor="@color/black"
-                android:textSize="@dimen/mapbox_plugins_toolbar_primary_text"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/place_picker_toolbar_secondary_text_view"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_chainStyle="packed"
-                tools:ignore="RtlHardcoded" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/place_picker_toolbar_secondary_text_view"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/mapbox_plugins_text_left_margin"
-                android:layout_marginLeft="@dimen/mapbox_plugins_text_left_margin"
-                android:text="@string/mapbox_plugins_place_picker_toolbar_secondary_text"
-                android:textColor="@color/black"
-                android:textSize="@dimen/mapbox_plugins_toolbar_secondary_text"
-                android:textStyle="normal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/place_picker_toolbar_primary_text_view"
-                tools:ignore="RtlHardcoded" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/mapbox_place_picker_toolbar_back_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/mapbox_plugins_image_view_left_margin"
-                android:layout_marginLeft="@dimen/mapbox_plugins_image_view_left_margin"
-                android:contentDescription="@string/mapbox_plugins_cd_exit_place_picker"
-                android:tint="@color/black"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/mapbox_ic_arrow_back"
-                tools:ignore="RtlHardcoded" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -107,7 +53,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:mapbox_uiLogo="false" />
 
-        <com.mapbox.mapboxsdk.plugins.places.picker.ui.CurrentPlaceSelectionBottomSheet
+        <me.martichou.be.grateful.ui.add.CurrentPlaceSelectionBottomSheet
             android:id="@+id/mapbox_plugins_picker_bottom_sheet"
             android:layout_width="0dp"
             android:layout_height="0dp"

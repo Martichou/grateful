@@ -18,9 +18,9 @@ import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
 import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.mapboxsdk.plugins.places.common.PlaceConstants
-import com.mapbox.mapboxsdk.plugins.places.picker.ui.CurrentPlaceSelectionBottomSheet
 import com.mapbox.mapboxsdk.plugins.places.picker.viewmodel.PlacePickerViewModel
 import me.martichou.be.grateful.R
+import me.martichou.be.grateful.util.statusBarTrans
 import timber.log.Timber
 import java.util.*
 
@@ -36,12 +36,12 @@ class AddLocalizationActivity : AppCompatActivity(), OnMapReadyCallback, MapboxM
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         window.requestFeature(Window.FEATURE_ACTION_BAR)
         val actionBar = supportActionBar
         actionBar?.hide()
         setContentView(R.layout.activity_addlocalizationactivity)
 
+        statusBarTrans(this)
         if (savedInstanceState == null) {
             accessToken = getString(R.string.mapbox_apikey)
         }
@@ -51,16 +51,10 @@ class AddLocalizationActivity : AppCompatActivity(), OnMapReadyCallback, MapboxM
         viewModel!!.results.observe(this, this)
 
         bindViews()
-        addBackButtonListener()
         addChosenLocationButton()
 
         mapView!!.onCreate(savedInstanceState)
         mapView!!.getMapAsync(this)
-    }
-
-    private fun addBackButtonListener() {
-        val backButton = findViewById<AppCompatImageView>(R.id.mapbox_place_picker_toolbar_back_button)
-        backButton.setOnClickListener { finish() }
     }
 
     private fun bindViews() {
@@ -71,7 +65,7 @@ class AddLocalizationActivity : AppCompatActivity(), OnMapReadyCallback, MapboxM
 
     override fun onMapReady(mapboxMap: MapboxMap) {
         this.mapboxMap = mapboxMap
-        mapboxMap.setStyle(Style.MAPBOX_STREETS) {
+        mapboxMap.setStyle(Style.DARK) {
             // Initialize with the markers current location information.
             makeReverseGeocodingSearch()
 
