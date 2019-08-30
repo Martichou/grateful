@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="welcome">स्वागत हे !</string>
 	<string name="noneyet">अभी तक कोई आभार नहीं?\nएक नई शुरुआत करके।</string>
@@ -57,5 +58,6 @@
 	<string name="you_must_enter_password">आपको एक पासवर्ड दर्ज करना होगा</string>
 	<string name="last_backup_done">अंतिम बैकअप किया गया:\n%1$s </string>
 	<string name="edit">परिवर्तन</string>
+    <string name="define">Define</string>
 </resources>
 

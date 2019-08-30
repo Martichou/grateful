@@ -7,6 +7,7 @@ import android.view.animation.OvershootInterpolator
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -47,7 +48,7 @@ class AddLocalizationActivity : AppCompatActivity(), OnMapReadyCallback, MapboxM
         }
 
         // Initialize the view model.
-        viewModel = ViewModelProviders.of(this).get(PlacePickerViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(PlacePickerViewModel::class.java)
         viewModel!!.results.observe(this, this)
 
         bindViews()

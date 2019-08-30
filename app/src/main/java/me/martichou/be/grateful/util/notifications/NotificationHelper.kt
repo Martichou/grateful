@@ -12,6 +12,7 @@ import android.content.pm.PackageManager
 import android.os.Build
 import timber.log.Timber
 import java.util.*
+import kotlin.math.abs
 
 class NotificationHelper {
 
@@ -31,7 +32,7 @@ class NotificationHelper {
         if(currHr > hour){
             Timber.d("Date added")
             calendar.add(Calendar.DATE, 1)
-        } else if (currHr == hour && Math.abs(min-currMin) >= 30) {
+        } else if (currHr == hour && abs(min-currMin) >= 1) {
             Timber.d("Date added")
             calendar.add(Calendar.DATE, 1)
         }

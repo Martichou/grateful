@@ -53,7 +53,7 @@ class HomeMainFragment : Fragment(), androidx.appcompat.widget.Toolbar.OnMenuIte
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        mainViewModel = ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
+        mainViewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
         // Bind databinding val
         binding.lifecycleOwner = viewLifecycleOwner
         binding.thisVm = mainViewModel

@@ -67,7 +67,7 @@ class ShowMainFragment : Fragment(), Injectable {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        showViewModel = ViewModelProviders.of(this, viewModelFactory).get(ShowViewModel::class.java).also {
+        showViewModel = ViewModelProvider(this, viewModelFactory).get(ShowViewModel::class.java).also {
             it.setNote(params.noteId)
         }
         // Bind databinding val

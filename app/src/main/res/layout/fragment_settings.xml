@@ -147,7 +147,7 @@
                     android:layout_marginTop="6dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="6dp"
-                    android:text="Define"
+                    android:text="@string/define"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:onClick="@{hdl::openDialog}"

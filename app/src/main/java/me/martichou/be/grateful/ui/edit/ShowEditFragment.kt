@@ -42,7 +42,7 @@ class ShowEditFragment : Fragment(), Injectable {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        editViewModel = ViewModelProviders.of(this, viewModelFactory).get(EditViewModel::class.java).also {
+        editViewModel =ViewModelProvider(this, viewModelFactory).get(EditViewModel::class.java).also {
             it.setNote(params.noteId)
         }
         // Bind databinding val

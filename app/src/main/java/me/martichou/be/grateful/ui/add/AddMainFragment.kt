@@ -55,7 +55,7 @@ open class AddMainFragment : BottomSheetDialogFragment(), Injectable {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        addViewModel = ViewModelProviders.of(this, viewModelFactory).get(AddViewModel::class.java)
+        addViewModel = ViewModelProvider(this, viewModelFactory).get(AddViewModel::class.java)
         // Bind databinding val
         binding.lifecycleOwner = viewLifecycleOwner
         binding.hdl = this
