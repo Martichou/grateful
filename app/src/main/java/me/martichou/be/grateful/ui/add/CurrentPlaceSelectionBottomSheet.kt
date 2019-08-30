@@ -13,6 +13,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_COLLAPS
 import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_HIDDEN
 import com.mapbox.api.geocoding.v5.models.CarmenFeature
 import com.mapbox.mapboxsdk.plugins.places.common.utils.GeocodingUtils.removeNameFromAddress
+import kotlinx.android.synthetic.main.custom_mapbox_view_bottom_sheet_container.view.*
 import me.martichou.be.grateful.R
 
 class CurrentPlaceSelectionBottomSheet @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = -1) : CoordinatorLayout(context, attrs, defStyleAttr) {
