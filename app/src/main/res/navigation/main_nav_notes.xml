@@ -99,6 +99,6 @@
         android:id="@+id/settingsSync"
         android:name="me.martichou.be.grateful.ui.settings.sync.SettingsSync"
         android:label="SettingsSync"
-        tools:layout="@layout/fragment_settingssync"/>
+        tools:layout="@layout/fragment_settingssync" />
 
 </navigation>

@@ -41,10 +41,10 @@
                     android:id="@+id/title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
                     android:ellipsize="end"
                     android:maxLines="1"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
                     android:text="@string/app_name"
                     android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
                     android:textColor="?android:textColorPrimary" />
@@ -83,12 +83,12 @@
                 android:id="@+id/nonethinking"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:layout_margin="100dp"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/idea"
                 android:visibility="gone"
-                android:layout_margin="100dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -100,11 +100,11 @@
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
             android:layout_margin="16dp"
             android:onClick="@{hdl::btnNewAction}"
             android:src="@drawable/ic_add_white"
-            app:fabSize="auto"
-            android:layout_gravity="end|bottom" />
+            app:fabSize="auto" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

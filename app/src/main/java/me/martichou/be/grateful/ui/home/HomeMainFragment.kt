@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceManager
@@ -101,8 +100,8 @@ class HomeMainFragment : Fragment(), androidx.appcompat.widget.Toolbar.OnMenuIte
      * Check if it's needed to enable notification
      */
     private fun checkForNotification() {
-        if(PreferenceManager.getDefaultSharedPreferences(context).getBoolean("dailynotification", true)) {
-            if(!NotificationHelper().checkIfExist(requireContext())) {
+        if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean("dailynotification", true)) {
+            if (!NotificationHelper().checkIfExist(requireContext())) {
                 NotificationHelper().scheduleRepeatingRTCNotification(requireContext(),
                         PreferenceManager.getDefaultSharedPreferences(context).getInt("dn_hour", 20),
                         PreferenceManager.getDefaultSharedPreferences(context).getInt("dn_min", 0))

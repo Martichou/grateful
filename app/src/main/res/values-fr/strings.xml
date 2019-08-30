@@ -1,62 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="welcome">Bienvenue !</string>
-	<string name="noneyet">Pas encore de gratitude?\nCommencez par en créer une nouvelle.</string>
+    <string name="welcome">Bienvenue !</string>
+    <string name="noneyet">Pas encore de gratitude?\nCommencez par en créer une nouvelle.</string>
 
-	<string name="new_grateful_card">Titre de cette nouvelle gratitude</string>
-	<string name="new_grateful_card_message">Ajouter des détails</string>
-	<string name="create">Créer</string>
+    <string name="new_grateful_card">Titre de cette nouvelle gratitude</string>
+    <string name="new_grateful_card_message">Ajouter des détails</string>
+    <string name="create">Créer</string>
 
-	<string name="write_here_the_message_you_want_for_this_note">Ecrivez le message que vous voulez pour cette gratitude</string>
-	<string name="save">Sauvegarder</string>
+    <string name="write_here_the_message_you_want_for_this_note">Ecrivez le message que vous voulez pour cette gratitude</string>
+    <string name="save">Sauvegarder</string>
 
-	<string name="image_of_your_dedicated_note">Image pour votre gratitude</string>
+    <string name="image_of_your_dedicated_note">Image pour votre gratitude</string>
 
-	<string name="settings">Paramètres</string>
-	<string name="today">Aujourd\'hui</string>
+    <string name="settings">Paramètres</string>
+    <string name="today">Aujourd\'hui</string>
 
-	<string name="enable_dark_theme">Activer le thème noir</string>
-	<string name="daily_reminder">Activer les rappels quotidiens</string>
-	<string name="privacy_policy">Politique de confidentialité</string>
-	<string name="scheduled_at">Programmé à %1$s:%2$s</string>
-	<string name="daily_disabled">Le rappel quotidien est actuellement désactivé</string>
-	<string name="synchronization">Synchronisation</string>
-	<string name="feel_free_to_custom_the_app_as_you_need_it_to_be">N\'hésitez pas à personnaliser l\'application selon vos besoins</string>
-	<string name="setup_synchronization_with_the_cloud">Configuration de la synchronisation avec le cloud</string>
+    <string name="enable_dark_theme">Activer le thème noir</string>
+    <string name="daily_reminder">Activer les rappels quotidiens</string>
+    <string name="privacy_policy">Politique de confidentialité</string>
+    <string name="scheduled_at">Programmé à %1$s:%2$s</string>
+    <string name="daily_disabled">Le rappel quotidien est actuellement désactivé</string>
+    <string name="synchronization">Synchronisation</string>
+    <string name="feel_free_to_custom_the_app_as_you_need_it_to_be">N\'hésitez pas à personnaliser l\'application selon vos besoins</string>
+    <string name="setup_synchronization_with_the_cloud">Configuration de la synchronisation avec le cloud</string>
 
-	<string name="you_need_to_be_authentified_before_n_backing_up_your_data">Vous devez être authentifié avant la\nsauvegarde de vos données.</string>
-	<string name="send_code">Envoyer le code</string>
-	<string name="phone_number">Numéro de téléphone</string>
-	<string name="start_backup">Démarrer</string>
-	<string name="restore_data">Restaurer</string>
-	<string name="you_can_porcess_to_a_full_backup_right_now">Vous pouvez effectuer une sauvegarde complète dès maintenant</string>
-	<string name="password">Mot de passe</string>
+    <string name="you_need_to_be_authentified_before_n_backing_up_your_data">Vous devez être authentifié avant la\nsauvegarde de vos données.</string>
+    <string name="send_code">Envoyer le code</string>
+    <string name="phone_number">Numéro de téléphone</string>
+    <string name="start_backup">Démarrer</string>
+    <string name="restore_data">Restaurer</string>
+    <string name="you_can_porcess_to_a_full_backup_right_now">Vous pouvez effectuer une sauvegarde complète dès maintenant</string>
+    <string name="password">Mot de passe</string>
 
-	<string name="enter_title">Entrer au moins un titre</string>
-	<string name="set_image">Veuillez sélectionner une image</string>
-	<string name="cant_get_place">Impossible d\'obtenir le nom du lieu</string>
+    <string name="enter_title">Entrer au moins un titre</string>
+    <string name="set_image">Veuillez sélectionner une image</string>
+    <string name="cant_get_place">Impossible d\'obtenir le nom du lieu</string>
 
-	<string name="already_today">La gratitude d\'aujourd\'hui est déjà en première position</string>
-	<string name="add_first">Ajoutez d\'abord une gratitude</string>
+    <string name="already_today">La gratitude d\'aujourd\'hui est déjà en première position</string>
+    <string name="add_first">Ajoutez d\'abord une gratitude</string>
 
-	<string name="delete_this">Supprimer cette gratitude ?</string>
-	<string name="delete">Supprimer</string>
-	<string name="cant_be_undone">Cette action ne peut pas être annulée, réfléchissez à deux fois avant d\'appuyer sur \'Oui\'</string>
-	<string name="yes">Oui</string>
-	<string name="no">Non</string>
-	<string name="wrong_number">Mauvais numéro</string>
-	<string name="wrong_password">Vous avez utiliser un mauvais mot de passe</string>
-	<string name="retry">Réessayer</string>
-	<string name="continu">Continuer</string>
-	<string name="success">Succès !</string>
-	<string name="error">Erreur…</string>
-	<string name="provide_a_phone_number">Vous devez fournir un numéro de téléphone pour continuer</string>
-	<string name="code_sent_by_sms">Entrez le code envoyé reçu par SMS</string>
-	<string name="no_previous_backup">Aucune sauvegarde précédente</string>
-	<string name="enter_password_to_encrypt">Entrez un mot de passe pour chiffrer vos données</string>
-	<string name="enter_password_to_decrypt">Entrez votre mot de passe pour déchiffrer vos données</string>
-	<string name="you_must_enter_password">Vous devez entrer un mot de passe</string>
-	<string name="last_backup_done">Dernière sauvegarde effectuée:\n%1$s</string>
-	<string name="edit">Modifier</string>
+    <string name="delete_this">Supprimer cette gratitude ?</string>
+    <string name="delete">Supprimer</string>
+    <string name="cant_be_undone">Cette action ne peut pas être annulée, réfléchissez à deux fois avant d\'appuyer sur \'Oui\'</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    <string name="wrong_number">Mauvais numéro</string>
+    <string name="wrong_password">Vous avez utiliser un mauvais mot de passe</string>
+    <string name="retry">Réessayer</string>
+    <string name="continu">Continuer</string>
+    <string name="success">Succès !</string>
+    <string name="error">Erreur…</string>
+    <string name="provide_a_phone_number">Vous devez fournir un numéro de téléphone pour continuer</string>
+    <string name="code_sent_by_sms">Entrez le code envoyé reçu par SMS</string>
+    <string name="no_previous_backup">Aucune sauvegarde précédente</string>
+    <string name="enter_password_to_encrypt">Entrez un mot de passe pour chiffrer vos données</string>
+    <string name="enter_password_to_decrypt">Entrez votre mot de passe pour déchiffrer vos données</string>
+    <string name="you_must_enter_password">Vous devez entrer un mot de passe</string>
+    <string name="last_backup_done">Dernière sauvegarde effectuée:\n%1$s</string>
+    <string name="edit">Modifier</string>
     <string name="define">Définir</string>
 </resources>

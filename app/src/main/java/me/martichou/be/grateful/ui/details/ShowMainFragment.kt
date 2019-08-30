@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment
 import androidx.interpolator.view.animation.FastOutLinearInInterpolator
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.transition.Fade
@@ -30,7 +29,6 @@ import me.martichou.be.grateful.di.Injectable
 import me.martichou.be.grateful.util.GlideApp
 import me.martichou.be.grateful.util.statusBarTrans
 import me.martichou.be.grateful.util.statusBarWhite
-import me.martichou.be.grateful.vo.Notes
 import timber.log.Timber
 import java.io.File
 import javax.inject.Inject
@@ -138,12 +136,12 @@ class ShowMainFragment : Fragment(), Injectable {
     }
 
     fun openImageOfNote(view: View) {
-        StfalconImageViewer.Builder<Notes>(context, mutableListOf(showViewModel.note.value!!)) { vieww, image ->
+        StfalconImageViewer.Builder(context, mutableListOf(showViewModel.note.value!!)) { vieww, image ->
             GlideApp.with(requireContext())
-                .load(File(context?.getDir("imgForNotes", Context.MODE_PRIVATE), image.image))
-                .into(vieww)
+                    .load(File(context?.getDir("imgForNotes", Context.MODE_PRIVATE), image.image))
+                    .into(vieww)
         }.withHiddenStatusBar(false)
-        .show()
+                .show()
     }
 
 }

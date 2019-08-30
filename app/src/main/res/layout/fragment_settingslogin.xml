@@ -20,38 +20,38 @@
             android:id="@+id/backBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="16dp"
             android:background="?android:attr/selectableItemBackground"
             android:onClick="@{hdl::back}"
-            app:srcCompat="@drawable/ic_arrow_back_black_24dp"
-            app:tint="?android:textColorPrimary"
+            android:padding="16dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_arrow_back_black_24dp"
+            app:tint="?android:textColorPrimary" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/title_sync"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/synchronization"
-            android:textSize="24sp"
             android:textColor="?android:textColorPrimary"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@id/phonenumber_til"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/phonenumber_til"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/summary_sync"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@string/you_need_to_be_authentified_before_n_backing_up_your_data"
-            android:textColor="?android:textColorPrimary"
-            android:textAlignment="center"
             android:lines="2"
-            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/you_need_to_be_authentified_before_n_backing_up_your_data"
+            android:textAlignment="center"
+            android:textColor="?android:textColorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title_sync"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_sync" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/phonenumber_til"
@@ -59,20 +59,20 @@
             android:layout_height="wrap_content"
             android:layout_margin="32dp"
             app:hintTextAppearance="@style/TextLabel"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/buttonverif"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title_sync"
-            app:layout_constraintBottom_toTopOf="@id/buttonverif">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_sync">
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/phoneNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="@string/phone_number"
+                android:inputType="phone"
                 android:paddingBottom="20dp"
                 android:textColor="?android:textColorPrimary"
-                android:textSize="16sp"
-                android:inputType="phone"
-                android:hint="@string/phone_number"/>
+                android:textSize="16sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -83,21 +83,21 @@
             android:layout_marginLeft="18dp"
             android:layout_marginRight="18dp"
             android:background="@drawable/round"
+            android:onClick="@{hdl::btnClick}"
             android:paddingStart="32dp"
             android:paddingEnd="32dp"
+            android:tag="firststep"
             android:text="@string/send_code"
             android:textColor="@color/white"
-            android:onClick="@{hdl::btnClick}"
-            android:tag="firststep"
             app:finalCornerAngle="50dp"
             app:initialCornerAngle="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/phonenumber_til"
             app:spinning_bar_color="@color/white"
             app:spinning_bar_padding="8dp"
-            app:spinning_bar_width="4dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/phonenumber_til"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:spinning_bar_width="4dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -9,7 +9,7 @@ import retrofit2.http.*
 interface GetDataService {
 
     @GET("/api/files/get")
-    fun getPhoto(@Query("fileName") fileName: String) : Deferred<Response<String>>
+    fun getPhoto(@Query("fileName") fileName: String): Deferred<Response<String>>
 
     @Multipart
     @POST("/api/files/upload")

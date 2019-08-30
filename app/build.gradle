@@ -126,7 +126,7 @@ dependencies {
 
     // Aesthetic
     implementation 'com.afollestad:aesthetic:1.0.0-beta05'
-    
+
     // Image Viewer
     implementation 'com.github.stfalcon:stfalcon-imageviewer:0.1.0'
 

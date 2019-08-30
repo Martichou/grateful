@@ -14,7 +14,7 @@ class EditViewModel
 
     var note = MediatorLiveData<Notes>()
 
-    fun setNote(id: Long){
+    fun setNote(id: Long) {
         note.addSource(notesRepository.getThisNote(id), note::setValue)
     }
 

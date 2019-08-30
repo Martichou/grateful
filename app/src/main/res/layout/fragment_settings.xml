@@ -20,38 +20,38 @@
             android:id="@+id/backBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="16dp"
             android:background="?android:attr/selectableItemBackground"
             android:onClick="@{hdl::back}"
-            app:srcCompat="@drawable/ic_arrow_back_black_24dp"
-            app:tint="?android:textColorPrimary"
+            android:padding="16dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_arrow_back_black_24dp"
+            app:tint="?android:textColorPrimary" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/title_sync"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/settings"
-            android:textSize="24sp"
             android:textColor="?android:textColorPrimary"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@id/blackThemeSwitch"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/blackThemeSwitch"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/summary_sync"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@string/feel_free_to_custom_the_app_as_you_need_it_to_be"
-            android:textColor="?android:textColorPrimary"
-            android:textAlignment="center"
             android:lines="2"
-            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/feel_free_to_custom_the_app_as_you_need_it_to_be"
+            android:textAlignment="center"
+            android:textColor="?android:textColorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title_sync"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_sync" />
 
         <com.afollestad.aesthetic.views.AestheticCardView
             android:id="@+id/blackThemeSwitch"
@@ -59,27 +59,27 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/notificationSwitch"
             app:cardCornerRadius="8dp"
-            app:cardUseCompatPadding="true">
+            app:cardUseCompatPadding="true"
+            app:layout_constraintBottom_toTopOf="@id/notificationSwitch"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/enableBlackThemeText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="start"
                 android:padding="16dp"
                 android:text="@string/enable_dark_theme"
-                android:textColor="?android:textColorPrimary"
-                android:layout_gravity="start"/>
+                android:textColor="?android:textColorPrimary" />
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/themedark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:layout_gravity="end"/>
+                android:layout_gravity="end"
+                android:padding="16dp" />
 
         </com.afollestad.aesthetic.views.AestheticCardView>
 
@@ -89,11 +89,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/synchronizationButton"
             app:cardCornerRadius="8dp"
-            app:cardUseCompatPadding="true">
+            app:cardUseCompatPadding="true"
+            app:layout_constraintBottom_toTopOf="@id/synchronizationButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -104,8 +104,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
                     android:paddingTop="16dp"
+                    android:paddingEnd="16dp"
                     android:paddingBottom="4dp"
                     android:text="@string/daily_reminder"
                     android:textColor="?android:textColorPrimary"
@@ -117,44 +117,44 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
                     android:paddingTop="16dp"
+                    android:paddingEnd="16dp"
                     android:paddingBottom="4dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/enableDailyStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
                     android:paddingStart="16dp"
+                    android:paddingTop="16dp"
                     android:paddingEnd="16dp"
                     android:paddingBottom="16dp"
-                    android:paddingTop="16dp"
+                    android:textColor="?android:textColorSecondaryInverse"
+                    android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/enableDailyText"
-                    android:textSize="12sp"
-                    android:textColor="?android:textColorSecondaryInverse"
-                    android:layout_alignParentStart="true"
                     tools:text="@string/daily_disabled"
-                    tools:textColor="#111"/>
+                    tools:textColor="#111" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/configureDaily"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:background="@drawable/round_error"
                     android:layout_marginTop="6dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="6dp"
+                    android:background="@drawable/round_error"
+                    android:onClick="@{hdl::openDialog}"
                     android:text="@string/define"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:onClick="@{hdl::openDialog}"
                     android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@id/enableDailyStatus"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/enableDailyStatus"
-                    app:layout_constraintBottom_toBottomOf="@id/enableDailyStatus"/>
+                    app:layout_constraintTop_toTopOf="@id/enableDailyStatus" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -166,14 +166,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:onClick="@{hdl::gotoSync}"
             android:foreground="@drawable/ripple_circle"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title_sync"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:onClick="@{hdl::gotoSync}"
             app:cardCornerRadius="8dp"
-            app:cardUseCompatPadding="true">
+            app:cardUseCompatPadding="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_sync">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -184,25 +184,25 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
                     android:paddingTop="16dp"
+                    android:paddingEnd="16dp"
                     android:text="@string/synchronization"
                     android:textColor="?android:textColorPrimary"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/syncronizationSummary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
                     android:paddingBottom="16dp"
-                    android:layout_marginTop="4dp"
                     android:text="@string/setup_synchronization_with_the_cloud"
                     android:textColor="?android:textColorSecondaryInverse"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/syncronizationText"/>
+                    app:layout_constraintTop_toBottomOf="@id/syncronizationText" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -217,23 +217,23 @@
             android:textColor="?android:textColorSecondaryInverse"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/legalsOfApp"
-            tools:textColor="@color/black"/>
+            app:layout_constraintStart_toStartOf="parent"
+            tools:textColor="@color/black" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/legalsOfApp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
+            android:onClick="@{hdl::gotoLegal}"
             android:text="@string/privacy_policy"
             android:textColor="?android:textColorSecondaryInverse"
             android:textSize="12sp"
-            android:onClick="@{hdl::gotoLegal}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/versionOfApp"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:textColor="@color/black"/>
+            app:layout_constraintStart_toEndOf="@id/versionOfApp"
+            tools:textColor="@color/black" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

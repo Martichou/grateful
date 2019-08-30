@@ -11,12 +11,12 @@ import javax.inject.Singleton
 @ExperimentalCoroutinesApi
 @Singleton
 @Component(
-    modules = [
-        AndroidInjectionModule::class,
-        AppModule::class,
-        MainActivityModule::class,
-        ServiceBuilderModule::class
-    ]
+        modules = [
+            AndroidInjectionModule::class,
+            AppModule::class,
+            MainActivityModule::class,
+            ServiceBuilderModule::class
+        ]
 )
 interface AppComponent {
     @Component.Builder

@@ -34,9 +34,9 @@
             android:id="@+id/coverImage"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:onClick="@{hdl::openImageOfNote}"
             android:scaleType="centerCrop"
             android:transitionName="@{String.valueOf(args.noteId)}"
-            android:onClick="@{hdl::openImageOfNote}"
             app:imageFromFile="@{showModel.note.image}"
             app:imageRequestListener="@{requestListener}"
             app:layout_constraintBottom_toTopOf="@id/guideline1"
@@ -67,8 +67,8 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
             android:gravity="start|center_vertical"
-            android:textAlignment="viewStart"
             android:text="@{showModel.note.title}"
+            android:textAlignment="viewStart"
             android:textColor="?android:textColorPrimary"
             android:textSize="28sp"
             android:textStyle="bold"
@@ -81,27 +81,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
             android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
             android:gravity="start|center_vertical"
-            android:textAlignment="viewStart"
             android:text="@{showModel.note.dateToSearch}"
+            android:textAlignment="viewStart"
             android:textColor="?android:textColorSecondaryInverse"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@id/bgView"
             app:layout_constraintTop_toBottomOf="@id/titleTextView"
-            tools:text="On the 26 january 2019"
-            tools:textColor="#666"
             tools:drawableTint="#666"
-            tools:targetApi="m" />
+            tools:targetApi="m"
+            tools:text="On the 26 january 2019"
+            tools:textColor="#666" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/contentText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             android:text="@{showModel.note.content}"
             android:textColor="?android:textColorSecondaryInverse"
             android:textSize="18sp"
@@ -110,19 +110,19 @@
             app:layout_constraintTop_toBottomOf="@id/dateTextView"
             app:textIsEmpty="@{showModel.note.content}"
             tools:text="Lorem ipsum ziqndqzidnqzunduqzud nqzuu dqbudb qudbquz bduzqdb dqzidjq zidqdn uiqz dniqndiqn zidqzndiqznid nqzid uiqzb duqzbduqzbdqzubdqzbdiuqbidu qizidbqzi"
-            tools:textColor="#666"/>
+            tools:textColor="#666" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
             android:onClick="@{hdl::editaction}"
             android:src="@drawable/ic_edit"
-            android:layout_marginBottom="16dp"
-            android:layout_marginEnd="16dp"
             app:fabSize="auto"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.motion.widget.MotionLayout>
 

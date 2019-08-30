@@ -31,19 +31,19 @@
                 android:id="@+id/detail_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
+                android:theme="@style/AppTheme.PopupOverlay"
                 app:contentInsetLeft="0dp"
-                app:contentInsetStart="0dp"
-                android:theme="@style/AppTheme.PopupOverlay">
+                app:contentInsetStart="0dp">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/backBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="16dp"
                     android:background="?android:attr/selectableItemBackground"
                     android:onClick="@{hdl::back}"
+                    android:padding="16dp"
                     app:srcCompat="@drawable/ic_arrow_back_black_24dp"
-                    app:tint="?android:textColorPrimary"/>
+                    app:tint="?android:textColorPrimary" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/title"
@@ -76,32 +76,32 @@
                     android:layout_gravity="center_vertical"
                     android:scaleType="centerCrop"
                     app:imageFromFile="@{editModel.note.image}"
-                    tools:src="@drawable/pool"/>
+                    tools:src="@drawable/pool" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/editnote_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:maxLines="1"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="24dp"
+                    android:inputType="text"
+                    android:maxLines="1"
                     android:text="@{editModel.note.title}"
                     android:textColor="?android:textColorPrimary"
                     android:textSize="@dimen/main_title"
                     android:textStyle="bold"
-                    tools:text="Test"
-                    tools:ignore="RtlSymmetry" />
+                    tools:ignore="RtlSymmetry"
+                    tools:text="Test" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/editnote_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
                     android:layout_marginBottom="24dp"
                     android:hint="@string/write_here_the_message_you_want_for_this_note"
                     android:inputType="textMultiLine"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
                     android:text="@{editModel.note.content}"
                     android:textColor="?android:textColorSecondaryInverse"
                     android:textColorHint="?android:textColorSecondaryInverse"
@@ -116,12 +116,12 @@
             android:id="@+id/cvSaving"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
             android:backgroundTint="#349B64"
             android:clickable="true"
             android:focusable="true"
             android:foreground="@drawable/ripple_circle_white"
             android:onClick="@{hdl::editthisnote}"
-            android:layout_marginEnd="16dp"
             android:visibility="invisible"
             app:cardCornerRadius="20dp"
             app:cardElevation="8dp"
@@ -137,10 +137,10 @@
                 android:layout_marginBottom="5dp"
                 android:drawableStart="@drawable/ic_edit"
                 android:drawablePadding="8dp"
+                android:gravity="center"
                 android:text="@string/save"
                 android:textColor="#fff"
-                android:textSize="18sp"
-                android:gravity="center" />
+                android:textSize="18sp" />
 
         </androidx.cardview.widget.CardView>
 
@@ -148,11 +148,11 @@
             android:id="@+id/editDelete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
             android:layout_margin="16dp"
             android:onClick="@{hdl::deletethisnote}"
             android:src="@drawable/ic_delete"
-            app:fabSize="auto"
-            android:layout_gravity="end|bottom"/>
+            app:fabSize="auto" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

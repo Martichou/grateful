@@ -61,15 +61,15 @@ class SettingsFragment : Fragment() {
         binding.dailynotification.isChecked = sharedPreferences.getBoolean("dailynotification", true)
     }
 
-    private fun setupCheck(){
+    private fun setupCheck() {
         if (binding.dailynotification!!.isChecked) {
             binding.configureDaily.visibility = View.VISIBLE
             Timber.d("setupCheck Called")
             var minute: String = sharedPreferences.getInt("dn_min", 0).toString()
-            if(minute.toInt() <= 9)
+            if (minute.toInt() <= 9)
                 minute = "0$minute"
 
-            if(!NotificationHelper().checkIfExist(requireContext())){
+            if (!NotificationHelper().checkIfExist(requireContext())) {
                 NotificationHelper().scheduleRepeatingRTCNotification(requireContext(), sharedPreferences.getInt("dn_hour", 20), minute.toInt())
                 NotificationHelper().enableBootReceiver(requireContext())
             } else {
@@ -86,7 +86,7 @@ class SettingsFragment : Fragment() {
         binding.themedark.setOnCheckedChangeListener { _, isChecked ->
             Timber.d("themedark $isChecked")
             sharedPreferences.edit().putBoolean("themedark", isChecked).apply()
-            if(isChecked) {
+            if (isChecked) {
                 // Enable black theme
                 Aesthetic.config {
                     isDark(true)
@@ -132,9 +132,9 @@ class SettingsFragment : Fragment() {
         binding.dailynotification.setOnCheckedChangeListener { _, isChecked ->
             Timber.d("dailynotification $isChecked")
             sharedPreferences.edit().putBoolean("dailynotification", isChecked).apply()
-            if(isChecked) {
+            if (isChecked) {
                 // Enable notification
-                if(NotificationHelper().checkIfExist(requireContext())) {
+                if (NotificationHelper().checkIfExist(requireContext())) {
                     NotificationHelper().cancelAlarmRTC(requireContext())
                 }
                 NotificationHelper().scheduleRepeatingRTCNotification(requireContext(), 20, 0)
@@ -143,7 +143,7 @@ class SettingsFragment : Fragment() {
             } else {
                 // Disable notification
                 sharedPreferences.edit().remove("dn_hour").remove("dn_min").apply()
-                if(NotificationHelper().checkIfExist(requireContext())) {
+                if (NotificationHelper().checkIfExist(requireContext())) {
                     NotificationHelper().cancelAlarmRTC(requireContext())
                 }
                 NotificationHelper().disableBootReceiver(requireContext())
@@ -152,17 +152,17 @@ class SettingsFragment : Fragment() {
         }
     }
 
-    fun openDialog(v: View){
+    fun openDialog(v: View) {
         val calendar = Calendar.getInstance()
         TimePickerDialog(requireContext(), TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
             sharedPreferences.edit().putInt("dn_hour", hourOfDay).putInt("dn_min", minute).apply()
 
-            if(NotificationHelper().checkIfExist(requireContext())) {
+            if (NotificationHelper().checkIfExist(requireContext())) {
                 NotificationHelper().cancelAlarmRTC(requireContext())
             }
 
             setupCheck()
-        }, calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE), DateFormat.is24HourFormat(context)).show()
+        }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), DateFormat.is24HourFormat(context)).show()
     }
 
     fun back(v: View) {
@@ -170,7 +170,7 @@ class SettingsFragment : Fragment() {
     }
 
     fun gotoSync(v: View) {
-        if(user == null) {
+        if (user == null) {
             findNavController().navigate(SettingsFragmentDirections.actionSettingsNewFragmentToSettingsLogin())
         } else {
             findNavController().navigate(SettingsFragmentDirections.actionSettingsNewFragmentToSettingsSync())

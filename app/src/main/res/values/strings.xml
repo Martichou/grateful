@@ -2,63 +2,63 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name" translatable="false" tools:ignore="PrivateResource">Grateful</string>
 
-	<string name="welcome">Welcome !</string>
-	<string name="noneyet">No gratitude yet?\nStart by creating a new one.</string>
+    <string name="welcome">Welcome !</string>
+    <string name="noneyet">No gratitude yet?\nStart by creating a new one.</string>
 
     <string name="new_grateful_card">New grateful card title</string>
     <string name="new_grateful_card_message">Add details</string>
     <string name="create">Create</string>
 
-	<string name="write_here_the_message_you_want_for_this_note">Write down the message you want for this gratitude</string>
-	<string name="save">Save</string>
+    <string name="write_here_the_message_you_want_for_this_note">Write down the message you want for this gratitude</string>
+    <string name="save">Save</string>
 
-	<string name="image_of_your_dedicated_note">Image for your gratitude reminder</string>
+    <string name="image_of_your_dedicated_note">Image for your gratitude reminder</string>
 
-	<string name="settings">Settings</string>
-	<string name="today">Today</string>
+    <string name="settings">Settings</string>
+    <string name="today">Today</string>
 
-	<string name="enable_dark_theme">Enable black theme</string>
-	<string name="daily_reminder">Enable daily reminders</string>
-	<string name="privacy_policy">Privacy Policy</string>
-	<string name="scheduled_at">Scheduled at %1$s:%2$s</string>
-	<string name="daily_disabled">Daily reminder is currently disabled</string>
-	<string name="synchronization">Synchronization</string>
-	<string name="feel_free_to_custom_the_app_as_you_need_it_to_be">Feel free to custom the app as you need it to be</string>
-	<string name="setup_synchronization_with_the_cloud">Setup synchronization with the cloud</string>
+    <string name="enable_dark_theme">Enable black theme</string>
+    <string name="daily_reminder">Enable daily reminders</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="scheduled_at">Scheduled at %1$s:%2$s</string>
+    <string name="daily_disabled">Daily reminder is currently disabled</string>
+    <string name="synchronization">Synchronization</string>
+    <string name="feel_free_to_custom_the_app_as_you_need_it_to_be">Feel free to custom the app as you need it to be</string>
+    <string name="setup_synchronization_with_the_cloud">Setup synchronization with the cloud</string>
 
-	<string name="you_need_to_be_authentified_before_n_backing_up_your_data">You need to be authentified before\nbacking up your data</string>
-	<string name="send_code">Send code</string>
-	<string name="phone_number">Phone number</string>
-	<string name="start_backup">Start</string>
-	<string name="restore_data">Restore</string>
-	<string name="you_can_porcess_to_a_full_backup_right_now">You can process to a full backup right now</string>
-	<string name="password">Password</string>
+    <string name="you_need_to_be_authentified_before_n_backing_up_your_data">You need to be authentified before\nbacking up your data</string>
+    <string name="send_code">Send code</string>
+    <string name="phone_number">Phone number</string>
+    <string name="start_backup">Start</string>
+    <string name="restore_data">Restore</string>
+    <string name="you_can_porcess_to_a_full_backup_right_now">You can process to a full backup right now</string>
+    <string name="password">Password</string>
 
-	<string name="enter_title">Enter at least a title</string>
-	<string name="set_image">Please select an image</string>
-	<string name="cant_get_place">Can\'t get place name</string>
+    <string name="enter_title">Enter at least a title</string>
+    <string name="set_image">Please select an image</string>
+    <string name="cant_get_place">Can\'t get place name</string>
 
-	<string name="already_today">Already showing today\'s gratitude</string>
-	<string name="add_first">Add a gratitude first</string>
+    <string name="already_today">Already showing today\'s gratitude</string>
+    <string name="add_first">Add a gratitude first</string>
 
-	<string name="delete_this">Delete this gratitude ?</string>
-	<string name="delete">Delete</string>
-	<string name="cant_be_undone">This action can\'t be undone, think twice before hitting \'Yes\'</string>
-	<string name="yes">Yes</string>
-	<string name="no">No</string>
-	<string name="wrong_number">Wrong number</string>
-	<string name="wrong_password">You\'ve used an incorrect password</string>
-	<string name="retry">Retry</string>
-	<string name="continu">Continue</string>
-	<string name="success">Success !</string>
-	<string name="error">Error…</string>
-	<string name="provide_a_phone_number">You must provide a phone number to continue</string>
-	<string name="code_sent_by_sms">Enter the code sent received by SMS</string>
-	<string name="no_previous_backup">No previous backup</string>
-	<string name="enter_password_to_encrypt">Enter a password to encrypt your data</string>
-	<string name="enter_password_to_decrypt">Enter your password to decrypt your data</string>
-	<string name="you_must_enter_password">You must enter a password</string>
-	<string name="last_backup_done">Last backup done:\n%1$s</string>
+    <string name="delete_this">Delete this gratitude ?</string>
+    <string name="delete">Delete</string>
+    <string name="cant_be_undone">This action can\'t be undone, think twice before hitting \'Yes\'</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="wrong_number">Wrong number</string>
+    <string name="wrong_password">You\'ve used an incorrect password</string>
+    <string name="retry">Retry</string>
+    <string name="continu">Continue</string>
+    <string name="success">Success !</string>
+    <string name="error">Error…</string>
+    <string name="provide_a_phone_number">You must provide a phone number to continue</string>
+    <string name="code_sent_by_sms">Enter the code sent received by SMS</string>
+    <string name="no_previous_backup">No previous backup</string>
+    <string name="enter_password_to_encrypt">Enter a password to encrypt your data</string>
+    <string name="enter_password_to_decrypt">Enter your password to decrypt your data</string>
+    <string name="you_must_enter_password">You must enter a password</string>
+    <string name="last_backup_done">Last backup done:\n%1$s</string>
     <string name="edit">Edit</string>
     <string name="define">Define</string>
 </resources>

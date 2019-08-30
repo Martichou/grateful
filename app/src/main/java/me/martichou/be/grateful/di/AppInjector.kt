@@ -21,7 +21,10 @@ object AppInjector {
         DaggerAppComponent.builder().application(app)
                 .build().inject(app)
         app.registerActivityLifecycleCallbacks(object : Application.ActivityLifecycleCallbacks {
-            override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) { handleActivity(activity) }
+            override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
+                handleActivity(activity)
+            }
+
             override fun onActivityStarted(activity: Activity) {}
             override fun onActivityResumed(activity: Activity) {}
             override fun onActivityPaused(activity: Activity) {}
@@ -32,20 +35,22 @@ object AppInjector {
     }
 
     private fun handleActivity(activity: Activity) {
-        if (activity is HasSupportFragmentInjector) { AndroidInjection.inject(activity) }
+        if (activity is HasSupportFragmentInjector) {
+            AndroidInjection.inject(activity)
+        }
         if (activity is FragmentActivity) {
             activity.supportFragmentManager.registerFragmentLifecycleCallbacks(
-                object : FragmentManager.FragmentLifecycleCallbacks() {
-                    override fun onFragmentCreated(
-                        fm: FragmentManager,
-                        f: Fragment,
-                        savedInstanceState: Bundle?
-                    ) {
-                        if (f is Injectable) {
-                            AndroidSupportInjection.inject(f)
+                    object : FragmentManager.FragmentLifecycleCallbacks() {
+                        override fun onFragmentCreated(
+                                fm: FragmentManager,
+                                f: Fragment,
+                                savedInstanceState: Bundle?
+                        ) {
+                            if (f is Injectable) {
+                                AndroidSupportInjection.inject(f)
+                            }
                         }
-                    }
-                }, true
+                    }, true
             )
         }
     }

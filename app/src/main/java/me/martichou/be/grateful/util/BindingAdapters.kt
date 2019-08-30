@@ -36,8 +36,8 @@ fun AppCompatImageView.imageFromFile(imageUrl: String?, listener: RequestListene
  * Hide textView if empty
  */
 @BindingAdapter("isGone")
-fun View.isGone(content: String?){
-    if(content.isNullOrEmpty())
+fun View.isGone(content: String?) {
+    if (content.isNullOrEmpty())
         this.visibility = View.GONE
     else
         this.visibility = View.VISIBLE
@@ -48,7 +48,7 @@ fun View.isGone(content: String?){
  */
 @BindingAdapter("textIsEmpty")
 fun TextView.textIsEmpty(content: String?) {
-    if(content.isNullOrEmpty()) {
+    if (content.isNullOrEmpty()) {
         val arr: Array<String> = arrayOf(
                 "\"One day I will find the right words, and they will be simple.\" \n- Jack Kerouac",
                 "\"Words can be like X-rays if you use them properly -- they'll go through anything. You read and you're pierced.\" \n- Aldous Huxley",

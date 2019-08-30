@@ -10,7 +10,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
@@ -42,7 +41,7 @@ class ShowEditFragment : Fragment(), Injectable {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        editViewModel =ViewModelProvider(this, viewModelFactory).get(EditViewModel::class.java).also {
+        editViewModel = ViewModelProvider(this, viewModelFactory).get(EditViewModel::class.java).also {
             it.setNote(params.noteId)
         }
         // Bind databinding val
@@ -62,10 +61,10 @@ class ShowEditFragment : Fragment(), Injectable {
     private fun setupListener() {
         binding.editnoteTitle.addTextChangedListener {
             Timber.d("Edittitle changed")
-            if(binding.cvSaving.visibility == View.INVISIBLE
+            if (binding.cvSaving.visibility == View.INVISIBLE
                     && binding.editnoteTitle.text.toString() != editViewModel.note.value?.title) {
                 binding.cvSaving.visibility = View.VISIBLE
-            } else if(binding.cvSaving.visibility == View.VISIBLE
+            } else if (binding.cvSaving.visibility == View.VISIBLE
                     && binding.editnoteTitle.text.toString() == editViewModel.note.value?.title
                     && binding.editnoteContent.text.toString() == editViewModel.note.value?.content) {
                 binding.cvSaving.visibility = View.INVISIBLE
@@ -73,10 +72,10 @@ class ShowEditFragment : Fragment(), Injectable {
         }
         binding.editnoteContent.addTextChangedListener {
             Timber.d("Editcontent changed")
-            if(binding.cvSaving.visibility == View.INVISIBLE
+            if (binding.cvSaving.visibility == View.INVISIBLE
                     && binding.editnoteContent.text.toString() != editViewModel.note.value?.content) {
                 binding.cvSaving.visibility = View.VISIBLE
-            } else if(binding.cvSaving.visibility == View.VISIBLE
+            } else if (binding.cvSaving.visibility == View.VISIBLE
                     && binding.editnoteContent.text.toString() == editViewModel.note.value?.content
                     && binding.editnoteTitle.text.toString() == editViewModel.note.value?.title) {
                 binding.cvSaving.visibility = View.INVISIBLE
@@ -84,7 +83,7 @@ class ShowEditFragment : Fragment(), Injectable {
         }
         unregistrar = KeyboardVisibilityEvent.registerEventListener(activity) {
             Timber.d("IsKeyboardOpened $it")
-            if(it) {
+            if (it) {
                 binding.editDelete.visibility = View.GONE
             } else {
                 binding.editDelete.visibility = View.VISIBLE
@@ -118,8 +117,8 @@ class ShowEditFragment : Fragment(), Injectable {
                         editViewModel.deleteNote()
                     }
                     findNavController().navigate(ShowEditFragmentDirections.actionEditFragmentToMainFragment())
-                }.setNegativeButton( resources.getString(R.string.no)) {
-                    dialog, _ -> dialog.dismiss()
+                }.setNegativeButton(resources.getString(R.string.no)) { dialog, _ ->
+                    dialog.dismiss()
                 }.show()
     }
 

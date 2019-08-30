@@ -15,9 +15,9 @@ class AppModule {
     @Provides
     fun provideDb(app: Application): AppDatabase {
         return Room
-            .databaseBuilder(app, AppDatabase::class.java, "notes")
-            .addMigrations(AppDatabase.MIGRATION_1_2)
-            .build()
+                .databaseBuilder(app, AppDatabase::class.java, "notes")
+                .addMigrations(AppDatabase.MIGRATION_1_2)
+                .build()
     }
 
     @Singleton

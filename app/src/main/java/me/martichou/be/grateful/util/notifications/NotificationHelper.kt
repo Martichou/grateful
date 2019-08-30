@@ -29,10 +29,10 @@ class NotificationHelper {
         val currMin = calendar.get(Calendar.MINUTE)
         calendar.timeInMillis = System.currentTimeMillis()
         Timber.d("Current hour $currHr")
-        if(currHr > hour){
+        if (currHr > hour) {
             Timber.d("Date added")
             calendar.add(Calendar.DATE, 1)
-        } else if (currHr == hour && abs(min-currMin) >= 1) {
+        } else if (currHr == hour && abs(min - currMin) >= 1) {
             Timber.d("Date added")
             calendar.add(Calendar.DATE, 1)
         }
@@ -41,7 +41,7 @@ class NotificationHelper {
         calendar.set(Calendar.SECOND, 0)
 
         val intent = Intent(context, AlarmReceiver::class.java)
-        alarmIntentRTC = PendingIntent.getBroadcast(context,0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        alarmIntentRTC = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
         alarmManagerRTC = context.getSystemService(ALARM_SERVICE) as AlarmManager
         alarmManagerRTC!!.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, AlarmManager.INTERVAL_DAY, alarmIntentRTC)
         Timber.d("scheduleRepeatingRTCNotification enabled")

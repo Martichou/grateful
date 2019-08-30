@@ -12,7 +12,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.mapbox.mapboxsdk.Mapbox
@@ -27,8 +26,6 @@ import me.martichou.be.grateful.di.Injectable
 import me.martichou.be.grateful.util.CompressImage
 import me.martichou.be.grateful.util.PlacePicker
 import me.martichou.be.grateful.vo.Notes
-import org.json.JSONObject
-import org.json.JSONStringer
 import timber.log.Timber
 import java.io.File
 import java.util.*
@@ -71,7 +68,7 @@ open class AddMainFragment : BottomSheetDialogFragment(), Injectable {
         Timber.d("Called")
         Timber.d("Idk ${addViewModel.hasBeenSaved}")
         Timber.d("Idk2 ${addViewModel.hasPhoto}")
-        if(!addViewModel.hasBeenSaved && addViewModel.hasPhoto){
+        if (!addViewModel.hasBeenSaved && addViewModel.hasPhoto) {
             Timber.d("Passed into")
             CoroutineScope(Dispatchers.IO).launch {
                 val imageFile = File(storageDir, addViewModel.randomImageName)
@@ -100,7 +97,7 @@ open class AddMainFragment : BottomSheetDialogFragment(), Injectable {
         val metrics = requireContext().resources!!.displayMetrics
         CropImage.activity()
                 .setGuidelines(CropImageView.Guidelines.ON)
-                .setAspectRatio(metrics.widthPixels,  metrics.heightPixels/2)
+                .setAspectRatio(metrics.widthPixels, metrics.heightPixels / 2)
                 .setAllowRotation(true)
                 .start(requireContext(), this)
     }
@@ -111,9 +108,9 @@ open class AddMainFragment : BottomSheetDialogFragment(), Injectable {
     fun openMapsSelector(v: View) {
         Mapbox.getAccessToken()?.let {
             startActivityForResult(
-                PlacePicker.IntentBuilder()
-                    .accessToken(it)
-                .build(requireActivity()), placePicker)
+                    PlacePicker.IntentBuilder()
+                            .accessToken(it)
+                            .build(requireActivity()), placePicker)
         }
     }
 
@@ -148,7 +145,7 @@ open class AddMainFragment : BottomSheetDialogFragment(), Injectable {
             placePicker -> {
                 if (resultCode == AppCompatActivity.RESULT_OK) {
                     val carmenFeature = PlacePicker.getPlace(data)
-                    if(carmenFeature?.context() == null) {
+                    if (carmenFeature?.context() == null) {
                         Toast.makeText(context, "Cannot retreive place name, try again", Toast.LENGTH_LONG).show()
                     } else {
                         var city: String? = null
@@ -163,8 +160,8 @@ open class AddMainFragment : BottomSheetDialogFragment(), Injectable {
                             }
                         }
 
-                        if(country != null){
-                            if(city == null){
+                        if (country != null) {
+                            if (city == null) {
                                 addViewModel.placeCity = "$country"
                                 Toast.makeText(context, "$country", Toast.LENGTH_LONG).show()
                             } else {
@@ -190,14 +187,14 @@ open class AddMainFragment : BottomSheetDialogFragment(), Injectable {
             if (titleOfTheNote.isNotEmpty()) run {
                 addViewModel.hasBeenSaved = true
                 addViewModel.insertNote(
-                    Notes(
-                        titleOfTheNote,
-                        binding.addContentNoteBs.text.toString(),
-                        addViewModel.randomImageName,
-                        addViewModel.dateDefaultOrNot(),
-                        addViewModel.dateOrNot(),
-                        addViewModel.locOrNot()
-                    )
+                        Notes(
+                                titleOfTheNote,
+                                binding.addContentNoteBs.text.toString(),
+                                addViewModel.randomImageName,
+                                addViewModel.dateDefaultOrNot(),
+                                addViewModel.dateOrNot(),
+                                addViewModel.locOrNot()
+                        )
                 )
                 dismiss()
             } else {
