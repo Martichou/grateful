@@ -22,18 +22,31 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import com.mapbox.api.geocoding.v5.MapboxGeocoding
+import com.mapbox.api.geocoding.v5.models.GeocodingResponse
+import com.mapbox.mapboxsdk.Mapbox
+import com.mapbox.mapboxsdk.camera.CameraPosition
+import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
+import com.mapbox.mapboxsdk.geometry.LatLng
+import com.mapbox.mapboxsdk.maps.MapboxMap
+import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
+import com.mapbox.mapboxsdk.maps.Style
 import com.stfalcon.imageviewer.StfalconImageViewer
+import kotlinx.android.synthetic.main.fragment_showmain.*
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.databinding.FragmentShowmainBinding
 import me.martichou.be.grateful.di.Injectable
 import me.martichou.be.grateful.util.GlideApp
 import me.martichou.be.grateful.util.statusBarTrans
 import me.martichou.be.grateful.util.statusBarWhite
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import timber.log.Timber
 import java.io.File
 import javax.inject.Inject
 
-class ShowMainFragment : Fragment(), Injectable {
+class ShowMainFragment : Fragment(), Injectable, OnMapReadyCallback {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -41,6 +54,11 @@ class ShowMainFragment : Fragment(), Injectable {
     private val params by navArgs<ShowMainFragmentArgs>()
     private lateinit var binding: FragmentShowmainBinding
     private var handler = Handler(Looper.getMainLooper())
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Mapbox.getInstance(requireContext(), resources.getString(R.string.mapbox_apikey))
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentShowmainBinding.inflate(inflater, container, false)
@@ -64,6 +82,43 @@ class ShowMainFragment : Fragment(), Injectable {
         return binding.root
     }
 
+    override fun onMapReady(mapboxMap: MapboxMap) {
+        mapboxMap.setStyle(Style.DARK) {
+
+            Timber.d("Searching for ${showViewModel.note.value!!.location}")
+
+            val mapboxGeocoding = MapboxGeocoding.builder()
+                    .accessToken(Mapbox.getAccessToken()!!)
+                    .query(showViewModel.note.value!!.location)
+                    .build()
+
+            mapboxGeocoding.enqueueCall(object : Callback<GeocodingResponse> {
+                override fun onResponse(call: Call<GeocodingResponse>, response: Response<GeocodingResponse>) {
+                    val results = response.body()!!.features()
+                    if (results.size > 0) {
+                        // Log the first results Point.
+                        val firstResultPoint = results[0].center()!!.coordinates()
+                        Timber.d("onResponse: $firstResultPoint")
+
+                        val position = CameraPosition.Builder()
+                                .target(LatLng(firstResultPoint[1], firstResultPoint[0]))
+                                .zoom(13.0)
+                                .build()
+
+                        mapboxMap.animateCamera(CameraUpdateFactory
+                                .newCameraPosition(position), 7000)
+                    } else {
+                        Timber.d("onResponse: No result found")
+                    }
+                }
+
+                override fun onFailure(call: Call<GeocodingResponse>, throwable: Throwable) {
+                    throwable.printStackTrace()
+                }
+            })
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         showViewModel = ViewModelProvider(this, viewModelFactory).get(ShowViewModel::class.java).also {
             it.setNote(params.noteId)
@@ -73,6 +128,9 @@ class ShowMainFragment : Fragment(), Injectable {
         binding.showModel = showViewModel
         binding.args = params
         binding.hdl = this
+
+        binding.mapView.onCreate(savedInstanceState)
+        binding.mapView.getMapAsync(this)
     }
 
     /**
@@ -81,13 +139,45 @@ class ShowMainFragment : Fragment(), Injectable {
     override fun onResume() {
         Timber.d("onResume called")
         statusBarTrans(activity)
+        binding.mapView.onResume()
         super.onResume()
     }
 
     override fun onPause() {
         Timber.d("onPause called")
         statusBarWhite(activity)
+        binding.mapView.onPause()
         super.onPause()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding.mapView.onDestroy()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        binding.mapView.onStart()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        binding.mapView.onStop()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        binding.mapView.onSaveInstanceState(outState)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding.mapView.onDestroy()
+    }
+
+    override fun onLowMemory() {
+        super.onLowMemory()
+        binding.mapView.onLowMemory()
     }
 
     /**

@@ -114,9 +114,7 @@ class AddLocalizationActivity : AppCompatActivity(), OnMapReadyCallback, MapboxM
 
     private fun makeReverseGeocodingSearch() {
         val latLng = mapboxMap!!.cameraPosition.target
-        viewModel!!.reverseGeocode(
-                Point.fromLngLat(latLng.longitude, latLng.latitude), accessToken, null
-        )
+        viewModel!!.reverseGeocode(Point.fromLngLat(latLng.longitude, latLng.latitude), accessToken, null)
     }
 
     private fun addChosenLocationButton() {
