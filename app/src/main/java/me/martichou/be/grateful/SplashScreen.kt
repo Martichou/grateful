@@ -11,8 +11,8 @@ class SplashScreen : AppCompatActivity() {
 
     private val mRunnable = {
         if (!isFinishing) {
-            val intent = Intent(applicationContext, MainActivity::class.java)
-            startActivity(intent)
+            val intent = Intent(this, MainActivity::class.java)
+            startActivityForResult(intent, 0)
 
             mDelayHandler.postDelayed({ finish() }, 150)
         }

@@ -21,8 +21,8 @@ import java.util.*
 @BindingAdapter("imageFromFile", "imageRequestListener", requireAll = false)
 fun AppCompatImageView.imageFromFile(imageUrl: String?, listener: RequestListener<Drawable>?) {
     if (!imageUrl.isNullOrEmpty()) {
-        GlideApp.with(context)
-                .load(File(context.getDir("imgForNotes", Context.MODE_PRIVATE), imageUrl))
+        GlideApp.with(this)
+                .load(File(this.context.getDir("imgForNotes", Context.MODE_PRIVATE), imageUrl))
                 .override(this.measuredWidth, this.measuredHeight)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .thumbnail(0.1f)
@@ -74,7 +74,7 @@ fun AppCompatTextView.showDayNbr(content: String) {
 /**
  * Transform dd/MM/yyyy to E which is day name like Wed
  */
-@SuppressLint("SetTextI18n")
+@SuppressLint("SetTextI18n", "DefaultLocale")
 @BindingAdapter("showMonthName")
 fun AppCompatTextView.showMonthName(content: String) {
     val parsed = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).parse(content)

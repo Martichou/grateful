@@ -33,6 +33,7 @@ class SettingsFragment : Fragment() {
 
     // TODO Exclude arrow
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        super.onCreateView(inflater, container, savedInstanceState)
         binding = FragmentSettingsBinding.inflate(inflater, container, false)
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
         mAuth = FirebaseAuth.getInstance()
@@ -41,9 +42,11 @@ class SettingsFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        // Bind databinding val
-        binding.lifecycleOwner = viewLifecycleOwner
-        binding.hdl = this
+        super.onViewCreated(view, savedInstanceState)
+        binding.apply {
+            lifecycleOwner = viewLifecycleOwner
+            hdl = this@SettingsFragment
+        }
 
         setupSwitch()
         setupCheck()
@@ -51,9 +54,8 @@ class SettingsFragment : Fragment() {
     }
 
     override fun onResume() {
-        user = mAuth.currentUser
-        Timber.d("UID: ${mAuth.uid}")
         super.onResume()
+        user = mAuth.currentUser
     }
 
     private fun setupSwitch() {

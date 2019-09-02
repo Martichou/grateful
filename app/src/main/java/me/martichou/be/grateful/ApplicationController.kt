@@ -7,6 +7,7 @@ import com.mapbox.mapboxsdk.Mapbox
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import dagger.android.HasServiceInjector
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import me.martichou.be.grateful.di.AppInjector
 import timber.log.Timber
 import javax.inject.Inject
@@ -19,6 +20,7 @@ class ApplicationController : Application(), HasActivityInjector, HasServiceInje
     @Inject
     lateinit var dispatchingServiceInjector: DispatchingAndroidInjector<Service>
 
+    @ExperimentalCoroutinesApi
     override fun onCreate() {
         super.onCreate()
         if (BuildConfig.DEBUG) {

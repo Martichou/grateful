@@ -44,16 +44,10 @@ class NotesAdapter : ListAdapter<Notes, NotesAdapter.ViewHolder>(NotesDiffCallba
                 note = item
                 executePendingBindings()
             }
-            Timber.d("Notes ID: ${item.id}")
         }
     }
 
     interface OnNoteItemClickListener {
         fun onNoteItemClick(rootView: View, notes: Notes)
-    }
-
-    companion object {
-        private const val TYPE_DATE = 1
-        private const val TYPE_SCDDATE = 2
     }
 }

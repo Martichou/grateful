@@ -35,32 +35,35 @@ class ShowEditFragment : Fragment(), Injectable {
     private lateinit var unregistrar: Unregistrar
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        super.onCreateView(inflater, container, savedInstanceState)
         binding = FragmentShoweditBinding.inflate(inflater, container, false)
 
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         editViewModel = ViewModelProvider(this, viewModelFactory).get(EditViewModel::class.java).also {
             it.setNote(params.noteId)
         }
-        // Bind databinding val
-        binding.lifecycleOwner = viewLifecycleOwner
-        binding.editModel = editViewModel
-        binding.hdl = this
+
+        binding.apply {
+            lifecycleOwner = viewLifecycleOwner
+            editModel = editViewModel
+            hdl = this@ShowEditFragment
+        }
 
         setupListener()
     }
 
     override fun onPause() {
-        unregistrar.unregister()
         super.onPause()
+        unregistrar.unregister()
     }
 
     @SuppressLint("RestrictedApi")
     private fun setupListener() {
         binding.editnoteTitle.addTextChangedListener {
-            Timber.d("Edittitle changed")
             if (binding.cvSaving.visibility == View.INVISIBLE
                     && binding.editnoteTitle.text.toString() != editViewModel.note.value?.title) {
                 binding.cvSaving.visibility = View.VISIBLE
@@ -71,7 +74,6 @@ class ShowEditFragment : Fragment(), Injectable {
             }
         }
         binding.editnoteContent.addTextChangedListener {
-            Timber.d("Editcontent changed")
             if (binding.cvSaving.visibility == View.INVISIBLE
                     && binding.editnoteContent.text.toString() != editViewModel.note.value?.content) {
                 binding.cvSaving.visibility = View.VISIBLE
@@ -82,7 +84,6 @@ class ShowEditFragment : Fragment(), Injectable {
             }
         }
         unregistrar = KeyboardVisibilityEvent.registerEventListener(activity) {
-            Timber.d("IsKeyboardOpened $it")
             if (it) {
                 binding.editDelete.visibility = View.GONE
             } else {
@@ -107,7 +108,6 @@ class ShowEditFragment : Fragment(), Injectable {
                         val imageFile = File(context!!.getDir("imgForNotes", Context.MODE_PRIVATE), editViewModel.note.value!!.image)
                         if (imageFile.exists()) {
                             val deleted = imageFile.delete()
-                            Timber.d("Deleting")
                             if (!deleted) {
                                 Timber.e("Cannot delete the file..")
                             } else {
@@ -130,7 +130,6 @@ class ShowEditFragment : Fragment(), Injectable {
             editViewModel.updateNote(binding.editnoteTitle.text.toString(), binding.editnoteContent.text.toString())
             findNavController().popBackStack()
         } else {
-            Timber.d("Happen")
             Snackbar.make(binding.root, resources.getString(R.string.enter_title), Snackbar.LENGTH_SHORT).show()
         }
     }

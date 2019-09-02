@@ -46,14 +46,17 @@ kapt {
 }
 
 ext {
-    lifecycle = '2.2.0-alpha02'
+    lifecycle = '2.2.0-alpha03'
+    koin = "1.0.2"
+    glide = '4.9.0'
     coroutines = '1.1.1'
+    firebase = '16.0.8'
     imgcropper = '2.7.0'
     timber = '4.7.1'
-    supportLibraryVersion = '1.1.0-beta01'
-    constraintLyt = '2.0.0-beta2'
-    roomVersion = '2.2.0-alpha01'
-    preference = '1.1.0-rc01'
+    supportLibraryVersion = '1.1.0-alpha05'
+    constraintLyt = '2.0.0-alpha5'
+    roomVersion = '2.1.0-beta01'
+    preference = '1.1.0-alpha05'
     retrofit2_version = "2.5.0"
     okhttp3_version = "3.12.0"
     daggerVer = "2.22.1"
@@ -76,9 +79,12 @@ dependencies {
     kapt 'androidx.room:room-compiler:2.2.0-beta01'
     implementation 'androidx.appcompat:appcompat:1.1.0-rc01'
     implementation 'androidx.recyclerview:recyclerview:1.1.0-beta03'
-    implementation "androidx.constraintlayout:constraintlayout:$constraintLyt"
-    implementation "androidx.constraintlayout:constraintlayout-solver:$constraintLyt"
-    implementation "androidx.preference:preference-ktx:$preference"
+
+    // Don't update the these two one, cause glitch in shared animation for weird reasons
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha5'
+    implementation 'androidx.constraintlayout:constraintlayout-solver:2.0.0-alpha5'
+
+    implementation 'androidx.preference:preference-ktx:1.1.0-rc01'
     implementation "androidx.fragment:fragment:1.2.0-alpha02"
     implementation "androidx.navigation:navigation-fragment-ktx:$rootProject.navigationVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$rootProject.navigationVersion"
@@ -93,12 +99,12 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:4.1.0'
 
     // Architecture components
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0-alpha03'
-    implementation 'androidx.lifecycle:lifecycle-common-java8:2.2.0-alpha03'
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle"
 
     // Glide
-    implementation 'com.github.bumptech.glide:glide:4.9.0'
-    kapt 'com.github.bumptech.glide:compiler:4.9.0'
+    implementation "com.github.bumptech.glide:glide:$glide"
+    kapt "com.github.bumptech.glide:compiler:$glide"
 
     // Timber
     implementation "com.jakewharton.timber:timber:$timber"
@@ -112,7 +118,7 @@ dependencies {
     kapt "com.google.dagger:dagger-android-support:$daggerVer"
 
     // Firebase needed
-    implementation 'com.google.firebase:firebase-core:17.1.0'
+    implementation 'com.google.firebase:firebase-core:17.2.0'
     implementation 'com.google.firebase:firebase-auth:19.0.0'
     implementation 'com.google.firebase:firebase-firestore:21.0.0'
     implementation 'com.google.firebase:firebase-storage:19.0.0'
@@ -142,7 +148,7 @@ dependencies {
     // Keyboard visibility
     implementation 'net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:2.3.0'
 
-    // Otto used for servce - fragment
+    // Otto used for service - fragment
     implementation 'com.squareup:otto:1.3.8'
 
     // Testing unit

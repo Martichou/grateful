@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.doOnLayout
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
@@ -40,74 +41,64 @@ class HomeMainFragment : Fragment(), androidx.appcompat.widget.Toolbar.OnMenuIte
     private var binding by autoCleared<FragmentHomemainBinding>()
     private var adapter by autoCleared<NotesAdapter>()
 
+    private var opening = false
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = FragmentHomemainBinding.inflate(inflater, container, false)
+        super.onCreateView(inflater, container, savedInstanceState)
+        binding = FragmentHomemainBinding.inflate(inflater, container, false).apply {
+            // Setup toolbar menu item click listener
+            // Don't know why setHasOptionMenu don't work
+            toolbar.setOnMenuItemClickListener(this@HomeMainFragment)
+
+            recentNotesList.setHasFixedSize(true)
+            recentNotesList.addItemDecoration(DividerRV(requireContext()))
+        }
 
         sharedElementReturnTransition = TransitionInflater.from(context).inflateTransition(R.transition.move).apply {
             duration = 300
             interpolator = FastOutSlowInInterpolator()
         }
 
+        // Wait RecyclerView layout for detail to list image return animation
+        postponeEnterTransition()
+        binding.recentNotesList.doOnLayout {
+            startPostponedEnterTransition()
+        }
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         mainViewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
-        // Bind databinding val
-        binding.lifecycleOwner = viewLifecycleOwner
-        binding.thisVm = mainViewModel
-        binding.hdl = this
-
-        // Prepare recyclerview and bind
-        binding.recentNotesList.setHasFixedSize(true)
-        binding.recentNotesList.addItemDecoration(DividerRV(requireContext()))
-
         // Set adapter to the recyclerview once other things are set
-        this.adapter = NotesAdapter()
-        binding.recentNotesList.adapter = adapter
+        adapter = NotesAdapter()
 
-        // Wait RecyclerView layout for detail to list image return animation
-        postponeEnterTransition()
-        binding.recentNotesList.viewTreeObserver.addOnPreDrawListener {
-            startPostponedEnterTransition()
-            true
+        binding.apply {
+            thisVm = mainViewModel
+            recentNotesList.adapter = adapter
+            lifecycleOwner = viewLifecycleOwner
+            hdl = this@HomeMainFragment
         }
 
-        // Setup toolbar menu item click listener
-        // Don't know why setHasOptionMenu don't work
-        binding.toolbar.setOnMenuItemClickListener(this)
-
-        // Check notification
-        checkForNotification()
-
         // Subscribe adapter
-        subscribeUirecentNotesList(this.adapter)
+        subscribeUirecentNotesList(adapter)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        opening = false
     }
 
     /**
      * Handle click on menu item
      */
     override fun onMenuItemClick(it: MenuItem): Boolean {
-        Timber.d("Clicked")
         when (it.itemId) {
             R.id.menu_main_today -> gototop()
             R.id.menu_main_setting -> openSettings()
         }
         return true
-    }
-
-    /**
-     * Check if it's needed to enable notification
-     */
-    private fun checkForNotification() {
-        if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean("dailynotification", true)) {
-            if (!NotificationHelper().checkIfExist(requireContext())) {
-                NotificationHelper().scheduleRepeatingRTCNotification(requireContext(),
-                        PreferenceManager.getDefaultSharedPreferences(context).getInt("dn_hour", 20),
-                        PreferenceManager.getDefaultSharedPreferences(context).getInt("dn_min", 0))
-                NotificationHelper().enableBootReceiver(requireContext())
-            }
-        }
     }
 
     /**
@@ -143,19 +134,24 @@ class HomeMainFragment : Fragment(), androidx.appcompat.widget.Toolbar.OnMenuIte
                         .show()
             } else {
                 adapter.submitList(notes)
-                binding.loadingUi.visibility = View.GONE
-                binding.nonethinking.visibility = View.GONE
+                binding.apply {
+                    loadingUi.visibility = View.GONE
+                    nonethinking.visibility = View.GONE
+                }
             }
         })
 
         // Handle click on item list
         adapter.openNote.observe(viewLifecycleOwner, EventObserver { pair ->
-            val direction = HomeMainFragmentDirections.actionNoteListFragmentToNoteDetailFragment(pair.first.id)
-            DataBindingUtil.getBinding<RecyclerviewHomeitemBinding>(pair.second)?.let {
-                val navigatorExtras = FragmentNavigatorExtras(it.showImageNote to pair.first.id.toString())
-                findNavController().navigate(direction, navigatorExtras)
-            } ?: run {
-                findNavController().navigate(direction)
+            if (!opening) {
+                opening = true
+                val direction = HomeMainFragmentDirections.actionNoteListFragmentToNoteDetailFragment(pair.first.id)
+                DataBindingUtil.getBinding<RecyclerviewHomeitemBinding>(pair.second)?.let {
+                    val navigatorExtras = FragmentNavigatorExtras(it.showImageNote to pair.first.id.toString())
+                    findNavController().navigate(direction, navigatorExtras)
+                } ?: run {
+                    findNavController().navigate(direction)
+                }
             }
         })
     }
@@ -173,7 +169,6 @@ class HomeMainFragment : Fragment(), androidx.appcompat.widget.Toolbar.OnMenuIte
      */
     private fun gototop() {
         val item = (binding.recentNotesList.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
-        Timber.d("Item $item")
         when (item) {
             0 -> Snackbar.make(binding.root, resources.getString(R.string.already_today), Snackbar.LENGTH_SHORT).show()
             -1 -> Snackbar.make(binding.root, resources.getString(R.string.add_first), Snackbar.LENGTH_SHORT).show()

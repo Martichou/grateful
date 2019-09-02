@@ -38,16 +38,11 @@ open class AddMainFragment : BottomSheetDialogFragment(), Injectable {
     private lateinit var addViewModel: AddViewModel
     private lateinit var binding: FragmentAddmainBinding
 
-    private lateinit var c: Context
     private lateinit var storageDir: File
     private val placePicker = 548
 
-    override fun onAttach(context: Context) {
-        c = context
-        super.onAttach(context)
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        super.onCreateView(inflater, container, savedInstanceState)
         binding = FragmentAddmainBinding.inflate(inflater, container, false)
 
         return binding.root
@@ -55,28 +50,23 @@ open class AddMainFragment : BottomSheetDialogFragment(), Injectable {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         addViewModel = ViewModelProvider(this, viewModelFactory).get(AddViewModel::class.java)
-        // Bind databinding val
-        binding.lifecycleOwner = viewLifecycleOwner
-        binding.hdl = this
-        // Storage dir
-        storageDir = c.getDir("imgForNotes", Context.MODE_PRIVATE)
+
+        binding.apply {
+            lifecycleOwner = viewLifecycleOwner
+            hdl = this@AddMainFragment
+        }
+
+        storageDir = context!!.getDir("imgForNotes", Context.MODE_PRIVATE)
     }
 
     override fun getTheme(): Int = R.style.BottomSheetDialogTheme
 
     override fun onDismiss(dialog: DialogInterface) {
-        Timber.d("Called")
-        Timber.d("Idk ${addViewModel.hasBeenSaved}")
-        Timber.d("Idk2 ${addViewModel.hasPhoto}")
         if (!addViewModel.hasBeenSaved && addViewModel.hasPhoto) {
-            Timber.d("Passed into")
             CoroutineScope(Dispatchers.IO).launch {
                 val imageFile = File(storageDir, addViewModel.randomImageName)
-                Timber.d("Into into ${imageFile.absolutePath}")
                 if (imageFile.exists()) {
-                    Timber.d("Second into")
                     val deleted = imageFile.delete()
-                    Timber.d("Deleting")
                     if (!deleted) {
                         Timber.e("Cannot delete the file..")
                     } else {
@@ -150,9 +140,7 @@ open class AddMainFragment : BottomSheetDialogFragment(), Injectable {
                     } else {
                         var city: String? = null
                         var country: String? = null
-                        Timber.d("Localisation is ${carmenFeature.toJson()}")
                         carmenFeature.context()!!.forEach {
-                            Timber.d("Carmen Localisation $it")
                             when {
                                 it.id()!!.contains("locality", false) -> city = it.text()
                                 it.id()!!.contains("place", false) && city == null -> city = it.text()

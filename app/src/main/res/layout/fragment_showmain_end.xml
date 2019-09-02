@@ -2,7 +2,7 @@
 <androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/motionLayout"
+    android:id="@id/motionLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -11,30 +11,13 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@id/coverImage"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:id="@+id/bgView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/guideline1" />
-
-    <com.mapbox.mapboxsdk.maps.MapView
-        android:id="@+id/mapView"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/contentText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@id/guideline1"
@@ -42,5 +25,82 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.03" />
+
+    <View
+        android:id="@id/bgView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline1" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/titleTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:gravity="start|center_vertical"
+        android:textAlignment="viewStart"
+        android:textColor="?android:textColorPrimary"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/bgView"
+        app:layout_constraintTop_toBottomOf="@id/guideline1"
+        tools:text="Title goes here" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/dateTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="start|center_vertical"
+        android:textAlignment="viewStart"
+        android:textColor="?android:textColorSecondaryInverse"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@id/bgView"
+        app:layout_constraintTop_toBottomOf="@id/titleTextView"
+        tools:drawableTint="#666"
+        tools:targetApi="m"
+        tools:text="On the 26 january 2019"
+        tools:textColor="#666" />
+
+    <!-- To check - MULTILINES -->
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@id/contentText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:textColor="?android:textColorSecondaryInverse"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dateTextView"
+        app:layout_constraintBottom_toTopOf="@id/guideline2"
+        tools:text="Lorem ipsum ziqndqzidnqzunduqzud nqzuu dqbudb qudbquz bduzqdb dqzidjq zidqdn uiqz dniqndiqn zidqzndiqznid nqzid uiqzb duqzbduqzbdqzubdqzbdiuqbidu qizidbqzi"
+        tools:textColor="#666" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="1" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/ic_edit"
+        app:fabSize="auto"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

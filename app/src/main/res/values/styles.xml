@@ -37,6 +37,7 @@
         <item name="colorAccent">@color/red</item>
         <item name="bgBottom_color">@color/dark</item>
         <item name="android:windowBackground">@drawable/splash</item>
+        <item name="android:windowContentTransitions">true</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
