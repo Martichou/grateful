@@ -1,5 +1,6 @@
 package me.martichou.be.grateful.ui.home
 
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,7 +15,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.TransitionInflater
 import com.google.android.material.snackbar.Snackbar
 import com.wooplr.spotlight.SpotlightView
@@ -22,6 +25,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.databinding.FragmentHomemainBinding
 import me.martichou.be.grateful.databinding.RecyclerviewHomeitemBinding
+import me.martichou.be.grateful.databinding.RecyclerviewHomeitemSecondBinding
 import me.martichou.be.grateful.di.Injectable
 import me.martichou.be.grateful.ui.add.AddMainFragment
 import me.martichou.be.grateful.util.DividerRV
@@ -35,8 +39,10 @@ class HomeMainFragment : Fragment(), androidx.appcompat.widget.Toolbar.OnMenuIte
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var mainViewModel: MainViewModel
+    private lateinit var sharedPreferences: SharedPreferences
     private var binding by autoCleared<FragmentHomemainBinding>()
-    private var adapter by autoCleared<NotesAdapter>()
+    private var adapter by autoCleared<Any>()
+    private var withdate: Boolean = true
 
     private var opening = false
 
@@ -62,6 +68,10 @@ class HomeMainFragment : Fragment(), androidx.appcompat.widget.Toolbar.OnMenuIte
             startPostponedEnterTransition()
         }
 
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+
+        withdate = !sharedPreferences.getBoolean("fullwidth", false)
+
         return binding.root
     }
 
@@ -69,11 +79,14 @@ class HomeMainFragment : Fragment(), androidx.appcompat.widget.Toolbar.OnMenuIte
         super.onViewCreated(view, savedInstanceState)
         mainViewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
         // Set adapter to the recyclerview once other things are set
-        adapter = NotesAdapter()
+        if (withdate)
+            adapter = NotesAdapter()
+        else
+            adapter = NotesAdapterSecond()
 
         binding.apply {
             thisVm = mainViewModel
-            recentNotesList.adapter = adapter
+            recentNotesList.adapter = adapter as RecyclerView.Adapter<*>
             lifecycleOwner = viewLifecycleOwner
             hdl = this@HomeMainFragment
         }
@@ -101,13 +114,20 @@ class HomeMainFragment : Fragment(), androidx.appcompat.widget.Toolbar.OnMenuIte
     /**
      * Observe recentNotesList for and update adapter
      */
-    private fun subscribeUirecentNotesList(adapter: NotesAdapter) {
+    private fun subscribeUirecentNotesList(a: Any) {
         // Fill adapter item list
+        val adapter = if (withdate)
+            (a as NotesAdapter)
+        else
+            (a as NotesAdapterSecond)
+
         mainViewModel.recentNotesList.observe(viewLifecycleOwner, Observer { notes ->
             if (notes.isNullOrEmpty()) {
                 adapter.submitList(null)
-                binding.loadingUi.visibility = View.GONE
-                binding.nonethinking.visibility = View.VISIBLE
+                binding.apply {
+                    loadingUi.visibility = View.GONE
+                    nonethinking.visibility = View.VISIBLE
+                }
 
                 SpotlightView.Builder(requireActivity())
                         .introAnimationDuration(400)
@@ -139,18 +159,28 @@ class HomeMainFragment : Fragment(), androidx.appcompat.widget.Toolbar.OnMenuIte
         })
 
         // Handle click on item list
-        adapter.openNote.observe(viewLifecycleOwner, EventObserver { pair ->
-            if (!opening) {
-                opening = true
-                val direction = HomeMainFragmentDirections.actionNoteListFragmentToNoteDetailFragment(pair.first.id)
-                DataBindingUtil.getBinding<RecyclerviewHomeitemBinding>(pair.second)?.let {
-                    val navigatorExtras = FragmentNavigatorExtras(it.showImageNote to pair.first.id.toString())
-                    findNavController().navigate(direction, navigatorExtras)
-                } ?: run {
-                    findNavController().navigate(direction)
+        if (withdate)
+            (a as NotesAdapter).openNote.observe(viewLifecycleOwner, EventObserver { pair ->
+                if (!opening) {
+                    opening = true
+                    val direction = HomeMainFragmentDirections.actionNoteListFragmentToNoteDetailFragment(pair.first.id)
+                    DataBindingUtil.getBinding<RecyclerviewHomeitemBinding>(pair.second).let {
+                        val navigatorExtras = FragmentNavigatorExtras(it!!.showImageNote to pair.first.id.toString())
+                        findNavController().navigate(direction, navigatorExtras)
+                    }
                 }
-            }
-        })
+            })
+        else
+            (a as NotesAdapterSecond).openNote.observe(viewLifecycleOwner, EventObserver { pair ->
+                if (!opening) {
+                    opening = true
+                    val direction = HomeMainFragmentDirections.actionNoteListFragmentToNoteDetailFragment(pair.first.id)
+                    DataBindingUtil.getBinding<RecyclerviewHomeitemSecondBinding>(pair.second).let {
+                        val navigatorExtras = FragmentNavigatorExtras(it!!.showImageNote to pair.first.id.toString())
+                        findNavController().navigate(direction, navigatorExtras)
+                    }
+                }
+            })
     }
 
     /**

@@ -59,6 +59,7 @@ class SettingsFragment : Fragment() {
 
     private fun setupSwitch() {
         binding.themedark.isChecked = sharedPreferences.getBoolean("themedark", false)
+        binding.fullwidth.isChecked = sharedPreferences.getBoolean("fullwidth", false)
         binding.dailynotification.isChecked = sharedPreferences.getBoolean("dailynotification", true)
     }
 
@@ -128,6 +129,11 @@ class SettingsFragment : Fragment() {
                     snackbarTextColorDefault()
                 }
             }
+        }
+
+        binding.fullwidth.setOnCheckedChangeListener { _, isChecked ->
+            Timber.d("withdate $isChecked")
+            sharedPreferences.edit().putBoolean("fullwidth", isChecked).apply()
         }
 
         binding.dailynotification.setOnCheckedChangeListener { _, isChecked ->
