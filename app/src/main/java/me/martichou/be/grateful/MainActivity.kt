@@ -10,7 +10,6 @@ import com.afollestad.aesthetic.Aesthetic
 import com.afollestad.aesthetic.AestheticActivity
 import com.afollestad.aesthetic.BottomNavBgMode
 import com.afollestad.aesthetic.BottomNavIconTextMode
-import com.mapbox.mapboxsdk.Mapbox
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
 import me.martichou.be.grateful.databinding.ActivityMainBinding

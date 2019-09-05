@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="bottom">
@@ -10,8 +8,8 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:elevation="3dp"
+        android:orientation="horizontal"
         app:elevation="3dp"
         app:layout_anchor="@id/root_bottom_sheet"
         app:layout_anchorGravity="top|end">
@@ -20,24 +18,24 @@
             android:id="@+id/place_chosen_close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:tint="@color/mapbox_plugins_white"
             android:layout_margin="16dp"
+            android:tint="@color/mapbox_plugins_white"
             app:elevation="3dp"
             app:layout_anchor="@id/root_bottom_sheet"
             app:layout_anchorGravity="top|end"
-            app:srcCompat="@drawable/ic_close_white_24dp"/>
+            app:srcCompat="@drawable/ic_close_white_24dp" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/place_chosen_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:tint="@color/mapbox_plugins_white"
             android:layout_margin="16dp"
+            android:tint="@color/mapbox_plugins_white"
             app:backgroundTint="@color/mapbox_plugins_green"
             app:elevation="3dp"
             app:layout_anchor="@id/root_bottom_sheet"
             app:layout_anchorGravity="top|end"
-            app:srcCompat="@drawable/mapbox_ic_check"/>
+            app:srcCompat="@drawable/mapbox_ic_check" />
 
     </LinearLayout>
 
@@ -55,10 +53,9 @@
             android:layout_gravity="top"
             android:background="@drawable/mapbox_gradient_shadow_up"
             app:layout_anchor="@+id/root_bottom_sheet"
-            app:layout_anchorGravity="top"/>
+            app:layout_anchorGravity="top" />
 
-        <include
-            layout="@layout/custom_mapbox_view_details_bottom_header"/>
+        <include layout="@layout/custom_mapbox_view_details_bottom_header" />
 
     </LinearLayout>
 

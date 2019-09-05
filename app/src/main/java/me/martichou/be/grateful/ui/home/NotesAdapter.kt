@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import me.martichou.be.grateful.databinding.RecyclerviewHomeitemBinding
 import me.martichou.be.grateful.util.Event
 import me.martichou.be.grateful.vo.Notes
-import timber.log.Timber
 
 class NotesAdapter : ListAdapter<Notes, NotesAdapter.ViewHolder>(NotesDiffCallback()) {
 

@@ -105,10 +105,10 @@
             android:text="@{showModel.note.content}"
             android:textColor="?android:textColorSecondaryInverse"
             android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@id/guideline2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/dateTextView"
-            app:layout_constraintBottom_toTopOf="@id/guideline2"
             app:textIsEmpty="@{showModel.note.content}"
             tools:text="Lorem ipsum ziqndqzidnqzunduqzud nqzuu dqbudb qudbquz bduzqdb dqzidjq zidqdn uiqz dniqndiqn zidqzndiqznid nqzid uiqzb duqzbduqzbdqzubdqzbdiuqbidu qizidbqzi"
             tools:textColor="#666" />
@@ -130,7 +130,7 @@
             android:src="@drawable/ic_edit"
             app:fabSize="auto"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.motion.widget.MotionLayout>
 

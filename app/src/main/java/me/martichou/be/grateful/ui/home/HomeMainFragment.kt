@@ -14,7 +14,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
-import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.TransitionInflater
 import com.google.android.material.snackbar.Snackbar
@@ -28,8 +27,6 @@ import me.martichou.be.grateful.ui.add.AddMainFragment
 import me.martichou.be.grateful.util.DividerRV
 import me.martichou.be.grateful.util.EventObserver
 import me.martichou.be.grateful.util.autoCleared
-import me.martichou.be.grateful.util.notifications.NotificationHelper
-import timber.log.Timber
 import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
@@ -168,8 +165,7 @@ class HomeMainFragment : Fragment(), androidx.appcompat.widget.Toolbar.OnMenuIte
      * Scroll to top of the list (today)
      */
     private fun gototop() {
-        val item = (binding.recentNotesList.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
-        when (item) {
+        when ((binding.recentNotesList.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()) {
             0 -> Snackbar.make(binding.root, resources.getString(R.string.already_today), Snackbar.LENGTH_SHORT).show()
             -1 -> Snackbar.make(binding.root, resources.getString(R.string.add_first), Snackbar.LENGTH_SHORT).show()
             else -> binding.recentNotesList.smoothScrollToPosition(0)

@@ -52,7 +52,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:mapbox_uiLogo="false"
-            app:mapbox_uiRotateGestures="false"/>
+            app:mapbox_uiRotateGestures="false" />
 
         <me.martichou.be.grateful.ui.add.CurrentPlaceSelectionBottomSheet
             android:id="@+id/mapbox_plugins_picker_bottom_sheet"

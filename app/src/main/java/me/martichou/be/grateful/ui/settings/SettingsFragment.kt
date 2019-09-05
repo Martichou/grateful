@@ -31,7 +31,6 @@ class SettingsFragment : Fragment() {
     private lateinit var mAuth: FirebaseAuth
     private var user: FirebaseUser? = null
 
-    // TODO Exclude arrow
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         binding = FragmentSettingsBinding.inflate(inflater, container, false)

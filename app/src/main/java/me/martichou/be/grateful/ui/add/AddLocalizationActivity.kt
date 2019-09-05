@@ -20,8 +20,6 @@ import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.mapboxsdk.plugins.places.common.PlaceConstants
 import com.mapbox.mapboxsdk.plugins.places.picker.viewmodel.PlacePickerViewModel
 import kotlinx.android.synthetic.main.custom_mapbox_view_bottom_sheet_container.*
-import kotlinx.android.synthetic.main.custom_mapbox_view_bottom_sheet_container.view.*
-import kotlinx.android.synthetic.main.custom_mapbox_view_bottom_sheet_container.view.place_chosen_close
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.util.statusBarTrans
 import timber.log.Timber
