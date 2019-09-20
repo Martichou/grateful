@@ -35,10 +35,10 @@
             android:text="@string/settings"
             android:textColor="?android:textColorPrimary"
             android:textSize="24sp"
-            app:layout_constraintBottom_toTopOf="@id/blackThemeSwitch"
+            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/backBtn" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/summary_sync"
@@ -51,226 +51,234 @@
             android:textColor="?android:textColorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title_sync" />
+            app:layout_constraintTop_toBottomOf="@id/title_sync"/>
 
-        <com.afollestad.aesthetic.views.AestheticCardView
-            android:id="@+id/blackThemeSwitch"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            app:cardCornerRadius="8dp"
-            app:cardUseCompatPadding="true"
-            app:layout_constraintBottom_toTopOf="@id/listStyleSwitch"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/enableBlackThemeText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:padding="16dp"
-                android:text="@string/enable_dark_theme"
-                android:textColor="?android:textColorPrimary" />
-
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/themedark"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:padding="16dp" />
-
-        </com.afollestad.aesthetic.views.AestheticCardView>
-
-        <com.afollestad.aesthetic.views.AestheticCardView
-            android:id="@+id/listStyleSwitch"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            app:cardCornerRadius="8dp"
-            app:cardUseCompatPadding="true"
-            app:layout_constraintBottom_toTopOf="@id/notificationSwitch"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/enablelistStyleText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:padding="16dp"
-                    android:text="@string/fullwidthtitle"
-                    android:textColor="?android:textColorPrimary"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
-
-                <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/fullwidth"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:padding="16dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/enableFullwithStatus"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:paddingStart="16dp"
-                    android:paddingTop="16dp"
-                    android:paddingEnd="16dp"
-                    android:paddingBottom="16dp"
-                    android:text="@string/fullwidthdesc"
-                    android:textColor="?android:textColorSecondaryInverse"
-                    android:textSize="12sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/enablelistStyleText"
-                    tools:text="@string/daily_disabled"
-                    tools:textColor="#111" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </com.afollestad.aesthetic.views.AestheticCardView>
-
-        <com.afollestad.aesthetic.views.AestheticCardView
-            android:id="@+id/notificationSwitch"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            app:cardCornerRadius="8dp"
-            app:cardUseCompatPadding="true"
-            app:layout_constraintBottom_toTopOf="@id/synchronizationButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/enableDailyText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="16dp"
-                    android:paddingTop="16dp"
-                    android:paddingEnd="16dp"
-                    android:paddingBottom="4dp"
-                    android:text="@string/daily_reminder"
-                    android:textColor="?android:textColorPrimary"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/dailynotification"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="16dp"
-                    android:paddingTop="16dp"
-                    android:paddingEnd="16dp"
-                    android:paddingBottom="4dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/enableDailyStatus"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:paddingStart="16dp"
-                    android:paddingTop="16dp"
-                    android:paddingEnd="16dp"
-                    android:paddingBottom="16dp"
-                    android:textColor="?android:textColorSecondaryInverse"
-                    android:textSize="12sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/enableDailyText"
-                    tools:text="@string/daily_disabled"
-                    tools:textColor="#111" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/configureDaily"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="6dp"
-                    android:background="@drawable/round_error"
-                    android:onClick="@{hdl::openDialog}"
-                    android:text="@string/define"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:visibility="gone"
-                    app:layout_constraintBottom_toBottomOf="@id/enableDailyStatus"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/enableDailyStatus" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </com.afollestad.aesthetic.views.AestheticCardView>
-
-        <com.afollestad.aesthetic.views.AestheticCardView
-            android:id="@+id/synchronizationButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:foreground="@drawable/ripple_circle"
-            android:onClick="@{hdl::gotoSync}"
-            app:cardCornerRadius="8dp"
-            app:cardUseCompatPadding="true"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <ScrollView
+            android:id="@+id/switchView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title_sync">
+            app:layout_constraintTop_toBottomOf="@id/summary_sync"
+            app:layout_constraintBottom_toTopOf="@id/versionOfApp">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/syncronizationText"
-                    android:layout_width="wrap_content"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/blackThemeSwitch"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingStart="16dp"
-                    android:paddingTop="16dp"
-                    android:paddingEnd="16dp"
-                    android:text="@string/synchronization"
-                    android:textColor="?android:textColorPrimary"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardUseCompatPadding="true">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/syncronizationSummary"
-                    android:layout_width="wrap_content"
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/enableBlackThemeText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:padding="16dp"
+                        android:text="@string/enable_dark_theme"
+                        android:textColor="?android:textColorPrimary" />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/themedark"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:padding="16dp" />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/listStyleSwitch"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
-                    android:paddingBottom="16dp"
-                    android:text="@string/setup_synchronization_with_the_cloud"
-                    android:textColor="?android:textColorSecondaryInverse"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/syncronizationText" />
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardUseCompatPadding="true">
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-        </com.afollestad.aesthetic.views.AestheticCardView>
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/enablelistStyleText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:padding="16dp"
+                            android:text="@string/fullwidthtitle"
+                            android:textColor="?android:textColorPrimary"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
+
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/fullwidth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:padding="16dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/enableFullwithStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:paddingStart="16dp"
+                            android:paddingTop="16dp"
+                            android:paddingEnd="16dp"
+                            android:paddingBottom="16dp"
+                            android:text="@string/fullwidthdesc"
+                            android:textColor="?android:textColorSecondaryInverse"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/enablelistStyleText"
+                            tools:text="@string/daily_disabled"
+                            tools:textColor="#111" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/notificationSwitch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardUseCompatPadding="true">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/enableDailyText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="16dp"
+                            android:paddingTop="16dp"
+                            android:paddingEnd="16dp"
+                            android:paddingBottom="4dp"
+                            android:text="@string/daily_reminder"
+                            android:textColor="?android:textColorPrimary"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/dailynotification"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="16dp"
+                            android:paddingTop="16dp"
+                            android:paddingEnd="16dp"
+                            android:paddingBottom="4dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/enableDailyStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:paddingStart="16dp"
+                            android:paddingTop="16dp"
+                            android:paddingEnd="16dp"
+                            android:paddingBottom="16dp"
+                            android:textColor="?android:textColorSecondaryInverse"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/enableDailyText"
+                            tools:text="@string/daily_disabled"
+                            tools:textColor="#111" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/configureDaily"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginTop="6dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="6dp"
+                            android:background="@drawable/round_error"
+                            android:onClick="@{hdl::openDialog}"
+                            android:text="@string/define"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:visibility="gone"
+                            app:layout_constraintBottom_toBottomOf="@id/enableDailyStatus"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/enableDailyStatus" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/synchronizationButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:foreground="@drawable/ripple_circle"
+                    android:onClick="@{hdl::gotoSync}"
+                    app:cardCornerRadius="8dp"
+                    app:cardUseCompatPadding="true">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/syncronizationText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="16dp"
+                            android:paddingTop="16dp"
+                            android:paddingEnd="16dp"
+                            android:text="@string/synchronization"
+                            android:textColor="?android:textColorPrimary"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/syncronizationSummary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:paddingStart="16dp"
+                            android:paddingEnd="16dp"
+                            android:paddingBottom="16dp"
+                            android:text="@string/setup_synchronization_with_the_cloud"
+                            android:textColor="?android:textColorSecondaryInverse"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/syncronizationText"
+                            tools:textColor="#111"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+        </ScrollView>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/versionOfApp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:text="Grateful - v2.0.0"
+            android:text="Grateful - v2.0.1"
             android:textColor="?android:textColorSecondaryInverse"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
