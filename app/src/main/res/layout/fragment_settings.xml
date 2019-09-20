@@ -105,7 +105,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:padding="16dp"
-                    android:text="Enable full width image (beta)"
+                    android:text="@string/fullwidthtitle"
                     android:textColor="?android:textColorPrimary"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"/>
@@ -128,7 +128,7 @@
                     android:paddingTop="16dp"
                     android:paddingEnd="16dp"
                     android:paddingBottom="16dp"
-                    android:text="Remove the date in the list at the main page but give a better view of the image at first glance"
+                    android:text="@string/fullwidthdesc"
                     android:textColor="?android:textColorSecondaryInverse"
                     android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"

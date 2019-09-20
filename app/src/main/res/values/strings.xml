@@ -62,6 +62,9 @@
     <string name="edit">Edit</string>
     <string name="define">Define</string>
 
+    <string name="fullwidthtitle">Enable full width image</string>
+    <string name="fullwidthdesc">Remove the date in the list at the main page but give a better view of the image at first glance</string>
+
     <string name="firstasktitle">Enjoying Grateful?</string>
     <string name="firstasknegative">Not really</string>
     <string name="firstaskpositive">Yes!</string>

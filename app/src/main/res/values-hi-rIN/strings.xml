@@ -60,6 +60,9 @@
     <string name="edit">परिवर्तन</string>
     <string name="define">परिभाषित करें</string>
 
+    <string name="fullwidthtitle">पूरी चौड़ाई की छवि सक्षम करें</string>
+    <string name="fullwidthdesc">मुख्य पृष्ठ पर सूची में तारीख निकालें लेकिन पहली नज़र में छवि का बेहतर दृश्य दें</string>
+
     <string name="firstasktitle">मजा आ Grateful?</string>
     <string name="firstasknegative">ज़रुरी नहीं</string>
     <string name="firstaskpositive">हाँ!</string>

@@ -60,6 +60,9 @@
     <string name="edit">Modifier</string>
     <string name="define">Définir</string>
 
+    <string name="fullwidthtitle">Activer les images larges</string>
+    <string name="fullwidthdesc">Retire la date dans la liste principale mais donne un meilleur apercu de l\'image</string>
+
     <string name="firstasktitle">Vous aimez Grateful?</string>
     <string name="firstasknegative">Pas vraiment</string>
     <string name="firstaskpositive">Oui!</string>
