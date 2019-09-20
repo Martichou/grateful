@@ -76,7 +76,7 @@ class HomeMainFragment : Fragment(), androidx.appcompat.widget.Toolbar.OnMenuIte
 
     fun btnPositive(view: View) {
         val textView = (view as MaterialButton)
-        if (textView.text == "Yes!") {
+        if (textView.text == resources.getString(R.string.firstaskpositive)) {
             binding.titleofreview.text = resources.getString(R.string.scdasktitle)
             binding.asknegative.text = resources.getString(R.string.scdasknegative)
             textView.text = resources.getString(R.string.scdaskpositive)
@@ -88,6 +88,7 @@ class HomeMainFragment : Fragment(), androidx.appcompat.widget.Toolbar.OnMenuIte
             } catch (anfe: ActivityNotFoundException) {
                 startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=$appPackageName")));
             }
+            sharedPreferences.edit().putBoolean("alreadyasked", true).apply()
         }
     }
 

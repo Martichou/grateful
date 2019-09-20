@@ -138,6 +138,7 @@
                         android:layout_marginEnd="8dp"
                         android:text="@string/firstasknegative"
                         android:textColor="#fff"
+                        android:textAllCaps="false"
                         android:onClick="@{hdl::btnNegative}"
                         app:strokeColor="#fff"/>
 
@@ -149,6 +150,7 @@
                         android:backgroundTint="#fff"
                         android:text="@string/firstaskpositive"
                         android:textColor="@color/red"
+                        android:textAllCaps="false"
                         android:onClick="@{hdl::btnPositive}"/>
 
                 </LinearLayout>
