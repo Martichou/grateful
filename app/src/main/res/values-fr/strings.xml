@@ -59,4 +59,12 @@
     <string name="last_backup_done">Dernière sauvegarde effectuée:\n%1$s</string>
     <string name="edit">Modifier</string>
     <string name="define">Définir</string>
+
+    <string name="firstasktitle">Vous aimez Grateful?</string>
+    <string name="firstasknegative">Pas vraiment</string>
+    <string name="firstaskpositive">Oui!</string>
+
+    <string name="scdasktitle">Qu\'en est-il d\'une note sur le Store, alors?</string>
+    <string name="scdasknegative">Non, merci</string>
+    <string name="scdaskpositive">Oui, bien sûr</string>
 </resources>

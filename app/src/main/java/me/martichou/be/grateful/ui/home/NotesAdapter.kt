@@ -27,6 +27,10 @@ class NotesAdapter : ListAdapter<Notes, NotesAdapter.ViewHolder>(NotesDiffCallba
         return ViewHolder(RecyclerviewHomeitemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
+    override fun getItemViewType(position: Int): Int {
+        return 1
+    }
+
     private fun createOnClickListener(): OnNoteItemClickListener {
         return object : OnNoteItemClickListener {
             override fun onNoteItemClick(rootView: View, notes: Notes) {

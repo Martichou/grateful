@@ -61,4 +61,13 @@
     <string name="last_backup_done">Last backup done:\n%1$s</string>
     <string name="edit">Edit</string>
     <string name="define">Define</string>
+
+    <string name="firstasktitle">Enjoying Grateful?</string>
+    <string name="firstasknegative">Not really</string>
+    <string name="firstaskpositive">Yes!</string>
+
+    <string name="scdasktitle">How about a rating on the Store, then?</string>
+    <string name="scdasknegative">No, thanks</string>
+    <string name="scdaskpositive">Ok, sure</string>
+
 </resources>

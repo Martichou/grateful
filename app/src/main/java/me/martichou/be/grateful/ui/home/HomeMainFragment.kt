@@ -1,12 +1,20 @@
 package me.martichou.be.grateful.ui.home
 
+import android.animation.Animator
+import android.annotation.SuppressLint
+import android.content.ActivityNotFoundException
+import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.view.doOnLayout
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -19,7 +27,9 @@ import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.TransitionInflater
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.snackbar.Snackbar
+import com.google.common.reflect.Reflection.getPackageName
 import com.wooplr.spotlight.SpotlightView
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import me.martichou.be.grateful.R
@@ -31,6 +41,7 @@ import me.martichou.be.grateful.ui.add.AddMainFragment
 import me.martichou.be.grateful.util.DividerRV
 import me.martichou.be.grateful.util.EventObserver
 import me.martichou.be.grateful.util.autoCleared
+import timber.log.Timber
 import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
@@ -40,11 +51,66 @@ class HomeMainFragment : Fragment(), androidx.appcompat.widget.Toolbar.OnMenuIte
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var mainViewModel: MainViewModel
     private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var mDelayHandler: Handler
     private var binding by autoCleared<FragmentHomemainBinding>()
     private var adapter by autoCleared<Any>()
     private var withdate: Boolean = true
 
     private var opening = false
+
+    @SuppressLint("RestrictedApi")
+    private val mRunnable = Runnable {
+        if (mainViewModel.recentNotesList.value != null && mainViewModel.recentNotesList.value!!.size >= 3 && !sharedPreferences.getBoolean("alreadyasked", false)) {
+            val shortAnimationDuration = resources.getInteger(android.R.integer.config_shortAnimTime)
+            // Inflate a banner in the view or in the list of notes
+            binding.fab.visibility = View.INVISIBLE
+            binding.askforreview.apply {
+                alpha = 0f
+                visibility = View.VISIBLE
+                animate().alpha(1f)
+                        .setDuration(shortAnimationDuration.toLong())
+                        .setListener(null)
+            }
+        }
+    }
+
+    fun btnPositive(view: View) {
+        val textView = (view as MaterialButton)
+        if (textView.text == "Yes!") {
+            binding.titleofreview.text = resources.getString(R.string.scdasktitle)
+            binding.asknegative.text = resources.getString(R.string.scdasknegative)
+            textView.text = resources.getString(R.string.scdaskpositive)
+        } else {
+            // Go to play store
+            val appPackageName = context?.packageName
+            try {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$appPackageName")));
+            } catch (anfe: ActivityNotFoundException) {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=$appPackageName")));
+            }
+        }
+    }
+
+    fun btnNegative(view: View) {
+        val shortAnimationDuration = resources.getInteger(android.R.integer.config_shortAnimTime)
+        binding.askforreview.apply {
+            alpha = 1f
+
+            animate().alpha(0f)
+                    .setDuration(shortAnimationDuration.toLong())
+                    .setListener(object: Animator.AnimatorListener {
+                        override fun onAnimationRepeat(animation: Animator?) {}
+                        override fun onAnimationEnd(animation: Animator?) {
+                            visibility = View.GONE
+
+                            // Set as never ask again
+                            sharedPreferences.edit().putBoolean("alreadyasked", true).apply()
+                        }
+                        override fun onAnimationCancel(animation: Animator?) {}
+                        override fun onAnimationStart(animation: Animator?) {}
+                    })
+        }
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
@@ -55,6 +121,7 @@ class HomeMainFragment : Fragment(), androidx.appcompat.widget.Toolbar.OnMenuIte
 
             recentNotesList.setHasFixedSize(true)
             recentNotesList.addItemDecoration(DividerRV(requireContext()))
+            recentNotesList.setItemViewCacheSize(20)
         }
 
         sharedElementReturnTransition = TransitionInflater.from(context).inflateTransition(R.transition.move).apply {
@@ -72,6 +139,8 @@ class HomeMainFragment : Fragment(), androidx.appcompat.widget.Toolbar.OnMenuIte
 
         withdate = !sharedPreferences.getBoolean("fullwidth", false)
 
+        mDelayHandler = Handler()
+
         return binding.root
     }
 
@@ -79,10 +148,14 @@ class HomeMainFragment : Fragment(), androidx.appcompat.widget.Toolbar.OnMenuIte
         super.onViewCreated(view, savedInstanceState)
         mainViewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
         // Set adapter to the recyclerview once other things are set
-        if (withdate)
-            adapter = NotesAdapter()
+        adapter = if (withdate)
+            NotesAdapter().apply {
+                this.setHasStableIds(true)
+            }
         else
-            adapter = NotesAdapterSecond()
+            NotesAdapterSecond().apply {
+                this.setHasStableIds(true)
+            }
 
         binding.apply {
             thisVm = mainViewModel
@@ -93,6 +166,11 @@ class HomeMainFragment : Fragment(), androidx.appcompat.widget.Toolbar.OnMenuIte
 
         // Subscribe adapter
         subscribeUirecentNotesList(adapter)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mDelayHandler.removeCallbacks(mRunnable)
     }
 
     override fun onResume() {
@@ -155,6 +233,8 @@ class HomeMainFragment : Fragment(), androidx.appcompat.widget.Toolbar.OnMenuIte
                     loadingUi.visibility = View.GONE
                     nonethinking.visibility = View.GONE
                 }
+                Timber.d("DBE: Asking...")
+                mDelayHandler.postDelayed(mRunnable, 1000)
             }
         })
 

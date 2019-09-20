@@ -58,6 +58,14 @@
     <string name="you_must_enter_password">आपको एक पासवर्ड दर्ज करना होगा</string>
     <string name="last_backup_done">अंतिम बैकअप किया गया:\n%1$s </string>
     <string name="edit">परिवर्तन</string>
-    <string name="define">Define</string>
+    <string name="define">परिभाषित करें</string>
+
+    <string name="firstasktitle">मजा आ Grateful?</string>
+    <string name="firstasknegative">ज़रुरी नहीं</string>
+    <string name="firstaskpositive">हाँ!</string>
+
+    <string name="scdasktitle">कैसे स्टोर पर एक रेटिंग के बारे में, फिर?</string>
+    <string name="scdasknegative">जी नहीं, धन्यवाद</string>
+    <string name="scdaskpositive">यकीनन ठीक</string>
 </resources>
 
