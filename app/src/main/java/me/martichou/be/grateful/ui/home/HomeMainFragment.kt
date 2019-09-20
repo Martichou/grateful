@@ -102,9 +102,10 @@ class HomeMainFragment : Fragment(), androidx.appcompat.widget.Toolbar.OnMenuIte
                     .setDuration(shortAnimationDuration.toLong())
                     .setListener(object: Animator.AnimatorListener {
                         override fun onAnimationRepeat(animation: Animator?) {}
+                        @SuppressLint("RestrictedApi")
                         override fun onAnimationEnd(animation: Animator?) {
                             visibility = View.GONE
-
+                            binding.fab.visibility = View.VISIBLE
                             // Set as never ask again
                             sharedPreferences.edit().putBoolean("alreadyasked", true).apply()
                         }
