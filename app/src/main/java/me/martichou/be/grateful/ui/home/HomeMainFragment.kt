@@ -89,6 +89,7 @@ class HomeMainFragment : Fragment(), androidx.appcompat.widget.Toolbar.OnMenuIte
                 startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=$appPackageName")));
             }
             sharedPreferences.edit().putBoolean("alreadyasked", true).apply()
+            btnNegative(binding.asknegative)
         }
     }
 

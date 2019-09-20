@@ -1,6 +1,7 @@
 package me.martichou.be.grateful.ui.settings
 
 import android.app.TimePickerDialog
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
@@ -10,6 +11,7 @@ import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceManager
@@ -185,12 +187,11 @@ class SettingsFragment : Fragment() {
     }
 
     fun gotoLegal(v: View) {
-        val browserIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            Intent(Intent.ACTION_QUICK_VIEW, Uri.parse("https://sites.google.com/view/grateful-policy/accueil"))
-        } else {
-            Intent(Intent.ACTION_VIEW, Uri.parse("https://sites.google.com/view/grateful-policy/accueil"))
+        try {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://sites.google.com/view/grateful-policy/accueil")));
+        } catch (anfe: ActivityNotFoundException) {
+            Toast.makeText(context, "There was an issue", Toast.LENGTH_SHORT).show()
         }
-        startActivity(browserIntent)
     }
 
 }
