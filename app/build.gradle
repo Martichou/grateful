@@ -10,8 +10,8 @@ android {
         enabled = true
     }
     defaultConfig {
-        versionCode 201
-        versionName "2.0.1"
+        versionCode 202
+        versionName "2.0.2"
         applicationId "me.martichou.be.grateful"
         vectorDrawables.useSupportLibrary true
         minSdkVersion rootProject.minSdkVersion
@@ -47,7 +47,6 @@ kapt {
 
 ext {
     lifecycle = '2.2.0-alpha03'
-    koin = "1.0.2"
     glide = '4.9.0'
     coroutines = '1.1.1'
     firebase = '16.0.8'

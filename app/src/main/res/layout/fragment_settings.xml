@@ -69,7 +69,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp">
 
-                <androidx.cardview.widget.CardView
+                <com.afollestad.aesthetic.views.AestheticCardView
                     android:id="@+id/blackThemeSwitch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -94,9 +94,9 @@
                         android:layout_gravity="end"
                         android:padding="16dp" />
 
-                </androidx.cardview.widget.CardView>
+                </com.afollestad.aesthetic.views.AestheticCardView>
 
-                <androidx.cardview.widget.CardView
+                <com.afollestad.aesthetic.views.AestheticCardView
                     android:id="@+id/listStyleSwitch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -148,9 +148,9 @@
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
-                </androidx.cardview.widget.CardView>
+                </com.afollestad.aesthetic.views.AestheticCardView>
 
-                <androidx.cardview.widget.CardView
+                <com.afollestad.aesthetic.views.AestheticCardView
                     android:id="@+id/notificationSwitch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -222,9 +222,9 @@
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
-                </androidx.cardview.widget.CardView>
+                </com.afollestad.aesthetic.views.AestheticCardView>
 
-                <androidx.cardview.widget.CardView
+                <com.afollestad.aesthetic.views.AestheticCardView
                     android:id="@+id/synchronizationButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -267,7 +267,7 @@
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
-                </androidx.cardview.widget.CardView>
+                </com.afollestad.aesthetic.views.AestheticCardView>
 
             </LinearLayout>
 
@@ -278,7 +278,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:text="Grateful - v2.0.1"
+            android:text="Grateful - v2.0.2"
             android:textColor="?android:textColorSecondaryInverse"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"

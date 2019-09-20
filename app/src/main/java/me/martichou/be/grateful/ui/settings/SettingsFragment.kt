@@ -66,7 +66,7 @@ class SettingsFragment : Fragment() {
     }
 
     private fun setupCheck() {
-        if (binding.dailynotification!!.isChecked) {
+        if (binding.dailynotification.isChecked) {
             binding.configureDaily.visibility = View.VISIBLE
             Timber.d("setupCheck Called")
             var minute: String = sharedPreferences.getInt("dn_min", 0).toString()
