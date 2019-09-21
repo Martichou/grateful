@@ -152,13 +152,9 @@ class HomeMainFragment : Fragment(), androidx.appcompat.widget.Toolbar.OnMenuIte
         mainViewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
         // Set adapter to the recyclerview once other things are set
         adapter = if (withdate)
-            NotesAdapter().apply {
-                this.setHasStableIds(true)
-            }
+            NotesAdapter()
         else
-            NotesAdapterSecond().apply {
-                this.setHasStableIds(true)
-            }
+            NotesAdapterSecond()
 
         binding.apply {
             thisVm = mainViewModel
