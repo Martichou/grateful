@@ -11,6 +11,7 @@
 .externalNativeBuild
 private.xml
 .idea
+google-services.json
 grateful.zip
 app/debug/
 app/release/

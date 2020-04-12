@@ -1,11 +1,11 @@
 package me.martichou.be.grateful.ui.settings
 
+import android.app.AlertDialog
 import android.app.TimePickerDialog
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.text.format.DateFormat
 import android.view.LayoutInflater
@@ -18,8 +18,6 @@ import androidx.preference.PreferenceManager
 import com.afollestad.aesthetic.Aesthetic
 import com.afollestad.aesthetic.BottomNavBgMode
 import com.afollestad.aesthetic.BottomNavIconTextMode
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.databinding.FragmentSettingsBinding
 import me.martichou.be.grateful.util.notifications.NotificationHelper
@@ -30,14 +28,11 @@ class SettingsFragment : Fragment() {
 
     private lateinit var binding: FragmentSettingsBinding
     private lateinit var sharedPreferences: SharedPreferences
-    private lateinit var mAuth: FirebaseAuth
-    private var user: FirebaseUser? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         binding = FragmentSettingsBinding.inflate(inflater, container, false)
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-        mAuth = FirebaseAuth.getInstance()
 
         return binding.root
     }
@@ -52,11 +47,6 @@ class SettingsFragment : Fragment() {
         setupSwitch()
         setupCheck()
         setupListener()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        user = mAuth.currentUser
     }
 
     private fun setupSwitch() {
@@ -179,11 +169,13 @@ class SettingsFragment : Fragment() {
     }
 
     fun gotoSync(v: View) {
-        if (user == null) {
-            findNavController().navigate(SettingsFragmentDirections.actionSettingsNewFragmentToSettingsLogin())
-        } else {
-            findNavController().navigate(SettingsFragmentDirections.actionSettingsNewFragmentToSettingsSync())
-        }
+        val cv = layoutInflater.inflate(R.layout.dialog_information, null)
+
+        AlertDialog.Builder(requireContext())
+                .setTitle(getString(R.string.important_info))
+                .setView(cv)
+                .setNeutralButton("Close", null)
+                .create().show()
     }
 
     fun gotoLegal(v: View) {

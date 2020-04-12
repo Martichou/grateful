@@ -2,8 +2,8 @@
 
 buildscript {
     ext {
-        kotlin_version = '1.3.41'
-        navigationVersion = '2.2.0-alpha01'
+        kotlin_version = '1.3.61'
+        navigationVersion = '2.3.0-alpha04'
 
         // Sdk and tools
         compileSdkVersion = 28
@@ -25,9 +25,8 @@ buildscript {
         maven { url "https://storage.googleapis.com/r8-releases/raw" }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.0'
-        classpath 'com.android.tools:r8:1.5.68'
-        classpath 'com.google.gms:google-services:4.3.1'
+        classpath 'com.android.tools.build:gradle:3.5.3'
+        classpath 'com.android.tools:r8:1.6.84'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigationVersion"
     }

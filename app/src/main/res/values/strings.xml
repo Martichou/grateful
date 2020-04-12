@@ -46,19 +46,8 @@
     <string name="cant_be_undone">This action can\'t be undone, think twice before hitting \'Yes\'</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
-    <string name="wrong_number">Wrong number</string>
-    <string name="wrong_password">You\'ve used an incorrect password</string>
-    <string name="retry">Retry</string>
-    <string name="continu">Continue</string>
-    <string name="success">Success !</string>
-    <string name="error">Error…</string>
-    <string name="provide_a_phone_number">You must provide a phone number to continue</string>
-    <string name="code_sent_by_sms">Enter the code sent received by SMS</string>
-    <string name="no_previous_backup">No previous backup</string>
-    <string name="enter_password_to_encrypt">Enter a password to encrypt your data</string>
-    <string name="enter_password_to_decrypt">Enter your password to decrypt your data</string>
-    <string name="you_must_enter_password">You must enter a password</string>
-    <string name="last_backup_done">Last backup done:\n%1$s</string>
+    <string name="important_info">Important information</string>
+    <string name="important_info_content">Dear user,\n\nAfter almost a year of running this application with the backup service, the RGPD came to my door and I had no choice but to shut down the service.\n\nSince I was still a student when I created this application, I had not heard about the RGPD and so I created my service as I imagined it would be, I thought it was quite secure and respected your privacy. But it seems that it wasn\'t.\n\nI would like to add that I still did not have access to your data, but the RGPD rules go beyond that.\n\nI\'m sorry for that, but this way the application will always exist! I\'m working on finding a solution to get the data back in sync, correctly this time.\n\nTruly,\n\nMartin ANDRE</string>
     <string name="edit">Edit</string>
     <string name="define">Define</string>
 

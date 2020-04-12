@@ -44,19 +44,8 @@
     <string name="cant_be_undone">यह आभार कार्ड हमेशा के लिए मिट जाएगा, इसे पुनः प्राप्त नहीं किया जा सकेगा</string>
     <string name="yes">हां</string>
     <string name="no">नहीं</string>
-    <string name="wrong_number">गलत नंबर</string>
-    <string name="wrong_password">आपने गलत पासवर्ड का उपयोग किया है</string>
-    <string name="retry">Retry</string>
-    <string name="continu">जारी रहना</string>
-    <string name="success">सफलता !</string>
-    <string name="error">त्रुटि…</string>
-    <string name="provide_a_phone_number">जारी रखने के लिए आपको एक फ़ोन नंबर देना होगा</string>
-    <string name="code_sent_by_sms">एसएमएस द्वारा प्राप्त कोड दर्ज करें</string>
-    <string name="no_previous_backup">कोई पिछला बैकअप नहीं</string>
-    <string name="enter_password_to_encrypt">अपना डेटा एन्क्रिप्ट करने के लिए एक पासवर्ड दर्ज करें</string>
-    <string name="enter_password_to_decrypt">अपना डेटा डिक्रिप्ट करने के लिए अपना पासवर्ड डालें</string>
-    <string name="you_must_enter_password">आपको एक पासवर्ड दर्ज करना होगा</string>
-    <string name="last_backup_done">अंतिम बैकअप किया गया:\n%1$s </string>
+    <string name="important_info">Important information</string>
+    <string name="important_info_content">Dear user,\n\nAfter almost a year of running this application with the backup service, the RGPD came to my door and I had no choice but to shut down the service.\n\nSince I was still a student when I created this application, I had not heard about the RGPD and so I created my service as I imagined it would be, I thought it was quite secure and respected your privacy. But it seems that it wasn\'t.\n\nI would like to add that I still did not have access to your data, but the RGPD rules go beyond that.\n\nI\'m sorry for that, but this way the application will always exist! I\'m working on finding a solution to get the data back in sync, correctly this time.\n\nTruly,\n\nMartin ANDRE</string>
     <string name="edit">परिवर्तन</string>
     <string name="define">परिभाषित करें</string>
 

@@ -66,39 +66,6 @@
         android:name="me.martichou.be.grateful.ui.settings.SettingsFragment"
         android:label="SettingsFragment"
         tools:layout="@layout/fragment_settings">
-        <action
-            android:id="@+id/action_settingsNewFragment_to_settingsLogin"
-            app:destination="@id/settingsLogin"
-            app:enterAnim="@anim/slide_up"
-            app:exitAnim="@anim/activity_fade_out"
-            app:popEnterAnim="@anim/activity_fade_in"
-            app:popExitAnim="@anim/slide_down" />
-        <action
-            android:id="@+id/action_settingsNewFragment_to_settingsSync"
-            app:destination="@id/settingsSync"
-            app:enterAnim="@anim/slide_up"
-            app:exitAnim="@anim/activity_fade_out"
-            app:popEnterAnim="@anim/activity_fade_in"
-            app:popExitAnim="@anim/slide_down" />
     </fragment>
-    <fragment
-        android:id="@+id/settingsLogin"
-        android:name="me.martichou.be.grateful.ui.settings.sync.SettingsLogin"
-        android:label="SettingsLogin"
-        tools:layout="@layout/fragment_settingslogin">
-        <action
-            android:id="@+id/action_settingsLogin_to_settingsSync"
-            app:destination="@id/settingsSync"
-            app:enterAnim="@anim/slide_up"
-            app:exitAnim="@anim/activity_fade_out"
-            app:popEnterAnim="@anim/activity_fade_in"
-            app:popExitAnim="@anim/slide_down"
-            app:popUpTo="@+id/settingsFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/settingsSync"
-        android:name="me.martichou.be.grateful.ui.settings.sync.SettingsSync"
-        android:label="SettingsSync"
-        tools:layout="@layout/fragment_settingssync" />
 
 </navigation>

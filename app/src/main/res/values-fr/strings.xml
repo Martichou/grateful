@@ -44,19 +44,8 @@
     <string name="cant_be_undone">Cette action ne peut pas être annulée, réfléchissez à deux fois avant d\'appuyer sur \'Oui\'</string>
     <string name="yes">Oui</string>
     <string name="no">Non</string>
-    <string name="wrong_number">Mauvais numéro</string>
-    <string name="wrong_password">Vous avez utiliser un mauvais mot de passe</string>
-    <string name="retry">Réessayer</string>
-    <string name="continu">Continuer</string>
-    <string name="success">Succès !</string>
-    <string name="error">Erreur…</string>
-    <string name="provide_a_phone_number">Vous devez fournir un numéro de téléphone pour continuer</string>
-    <string name="code_sent_by_sms">Entrez le code envoyé reçu par SMS</string>
-    <string name="no_previous_backup">Aucune sauvegarde précédente</string>
-    <string name="enter_password_to_encrypt">Entrez un mot de passe pour chiffrer vos données</string>
-    <string name="enter_password_to_decrypt">Entrez votre mot de passe pour déchiffrer vos données</string>
-    <string name="you_must_enter_password">Vous devez entrer un mot de passe</string>
-    <string name="last_backup_done">Dernière sauvegarde effectuée:\n%1$s</string>
+    <string name="important_info">Information importante</string>
+    <string name="important_info_content">Dear user,\n\nAfter almost a year of running this application with the backup service, the RGPD came to my door and I had no choice but to shut down the service.\n\nSince I was still a student when I created this application, I had not heard about the RGPD and so I created my service as I imagined it would be, I thought it was quite secure and respected your privacy. But it seems that it wasn\'t.\n\nI would like to add that I still did not have access to your data, but the RGPD rules go beyond that.\n\nI\'m sorry for that, but this way the application will always exist! I\'m working on finding a solution to get the data back in sync, correctly this time.\n\nTruly,\n\nMartin ANDRE</string>
     <string name="edit">Modifier</string>
     <string name="define">Définir</string>
 

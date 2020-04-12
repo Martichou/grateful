@@ -7,7 +7,6 @@ import me.martichou.be.grateful.ui.add.AddMainFragment
 import me.martichou.be.grateful.ui.details.ShowMainFragment
 import me.martichou.be.grateful.ui.edit.ShowEditFragment
 import me.martichou.be.grateful.ui.home.HomeMainFragment
-import me.martichou.be.grateful.ui.settings.sync.SettingsSync
 
 @ExperimentalCoroutinesApi
 @Suppress("unused")
@@ -24,7 +23,4 @@ abstract class FragmentBuildersModule {
 
     @ContributesAndroidInjector
     abstract fun contributeAddMainFragment(): AddMainFragment
-
-    @ContributesAndroidInjector
-    abstract fun contributeSettingsSyncFragment(): SettingsSync
 }
