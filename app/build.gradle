@@ -10,8 +10,8 @@ android {
         dataBinding true
     }
     defaultConfig {
-        versionCode 206
-        versionName "2.0.6"
+        versionCode 207
+        versionName "2.0.7"
         applicationId "me.martichou.be.grateful"
         vectorDrawables.useSupportLibrary true
         minSdkVersion rootProject.minSdkVersion
