@@ -47,7 +47,6 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="important_info">Important information</string>
-    <string name="important_info_content">Dear user,\n\nAfter almost a year of running this application with the backup service, the RGPD came to my door and I had no choice but to shut down the service.\n\nSince I was still a student when I created this application, I had not heard about the RGPD and so I created my service as I imagined it would be, I thought it was quite secure and respected your privacy. But it seems that it wasn\'t.\n\nI would like to add that I still did not have access to your data, but the RGPD rules go beyond that.\n\nI\'m sorry for that, but this way the application will always exist! I\'m working on finding a solution to get the data back in sync, correctly this time.\n\nTruly,\n\nMartin ANDRE</string>
     <string name="edit">Edit</string>
     <string name="define">Define</string>
 

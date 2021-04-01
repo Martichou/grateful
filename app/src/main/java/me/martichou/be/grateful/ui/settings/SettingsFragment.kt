@@ -168,16 +168,6 @@ class SettingsFragment : Fragment() {
         findNavController().popBackStack()
     }
 
-    fun gotoSync(v: View) {
-        val cv = layoutInflater.inflate(R.layout.dialog_information, null)
-
-        AlertDialog.Builder(requireContext())
-                .setTitle(getString(R.string.important_info))
-                .setView(cv)
-                .setNeutralButton("Close", null)
-                .create().show()
-    }
-
     fun gotoLegal(v: View) {
         try {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://sites.google.com/view/grateful-policy/accueil")));

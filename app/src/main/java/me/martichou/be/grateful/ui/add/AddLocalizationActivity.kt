@@ -19,7 +19,6 @@ import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
 import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.mapboxsdk.plugins.places.common.PlaceConstants
 import com.mapbox.mapboxsdk.plugins.places.picker.viewmodel.PlacePickerViewModel
-import kotlinx.android.synthetic.main.custom_mapbox_view_bottom_sheet_container.*
 import me.martichou.be.grateful.R
 import me.martichou.be.grateful.util.statusBarTrans
 import timber.log.Timber
@@ -114,6 +113,7 @@ class AddLocalizationActivity : AppCompatActivity(), OnMapReadyCallback, MapboxM
 
     private fun addChosenLocationButton() {
         val placeSelectedButton = findViewById<FloatingActionButton>(R.id.place_chosen_button)
+        val placeCloseButton = findViewById<FloatingActionButton>(R.id.place_chosen_close)
         placeSelectedButton.setOnClickListener {
             if (carmenFeature == null) {
                 Snackbar.make(bottomSheet!!,
@@ -123,7 +123,7 @@ class AddLocalizationActivity : AppCompatActivity(), OnMapReadyCallback, MapboxM
                 placeSelected()
             }
         }
-        place_chosen_close.setOnClickListener {
+        placeCloseButton.setOnClickListener {
             finish()
         }
     }

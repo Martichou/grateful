@@ -224,51 +224,6 @@
 
                 </com.afollestad.aesthetic.views.AestheticCardView>
 
-                <com.afollestad.aesthetic.views.AestheticCardView
-                    android:id="@+id/synchronizationButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:foreground="@drawable/ripple_circle"
-                    android:onClick="@{hdl::gotoSync}"
-                    app:cardCornerRadius="8dp"
-                    app:cardUseCompatPadding="true">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/syncronizationText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingStart="16dp"
-                            android:paddingTop="16dp"
-                            android:paddingEnd="16dp"
-                            android:text="@string/synchronization"
-                            android:textColor="?android:textColorPrimary"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/syncronizationSummary"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:paddingStart="16dp"
-                            android:paddingEnd="16dp"
-                            android:paddingBottom="16dp"
-                            android:text="@string/setup_synchronization_with_the_cloud"
-                            android:textColor="?android:textColorSecondaryInverse"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/syncronizationText"
-                            tools:textColor="#111"/>
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </com.afollestad.aesthetic.views.AestheticCardView>
-
             </LinearLayout>
 
         </ScrollView>
@@ -278,7 +233,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:text="Grateful - v2.0.5"
+            android:text="Grateful - v2.0.6"
             android:textColor="?android:textColorSecondaryInverse"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"

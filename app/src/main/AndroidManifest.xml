@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="me.martichou.be.grateful">
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application

@@ -5,7 +5,7 @@
     <dimen name="bottom_sheet_corner_radius">20dp</dimen>
     <dimen name="bottom_sheet_top_padding">5dp</dimen>
 
-    <dimen name="add_bottomsheet">40dp</dimen>
+    <dimen name="add_bottomsheet">8dp</dimen>
     <dimen name="third_keyline">72dp</dimen>
 
 </resources>
